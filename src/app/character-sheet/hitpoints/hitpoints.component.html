@@ -1,0 +1,15 @@
+<div class="hitpoints">
+  <h4 class="section-header">Hitpoints</h4>
+  <div class="max-hp">
+    <div class="label">Maximum Hitpoints</div>
+    <div class="value" [innerText]="hitpoints.max"></div>
+  </div>
+  <div class="current-hp">
+    <div class="label">Current Hitpoints</div>
+    <div class="value" [innerText]="hitpoints.current !== 0 ? hitpoints.current : ''"></div>
+  </div>
+  <div class="temp-hp">
+    <div class="label">Temporary Hitpoints</div>
+    <div class="value" [innerText]="hitpoints.temp !== 0 ? hitpoints.temp : ''"></div>
+  </div>
+</div>

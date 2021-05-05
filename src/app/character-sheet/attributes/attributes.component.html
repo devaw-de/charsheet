@@ -1,0 +1,13 @@
+<ng-container *ngIf="attributes">
+  <ul class="attributes" (click)=startPointBuy()>
+
+    <ng-container *ngFor="let attr of attributesList">
+      <li class="single-attribute">
+        <h4 class="label">{{ attr }}</h4>
+        <div class="modifier">{{ getModifier(attributes[attr.substr(0, 3).toLowerCase()]) }}</div>
+        <div class="value">{{ attributes[attr.substr(0, 3).toLowerCase()] }}</div>
+      </li>
+    </ng-container>
+
+  </ul>
+</ng-container>

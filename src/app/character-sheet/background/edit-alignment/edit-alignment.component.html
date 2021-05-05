@@ -1,0 +1,19 @@
+<ng-template #tripple let-set="set">
+  <td *ngFor="let a of set"
+      class="interactive"
+      (click)="setAlignment(a)"
+      [innerText]="a"
+      [title]="'Click to select ' + a"
+  ></td>
+</ng-template>
+
+<div class="edit-alignment" *ngIf="alignmentSets">
+  <h3>Select your Alignment</h3>
+  <table>
+    <tr *ngFor="let set of alignmentSets">
+      <ng-container [ngTemplateOutlet]="tripple"
+                    [ngTemplateOutletContext]="{set: set}"
+      ></ng-container>
+    </tr>
+  </table>
+</div>

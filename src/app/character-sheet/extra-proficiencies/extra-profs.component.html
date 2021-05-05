@@ -1,0 +1,62 @@
+<ng-template #emptyList>
+  <div class="value no-value"
+       [innerText]="'none'"
+  ></div>
+</ng-template>
+
+<ng-template #list let-prop="prop">
+  <div class="value"
+       [innerText]="prop.join(', ')"
+  ></div>
+</ng-template>
+
+<div class="extra-profs">
+  <div class="translucent">
+    <h4 class="section-header">Proficiencies</h4>
+
+    <div class="prof content">
+      <div class="label">Languages</div>
+      <ng-container *ngIf="proficiencies.languages?.length; else emptyList">
+        <ng-container [ngTemplateOutlet]="list"
+                      [ngTemplateOutletContext]="{prop: proficiencies.languages}"
+        ></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="prof content">
+      <div class="label">Weapons</div>
+      <ng-container *ngIf="proficiencies.weapons?.length; else emptyList">
+        <ng-container [ngTemplateOutlet]="list"
+                      [ngTemplateOutletContext]="{prop: proficiencies.weapons}"
+        ></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="prof content">
+      <div class="label">Armor</div>
+      <ng-container *ngIf="proficiencies.armor?.length; else emptyList">
+        <ng-container [ngTemplateOutlet]="list"
+                      [ngTemplateOutletContext]="{prop: proficiencies.armor}"
+        ></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="prof content">
+      <div class="label">Tools</div>
+      <ng-container *ngIf="proficiencies.tools?.length; else emptyList">
+        <ng-container [ngTemplateOutlet]="list"
+                      [ngTemplateOutletContext]="{prop: proficiencies.tools}"
+        ></ng-container>
+      </ng-container>
+    </div>
+
+    <div class="prof content">
+      <div class="label">Instruments</div>
+      <ng-container *ngIf="proficiencies.instruments?.length; else emptyList">
+        <ng-container [ngTemplateOutlet]="list"
+                      [ngTemplateOutletContext]="{prop: proficiencies.instruments}"
+        ></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

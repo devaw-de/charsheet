@@ -1,0 +1,25 @@
+<div class="weapons">
+  <div class="translucent">
+    <h4 class="section-header">Attacks and Spells</h4>
+    <table>
+      <thead>
+        <tr>
+          <td class="wpn">Weapon</td>
+          <td>Attack</td>
+          <td>Damage</td>
+          <td>Range</td>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let line of lines; let i=index">
+          <tr [class.odd]="i % 2 === 0">
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

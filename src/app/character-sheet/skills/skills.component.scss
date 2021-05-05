@@ -1,0 +1,64 @@
+.skills {
+  ul {
+    display: flex;
+    padding: .5rem;
+    flex-direction: column;
+    justify-content: space-between;
+
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 100%;
+
+      div {
+        min-width: 10px;
+        margin-right: 10px;
+
+        &.indicator {
+          flex: 0;
+          display: inline-block;
+          border-radius: 50%;
+          height: 10px;
+          background-color: transparent;
+        }
+
+        &.modifier {
+          text-align: right;
+        }
+
+        &.label {
+          flex-grow: 1;
+        }
+
+        &.attribute {
+          opacity: .4;
+          font-size: .75em;
+          font-weight: 300;
+          margin-right: 0;
+
+          @media screen and (max-width: 768px){
+            display: none;
+          }
+
+          &:before {
+            content: '(';
+          }
+
+          &:after {
+            content: ')';
+          }
+        }
+      }
+
+      &.proficient {
+        font-weight: bold;
+
+        .indicator {
+          background-color: var(--font-color);
+        }
+      }
+    }
+  }
+}

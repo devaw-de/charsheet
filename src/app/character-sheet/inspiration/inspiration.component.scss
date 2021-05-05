@@ -1,0 +1,22 @@
+.inspiration {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 .5rem;
+
+  .label {
+    flex-grow: 1;
+    font-size: 1.15rem;
+  }
+
+  .value {
+    flex-grow: 0;
+    border: 3px solid var(--border-color-dark);
+    box-shadow: 2px 2px 2px var(--border-color-dark);
+    padding: 6px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    height: 1.35rem;
+    width: 1.15rem;
+  }
+}

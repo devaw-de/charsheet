@@ -1,0 +1,14 @@
+<div class="notes striped">
+  <ng-container *ngIf="notes.length">
+    <ng-container *ngFor="let note of notes; let i=index">
+      <div class="single-note"
+           [class.odd]="i % 2 !== 0"
+           [innerText]="note"
+           (click)="editNotes()"
+      ></div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngFor="let line of lines; let i=index">
+    <div [class.odd]="i % 2 !== 0">&nbsp;</div>
+  </ng-container>
+</div>

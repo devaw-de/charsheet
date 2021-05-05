@@ -1,0 +1,33 @@
+.point-buy {
+  input[type="number"] {
+    width: 60px;
+    height: 2rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  table, p {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    border-collapse: collapse;
+
+    thead {
+      opacity: .7;
+    }
+
+    td {
+      border: 1px solid var(--border-color);
+      padding: 3px;
+
+      &.number {
+        text-align: center;
+      }
+
+      &.total {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}

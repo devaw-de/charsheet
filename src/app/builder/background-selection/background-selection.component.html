@@ -1,0 +1,10 @@
+<div class="background-selection">
+  <h2>Select your Background</h2>
+  <ul>
+    <li *ngFor="let bg of CharacterBackgrounds">
+      <div (click)="onBackgroundSelection(bg)">
+        {{ bg.name}}
+      </div>
+    </li>
+  </ul>
+</div>

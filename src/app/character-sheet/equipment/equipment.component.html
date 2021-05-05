@@ -1,0 +1,28 @@
+<div class="equipment">
+  <div class="equipped">
+    <h4 class="section-header">Equipped</h4>
+    <ul class="content striped">
+      <ng-container *ngFor="let item of equipment.equipped; let i=index;">
+        <li [class.odd]="i % 2 !== 0"
+            class="item"
+            [innerText]="item"
+            (click)="unequip(i)"
+            [title]="'click to unequip'"
+        ></li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="backpack ">
+    <h4 class="section-header">Backpack</h4>
+    <ul class="striped">
+      <ng-container *ngFor="let item of equipment.backpack; let i=index;">
+        <li [class.odd]="i % 2 !== 0"
+            class="item"
+            [innerText]="item"
+            (click)="equip(i)"
+            [title]="'click to equip'"
+        ></li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

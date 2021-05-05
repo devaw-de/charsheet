@@ -1,0 +1,19 @@
+.currency {
+  background-image: url('/assets/icons/coins.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  ul {
+    font-size: .75;
+    background: var(--section-background);
+    opacity: .95;
+
+    li {
+      margin: .5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

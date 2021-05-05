@@ -1,0 +1,27 @@
+.weapons {
+  background-image: url('/assets/icons/crossed-swords.png');
+  background-size: 9rem;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  table {
+    border-collapse: separate;
+    width: 100%;
+
+    tr {
+      &.odd {
+        background-color: var(--section-background-darker);
+        }
+
+      td {
+        border-radius: var(--border-radius);
+        text-align: center;
+      }
+
+      .wpn {
+        width: 40%;
+        text-align: left;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.level-up-strategy {
+  font-size: 83%;
+  float: right;
+
+  ul {
+    display: block;
+    text-align: center;
+
+    li {
+      max-height: unset;
+      display: block;
+      width: auto;
+      padding: 1px;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.vitals {
+  display: flex;
+  flex-direction: row;
+
+  ul {
+    display: flex;
+    width: 100%;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+      text-align: center;
+
+      .label {
+        order: 2;
+        opacity: .66;
+      }
+
+      .value {
+        order: 1;
+        caret-color: orange;
+        min-width: 1em;
+        min-height: 1em;
+        cursor: url;
+      }
+    }
+  }
+
+
+}

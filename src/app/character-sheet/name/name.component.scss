@@ -1,0 +1,17 @@
+.name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 7.5rem;
+  width: 100%;
+
+  app-class-icon {
+    flex: 0;
+  }
+
+  h1 {
+    flex-grow: 1;
+    padding: 8px;
+  }
+}

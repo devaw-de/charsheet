@@ -1,0 +1,40 @@
+$internal-border: 1px dotted var(--border-color);
+
+.hitpoints {
+  position: relative;
+
+  h4 {
+    display: inline-block;
+  }
+
+  .current-hp {
+    padding: 2rem 1rem;
+    font-size: 1.5rem;
+
+    .label {
+      display: none;
+    }
+  }
+
+  .max-hp {
+    float: right;
+    text-align: center;
+    border-bottom: $internal-border;
+    border-radius: 0;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  .temp-hp {
+    width: 100%;
+    border-top: $internal-border;
+    border-radius: 0;
+    height: 4rem;
+
+    .value {
+      padding: 5px 1rem;
+    }
+  }
+
+
+}

@@ -1,0 +1,12 @@
+<div class="edit-class">
+  <h3>Select your Character class</h3>
+  <ul>
+    <li *ngFor="let c of classesList"
+        [class]="'interactive ' + c.toLowerCase() +'-icon'"
+        [class.selected]="c === currentClass"
+        [dialogClose]="c"
+        [innerText]="c"
+    >
+  </li>
+  </ul>
+</div>

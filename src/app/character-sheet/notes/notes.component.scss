@@ -1,0 +1,11 @@
+.notes {
+  overflow: hidden;
+
+  .single-note {
+    &::first-letter {
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div *ngIf="currency" class="currency">
+  <div class="translucent">
+    <h4 class="section-header">Coin</h4>
+    <ul class="content">
+      <li>
+        <span>Platinum Pieces:</span>
+        <span class="value">{{ currency.platinum ? currency.platinum : '0' }}</span>
+      </li>
+      <li>
+        <span>Gold Pieces:</span>
+        <span class="value">{{ currency.gold ? currency.gold : '0' }}</span>
+      </li>
+      <li>
+        <span>Silver Pieces:</span>
+        <span class="value">{{ currency.silver ? currency.silver : '0' }}</span>
+      </li>
+      <li>
+        <span>Copper Pieces:</span>
+        <span class="value">{{ currency.copper ? currency.copper : '0' }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

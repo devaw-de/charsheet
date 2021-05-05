@@ -1,0 +1,11 @@
+<div class="edit-notes">
+  <h3>Notes</h3>
+  <textarea #textarea
+            value="notes"
+            class="striped"
+  ></textarea>
+  <button type="button"
+          (click)="saveNotes()"
+          [innerText]="'Save'"
+  ></button>
+</div>

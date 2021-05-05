@@ -1,0 +1,33 @@
+.equipment {
+  background-image: url('/assets/icons/money-bag.png');
+  background-size: 8rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .equipped, .backpack {
+    background: var(--section-background);
+    opacity: .95;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .equipped {
+    width: 30%;
+  }
+
+  .backpack {
+    justify-self: stretch;
+    flex-grow: 1;
+  }
+  .odd {
+    background-color: var(--section-background-darker);
+  }
+
+  .item {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,42 @@
+<ng-template #classSelection>
+  <h2>Select your base class</h2>
+  <div *ngFor="let c of availableClasses">
+    <div (click)="setCharacterClass(c)">{{ c }}</div>
+  </div>
+</ng-template>
+
+<ng-template #raceSelection>
+  <h2>Select your race</h2>
+  <div *ngFor="let r of availableRaces">
+    <div (click)="setCharacterRace(r)">{{ r }}</div>
+  </div>
+</ng-template>
+
+<ng-template #subRaceSelection>
+  <h2>Select your SubRace</h2>
+  <p (click)="setCharacterSubrace(null)">nyi - click here please</p>
+</ng-template>
+
+<div class="builder">
+  <ng-container *ngIf="!character.race || !character.class.length">
+    <ng-container *ngTemplateOutlet="character.race ? classSelection : raceSelection"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="character.class.length && character.race && !character.subrace">
+    <ng-container *ngTemplateOutlet="subRaceSelection"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="character.class.length && character.race && character.subrace && !character.background">
+    <app-background-selection (backgroundSelected)="setCharacterBackground($event)"
+    ></app-background-selection>
+  </ng-container>
+
+  <ng-container *ngIf="character.class.length && character.race && character.subrace && character.background">
+    <app-point-buy (pointBuyCompleted)="showCharacterSheet($event)"></app-point-buy>
+  </ng-container>
+
+  <button type="button"
+          (click)="showCharacterSheet()"
+          [title]="'Check out the character sheet without creating your own character first'"
+  >CharacterSheet*</button>
+</div>

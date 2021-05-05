@@ -1,0 +1,17 @@
+<h4 class="section-header"
+    [innerText]="title"
+></h4>
+
+<p>
+  <input #inputElement
+         type="text"
+         [value]="value"
+         (blur)="updateValue()"
+         (keyup)="updateValue()"
+  >
+</p>
+
+<button (click)="saveValue()"
+        [class.disabled]="isInputInvalid"
+        [disabled]="isInputInvalid"
+>Save</button>

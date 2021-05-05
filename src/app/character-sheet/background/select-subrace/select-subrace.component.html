@@ -1,0 +1,10 @@
+<div class="select-subrace">
+  <h3>Select a subrace</h3>
+  <ul>
+    <li *ngFor="let subrace of subraceList"
+        class="interactive"
+        [innerText]="subrace.name"
+        [dialogClose]="subrace.name"
+    ></li>
+  </ul>
+</div>

@@ -1,0 +1,28 @@
+.passive-perception {
+  background: var(--section-background);
+  color: var(--section-color);
+  border: var(--default-border);
+  border-radius: var(--border-radius);
+  padding: 0 .5rem;
+  display: flex;
+
+  .label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 .5rem;
+    letter-spacing: 2px;
+    flex-grow: 1;
+  }
+
+  .value {
+    flex-grow: 0;
+    border: 3px solid var(--border-color-dark);
+    box-shadow: 2px 2px 2px var(--border-color-dark);
+    padding: 6px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    height: 1.35rem;
+    width: 1.15rem;
+  }
+}

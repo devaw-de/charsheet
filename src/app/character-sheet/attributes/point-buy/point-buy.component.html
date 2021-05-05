@@ -1,0 +1,86 @@
+<ng-template #row let-attr="attr" let-form="form" let-name="name">
+  <ng-container [ngTemplateOutlet]="picker"
+                [ngTemplateOutletContext]="{attr: attr, name: name, form: form}"
+  ></ng-container>
+  <ng-container [ngTemplateOutlet]="isRacialBonusAvailable && !race.attributeBonus[attr]
+                                    ? racialPicker
+                                    : racialBonus"
+                [ngTemplateOutletContext]="{attr: attr, form: form}"
+  ></ng-container>
+  <td class="total number"
+      [innerText]="getTotal(attr)"
+  ></td>
+  <td class="modifier number"
+      [innerText]="race.attributeBonus[attr]
+                   ? Utils.getAbilityModifierAstring(form.get(attr).value + race.attributeBonus[attr])
+                   : Utils.getAbilityModifierAstring(form.get(attr).value)"
+  ></td>
+</ng-template>
+
+<ng-template #picker let-attr="attr" let-form="form" let-name="name">
+    <td [innerText]="name"></td>
+    <td>
+      <input type="number"
+             class="pick"
+             [formControl]="form.get(attr)"
+             (change)="updatePointCount(attr)"
+             [min]="8"
+             [max]="15"
+      >
+    </td>
+</ng-template>
+
+<ng-template #racialPicker let-attr="attr" let-form="form">
+  <td class="number">
+    <input type="checkbox"
+           [formControl]="form.get('bonus_' + attr)"
+           (change)="handleBonusSelection(attr)"
+    >
+  </td>
+</ng-template>
+
+<ng-template #racialBonus let-attr="attr">
+  <td class="number"
+      [innerText]="race.attributeBonus[attr]
+                   ? race.attributeBonus[attr]
+                   : 0"
+  ></td>
+</ng-template>
+
+<div class="point-buy">
+  <h3>Point Buy</h3>
+  <form [formGroup]="form">
+    <table *ngIf="character">
+      <thead>
+        <tr>
+          <td>Attribute</td>
+          <td>Score</td>
+          <td>Bonus</td>
+          <td>Total</td>
+          <td>Modifier</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attr of attributesList">
+          <ng-container [ngTemplateOutlet]="row"
+                        [ngTemplateOutletContext]="{name: attr, attr: attr.toLowerCase().substr(0, 3), form: form}"
+          ></ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <p>Points: {{ remainingPoints }} / {{ totalPoints }}</p>
+  <p *ngIf="isRacialBonusAvailable">
+    Pickable Bonus Attributes {{ remainingRacialBonusPoints }} / {{ totalRacialBonusPoints }}
+  </p>
+
+  <p>
+    <button type="button"
+            [disabled]="remainingPoints !== 0"
+            [class.disabled]="remainingPoints !== 0"
+            (click)="save()"
+            [innerText]="'Save'"
+    ></button>
+  </p>
+</div>

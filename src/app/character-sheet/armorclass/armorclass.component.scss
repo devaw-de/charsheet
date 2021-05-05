@@ -1,0 +1,35 @@
+.armor-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+  & > div {
+    width: 20%;
+    margin-right: 2rem;
+    height: 90px;
+    flex-grow: 0;
+    text-align: right;
+    display: flex;
+    flex-direction: column-reverse;
+    background-size: 3rem;
+    background-repeat: no-repeat;
+    background-position: left center;
+  }
+
+  .armor {
+    background-image: url('/assets/icons/shield.png');
+  }
+
+  .initiative {
+    background-image: url('/assets/icons/d20.png');
+  }
+
+  .movement {
+    background-image: url('/assets/icons/wind.png');
+  }
+
+  .value {
+    font-size: var(--extra-large-text);
+  }
+}

@@ -1,0 +1,22 @@
+<h3 [innerText]="title"></h3>
+<p>
+  <input #numberInput
+         type="number"
+         [min]="minValue"
+         [max]="maxValue"
+         [value]="value"
+         (blur)="updateValue()"
+         (change)="updateValue()"
+  >
+</p>
+
+<div *ngIf="additionalComponent"
+     class="additional-component"
+>
+  <ng-container *ngComponentOutlet="additionalComponent"></ng-container>
+</div>
+
+<button (click)="saveValue()"
+        [class.disabled]="value > maxValue || value < minValue"
+        [disabled]="value > maxValue || value < minValue"
+>Save</button>

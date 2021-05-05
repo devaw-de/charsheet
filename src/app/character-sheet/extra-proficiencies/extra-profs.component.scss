@@ -1,0 +1,26 @@
+.extra-profs {
+  background-image: url('/assets/icons/settings.png');
+  background-repeat: no-repeat;
+  background-size: 8rem;
+  background-position: 90% 50%;
+
+  .label, .value {
+    display: inline-block;
+  }
+
+  .label {
+    font-weight: bold;
+    font-size: .8rem;
+    opacity:  .7;
+
+    &::after {
+      content: ':';
+      padding-right: .5rem;
+    }
+  }
+  .value {
+    font-weight: light;
+    font-size: .8rem;
+    padding-bottom: .25rem;
+  }
+}

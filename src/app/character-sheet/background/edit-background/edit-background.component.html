@@ -1,0 +1,17 @@
+<ng-template #background let-bg="bg">
+  <div class="select-background interactive"
+       [class.selected]="bg === currentBg"
+       [innerText]="bg"
+       [dialogClose]="bg"
+       [title]="'Click to select ' + bg + ' as your background'"
+  ></div>
+</ng-template>
+
+<h3>Select your Background</h3>
+<ul>
+  <li *ngFor="let bg of bgList">
+    <ng-container [ngTemplateOutlet]="background"
+                  [ngTemplateOutletContext]="{bg: bg}"
+    ></ng-container>
+  </li>
+</ul>

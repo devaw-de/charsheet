@@ -1,0 +1,20 @@
+<div class="language-picker">
+  <h3 [innerText]="totalPicks === 1 ? 'Pick a language' : 'Pick ' + totalPicks + 'languages'"
+  ></h3>
+  <ul>
+    <li *ngFor="let lang of availableLanguages"
+        class="interactive"
+        [class.disabled]="characterOwnedLanguages.includes(lang)"
+        [class.selected]="selectedLanguages.includes(lang)"
+        (click)="toggleLanguageSelection(lang)"
+        [title]="'select ' + lang"
+        [innerText]="lang"
+    ></li>
+  </ul>
+  <button type="button"
+          [dialogClose]="selectedLanguages"
+          [innerText]="'Save Language Selection'"
+          [disabled]="remainingPicks !== 0"
+          [class.disabled]="remainingPicks !== 0"
+  ></button>
+</div>

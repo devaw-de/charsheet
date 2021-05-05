@@ -1,0 +1,35 @@
+<ng-container *ngIf="character">
+  <ul class="background">
+    <li class="interactive" (click)="editClass()">
+      <span class="label">Class & Level</span>
+      <span class="value">{{ character.class }} ({{ character.level }})</span>
+    </li>
+
+    <li class="interactive" (click)="editBackground()">
+      <span class="label">Background</span>
+      <span class="value">{{ character.background }}</span>
+    </li>
+
+    <li class="interactive" (click)="editPlayerName()">
+      <span class="label">Player name</span>
+      <span class="value">{{ character.playerName }}</span>
+    </li>
+
+    <li class="interactive" (click)="editRace()">
+      <span class="label">Race</span>
+      <span class="value"
+            [innerText]="character.subrace ? character.subrace : character.race"
+      ></span>
+    </li>
+
+    <li class="interactive" (click)="editAlignment()">
+      <span class="label">Alignment</span>
+      <span class="value">{{ character.alignment }}</span>
+    </li>
+
+    <li class="interactive" (click)="editExperiencePoints()">
+      <span class="label">Experience</span>
+      <span class="value">{{ character.xp }}</span>
+    </li>
+  </ul>
+</ng-container>

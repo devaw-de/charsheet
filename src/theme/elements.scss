@@ -1,0 +1,32 @@
+button {
+  background-color: #865236; //var(--highlight);
+  color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: .25rem .5rem;
+  margin: .25rem;
+  cursor: pointer;
+
+  &.disabled {
+    background-color: var(--light);
+    cursor: not-allowed;
+
+    &:hover, &:active {
+      background-color: var(--light);
+      border-style: solid;
+    }
+  }
+
+  &:hover {
+    background-color: #ae8247;
+    border-style: outset;
+  }
+
+  &:active {
+    border-style: inset;
+  }
+
+  @media print {
+    display: none;
+  }
+}

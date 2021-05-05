@@ -1,0 +1,54 @@
+<ng-container *ngIf="vitals">
+  <div class="vitals">
+    <ul>
+      <li class="interactive">
+        <div class="label">Age</div>
+        <div #age
+             class="value"
+             [innerText]="vitals.age"
+             (click)="editAge()"
+        ></div>
+      </li>
+      <li class="interactive">
+        <div class="label">Height</div>
+        <div #height
+             class="value"
+             (click)="editHeight()"
+             [innerText]="vitals.height"
+        ></div>
+      </li>
+      <li class="interactive">
+        <div class="label">Weight</div>
+        <div #weight
+             class="value"
+             (click)="editWeight()"
+             [innerText]="vitals.weight"
+        ></div>
+      </li>
+      <li class="interactive">
+        <div class="label">Eyes</div>
+        <div #eyes
+             class="value"
+             (click)="editEyes()"
+             [innerText]="vitals.eyes"
+        ></div>
+      </li>
+      <li class="interactive">
+        <div class="label">Skin</div>
+        <div #skin
+             class="value"
+             (click)="editSkin()"
+             [innerHTML]="vitals.skin"
+        ></div>
+      </li>
+      <li class="interactive">
+        <div class="label">Hair</div>
+        <div #hair
+             class="value"
+             (click)="editHair()"
+             [innerText]="vitals.hair"
+        ></div>
+      </li>
+    </ul>
+  </div>
+</ng-container>

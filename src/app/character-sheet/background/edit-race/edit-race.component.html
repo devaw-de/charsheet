@@ -1,0 +1,11 @@
+<div class="edit-race" *ngIf="currentRace">
+  <h3>Select your race</h3>
+  <ul>
+    <li *ngFor="let race of racesList"
+        class="interactive"
+        [class.selected]="race === currentRace"
+        [dialogClose]="race"
+        [innerText]="race"
+    ></li>
+  </ul>
+</div>

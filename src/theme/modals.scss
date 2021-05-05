@@ -1,0 +1,57 @@
+ngneat-dialog {
+  .ngneat-dialog-backdrop {
+    // backdrop styles
+    .ngneat-dialog-content {
+      // dialog content, where your component/template is placed
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .ngneat-close-dialog {
+        // 'X' icon for closing the dialog
+        color: var(--highlight);
+
+        &:hover {
+          &::before {
+            content: '[';
+          }
+          &::after {
+            content: ']';
+          }
+        }
+      }
+      .ngneat-dialog-primary-btn,
+      .ngneat-dialog-secondary-btn {
+        // the default dialogs action buttons
+        border: 10px dotted dodgerblue;
+      }
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      margin: 12px;
+      padding: .5rem;
+      min-height: 2rem;
+      width: 30%;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: var(--highlight);
+    margin-bottom: 1rem;
+  }
+}
