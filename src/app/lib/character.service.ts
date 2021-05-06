@@ -157,6 +157,8 @@ import { Utils } from "./utils";
   public setClass(c: CharacterClassName): void {
     this._character.class = c;
     this._adjustSavingThrows();
+    this._adjustHitpoints();
+    this._adjustArmorClass();
   }
 
   /**
@@ -179,6 +181,7 @@ import { Utils } from "./utils";
    */
   public setSubrace(s: CharacterSubRaceName): void {
     this._character.subrace = s;
+    this._adjustArmorClass();
   }
 
   /**
@@ -205,6 +208,7 @@ import { Utils } from "./utils";
   public setAttributes(attributes: CharacterAttributes): void {
     this._character.attributes = attributes
     this._adjustHitpoints();
+    this._adjustArmorClass();
   }
 
   /**
@@ -236,6 +240,22 @@ import { Utils } from "./utils";
 
   private _adjustProficiencyBonus(): void {
     this._character.proficiencies.proficiencyBonus = CharacterClassLevelList.find(lv => lv.level === this._character.level).profBonus;
+  }
+
+  private _adjustArmorClass() {
+    const shieldBonus = this._character.shield ? 2 : 0;
+    let nakedAc = 10 + Utils.getAbilityModifier(this._character.attributes.dex);
+
+    switch(this._character.class) {
+      case CharacterClassName.MONK:
+        this._character.ac = nakedAc + Utils.getAbilityModifier(this._character.attributes.wis);
+        break;
+      case CharacterClassName.BARBARIAN:
+        this._character.ac = nakedAc + shieldBonus + Utils.getAbilityModifier(this._character.attributes.con);
+        break;
+      default:
+        this._character.ac = nakedAc + shieldBonus;
+    }
   }
 
   /**

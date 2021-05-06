@@ -3,7 +3,14 @@ import { Attribute } from "../model/attributes";
 import { CharacterBackground } from "../model/backgrounds";
 import { Alignment, Dice, Language } from "../model/base";
 import { CharacterClassName } from "../model/characterClasses";
-import { CharacterRace, CharacterRaceDetails, CharacterRacesList, CharacterSubraceDetails, CharacterSubRaceName, CharacterSubracesList } from "../model/characterRaces";
+import {
+  CharacterRace,
+  CharacterRaceDetails,
+  CharacterRacesList,
+  CharacterSubraceDetails,
+  CharacterSubRaceName,
+  CharacterSubracesList
+} from "../model/characterRaces";
 import { LevelUpStrategy } from "../model/settings";
 
 export class Utils {

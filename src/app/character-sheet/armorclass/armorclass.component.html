@@ -1,14 +1,14 @@
 <div class="armor-wrap">
   <div class="armor">
     <div class="label">Armor</div>
-    <div class="value">{{ armorClass }}</div>
+    <div class="value">{{ character.ac }}</div>
   </div>
   <div class="initiative">
     <div class="label">Initiative</div>
-    <div class="value">{{ initiave }}</div>
+    <div class="value">{{ Utils.getAbilityModifierAstring(character.attributes.dex) }}</div>
   </div>
   <div class="movement">
     <div class="label">Movement speed</div>
-    <div class="value">{{ movement }}</div>
+    <div class="value">{{ character.movementSpeed }}</div>
   </div>
 </div>
