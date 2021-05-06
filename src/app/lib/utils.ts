@@ -2,7 +2,7 @@ import { Skill } from "../model/abilities";
 import { Attribute } from "../model/attributes";
 import { CharacterBackground } from "../model/backgrounds";
 import { Alignment, Dice, Language } from "../model/base";
-import { CharacterClassName } from "../model/characterClasses";
+import { CharacterClass, CharacterClassesList, CharacterClassName } from "../model/characterClasses";
 import {
   CharacterRace,
   CharacterRaceDetails,
@@ -84,6 +84,11 @@ export class Utils {
   public static subraceSelectionRequired(race: CharacterRace) {
     const subRace = CharacterSubracesList.find(subrace => subrace.extendsRace === race);
     return subRace !== undefined;
+  }
+
+  /* Class-related methods */
+  public static getClassDetailsByname(cn: CharacterClassName): CharacterClass {
+    return CharacterClassesList.find(c => c.name === cn);
   }
 
   /* Dice-related methods */

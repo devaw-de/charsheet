@@ -1,0 +1,37 @@
+<ng-template #multiple>
+  <span>Pick {{ maxSelections - selectedSkills.length }} more skills.</span>
+</ng-template>
+
+<ng-template #nomore>
+  <span>No more picks remaining.</span>
+</ng-template>
+
+<div class="skill-proficiency-selection">
+  <ul>
+    <li *ngFor="let skill of availableSkills"
+        class="interactive"
+        [class.selected]="selectedSkills.includes(skill)"
+        [class.disabled]="false"
+        [class.restricted]="!pickableSkills.includes(skill)"
+        [title]="pickableSkills.includes(skill) ? 'Click to select/deselect' : 'Not available to your character class'"
+        [innerText]="skill"
+        (click)="toggle(skill)"
+
+    ></li>
+  </ul>
+
+  <p *ngIf="maxSelections !== selectedSkills.length; else nomore">
+    <span *ngIf="maxSelections - selectedSkills.length === 1; else multiple">
+      Pick one more skill.
+    </span>
+  </p>
+
+  <p>
+    <button type="button"
+            (click)="save()"
+            [innerText]="'Save'"
+            [disabled]="selectedSkills.length !== maxSelections"
+            [class.disabled]="selectedSkills.length !== maxSelections"
+    ></button>
+  </p>
+</div>

@@ -359,7 +359,6 @@ import { Utils } from "./utils";
     Object.getOwnPropertyNames(vitals).forEach((prop) => {
       this._character.vitals[prop] = vitals[prop]
     });
-
   }
 
   /**

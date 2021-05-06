@@ -1,5 +1,5 @@
 <ng-container *ngIf="character">
-  <div class="skills">
+  <div class="skills" (click)="startSkillProficiencySelection()">
     <h4 class="section-header">Skill Proficiencies</h4>
     <ul>
       <li *ngFor="let skill of skills"

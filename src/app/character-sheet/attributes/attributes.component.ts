@@ -3,7 +3,7 @@ import { DialogRef, DialogService } from '@ngneat/dialog';
 import { CharacterService } from 'src/app/lib/character.service';
 import { Utils } from 'src/app/lib/utils';
 import { Attribute } from 'src/app/model/attributes';
-import { CharacterAttributes, PlayerCharacterData } from '../../model/character';
+import { CharacterAttributes } from '../../model/character';
 import { PointBuyComponent } from './point-buy/point-buy.component';
 
 @Component({
@@ -34,7 +34,6 @@ export class AttributesComponent {
         attr: this.attributes
     }});
     const modalSubscription = modal.afterClosed$.subscribe((attributes: CharacterAttributes) => {
-      // this._service.setAttributes(attributes);
       if(attributes) {
         this._service.setAttributes(attributes);
       }

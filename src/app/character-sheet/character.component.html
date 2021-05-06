@@ -1,5 +1,5 @@
 <div *ngIf="character" class="sheet">
-	<app-name class="section"></app-name>
+	<app-name class="section" [character]="character"></app-name>
 	<div class="upper-wrap">
 		<app-background class="sub-section" [character]="character"></app-background>
 		<app-vitals class="sub-section" [vitals]="character.vitals"></app-vitals>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CharacterClass } from 'src/app/model/characterClasses';
+import { CharacterClass, CharacterClassName } from 'src/app/model/characterClasses';
 
 @Component({
   selector: 'app-class-icon',
@@ -8,5 +8,5 @@ import { CharacterClass } from 'src/app/model/characterClasses';
 })
 export class ClassIconComponent {
 
-  @Input() characterClass: CharacterClass;
+  @Input() characterClass: CharacterClassName;
 }

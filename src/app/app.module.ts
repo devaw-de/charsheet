@@ -33,6 +33,7 @@ import { EditAlignmentComponent } from './character-sheet/background/edit-alignm
 import { EditClassComponent } from './character-sheet/background/edit-class/edit-class.component';
 import { EditBackgroundComponent } from './character-sheet/background/edit-background/edit-background.component';
 import { EditRaceComponent } from './character-sheet/background/edit-race/edit-race.component';
+import { SkillProficiencySelectionComponent } from './character-sheet/skills/skill-proficiency-selection/skill-proficiency-selection.component';
 
 /* Builder */
 import { PointBuyComponent } from './character-sheet/attributes/point-buy/point-buy.component';
@@ -48,6 +49,7 @@ import { EditNumberComponent } from './elements/generic-modals/edit-number/edit-
 import { SelectSubraceComponent } from './character-sheet/background/select-subrace/select-subrace.component';
 import { SelectLevelUpStrategyComponent } from './elements/select-level-up-strategy/select-level-up-strategy.component';
 import { EditNotesComponent } from './character-sheet/notes/edit-notes/edit-notes.component';
+
 
 /* Auto */
 
@@ -91,7 +93,8 @@ import { EditNotesComponent } from './character-sheet/notes/edit-notes/edit-note
     EditNumberComponent,
     SelectSubraceComponent,
     SelectLevelUpStrategyComponent,
-    EditNotesComponent
+    EditNotesComponent,
+    SkillProficiencySelectionComponent
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DialogService } from '@ngneat/dialog';
 import { EditStringComponent } from 'src/app/elements/generic-modals/edit-string/edit-string.component';
 import { CharacterService } from 'src/app/lib/character.service';
-import { CharacterClass } from 'src/app/model/characterClasses';
 import { PlayerCharacterData } from '../../model/character';
 
 @Component({
@@ -12,16 +11,12 @@ import { PlayerCharacterData } from '../../model/character';
 })
 export class NameComponent {
 
-  public character: PlayerCharacterData;
-  public characterClass: CharacterClass;
+  @Input() character: PlayerCharacterData;
 
   constructor(
     private _service: CharacterService,
     private _dialog: DialogService
-  ) {
-    this.character = this._service.getCharacter();
-    this.characterClass = this._service.getClass();
-  }
+  ) { }
 
   public edit(): void {
     const modal = this._dialog.open(EditStringComponent, {

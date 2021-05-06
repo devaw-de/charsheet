@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { DialogService } from '@ngneat/dialog';
 import { Utils } from 'src/app/lib/utils';
 import { CharacterSkillList, CharacterSkill, Skill } from '../../model/abilities';
 import { PlayerCharacterData } from '../../model/character';
+import { SkillProficiencySelectionComponent } from './skill-proficiency-selection/skill-proficiency-selection.component';
 
 @Component({
   selector: 'app-skills',
@@ -12,6 +14,10 @@ export class SkillsComponent {
 
   public skills: Array<CharacterSkill> = CharacterSkillList;
   @Input() character: PlayerCharacterData;
+
+  constructor(
+    private _dialogService: DialogService
+  ) {}
 
   public getSkillModifier(skill: CharacterSkill): string {
     const bonus = this.character.proficiencies.proficiencyBonus;
@@ -25,6 +31,21 @@ export class SkillsComponent {
 
   public isProficient(skillName: Skill): boolean {
     return this.character.proficiencies.skills.includes(skillName);
+  }
+
+  public startSkillProficiencySelection(): void {
+    const restrictedSkills = Utils.getClassDetailsByname(this.character.class).proficiencies.skillsToChoose.limitedTo;
+
+    const modal = this._dialogService.open(SkillProficiencySelectionComponent, {
+      data: {
+        pickabledSkills: restrictedSkills ? restrictedSkills : Utils.getSkillList(),
+        selectedSkills: this.character.proficiencies.skills,
+        maxSelections: 3
+      }
+    });
+    const modalSubscription = modal.afterClosed$.subscribe(result => {
+      console.log(result);
+    });
   }
 
 }
