@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Utils } from 'src/app/lib/utils';
 import { Skill } from 'src/app/model/abilities';
 import { PlayerCharacterData } from 'src/app/model/character';
@@ -8,16 +8,12 @@ import { PlayerCharacterData } from 'src/app/model/character';
   templateUrl: './passive-perception.component.html',
   styleUrls: ['./passive-perception.component.scss']
 })
-export class PassivePerceptionComponent implements OnInit {
+export class PassivePerceptionComponent {
 
   public passivePerception: number;
   @Input() character: PlayerCharacterData;
 
-  ngOnInit(): void {
-    this.passivePerception = this._calculatePassivePerception();
-  }
-
-  private _calculatePassivePerception(): number {
+  public getPassivePerception(): number {
     const perceptionSkillProficienyBonus: number =
       this.character.proficiencies.skills.includes(Skill.PERCEPTION)
       ? this.character.proficiencies.proficiencyBonus
