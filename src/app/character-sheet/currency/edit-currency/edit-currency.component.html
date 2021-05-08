@@ -1,0 +1,26 @@
+<div class="edit-currency">
+  <h4 class="section-header">Give yourself some coin</h4>
+  <p>
+    <label for="platinum">Platinum</label>
+    <input #platinum type="number" min="0" value="cash.platinum">
+  </p>
+
+  <p>
+    <label for="gold">Gold</label>
+    <input #gold type="number" min="0" value="cash.gold">
+  </p>
+
+  <p>
+    <label for="silver">Silver</label>
+    <input #silver type="number" min="0" value="cash.silver">
+  </p>
+
+  <p>
+    <label for="copper">Copper</label>
+    <input #copper type="number" min="0" value="cash.copper">
+  </p>
+
+  <p>
+    <button type="button" (click)="save()">Save</button>
+  </p>
+</div>

@@ -49,6 +49,7 @@ import { EditNumberComponent } from './elements/generic-modals/edit-number/edit-
 import { SelectSubraceComponent } from './character-sheet/background/select-subrace/select-subrace.component';
 import { SelectLevelUpStrategyComponent } from './elements/select-level-up-strategy/select-level-up-strategy.component';
 import { EditNotesComponent } from './character-sheet/notes/edit-notes/edit-notes.component';
+import { EditCurrencyComponent } from './character-sheet/currency/edit-currency/edit-currency.component';
 
 
 /* Auto */
@@ -94,7 +95,8 @@ import { EditNotesComponent } from './character-sheet/notes/edit-notes/edit-note
     SelectSubraceComponent,
     SelectLevelUpStrategyComponent,
     EditNotesComponent,
-    SkillProficiencySelectionComponent
+    SkillProficiencySelectionComponent,
+    EditCurrencyComponent
   ],
   imports: [
     CommonModule,
