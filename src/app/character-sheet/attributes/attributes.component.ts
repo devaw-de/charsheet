@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { DialogRef, DialogService } from '@ngneat/dialog';
+import { DialogService } from '@ngneat/dialog';
 import { CharacterService } from 'src/app/lib/character.service';
 import { Utils } from 'src/app/lib/utils';
 import { Attribute } from 'src/app/model/attributes';
-import { CharacterAttributes } from '../../model/character';
+import { CharacterAttributes, PointBuyDTO } from '../../model/character';
 import { PointBuyComponent } from './point-buy/point-buy.component';
 
 @Component({
@@ -33,9 +33,10 @@ export class AttributesComponent {
       data: {
         attr: this.attributes
     }});
-    const modalSubscription = modal.afterClosed$.subscribe((attributes: CharacterAttributes) => {
-      if(attributes) {
-        this._service.setAttributes(attributes);
+    const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
+      if(result) {
+        this._service.setAttributes(result.attributes);
+        this._service.setAppliedRacialBonuses(result.racialBonus);
       }
       modalSubscription.unsubscribe();
     });

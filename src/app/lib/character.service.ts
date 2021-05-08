@@ -1,10 +1,20 @@
 import { Injectable } from "@angular/core";
 import { DialogService } from "@ngneat/dialog";
 import { LanguagePickerComponent } from "../builder/language-picker/language-picker.component";
+import { PointBuyComponent } from "../character-sheet/attributes/point-buy/point-buy.component";
 import { Skill } from "../model/abilities";
 import { CharacterBackground, CharacterBackgroundsList } from "../model/backgrounds";
 import { Alignment, Dice, Language } from "../model/base";
-import { CharacterAttributes, CharacterVitals, DefaultCharacter, Equipment, HitPoints, PlayerCharacterData } from "../model/character";
+import {
+  CharacterAttributes,
+  CharacterVitals,
+  DefaultCharacter,
+  Equipment,
+  HitPoints,
+  OptionalCharacterAttributes,
+  PlayerCharacterData,
+  PointBuyDTO
+} from "../model/character";
 import { CharacterClass, CharacterClassesList, CharacterClassName } from "../model/characterClasses";
 import { CharacterRace, CharacterSubRaceName } from "../model/characterRaces";
 import { Currency, Tool } from "../model/equipment";
@@ -174,6 +184,7 @@ import { Utils } from "./utils";
   public setRace(r: CharacterRace): void {
     this._character.race = r;
     this._character.subrace = undefined;
+    if(Utils.subraceSelectionRequired(r)) this._adjustAttributeBonuses();
   }
 
   /**
@@ -182,6 +193,7 @@ import { Utils } from "./utils";
   public setSubrace(s: CharacterSubRaceName): void {
     this._character.subrace = s;
     this._adjustArmorClass();
+    this._adjustAttributeBonuses();
   }
 
   /**
@@ -206,9 +218,21 @@ import { Utils } from "./utils";
    * Override the character's attribute scores
    */
   public setAttributes(attributes: CharacterAttributes): void {
-    this._character.attributes = attributes
-    this._adjustHitpoints();
-    this._adjustArmorClass();
+    if(attributes) {
+      this._character.attributes = attributes
+      this._adjustHitpoints();
+      this._adjustSavingThrows();
+      this._adjustArmorClass();
+    }
+  }
+
+  public setAppliedRacialBonuses(attributes: OptionalCharacterAttributes): void {
+    if(attributes) {
+      this._character.appliedRacialBonuses = attributes;
+      this._adjustHitpoints();
+      this._adjustSavingThrows();
+      this._adjustArmorClass();
+    }
   }
 
   /**
@@ -240,6 +264,39 @@ import { Utils } from "./utils";
 
   private _adjustProficiencyBonus(): void {
     this._character.proficiencies.proficiencyBonus = CharacterClassLevelList.find(lv => lv.level === this._character.level).profBonus;
+  }
+
+  /**
+   * Remove attribute bonuses from race selection and re-apply the bonuses of the currently selected race/subrace
+   * Call this method when changing races / subraces
+   */
+  private _adjustAttributeBonuses(): void {
+    Object.keys(this._character.appliedRacialBonuses).forEach(key => {
+      this._character.attributes[key] = this._character.attributes[key] - this._character.appliedRacialBonuses[key];
+    });
+
+    const racialBonus = Utils.getRaceDetailsByName(this._character.race).attributeBonus;
+    if(racialBonus.pickable) {
+      // user interaction required
+      const modal = this._dialogService.open(PointBuyComponent, {
+        enableClose: false,
+        closeButton: false,
+        data: {
+          attr: this._character.attributes
+        }
+      });
+      const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
+        if(!result) {
+          throw new Error('No result from Attribute Point Buy. Character corrupted.');
+        } else {
+          this.setAttributes(result.attributes)
+          this._character.appliedRacialBonuses = result.racialBonus;
+        }
+        modalSubscription.unsubscribe();
+      });
+    } else {
+      this._character.appliedRacialBonuses = racialBonus;
+    }
   }
 
   private _adjustArmorClass() {

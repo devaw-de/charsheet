@@ -27,5 +27,15 @@
     }
   }
 
+  @media print {
+    li {
+      align-self: flex-end;
+
+      .value {
+        height: 16pt;
+        overflow: hidden;
+      }
+    }
+  }
 
 }

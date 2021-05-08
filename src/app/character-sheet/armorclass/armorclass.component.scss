@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 100%;
 
 
   & > div {
@@ -31,5 +32,41 @@
 
   .value {
     font-size: var(--extra-large-text);
+  }
+
+  @media print {
+    .armor, .initiative, .movement {
+      text-align: center;
+      background-image: none;
+    }
+
+    .armor {
+      order: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-image: url('/assets/icons/shield.png');
+      background-size: 5rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      .value {
+        font-size: 2.25rem;
+      }
+      .label {
+        display: none;
+      }
+    }
+
+    .initiative {
+      order: 1;
+
+    }
+    .movement {
+      order: 3;
+    }
+
   }
 }

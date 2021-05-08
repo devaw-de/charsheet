@@ -14,4 +14,20 @@
     flex-grow: 1;
     padding: 8px;
   }
+
+  @media print {
+    overflow: hidden;
+
+    min-height: unset !important;
+
+    app-class-icon {
+      width: 25% !important;
+      border: 3pt solid red;
+    }
+
+    h1 {
+      width: 70% !important;
+    }
+
+  }
 }

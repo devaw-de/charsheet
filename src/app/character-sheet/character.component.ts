@@ -35,11 +35,16 @@ export class CharacterComponent {
   }
 
   public test(): void {
-    console.log(Utils.getMaxDieValue(Dice.D6), Utils.getAverageDieValue(Dice.D6), Utils.getRandomDieValue(Dice.D6));
-    console.log(Utils.getMaxDieValue(Dice.D8), Utils.getAverageDieValue(Dice.D8), Utils.getRandomDieValue(Dice.D8));
-    console.log(Utils.getMaxDieValue(Dice.D10), Utils.getAverageDieValue(Dice.D10), Utils.getRandomDieValue(Dice.D10));
-    console.log(Utils.getMaxDieValue(Dice.D12), Utils.getAverageDieValue(Dice.D12), Utils.getRandomDieValue(Dice.D12));
+    const str = this._service.getCharacter().attributes.str;
+    const dex = this._service.getCharacter().attributes.dex;
+    const con = this._service.getCharacter().attributes.con;
+    const int = this._service.getCharacter().attributes.int;
+    const wis = this._service.getCharacter().attributes.wis;
+    const cha = this._service.getCharacter().attributes.cha;
 
+    console.warn('Attributes: ' + str + '/' + dex + '/' + con + '/' + int + '/' + wis + '/' + cha);
+    console.warn('AppliedRacialstuff');
+    console.warn(this._service.getCharacter().appliedRacialBonuses);
   }
 
 }

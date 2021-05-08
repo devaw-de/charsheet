@@ -1,9 +1,15 @@
 .skills {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   ul {
+    height: 100%;
     display: flex;
+    flex-grow: 1;
     padding: .5rem;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     li {
       display: flex;

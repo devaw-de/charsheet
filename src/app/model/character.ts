@@ -36,6 +36,20 @@ export interface CharacterAttributes {
   cha: number;
 };
 
+export interface OptionalCharacterAttributes {
+  str?: number;
+  dex?: number;
+  con?: number;
+  int?: number;
+  wis?: number;
+  cha?: number;
+};
+
+export interface PointBuyDTO {
+  attributes: CharacterAttributes;
+  racialBonus: OptionalCharacterAttributes;
+};
+
 export interface Equipment {
   equipped?: Array<string>;
   backpack?: Array<string>;
@@ -70,6 +84,7 @@ export interface PlayerCharacterData {
   playerName: string;
   proficiencies: Profiencies;
   race: CharacterRace;
+  appliedRacialBonuses: OptionalCharacterAttributes;
   shield: boolean;
   specialization: CharacterSpecialization;
   subrace: CharacterSubRaceName;
@@ -128,6 +143,7 @@ export const StartingPlayerCharacter: PlayerCharacterData = {
   weapons: [Weapon.LONGSWORD],
   shield: false,
   race: undefined,
+  appliedRacialBonuses: null,
   subrace: undefined,
   background: undefined,
   ammunition: [],
@@ -155,6 +171,10 @@ export const DefaultCharacter: PlayerCharacterData = {
     int: 8,
     wis: 15,
     cha: 12
+  },
+  appliedRacialBonuses: {
+    con: 2,
+    wis: 1,
   },
   xp: 200,
   level: 1,

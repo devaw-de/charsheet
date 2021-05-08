@@ -4,19 +4,18 @@
   border: var(--default-border);
   border-radius: var(--border-radius);
   padding: 0 .5rem;
+  height: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   .label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 0 .5rem;
     letter-spacing: 2px;
-    flex-grow: 1;
+    align-self: center;
   }
 
   .value {
-    flex-grow: 0;
     border: 3px solid var(--border-color-dark);
     box-shadow: 2px 2px 2px var(--border-color-dark);
     padding: 6px;
@@ -24,5 +23,6 @@
     font-size: 1.15rem;
     height: 1.35rem;
     width: 1.15rem;
+    align-self: center;
   }
 }

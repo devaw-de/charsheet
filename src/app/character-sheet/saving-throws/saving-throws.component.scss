@@ -1,10 +1,23 @@
 .saving-throws {
+  background-image: url('/assets/icons/d20.png');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: right center;
+  display: flex;
+  flex-direction: column;
+
+
+  h4, ul {
+    background-color: var(--section-background);
+    opacity: .95;
+  }
 
   ul {
-    display: flex;
     padding: .5rem;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-grow: 1;
   }
 
   li {
@@ -34,20 +47,6 @@
         flex-grow: 1;
       }
 
-      &.attribute {
-        opacity: .4;
-        font-size: .75em;
-        font-weight: 300;
-        margin-right: 0;
-
-        &:before {
-          content: '(';
-        }
-
-        &:after {
-          content: ')';
-        }
-      }
     }
 
     &.proficient {
@@ -58,4 +57,5 @@
       }
     }
   }
+
 }

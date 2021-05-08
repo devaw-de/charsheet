@@ -8,11 +8,12 @@
 
 .hitdice {
   height: 100%;
+  padding-bottom: 0 !important;
 
   .total {
     float: right;
-    position: relative;
-    top: -1.5rem;
+    display: flex;
+    flex-direction: column;
 
     .value {
       background-size: contain;
@@ -21,9 +22,13 @@
       text-align: right;
       margin-right: .5rem;
       width: calc(20px + 1.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 100%;
 
       & > div {
-        margin-top: .5rem;
+        margin-top: .75rem;
       }
 
       &.d6 {
@@ -33,7 +38,7 @@
         background-image: url('/assets/icons/d8.png');
       }
       &.d10 {
-        background-image: url('/assets/icons/d8.png');
+        background-image: url('/assets/icons/d10.png');
       }
       &.d12 {
         background-image: url('/assets/icons/d12.png');

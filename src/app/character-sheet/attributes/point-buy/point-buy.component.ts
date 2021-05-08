@@ -139,8 +139,16 @@ export class PointBuyComponent {
       con: this.getTotal(Attribute.CON.toLowerCase().substring(0, 3)),
       int: this.getTotal(Attribute.INT.toLowerCase().substring(0, 3)),
       wis: this.getTotal(Attribute.WIS.toLowerCase().substring(0, 3)),
-      cha: this.getTotal(Attribute.CHA.toLowerCase().substring(0, 3))
-    } as CharacterAttributes);
+      cha: this.getTotal(Attribute.CHA.toLowerCase().substring(0, 3)),
+      optionalPicks: {
+        str: this.form.get('bonus_str'),
+        dex: this.form.get('bonus_dex'),
+        con: this.form.get('bonus_con'),
+        int: this.form.get('bonus_int'),
+        wis: this.form.get('bonus_wis'),
+        cha: this.form.get('bonus_cha'),
+      }
+    });
   }
 
 }

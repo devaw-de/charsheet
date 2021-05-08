@@ -1,7 +1,10 @@
 .notes {
   overflow: hidden;
+  padding: 0 2px;
 
   .single-note {
+    opacity: .75;
+
     &::first-letter {
       text-transform: uppercase;
       font-size: 1.4rem;

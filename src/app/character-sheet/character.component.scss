@@ -152,8 +152,18 @@
   }
 
   @media print {
-    .translucent {
-      background: unset;
-    }
+    margin: 0;
+
+    grid-template-columns:
+    [col] 75pt
+    [col] 145pt
+    [col] 110pt
+    [col] 100pt
+    [col] 1fr
+  ;
+
+  .translucent {
+    background: unset;
+  }
   }
 }

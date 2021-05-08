@@ -1,0 +1,38 @@
+@page {
+  size: a4 portrait;
+}
+
+
+@media print {
+  :root {
+    --highlight: #000;
+    --section-background: #fff;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+  }
+
+  app-character {
+    margin: 2pt;
+    padding: 0;
+    width: 20cm !important;
+    display: flex;
+    align-content: flex-start;
+  }
+
+  .section, .sub-section {
+    background-color: #fff !important;
+  }
+
+  .label {
+    font-size: 8pt !important;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+}
