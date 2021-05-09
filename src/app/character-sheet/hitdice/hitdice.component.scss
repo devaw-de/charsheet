@@ -1,9 +1,11 @@
 :host {
-  background-image: url('/assets/icons/dragon.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
+  @media screen {
+    background-image: url('/assets/icons/dragon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+  }
 }
 
 .hitdice {
@@ -42,6 +44,25 @@
       }
       &.d12 {
         background-image: url('/assets/icons/d12.png');
+      }
+    }
+  }
+
+  @media print {
+    height: unset;
+
+    .total {
+      .value {
+        flex-direction: row;
+        height: unset;
+        width: 100%;
+        background-position: center top;
+
+        & > div {
+          margin-top: unset;
+          margin-left: .75rem;
+          padding-top: .75rem;
+        }
       }
     }
   }

@@ -1,0 +1,19 @@
+.class-special {
+  height: 100%;
+  background-size: 5rem;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .ki-points,
+  .rages,
+  .die,
+  .sorcery-points {
+    width: 100%;
+    text-align: center;
+  }
+
+  .expertise {
+    margin-top: .5rem;
+  }
+
+}

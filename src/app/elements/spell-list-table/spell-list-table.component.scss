@@ -1,0 +1,13 @@
+table.spell-list {
+  border-collapse: collapse;
+
+  td {
+    text-align: center;
+    padding: 0 2px;
+    border: 1px solid var(--border-color);
+
+    &.level {
+      font-size: 62.5%;
+    }
+  }
+}

@@ -84,13 +84,35 @@
     grid-column: col 3 / span 2;
     grid-row: row 2;
   }
-  app-hitpoints {
+  .class-specific-wrap {
     grid-column: col 3 / span 2;
     grid-row: row 3;
+    display: flex;
+    flex-direction: row;
+    app-class-special {
+      width: 28%;
+    }
+    app-hitpoints {
+      width: 65%;
+      flex-grow: 1;
+      margin-left: var(--main-grid-gap-size);
+    }
   }
-  app-hitdice {
+  .hitdie-wrap {
     grid-column: col 3 / span 2;
     grid-row: row 4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    app-hitdice {
+      width: 65%;
+      flex-grow: 1;
+    }
+    app-death-saving-throws {
+      flex-grow: 0;
+      width: 28%;
+      margin-left: var(--main-grid-gap-size);
+    }
   }
   .weapons-wrap {
     grid-column: col 3 / span 2;
@@ -156,7 +178,7 @@
 
     grid-template-columns:
     [col] 75pt
-    [col] 145pt
+    [col] 138pt
     [col] 110pt
     [col] 100pt
     [col] 1fr

@@ -50,6 +50,10 @@ import { SelectSubraceComponent } from './character-sheet/background/select-subr
 import { SelectLevelUpStrategyComponent } from './elements/select-level-up-strategy/select-level-up-strategy.component';
 import { EditNotesComponent } from './character-sheet/notes/edit-notes/edit-notes.component';
 import { EditCurrencyComponent } from './character-sheet/currency/edit-currency/edit-currency.component';
+import { DeathSavingThrowsComponent } from './character-sheet/death-saving-throws/death-saving-throws.component';
+import { ClassSpecialComponent } from './character-sheet/class-special/class-special.component';
+import { SpellListTableComponent } from './elements/spell-list-table/spell-list-table.component';
+
 
 
 /* Auto */
@@ -96,7 +100,10 @@ import { EditCurrencyComponent } from './character-sheet/currency/edit-currency/
     SelectLevelUpStrategyComponent,
     EditNotesComponent,
     SkillProficiencySelectionComponent,
-    EditCurrencyComponent
+    EditCurrencyComponent,
+    DeathSavingThrowsComponent,
+    ClassSpecialComponent,
+    SpellListTableComponent
   ],
   imports: [
     CommonModule,

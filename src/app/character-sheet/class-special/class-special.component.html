@@ -1,0 +1,74 @@
+<div class="class-special" [class]="character.class.toLowerCase() + '-icon'">
+
+  <ng-container [ngSwitch]="character.class">
+    <div class="translucent">
+      <ng-container *ngSwitchCase="CharacterClassName.BARBARIAN">
+        <h4 class="section-header barbarian">Rage</h4>
+        <div class="rages">{{ getBarbarianRagesPerDay() }} per Day</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.BARD">
+        <h4 class="section-header translucentbard">Bardic Inspiration</h4>
+        <div class="die translucent">{{ getBardicInspiration().amount }} {{ getBardicInspiration().die.toUpperCase() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.CLERIC">
+        <h4 class="section-header cleric">Channel Divinity</h4>
+        <div class="channel-amount">Uses per rest: {{ getClericalDivinity().channelDivinityPerRest }}</div>
+        <div *ngIf="getClericalDivinity().destroyUndeadCr" class="channel-cr">Turn undead: CR {{ getClericalDivinity().destroyUndeadCr }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.DRUID">
+        <h4 class="section-header druid">Druid</h4>
+        <div *ngIf="getDruidicWildshape().wildshapeLimitations" class="wildshape-cr">Wildshapes CR: {{ getDruidicWildshape().wildshapeCr }}</div>
+        <div class="wildshape-limitations">{{ getDruidicWildshape().wildshapeLimitations }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.FIGHTER">
+        <h4 class="section-header fighter">Fighter</h4>
+        <div class="fighting-style">{{ getFighterFightingStyle() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.MONK">
+        <h4 class="section-header monk">Ki-Points</h4>
+        <div class="ki-points">{{ getMonkKiPoints() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.PALADIN">
+        <h4 class="section-header paladin">Paladin</h4>
+        <div class="lay-on-hands">Lay on hands. {{ getPaladinLayOnHands() }} hitpoints</div>
+        <div class="divine-sense">Divine Sense: {{ getPaladinDivineSense() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.RANGER">
+        <h4 class="section-header ranger">Ranger</h4>
+        <div class="spell-dc">Spell-DC: {{ getRangerSpellDc() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.ROGUE">
+        <h4 class="section-header rogue">Rogue</h4>
+        <div class="sneak-attack">Sneak Attack: {{ getRoguishSneakAttackDice() }} D6</div>
+        <div class="expertise">Expertise: {{ getRogueishExpertise() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.SORCERER">
+        <h4 class="section-header sorcerer">Sorcery Points</h4>
+        <div class="sorcery-points">{{ getSorceryPoints() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.WARLOCK">
+        <h4 class="section-header warlock">Warlock</h4>
+        <div class="spell-dc">Spell-DC: {{ getWarlockSpellDc() }}</div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="CharacterClassName.WIZARD">
+        <h4 class="section-header wizard">Wizard</h4>
+        <div class="spell-dc">Spell-DC: {{ getWizardSpellDc() }}</div>
+        <div class="spell-list">
+          <app-spell-list-table [spells]="getWizardSpellSlots()"></app-spell-list-table>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+</div>

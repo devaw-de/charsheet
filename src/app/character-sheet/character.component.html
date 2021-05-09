@@ -15,8 +15,14 @@
 	<app-saving-throws class="sub-section" [character]="character"></app-saving-throws>
 	<app-skills class="sub-section" [character]="character"></app-skills>
 	<app-armorclass [character]="character" class="sub-section"></app-armorclass>
-	<app-hitpoints [hitpoints]="character.hitpoints" class="sub-section"></app-hitpoints>
-	<app-hitdice [hitdice]="character.hitDice" class="sub-section"></app-hitdice>
+	<div class="class-specific-wrap">
+		<app-class-special [character]="character" class="sub-section"></app-class-special>
+		<app-hitpoints [hitpoints]="character.hitpoints" class="sub-section"></app-hitpoints>
+	</div>
+	<div class="hitdie-wrap">
+		<app-hitdice [hitdice]="character.hitDice" class="sub-section"></app-hitdice>
+		<app-death-saving-throws class="section"></app-death-saving-throws>
+	</div>
 	<div class="weapons-wrap section-wrapper">
 		<app-weapons [weapons]="character.weapons" class="section"></app-weapons>
 		<app-ammunition [ammunition]="character.ammunition" class="section"></app-ammunition>
