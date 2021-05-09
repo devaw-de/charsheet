@@ -1,17 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CharacterService } from '../lib/character.service';
-import { Utils } from '../lib/utils';
-import { Dice } from '../model/base';
 import { PlayerCharacterData } from '../model/character';
-import { CharacterClass, CharacterClassesList } from '../model/characterClasses';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
-export class CharacterComponent {
+export class CharacterComponent implements OnInit {
 
   public character: PlayerCharacterData;
 
@@ -22,12 +19,33 @@ export class CharacterComponent {
     this.character = this._service.getCharacter();
   }
 
+  ngOnInit(): void {
+    this._loadCharacter();
+  }
+
   public toBuilder(): void {
     this._router.navigate(['']);
   }
 
   public exportCharacter(): void {
 
+  }
+
+  public saveCharacter(): void {
+    localStorage.setItem('character', JSON.stringify(this._service.getCharacter()));
+  }
+
+  public isLocalDataAvailable(): boolean {
+    return !!localStorage.getItem('character');
+  }
+
+  private _loadCharacter(): void {
+    this._service.loadCharacter();
+    this.character = this._service.getCharacter();
+  }
+
+  public clearLocalData(): void {
+    localStorage.clear();
   }
 
   public debug(): void {

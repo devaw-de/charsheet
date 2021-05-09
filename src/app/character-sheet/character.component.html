@@ -48,4 +48,6 @@
 
 	<button type="button"	(click)="debug()">Debug</button>
 	<button type="button"	(click)="test()">Test</button>
+	<button type="button" (click)="saveCharacter()">Save Character</button>
+	<button type="button" (click)="clearLocalData()" [disabled]="!isLocalDataAvailable()" [class.disabled]="!isLocalDataAvailable()">Clear local data</button>
 </div>

@@ -35,6 +35,17 @@ import { Utils } from "./utils";
   ) {  }
 
   /**
+   * Try and load a character from localStorage
+   */
+  public loadCharacter(): void {
+    try {
+      this._character = JSON.parse(localStorage.getItem('character'));
+    } catch(e) {
+      console.warn(e);
+    }
+  }
+
+  /**
    * Get the character
    */
   public getCharacter(): PlayerCharacterData {
