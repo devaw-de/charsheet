@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { Language } from 'src/app/model/base';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {Language} from '../../model/language';
 
 @Component({
   selector: 'app-language-picker',
@@ -13,8 +13,8 @@ export class LanguagePickerComponent implements OnInit {
   public availableLanguages: Array<Language> = Utils.getLanguagesList();
   public characterOwnedLanguages: Array<Language>;
   public selectedLanguages: Array<Language> = [];
-  public totalPicks: number = 0;
-  public remainingPicks: number = 0;
+  public totalPicks = 0;
+  public remainingPicks = 0;
 
   constructor(private _dialogRef: DialogRef) { }
 
@@ -25,11 +25,11 @@ export class LanguagePickerComponent implements OnInit {
   }
 
   public toggleLanguageSelection(lang: Language): void {
-    if(this.selectedLanguages.includes(lang)) {
+    if (this.selectedLanguages.includes(lang)) {
       this.selectedLanguages = this.selectedLanguages.filter(lg => lg !== lang);
       this.remainingPicks++;
     } else {
-      this.selectedLanguages.push(lang)
+      this.selectedLanguages.push(lang);
       this.remainingPicks--;
     }
   }

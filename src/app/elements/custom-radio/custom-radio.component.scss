@@ -1,0 +1,38 @@
+::ng-deep :root {
+  --custom-radio-button-text-color: black;
+  --custom-radio-button-background-color: white;
+  --custom-radio-button-selected-text-color: white;
+  --custom-radio-button-selected-background-color: green;
+  --custom-radio-button-active-text-color: blue;
+  --custom-radio-button-active-background-color: white;
+}
+
+.custom-radio {
+  button {
+    color: var(--custom-radio-button-text-color);
+    background-color:  var(--custom-radio-button-background-color);
+    padding: .5rem 2rem;
+
+    &:hover {
+      color: var(--custom-radio-button-active-text-color);
+      background-color: var(--custom-radio-button-active-background-color);
+    }
+
+    &.selected {
+      color: var(--custom-radio-button-selected-text-color);
+      background-color: var(--custom-radio-button-selected-background-color);
+      background-image: url('/src/assets/icons/swords.png');
+      background-repeat: no-repeat;
+      background-size: 1.75rem;
+      background-position: .175rem .175rem;
+
+      &:hover {
+        color: var(--custom-radio-button-selected-text-color);
+      }
+    }
+
+    &.disabled:not(.selected) {
+      cursor: not-allowed;
+    }
+  }
+}

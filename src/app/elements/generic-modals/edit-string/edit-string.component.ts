@@ -4,7 +4,7 @@ import { DialogRef } from '@ngneat/dialog';
 @Component({
   selector: 'app-edit-string',
   templateUrl: './edit-string.component.html',
-  styleUrls: ['./edit-string.component.scss']
+  styleUrls: []
 })
 export class EditStringComponent implements OnInit, AfterViewInit {
 
@@ -12,7 +12,7 @@ export class EditStringComponent implements OnInit, AfterViewInit {
   public value: string;
   public minLength: number;
   public maxLength: number;
-  public isInputInvalid: boolean = false;
+  public isInputInvalid = false;
 
   @ViewChild('inputElement') inputElement;
 

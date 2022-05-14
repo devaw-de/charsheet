@@ -2,7 +2,7 @@
   <ul class="background">
     <li class="interactive" (click)="editClass()">
       <span class="label">Class & Level</span>
-      <span class="value">{{ character.class }} ({{ character.level }})</span>
+      <span class="value">{{ character.className }} ({{ character.level }})</span>
     </li>
 
     <li class="interactive" (click)="editBackground()">
@@ -18,7 +18,7 @@
     <li class="interactive" (click)="editRace()">
       <span class="label">Race</span>
       <span class="value"
-            [innerText]="character.subrace ? character.subrace : character.race"
+            [innerText]="character.subRace ? character.subRace : character.race"
       ></span>
     </li>
 

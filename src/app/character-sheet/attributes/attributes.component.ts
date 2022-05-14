@@ -25,16 +25,16 @@ export class AttributesComponent {
   }
 
   public getModifier(attributeValue: number): string {
-    return Utils.getAbilityModifierAstring(attributeValue);
+    return Utils.getAbilityModifierAsString(attributeValue);
   }
 
-  public startPointBuy() {
+  public startPointBuy(): void {
     const modal = this._dialog.open(PointBuyComponent, {
       data: {
         attr: this.attributes
     }});
     const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
-      if(result) {
+      if (result) {
         this._service.setAttributes(result.attributes);
         this._service.setAppliedRacialBonuses(result.racialBonus);
       }

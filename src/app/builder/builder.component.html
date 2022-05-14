@@ -14,24 +14,24 @@
 
 <ng-template #subRaceSelection>
   <h2>Select your SubRace</h2>
-  <p (click)="setCharacterSubrace(null)">nyi - click here please</p>
+  <p (click)="setCharacterSubRace(null)">nyi - click here please</p>
 </ng-template>
 
 <div class="builder">
-  <ng-container *ngIf="!character.race || !character.class.length">
+  <ng-container *ngIf="!character.race || !character.className.length">
     <ng-container *ngTemplateOutlet="character.race ? classSelection : raceSelection"></ng-container>
   </ng-container>
 
-  <ng-container *ngIf="character.class.length && character.race && !character.subrace">
+  <ng-container *ngIf="character.className.length && character.race && !character.subRace">
     <ng-container *ngTemplateOutlet="subRaceSelection"></ng-container>
   </ng-container>
 
-  <ng-container *ngIf="character.class.length && character.race && character.subrace && !character.background">
+  <ng-container *ngIf="character.className.length && character.race && character.subRace && !character.background">
     <app-background-selection (backgroundSelected)="setCharacterBackground($event)"
     ></app-background-selection>
   </ng-container>
 
-  <ng-container *ngIf="character.class.length && character.race && character.subrace && character.background">
+  <ng-container *ngIf="character.className.length && character.race && character.subRace && character.background">
     <app-point-buy (pointBuyCompleted)="showCharacterSheet($event)"></app-point-buy>
   </ng-container>
 

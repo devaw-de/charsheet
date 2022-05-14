@@ -5,30 +5,24 @@
   display: grid;
   grid-gap: var(--main-grid-gap-size);
   grid-template-columns:
-    [col] 100px
-    [col] minmax(100px, 1fr)
-    [col] minmax(100px, 1fr)
-    [col] minmax(100px, 1fr)
-    [col] minmax(100px, 1fr)
+    [col] 96px
+    [col] minmax(96px, 1fr)
+    [col] minmax(96px, 1fr)
+    [col] minmax(96px, 1fr)
+    [col] minmax(96px, 1fr)
   ;
-	grid-template-rows: repeat(6, [row] auto );
+  grid-template-rows:
+    [row] 156px // 1 - name, background, vitals
+    [row] 108px // 2 - inspiration, armorclass
+    [row] 228px // 3 - saving throws, class-special, hitpoints
+    [row] 196px // 4 - hitdice, death saves
+    [row] 294px  // 5 - weapons
+    [row] 48px  // 6 - ammunition
+    [row] 48px  // 7 - passive perception
+    [row] auto  // 8 - profiencies, currency, equipment
+    [row] minmax(96px, auto) // 9 - Background
+  ;
   grid-auto-flow: row;
-
-  app-attributes,
-  app-saving-throws,
-  app-skills,
-  app-armorclass,
-  app-hitpoints,
-  app-hitdice,
-  app-extra-profs,
-  app-currency,
-  app-equipment,
-  app-notes,
-  .weapons-wrap,
-  .inspiration-wrap {
-    height: 100%;
-    max-height: 100%;
-  }
 
   .section-wrapper {
     display: flex;
@@ -45,6 +39,7 @@
     display: flex;
     justify-content: center;
   }
+
   .upper-wrap {
     grid-column: col 3 / span 3;
     grid-row: row 1;
@@ -56,42 +51,47 @@
     flex-direction: column;
     justify-content: stretch;
   }
+
   app-attributes {
     grid-column: col;
-    grid-row:  row 2 / span 4;
+    grid-row:  row 2 / span 5;
   }
+
   app-passive-perception {
     grid-column: col / span 2;
-    grid-row: row 6;
+    grid-row: row 7;
   }
-  app-extra-profs {
-    grid-column: col / span 2;
-    grid-row:  row 7;
-  }
+
   .inspiration-wrap {
     grid-column: col 2;
     grid-row:  row 2;
   }
+
   app-saving-throws {
     grid-column: col 2;
     grid-row: row 3;
   }
+
   app-skills {
     grid-column: col 2;
-    grid-row: row 4 / span 2;
+    grid-row: row 4 / span 3;
   }
+
   app-armorclass {
     grid-column: col 3 / span 2;
     grid-row: row 2;
   }
+
   .class-specific-wrap {
     grid-column: col 3 / span 2;
     grid-row: row 3;
     display: flex;
     flex-direction: row;
+
     app-class-special {
       width: 28%;
     }
+
     app-hitpoints {
       width: 65%;
       flex-grow: 1;
@@ -104,44 +104,64 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    app-hitdice {
+
+    app-hit-dice {
       width: 65%;
       flex-grow: 1;
     }
+
     app-death-saving-throws {
       flex-grow: 0;
       width: 28%;
       margin-left: var(--main-grid-gap-size);
     }
   }
-  .weapons-wrap {
-    grid-column: col 3 / span 2;
-    grid-row: row 5 / span 2;
 
-    app-ammunition {
-      flex-grow: 1;
-      height: 100%;
-    }
+  app-weapons {
+    grid-column: col 3 / span 2;
+    grid-row: row 5;
   }
+
+  app-ammunition {
+    grid-column: col 3 / span 2;
+    grid-row: row 6 / span 2;
+  }
+
   app-extra-profs {
     grid-column: col / span 2;
-    grid-row: row 7;
+    grid-row: row 8;
   }
+
   app-details {
     grid-column: col 3 / span 2;
     grid-row: row 2 / span 2;
   }
+
   app-currency {
     grid-column: col 3;
-    grid-row: row 7;
+    grid-row: row 8;
   }
+
   app-equipment {
     grid-column: col 4 / span 2;
-    grid-row: row 7;
+    grid-row: row 8 / span 2;
   }
-  app-notes {
+  .notes-wrap {
     grid-column: 5;
-    grid-row: 2 / span 5;
+    grid-row: 2 / span 6;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    app-feats {
+      margin-bottom: var(--main-grid-gap-size);
+    }
+  }
+
+  app-character-history {
+    grid-column: 1 / span 3;
+    grid-row: 9;
   }
 
   @media screen and (max-width: 700px) {
@@ -155,19 +175,20 @@
 
     app-notes {
       display: none;
-    };
+    }
 
     app-saving-throws, app-skills {
       max-width: calc(50% - var(--main-grid-gap-size));
     }
 
-    .weapons-wrap, app-attributes, .inspiration-wrap, app-passive-perception {
+    app-attributes, .inspiration-wrap, app-passive-perception {
       width: 100%;
     }
 
     app-saving-throws {
       order: 1;
     }
+
     app-skills {
       order: 2;
     }
@@ -175,17 +196,16 @@
 
   @media print {
     margin: 0;
-
     grid-template-columns:
-    [col] 75pt
-    [col] 138pt
-    [col] 110pt
-    [col] 100pt
-    [col] 1fr
-  ;
+      [col] 75pt
+      [col] 138pt
+      [col] 110pt
+      [col] 100pt
+      [col] 1fr
+    ;
 
-  .translucent {
-    background: unset;
-  }
+    .translucent {
+      background: unset;
+    }
   }
 }

@@ -1,24 +1,27 @@
-import { Skill } from "../model/abilities";
-import { Attribute } from "../model/attributes";
-import { CharacterBackground } from "../model/backgrounds";
-import { Alignment, Dice, Language } from "../model/base";
-import { CharacterClass, CharacterClassesList, CharacterClassName } from "../model/characterClasses";
+import {SkillName} from '../model/abilities';
+import {Attribute} from '../model/attributes';
+import {CharacterBackground} from '../model/backgrounds';
+import {CharacterClass, CharacterClassesList, CharacterClassName} from '../model/characterClasses';
 import {
   CharacterRace,
   CharacterRaceDetails,
   CharacterRacesList,
-  CharacterSubraceDetails,
+  CharacterSubRaceDetails,
   CharacterSubRaceName,
-  CharacterSubracesList
-} from "../model/characterRaces";
-import { LevelUpStrategy } from "../model/settings";
+  CharacterSubRacesList
+} from '../model/characterRaces';
+import {Language} from '../model/language';
+import {Dice} from '../model/dice';
+import {Alignment} from '../model/alignments';
 
 export class Utils {
 
   /* Ability-modifier related methods */
 
   public static formatModifier(modifier: number): string {
-    if(modifier > 0) return '+' + modifier.toString(10);
+    if (modifier > 0) {
+      return '+' + modifier.toString(10);
+    }
     return modifier.toString(10);
   }
 
@@ -26,13 +29,12 @@ export class Utils {
     return Math.floor((abilityScore - 10) / 2);
   }
 
-  public static getAbilityModifierAstring(abilityScore: number): string {
+  public static getAbilityModifierAsString(abilityScore: number): string {
     const modifier = Utils.getAbilityModifier(abilityScore);
     return Utils.formatModifier(modifier);
   }
 
   /* Enum-related methods */
-
   private static _enumToArray(e: any): Array<any> {
     const arr = [];
     Object.values(e).forEach(item => arr.push(item));
@@ -63,32 +65,27 @@ export class Utils {
     return Utils._enumToArray(CharacterRace);
   }
 
-  public static getSkillList(): Array<Skill> {
-    return Utils._enumToArray(Skill);
-  }
-
-  public static getLevelUpStrategyList(): Array<LevelUpStrategy> {
-    return Utils._enumToArray(LevelUpStrategy);
+  public static getSkillList(): Array<SkillName> {
+    return Utils._enumToArray(SkillName);
   }
 
   /* Race-related methods */
-
   public static getRaceDetailsByName(race: CharacterRace): CharacterRaceDetails {
     return CharacterRacesList.find(r => r.name === race);
   }
 
-  public static getSubraceDetailsByName(subrace: CharacterSubRaceName): CharacterSubraceDetails {
-    return CharacterSubracesList.find(s => s.name === subrace);
+  public static getSubRaceDetailsByName(subRace: CharacterSubRaceName): CharacterSubRaceDetails {
+    return CharacterSubRacesList.find(s => s.name === subRace);
   }
 
-  public static subraceSelectionRequired(race: CharacterRace) {
-    const subRace = CharacterSubracesList.find(subrace => subrace.extendsRace === race);
+  public static subRaceSelectionRequired(race: CharacterRace): boolean {
+    const subRace = CharacterSubRacesList.find(sub => sub.extendsRace === race);
     return subRace !== undefined;
   }
 
   /* Class-related methods */
-  public static getClassDetailsByname(cn: CharacterClassName): CharacterClass {
-    return CharacterClassesList.find(c => c.name === cn);
+  public static getClassDetailsByName(ccn: CharacterClassName): CharacterClass {
+    return CharacterClassesList.find(c => c.name === ccn);
   }
 
   /* Dice-related methods */
@@ -101,8 +98,7 @@ export class Utils {
   }
 
   public static getMaxDieValue(dice: Dice): number {
-    const v = parseInt(dice.substring(1), 10);
-    return v;
+    return parseInt(dice.substring(1), 10);
   }
 
 }

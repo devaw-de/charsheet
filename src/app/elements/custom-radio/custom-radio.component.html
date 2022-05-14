@@ -1,0 +1,8 @@
+<div class="custom-radio">
+  <ng-container *ngFor="let option of options">
+    <button (click)="selectOption(option)"
+            [class.selected]="option.selected"
+            [disabled]="option.disabled || option.selected"
+    >{{option.text}}</button>
+  </ng-container>
+</div>

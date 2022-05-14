@@ -1,6 +1,6 @@
-<div class="class-special" [class]="character.class.toLowerCase() + '-icon'">
+<div class="class-special" [class]="character.className.toLowerCase() + '-icon'">
 
-  <ng-container [ngSwitch]="character.class">
+  <ng-container [ngSwitch]="character.className">
     <div class="translucent">
       <ng-container *ngSwitchCase="CharacterClassName.BARBARIAN">
         <h4 class="section-header barbarian">Rage</h4>

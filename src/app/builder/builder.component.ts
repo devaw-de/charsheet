@@ -36,16 +36,16 @@ export class BuilderComponent {
     this._service.setRace(race);
   }
 
-  public setCharacterSubrace(subrace: CharacterSubRaceName): void {
-    this._service.setSubrace(subrace);
+  public setCharacterSubRace(subRace: CharacterSubRaceName): void {
+    this._service.setSubRace(subRace);
   }
 
-  public setCharacterBackground(background: CharacterBackgroundDetails) {
+  public setCharacterBackground(background: CharacterBackgroundDetails): void {
     this._service.setBackground(background.name);
   }
 
   public showCharacterSheet(ev?): void {
-    if(ev) {
+    if (ev) {
       this.character.attributes = ev;
       this._router.navigate(['/sheet'], {state: this.character});
     } else {

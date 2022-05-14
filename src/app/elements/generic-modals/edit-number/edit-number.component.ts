@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, ComponentRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
 
 @Component({
   selector: 'app-edit-number',
   templateUrl: './edit-number.component.html',
-  styleUrls: ['./edit-number.component.scss']
+  styleUrls: []
 })
 export class EditNumberComponent implements OnInit, AfterViewInit {
 

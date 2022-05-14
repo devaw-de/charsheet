@@ -1,5 +1,5 @@
-import { Skill } from "./abilities";
-import { Currency, Tool } from "./equipment";
+import {SkillName} from './abilities';
+import {Clothes, Currency, Tool} from './equipment';
 
 export enum CharacterBackground {
   ACOLYTE = 'Acolyte',
@@ -15,112 +15,112 @@ export enum CharacterBackground {
   SAILOR = 'Sailor',
   SOLDIER = 'Soldier',
   URCHIN = 'Urchin'
-};
+}
 
 export interface CharacterBackgroundDetails {
   name: CharacterBackground;
   equipment?: Array<string>;
-  proficiencies?: Array<Skill>;
+  proficiencies?: Array<SkillName>;
   currency?: Currency;
   toolProficiencies?: Array<Tool>;
   instrumentProficiencies?: Array<string>;
   pickableLanguages?: number;
-};
+}
 
 export const CharacterBackgroundsList: Array<CharacterBackgroundDetails> = [
   {
     name: CharacterBackground.ACOLYTE,
-    proficiencies: [Skill.INSIGHT, Skill.RELIGION],
-    equipment: ['Holy Symbol', 'Incense'],
+    proficiencies: [SkillName.INSIGHT, SkillName.RELIGION],
+    equipment: [Tool.HOLY_SYMBOL, Tool.INCENSE],
     currency: {gold: 15}
   },
   {
     name: CharacterBackground.CHARLATAN,
-    proficiencies: [Skill.SLEIGHT_OF_HAND, Skill.DECEPTION],
+    proficiencies: [SkillName.SLEIGHT_OF_HAND, SkillName.DECEPTION],
     toolProficiencies: [Tool.DISGUISE_KIT, Tool.FORGERY_KIT],
-    equipment: ['Fine clothes', 'Disguise kit'],
+    equipment: [Clothes.FINE_CLOTHES, Tool.DISGUISE_KIT],
     currency: {gold: 15}
   },
   {
     name: CharacterBackground.CRIMINAL,
-    proficiencies: [Skill.DECEPTION, Skill.STEALTH],
+    proficiencies: [SkillName.DECEPTION, SkillName.STEALTH],
     toolProficiencies: [Tool.THIEVES_TOOLS],
-    equipment: ['Crowbar', 'Dark clothes with hood'],
+    equipment: [Tool.CROWBAR, Clothes.DARK_CLOTHES],
     currency: {gold: 15}
   },
   {
     name: CharacterBackground.ENTERTAINER,
-    proficiencies: [Skill.ACROBATICS, Skill.PERFORMANCE],
+    proficiencies: [SkillName.ACROBATICS, SkillName.PERFORMANCE],
     toolProficiencies: [Tool.DISGUISE_KIT],
     instrumentProficiencies: ['Choose one'],
-    equipment: ['Musical instrument', 'Costume'],
+    equipment: ['Musical instrument', Clothes.COSTUME],
     currency: {gold: 15}
   },
   {
     name: CharacterBackground.FOLK_HERO,
-    proficiencies: [Skill.ANIMAL_HANDLING, Skill.SURVIVAL],
+    proficiencies: [SkillName.ANIMAL_HANDLING, SkillName.SURVIVAL],
     toolProficiencies: [Tool.ARTISAN_TOOLS],
-    equipment: ['Artisan tools', 'Common clothes', 'Shovel', 'Iron pot'],
+    equipment: [Tool.ARTISAN_TOOLS, Clothes.COMMON_CLOTHES, Tool.SHOVEL, Tool.IRON_POT],
     currency: {gold: 10}
   },
   {
     name: CharacterBackground.GUILD_ARTISAN,
-    proficiencies: [Skill.INSIGHT, Skill.PERSUASION],
+    proficiencies: [SkillName.INSIGHT, SkillName.PERSUASION],
     toolProficiencies: [Tool.ARTISAN_TOOLS],
     pickableLanguages: 1,
-    equipment: ['Letter from your guild', 'Traveler clothes'],
+    equipment: ['Letter from your guild', Clothes.TRAVELERS_CLOTHES],
     currency: {gold: 15}
   },
   {
     name: CharacterBackground.HERMIT,
-    proficiencies: [Skill.MEDICINE, Skill.RELIGION],
+    proficiencies: [SkillName.MEDICINE, SkillName.RELIGION],
     toolProficiencies: [Tool.HERBALISM_KIT],
     pickableLanguages: 1,
-    equipment: ['Notebook', 'Winter blanket', 'Herbalism kit'],
+    equipment: ['Notebook', 'Winter blanket', Tool.HERBALISM_KIT],
     currency: {gold: 5}
   },
   {
     name: CharacterBackground.NOBLE,
-    proficiencies: [Skill.HISTORY, Skill.PERSUASION],
+    proficiencies: [SkillName.HISTORY, SkillName.PERSUASION],
     toolProficiencies: [Tool.GAMING_SET],
     pickableLanguages: 1,
-    equipment: ['Gaming set', 'Fine clothes', 'Signet ring', 'Scroll of pedigree'],
+    equipment: ['Gaming set', Clothes.FINE_CLOTHES, 'Signet ring', 'Scroll of pedigree'],
     currency: {gold: 25}
   },
   {
     name: CharacterBackground.OUTLANDER,
-    proficiencies: [Skill.ATHLETICS, Skill.SURVIVAL],
+    proficiencies: [SkillName.ATHLETICS, SkillName.SURVIVAL],
     instrumentProficiencies: ['Choose one'],
     pickableLanguages: 1,
-    equipment: ['Staff', 'Hunting trap', 'Trophy from a killed animal', 'Travelers clothes'],
+    equipment: ['Staff', 'Hunting trap', 'Trophy from a killed animal', Clothes.TRAVELERS_CLOTHES],
     currency: {gold: 10}
   },
   {
     name: CharacterBackground.SAGE,
-    proficiencies: [Skill.ARCANA, Skill.HISTORY],
+    proficiencies: [SkillName.ARCANA, SkillName.HISTORY],
     pickableLanguages: 2,
-    equipment: ['Ink and quill', 'small knife', 'Letter from a dead colleague', 'Common clothes'],
+    equipment: ['Ink and quill', 'small knife', 'Letter from a dead colleague', Clothes.COMMON_CLOTHES],
     currency: {gold: 10}
   },
   {
     name: CharacterBackground.SAILOR,
-    proficiencies: [Skill.ATHLETICS, Skill.PERCEPTION],
+    proficiencies: [SkillName.ATHLETICS, SkillName.PERCEPTION],
     toolProficiencies: [Tool.VEHICLE_WATER, Tool.NAVIGATORS_TOOLS],
-    equipment: ['Balying pin', 'Silk rope', 'Lucky charm', 'Common clothes'],
+    equipment: ['Balying pin', Tool.ROPE_SILK, 'Lucky charm', Clothes.COMMON_CLOTHES],
     currency: {gold: 10}
   },
   {
     name: CharacterBackground.SOLDIER,
-    proficiencies: [Skill.ATHLETICS, Skill.INTIMIDATION],
+    proficiencies: [SkillName.ATHLETICS, SkillName.INTIMIDATION],
     toolProficiencies: [Tool.GAMING_SET, Tool.VEHICLE_LAND ],
-    equipment: ['Insignia of rank', 'Trophy from a fallen enemy', 'Gaming set', 'Common clothes'],
+    equipment: ['Insignia of rank', 'Trophy from a fallen enemy', 'Gaming set', Clothes.COMMON_CLOTHES],
     currency: {gold: 10}
   },
   {
     name: CharacterBackground.URCHIN,
-    proficiencies: [Skill.SLEIGHT_OF_HAND, Skill.STEALTH],
+    proficiencies: [SkillName.SLEIGHT_OF_HAND, SkillName.STEALTH],
     toolProficiencies: [Tool.DISGUISE_KIT, Tool.THIEVES_TOOLS],
-    equipment: ['Small knife', 'City map', 'Pet mouse', 'Token from your parents', 'Common clothes'],
+    equipment: ['Small knife', 'City map', 'Pet mouse', 'Token from your parents', Clothes.COMMON_CLOTHES],
     currency: {gold: 10}
   }
 ];

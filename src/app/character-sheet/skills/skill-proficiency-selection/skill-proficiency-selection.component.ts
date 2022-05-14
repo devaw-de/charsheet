@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogRef } from '@ngneat/dialog';
 import { Utils } from 'src/app/lib/utils';
-import { Skill } from 'src/app/model/abilities';
+import { SkillName } from 'src/app/model/abilities';
 
 @Component({
   selector: 'app-skill-proficiency-selection',
@@ -10,9 +10,9 @@ import { Skill } from 'src/app/model/abilities';
 })
 export class SkillProficiencySelectionComponent implements OnInit {
 
-  public readonly availableSkills: Array<Skill> = Utils.getSkillList();
-  public selectedSkills: Array<Skill>;
-  public pickableSkills: Array<Skill>;
+  public readonly availableSkills: Array<SkillName> = Utils.getSkillList();
+  public selectedSkills: Array<SkillName>;
+  public pickableSkills: Array<SkillName>;
   public maxSelections: number;
 
   constructor(
@@ -25,11 +25,11 @@ export class SkillProficiencySelectionComponent implements OnInit {
     this.pickableSkills = this._dialogRef.data.pickabledSkills;
   }
 
-  public toggle(skill: Skill): void {
-    if(!this.pickableSkills.includes(skill)) return;
+  public toggle(skill: SkillName): void {
+    if (!this.pickableSkills.includes(skill)) { return; }
 
-    if(!this.selectedSkills.includes(skill)) {
-      if(this.maxSelections <= this.selectedSkills.length) {
+    if (!this.selectedSkills.includes(skill)) {
+      if (this.maxSelections <= this.selectedSkills.length) {
         return;
       }
       this.selectedSkills.push(skill);

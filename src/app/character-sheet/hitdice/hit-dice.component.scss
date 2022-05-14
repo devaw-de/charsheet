@@ -1,6 +1,6 @@
 :host {
   @media screen {
-    background-image: url('/assets/icons/dragon.png');
+    background-image: url('/src/assets/icons/dragon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -34,16 +34,16 @@
       }
 
       &.d6 {
-        background-image: url('/assets/icons/d6.png');
+        background-image: url('/src/assets/icons/d6.png');
       }
       &.d8 {
-        background-image: url('/assets/icons/d8.png');
+        background-image: url('/src/assets/icons/d8.png');
       }
       &.d10 {
-        background-image: url('/assets/icons/d10.png');
+        background-image: url('/src/assets/icons/d10.png');
       }
       &.d12 {
-        background-image: url('/assets/icons/d12.png');
+        background-image: url('/src/assets/icons/d12.png');
       }
     }
   }

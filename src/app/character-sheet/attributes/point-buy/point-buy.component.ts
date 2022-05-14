@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { DialogRef } from '@ngneat/dialog';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Utils } from 'src/app/lib/utils';
-import { Attribute } from 'src/app/model/attributes';
-import { CharacterRaceDetails, CharacterSubraceDetails } from 'src/app/model/characterRaces';
-import { CharacterAttributes, PlayerCharacterData } from '../../../model/character';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {Attribute} from 'src/app/model/attributes';
+import {CharacterRaceDetails, CharacterSubRaceDetails} from 'src/app/model/characterRaces';
+import {CharacterAttributes, PlayerCharacterData} from '../../../model/character';
 
 @Component({
   selector: 'app-point-buy',
   templateUrl: './point-buy.component.html',
   styleUrls: ['./point-buy.component.scss']
 })
-export class PointBuyComponent {
+export class PointBuyComponent implements OnInit {
 
   Math = Math;
   Utils = Utils;
@@ -20,18 +19,32 @@ export class PointBuyComponent {
 
   public readonly totalPoints = 27;
   public remainingPoints = 27;
-  public isRacialBonusAvailable: boolean = false;
+  public isRacialBonusAvailable = false;
   public remainingRacialBonusPoints = 0;
   public totalRacialBonusPoints = 0;
   public race: CharacterRaceDetails;
-  public subRace: CharacterSubraceDetails;
+  public subRace: CharacterSubRaceDetails;
   public character: PlayerCharacterData;
   public attributes: CharacterAttributes;
   public attributesList: Array<Attribute> = Utils.getAttributesList();
   public form: FormGroup;
 
+  @Output() pointBuyComplete = new EventEmitter<boolean>();
+
+  private static _getPointCost(scoreValue: number): number {
+    switch (true) {
+      case scoreValue > 7 && scoreValue < 14:
+        return scoreValue - 8;
+      case scoreValue === 14:
+        return 7;
+      case scoreValue === 15:
+        return 9;
+      default:
+        return 0;
+    }
+  }
+
   constructor(
-    private _service: CharacterService,
     private _dialogRef: DialogRef
   ) { }
 
@@ -51,24 +64,24 @@ export class PointBuyComponent {
       bonus_cha: new FormControl()
     });
 
-    this.character = this._service.getCharacter();
+    this.character = this._dialogRef.data.character;
     this.race = Utils.getRaceDetailsByName(this.character.race);
-    this.subRace = Utils.getSubraceDetailsByName(this.character.subrace);
+    this.subRace = Utils.getSubRaceDetailsByName(this.character.subRace);
 
     // Set flags and limits for pickable attributes
-    if(this.race.attributeBonus.pickable) {
+    if (this.race.attributeBonus.pickable) {
       this.isRacialBonusAvailable = true;
       this.totalRacialBonusPoints =  this.race.attributeBonus.pickable;
       this.remainingRacialBonusPoints = this.totalRacialBonusPoints;
     }
 
-    // Throw any subrace-bonus into the racial bonus
-    if(this.subRace) {
+    // Throw any subRace-bonus into the racial bonus
+    if (this.subRace) {
       Object.keys(this.subRace.attributeBonus).forEach(key => {
-        if(this.race.attributeBonus[key]) {
-          this.race.attributeBonus[key] += this.subRace.attributeBonus[key]
+        if (this.race.attributeBonus[key]) {
+          this.race.attributeBonus[key] += this.subRace.attributeBonus[key];
         } else {
-          this.race.attributeBonus[key] = this.subRace.attributeBonus[key]
+          this.race.attributeBonus[key] = this.subRace.attributeBonus[key];
         }
       });
     }
@@ -83,45 +96,40 @@ export class PointBuyComponent {
 
     Object.keys(this.form.controls).forEach(key => {
       const value = this.form.get(key).value;
-      this.remainingPoints -= this._getPointCost(value);
+      this.remainingPoints -= PointBuyComponent._getPointCost(value);
     });
 
-    if(this.remainingPoints < 0) {
-      const field = this.form.get(attr)
+    if (this.remainingPoints < 0) {
+      const field = this.form.get(attr);
       field.setValue(field.value - 1);
       this.updatePointCount(attr);
     }
   }
 
   public handleBonusSelection(attr): void {
-    const pCount = Object.keys(this.form.controls).filter(key => key.substr(0, 5) === 'bonus' && this.form.get(key).value).length;
+    const pCount = Object.keys(this.form.controls)
+      .filter(key => key.substr(0, 5) === 'bonus' && this.form.get(key).value)
+      .length;
     this.remainingRacialBonusPoints = this.totalRacialBonusPoints - pCount;
 
-    if(this.remainingRacialBonusPoints < 0) {
+    if (this.remainingRacialBonusPoints < 0) {
       const field = this.form.get('bonus_' + attr);
       field.setValue(false);
     }
   }
 
-  public getTotal(attr: string): number {
-    if(this.race.attributeBonus[attr]) {
-      return this.form.get(attr).value + this.race.attributeBonus[attr]
-    } else if(this.form.get('bonus_' + attr)?.value) {
+  public getTotal(attr: Attribute): number {
+    if (this.race.attributeBonus[attr]) {
+      return this.form.get(attr).value + this.race.attributeBonus[attr];
+    } else if (this.form.get('bonus_' + attr)?.value) {
       return this.form.get(attr).value + 1;
     } else {
       return this.form.get(attr).value;
     }
   }
 
-  private _getPointCost(scoreValue: number): number {
-    if(scoreValue > 7 && scoreValue < 14) return scoreValue - 8;
-    else if(scoreValue === 14) return 7;
-    else if(scoreValue === 15) return 9;
-    else return 0;
-  }
-
-  public calculateRacialBonus(attr: Attribute): void {
-    if(!this.race.attributeBonus.pickable) {
+  public calculateRacialBonus(): void {
+    if (!this.race.attributeBonus.pickable) {
       this.remainingRacialBonusPoints = 0;
     } else {
       this.remainingRacialBonusPoints = this.race.attributeBonus.pickable;
@@ -129,17 +137,17 @@ export class PointBuyComponent {
   }
 
   public save(): void {
-    if(this.remainingPoints !== 0 || (this.remainingRacialBonusPoints !== 0 && this.isRacialBonusAvailable)) {
+    if (this.remainingPoints !== 0 || (this.remainingRacialBonusPoints !== 0 && this.isRacialBonusAvailable)) {
       return;
     }
 
     this._dialogRef.close({
-      str: this.getTotal(Attribute.STR.toLowerCase().substring(0, 3)),
-      dex: this.getTotal(Attribute.DEX.toLowerCase().substring(0, 3)),
-      con: this.getTotal(Attribute.CON.toLowerCase().substring(0, 3)),
-      int: this.getTotal(Attribute.INT.toLowerCase().substring(0, 3)),
-      wis: this.getTotal(Attribute.WIS.toLowerCase().substring(0, 3)),
-      cha: this.getTotal(Attribute.CHA.toLowerCase().substring(0, 3)),
+      str: this.getTotal(Attribute.STR),
+      dex: this.getTotal(Attribute.DEX),
+      con: this.getTotal(Attribute.CON),
+      int: this.getTotal(Attribute.INT),
+      wis: this.getTotal(Attribute.WIS),
+      cha: this.getTotal(Attribute.CHA),
       optionalPicks: {
         str: this.form.get('bonus_str'),
         dex: this.form.get('bonus_dex'),
@@ -149,6 +157,8 @@ export class PointBuyComponent {
         cha: this.form.get('bonus_cha'),
       }
     });
+
+    this.pointBuyComplete.emit(true);
   }
 
 }

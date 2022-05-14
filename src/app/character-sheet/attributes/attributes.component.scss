@@ -9,8 +9,7 @@
 
   .single-attribute {
     border: 1px solid var(--border-color-dark);
-    border-radius: var(--border-radius);
-    background: var(--font-color);
+    background: var(--section-background);
     color: var(--background-color);
     display: flex;
     flex-direction: column;
@@ -26,16 +25,17 @@
   }
 
   .value {
-    border: 1px solid var(--border-color-dark);
-    border-radius: var(--border-radius);
     width: 50%;
     padding: 5px 0;
     position: relative;
-    top: 6px;
-    background-color: var(--border-color);
+    top: 14px;
+    z-index: 99;
+    color: var(--section-background);
   }
 
   .modifier {
+    position: relative;
+    top: 4px;
     width: 100%;
     font-size: 1.9rem;
     font-weight: bolder;
@@ -61,6 +61,10 @@
   @media print {
     .single-attribute {
       background-color: unset;
+    }
+
+    .value {
+      background: #fff;
     }
   }
 

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Utils } from 'src/app/lib/utils';
-import { Alignment } from 'src/app/model/base';
-import { DialogService, DialogRef } from '@ngneat/dialog';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {CharacterService} from 'src/app/lib/character.service';
+import {Utils} from 'src/app/lib/utils';
+import {DialogRef} from '@ngneat/dialog';
+import {Alignment} from '../../../model/alignments';
 
 @Component({
   selector: 'app-edit-alignment',

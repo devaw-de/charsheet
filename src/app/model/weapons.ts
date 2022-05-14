@@ -1,4 +1,4 @@
-import { Dice } from "./base";
+import {Dice} from './dice';
 
 export enum WeaponProperty {
   LIGHT = 'Light',
@@ -14,45 +14,84 @@ export enum WeaponProperty {
 export enum WeaponType {
   SIMPLE = 'Simple Weapons',
   MARTIAL = 'Martial Weapons',
-  SHORTSWORDS = 'Shortswords',
-  SHORTBOWS = 'Shortbows',
-  LONGSWORDS = 'Longswords',
-  LONGBOWS = 'Longbows',
+  SHORT_SWORDS = 'Shortswords',
+  SHORT_BOWS = 'Shortbows',
+  LONG_SWORDS = 'Longswords',
+  LONG_BOWS = 'Longbows',
   RAPIERS = 'Rapiers',
   HAND_CROSSBOWS = 'Hand crossbows'
-};
+}
 
-export const SPELLCASTER_WEAPONS = ['Daggers', 'Darts', 'Slings', 'Quarterstaffs', 'Light crossbows'];
+export enum WeaponProficiencies {
+  SIMPLE = 'SIMPLE',
+  MARTIAL = 'MARTIAL',
+  DAGGERS = 'DAGGERS',
+  DARTS = 'DARTS',
+  SLINGS = 'SLINGS',
+  QUARTER_STAFFS = 'QUARTER_STAFFS',
+  LIGHT_CROSSBOWS = 'LIGHT_CROSSBOWS',
+  CLUBS = 'CLUBS',
+  LONG_SWORDS = 'LONG_SWORDS',
+  LONG_BOWS = 'LONG_BOWS',
+  BATTLE_AXE = 'BATTLE_AXE',
+  HAND_AXE = 'HAND_AXE',
+  WAR_HAMMER = 'WAR_HAMMER',
+  THROWING_HAMMER = 'THROWING_HAMMER',
+  SHORT_BOWS = 'SHORT_BOWS',
+  SHORT_SWORDS = 'SHORT_SWORDS'
+}
+
+export const DWARVEN_WEAPON_PROFICIENCIES: Array<WeaponProficiencies> = [
+  WeaponProficiencies.BATTLE_AXE,
+  WeaponProficiencies.HAND_AXE,
+  WeaponProficiencies.THROWING_HAMMER,
+  WeaponProficiencies.WAR_HAMMER
+];
+
+export const ELVISH_WEAPON_PROFICIENCIES: Array<WeaponProficiencies> = [
+  WeaponProficiencies.LONG_BOWS,
+  WeaponProficiencies.LONG_SWORDS,
+  WeaponProficiencies.SHORT_SWORDS,
+  WeaponProficiencies.SHORT_BOWS
+];
+
+export const CASTER_WEAPON_PROFICIENCIES: Array<WeaponProficiencies> = [
+  WeaponProficiencies.DAGGERS,
+  WeaponProficiencies.DARTS,
+  WeaponProficiencies.SLINGS,
+  WeaponProficiencies.QUARTER_STAFFS,
+  WeaponProficiencies.LIGHT_CROSSBOWS
+];
 
 export enum WeaponRange {
   MELEE = 'Melee',
   RANGED = 'Ranged'
-};
+}
 
 export enum DamageType {
   PIERCING = 'Piercing',
   SLASHING = 'Slashing',
   BLUDGEONING = 'Bludgeoning'
-};
+}
 
 export enum Ammunition {
   ARROWS = '20 Arrows',
   BOLTS = '20 Bolts',
   DARTS = '10 Darts'
-};
+}
 
 export enum Weapon {
   DAGGER = 'Dagger',
-  SHORTSWORD = 'Shortsword',
+  SHORT_SWORD = 'Shortsword',
   LONGSWORD = 'Longsword',
   RAPIER = 'Rapier',
   LIGHT_CROSSBOW = 'Light crossbow',
   MACE = 'Mace',
-  GREATAXE = 'Greataxe',
-  SHORTBOW = 'Shortbow',
+  GREAT_AXE = 'Greataxe',
+  SHORT_BOW = 'Shortbow',
   LONGBOW = 'Longbow',
-  QUARTERSTAFF = 'Quarterstaff'
-};
+  QUARTER_STAFF = 'Quarterstaff'
+}
 
 export interface WeaponDetails {
   name: string;
@@ -60,8 +99,9 @@ export interface WeaponDetails {
   range: WeaponRange;
   damage: Dice;
   damageType: DamageType;
-  properties?: Array<WeaponProperty>
-};
+  properties?: Array<WeaponProperty>;
+  requiredProficiency: Array<WeaponProficiencies>;
+}
 
 export const Weapons: Array<WeaponDetails> = [
   {
@@ -70,7 +110,8 @@ export const Weapons: Array<WeaponDetails> = [
     range: WeaponRange.MELEE,
     damage: Dice.D4,
     damageType: DamageType.BLUDGEONING,
-    properties: [WeaponProperty.LIGHT]
+    properties: [WeaponProperty.LIGHT],
+    requiredProficiency: [WeaponProficiencies.SIMPLE, WeaponProficiencies.CLUBS]
   },
   {
     name: 'Dagger',
@@ -78,7 +119,8 @@ export const Weapons: Array<WeaponDetails> = [
     range: WeaponRange.MELEE,
     damage: Dice.D4,
     damageType: DamageType.PIERCING,
-    properties: [WeaponProperty.LIGHT, WeaponProperty.THROWN, WeaponProperty.FINESSE]
+    properties: [WeaponProperty.LIGHT, WeaponProperty.THROWN, WeaponProperty.FINESSE],
+    requiredProficiency: [WeaponProficiencies.SIMPLE, WeaponProficiencies.DAGGERS]
   },
   {
     name: 'Mace',
@@ -86,7 +128,8 @@ export const Weapons: Array<WeaponDetails> = [
     range: WeaponRange.MELEE,
     damage: Dice.D6,
     damageType: DamageType.BLUDGEONING,
-    properties: []
+    properties: [],
+    requiredProficiency: [WeaponProficiencies.SIMPLE]
   },
   {
     name: 'Longsword',
@@ -94,7 +137,8 @@ export const Weapons: Array<WeaponDetails> = [
     range: WeaponRange.MELEE,
     damage: Dice.D8,
     damageType: DamageType.SLASHING,
-    properties: [WeaponProperty.VERSATILE]
+    properties: [WeaponProperty.VERSATILE],
+    requiredProficiency: [WeaponProficiencies.MARTIAL, WeaponProficiencies.LONG_SWORDS]
   },
   {
     name: 'Longbow',
@@ -102,6 +146,7 @@ export const Weapons: Array<WeaponDetails> = [
     range: WeaponRange.RANGED,
     damage: Dice.D8,
     damageType: DamageType.PIERCING,
-    properties: [WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED]
+    properties: [WeaponProperty.HEAVY, WeaponProperty.TWO_HANDED],
+    requiredProficiency: [WeaponProficiencies.MARTIAL, WeaponProficiencies.LONG_BOWS]
   },
 ];

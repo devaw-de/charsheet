@@ -1,5 +1,5 @@
 .extra-profs {
-  background-image: url('/assets/icons/settings.png');
+  background-image: url('/src/assets/icons/settings.png');
   background-repeat: no-repeat;
   background-size: 8rem;
   background-position: 90% 50%;
@@ -19,7 +19,7 @@
     }
   }
   .value {
-    font-weight: light;
+    font-weight: 300;
     font-size: .8rem;
     padding-bottom: .25rem;
   }

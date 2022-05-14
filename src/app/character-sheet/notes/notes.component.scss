@@ -1,14 +1,19 @@
-.notes {
+.notes, .feats {
   overflow: hidden;
-  padding: 0 2px;
+  padding: 0 2px 60px 0;
 
   .single-note {
     opacity: .75;
+    line-height: 28px;
 
     &::first-letter {
       text-transform: uppercase;
       font-size: 1.4rem;
       font-weight: bold;
+    }
+
+    @media print {
+      line-height: unset;
     }
   }
 }

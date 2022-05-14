@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Profiencies } from 'src/app/model/character';
+import { Proficiencies } from 'src/app/model/character';
 
 @Component({
   selector: 'app-extra-profs',
@@ -8,6 +8,6 @@ import { Profiencies } from 'src/app/model/character';
 })
 export class ExtraProficienciesComponent {
 
-  @Input() proficiencies: Profiencies;
+  @Input() proficiencies: Proficiencies;
 
 }

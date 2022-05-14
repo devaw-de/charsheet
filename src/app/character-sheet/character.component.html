@@ -1,5 +1,6 @@
 <div *ngIf="character" class="sheet">
 	<app-name class="section" [character]="character"></app-name>
+
 	<div class="upper-wrap">
 		<app-background class="sub-section" [character]="character"></app-background>
 		<app-vitals class="sub-section" [vitals]="character.vitals"></app-vitals>
@@ -12,42 +13,53 @@
 			<app-inspiration class="section"></app-inspiration>
 			<app-proficiency-bonus class="section" [bonus]="character.proficiencies.proficiencyBonus"></app-proficiency-bonus>
 	</div>
+
 	<app-saving-throws class="sub-section" [character]="character"></app-saving-throws>
 	<app-skills class="sub-section" [character]="character"></app-skills>
 	<app-armorclass [character]="character" class="sub-section"></app-armorclass>
+
 	<div class="class-specific-wrap">
 		<app-class-special [character]="character" class="sub-section"></app-class-special>
-		<app-hitpoints [hitpoints]="character.hitpoints" class="sub-section"></app-hitpoints>
+		<app-hitpoints [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
 	</div>
+
 	<div class="hitdie-wrap">
-		<app-hitdice [hitdice]="character.hitDice" class="sub-section"></app-hitdice>
+		<app-hit-dice [hitDice]="character.hitDice" class="sub-section"></app-hit-dice>
 		<app-death-saving-throws class="section"></app-death-saving-throws>
 	</div>
-	<div class="weapons-wrap section-wrapper">
-		<app-weapons [weapons]="character.weapons" class="section"></app-weapons>
-		<app-ammunition [ammunition]="character.ammunition" class="section"></app-ammunition>
-	</div>
+
+	<app-weapons [weapons]="character.weapons" class="section"></app-weapons>
+	<app-ammunition [ammunition]="character.ammunition" class="section"></app-ammunition>
+
 	<app-extra-profs class="section" [proficiencies]="character.proficiencies"></app-extra-profs>
 	<app-currency class="section" [currency]="character.currency"></app-currency>
 	<app-equipment class="section" [equipment]="character.equipment"></app-equipment>
-	<app-notes class="section" [notes]="character.notes"></app-notes>
+
+	<div class="notes-wrap">
+		<app-feats class="section" [character]="character"></app-feats>
+		<app-notes class="section" [notes]="character.notes"></app-notes>
+	</div>
+
+	<app-character-history class="section" [character]="character"></app-character-history>
 </div>
 
 <div class="navigation">
 	<button type="button"
-			(click)="toBuilder()"
-			[innerText]="'Builder'"
+					(click)="saveCharacter()"
+					[innerText]="'Save Character'"
 	></button>
-
 	<button type="button"
 					(click)="exportCharacter()"
 					[disabled]="true"
 					[class.disabled]="true"
 					[innerText]="'Export Character'"
+					[title]="'Not yet implemented'"
 	></button>
-
-	<button type="button"	(click)="debug()">Debug</button>
-	<button type="button"	(click)="test()">Test</button>
-	<button type="button" (click)="saveCharacter()">Save Character</button>
-	<button type="button" (click)="clearLocalData()" [disabled]="!isLocalDataAvailable()" [class.disabled]="!isLocalDataAvailable()">Clear local data</button>
+	<button type="button"
+					(click)="clearLocalData()"
+					[disabled]="!isLocalDataAvailable()"
+					[class.disabled]="!isLocalDataAvailable()"
+					[innerText]="'Clear local data'"
+					[title]="isLocalDataAvailable() ? '' : 'Nothing to delete'"
+	></button>
 </div>

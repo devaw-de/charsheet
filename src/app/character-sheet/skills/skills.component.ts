@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { CharacterSkillList, CharacterSkill, Skill } from '../../model/abilities';
-import { PlayerCharacterData } from '../../model/character';
-import { SkillProficiencySelectionComponent } from './skill-proficiency-selection/skill-proficiency-selection.component';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {CharacterSkillList, CharacterSkill, SkillName} from '../../model/abilities';
+import {PlayerCharacterData} from '../../model/character';
+import {SkillProficiencySelectionComponent} from './skill-proficiency-selection/skill-proficiency-selection.component';
 
 @Component({
   selector: 'app-skills',
@@ -29,22 +29,25 @@ export class SkillsComponent {
     return Utils.formatModifier(attributeModifier + skillModifier);
   }
 
-  public isProficient(skillName: Skill): boolean {
+  public isProficient(skillName: SkillName): boolean {
     return this.character.proficiencies.skills.includes(skillName);
   }
 
   public startSkillProficiencySelection(): void {
-    const restrictedSkills = Utils.getClassDetailsByname(this.character.class).proficiencies.skillsToChoose.limitedTo;
+    const restrictedSkills = CharacterSkillList.filter(
+      skill => skill.canBeChosenByClass.includes(this.character.className)
+    );
 
     const modal = this._dialogService.open(SkillProficiencySelectionComponent, {
       data: {
-        pickabledSkills: restrictedSkills ? restrictedSkills : Utils.getSkillList(),
+        pickableSkills: restrictedSkills ? restrictedSkills : Utils.getSkillList(),
         selectedSkills: this.character.proficiencies.skills,
         maxSelections: 3
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe(result => {
       console.log(result);
+      modalSubscription.unsubscribe();
     });
   }
 

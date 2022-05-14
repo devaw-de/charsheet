@@ -1,15 +1,16 @@
-import { Skill } from "./abilities";
-import { Attribute } from "./attributes";
-import { CharacterBackground } from "./backgrounds";
-import { Alignment, Dice, Language } from "./base";
-import { CharacterClassName } from "./characterClasses";
-import { CharacterRace, CharacterSubRaceName } from "./characterRaces";
-import { Armor, ArmorType, Currency, Tool } from "./equipment";
-import { Ammunition, Weapon, WeaponType } from "./weapons";
+import {SkillName} from './abilities';
+import {CharacterBackground} from './backgrounds';
+import {CharacterClassName} from './characterClasses';
+import {CharacterRace, CharacterSubRaceName} from './characterRaces';
+import {ArmorType, Currency, Tool} from './equipment';
+import {Ammunition, Weapon, WeaponType} from './weapons';
+import {Language} from './language';
+import {Dice} from './dice';
+import {Alignment} from './alignments';
 
 export enum CharacterSpecialization {
   NONE = 'NONE'
-};
+}
 
 export interface CharacterVitals {
   age?: number;
@@ -18,7 +19,7 @@ export interface CharacterVitals {
   eyes?: string;
   skin?: string;
   hair?: string;
-};
+}
 
 export interface HitPoints {
   current: number;
@@ -34,7 +35,7 @@ export interface CharacterAttributes {
   int: number;
   wis: number;
   cha: number;
-};
+}
 
 export interface OptionalCharacterAttributes {
   str?: number;
@@ -43,25 +44,25 @@ export interface OptionalCharacterAttributes {
   int?: number;
   wis?: number;
   cha?: number;
-};
+}
 
 export interface PointBuyDTO {
   attributes: CharacterAttributes;
   racialBonus: OptionalCharacterAttributes;
-};
+}
 
 export interface Equipment {
   equipped?: Array<string>;
   backpack?: Array<string>;
-};
+}
 
-export interface Profiencies {
+export interface Proficiencies {
   proficiencyBonus: number;
   armor?: Array<ArmorType>;
   weapons?: Array<WeaponType>;
   languages: Array<Language>;
-  skills: Array<Skill>;
-  expertise?: Array<Skill>;
+  skills: Array<SkillName>;
+  expertise?: Array<SkillName>;
   tools?: Array<Tool>;
   instruments?: Array<string>;
 }
@@ -72,26 +73,27 @@ export interface PlayerCharacterData {
   ammunition: Array<Ammunition>;
   attributes: CharacterAttributes;
   background: CharacterBackground;
-  class: CharacterClassName;
+  className: CharacterClassName;
   currency: Currency;
   equipment: Equipment;
+  history?: string;
   hitDice: Array<Dice>;
-  hitpoints: HitPoints;
+  hitPoints: HitPoints;
   level: number;
   movementSpeed: number;
   name: string;
   notes?: Array<string>;
   playerName: string;
-  proficiencies: Profiencies;
+  proficiencies: Proficiencies;
   race: CharacterRace;
   appliedRacialBonuses: OptionalCharacterAttributes;
   shield: boolean;
   specialization: CharacterSpecialization;
-  subrace: CharacterSubRaceName;
+  subRace: CharacterSubRaceName;
   vitals: CharacterVitals;
   weapons: Array<Weapon>;
   xp: number;
-};
+}
 
 export const StartingCharacterVitals = {
   age: 0,
@@ -111,7 +113,7 @@ export const MinimumCharacterAttributes: CharacterAttributes = {
   cha: 8
 };
 
-export const ZeroHitpoints: HitPoints = {
+export const ZeroHitPoints: HitPoints = {
   current: 0,
   max: 0,
   temp: 0
@@ -125,14 +127,14 @@ export const StartingPlayerCharacter: PlayerCharacterData = {
   xp: 0,
   level: 1,
   alignment: Alignment.TRUE_NEUTRAL,
-  hitpoints: ZeroHitpoints,
-  class: CharacterClassName.RANGER,
+  hitPoints: ZeroHitPoints,
+  className: CharacterClassName.RANGER,
   ac: 10,
   movementSpeed: 9,
   hitDice: [Dice.D6],
   proficiencies: {
     proficiencyBonus: 2,
-    skills: [Skill.ACROBATICS, Skill.INSIGHT],
+    skills: [SkillName.ACROBATICS, SkillName.INSIGHT],
     expertise: [],
     tools: [Tool.SMITH_TOOLS],
     languages: [],
@@ -144,7 +146,7 @@ export const StartingPlayerCharacter: PlayerCharacterData = {
   shield: false,
   race: undefined,
   appliedRacialBonuses: null,
-  subrace: undefined,
+  subRace: undefined,
   background: undefined,
   ammunition: [],
   equipment: {
@@ -179,8 +181,8 @@ export const DefaultCharacter: PlayerCharacterData = {
   xp: 200,
   level: 1,
   alignment: Alignment.CHAOTIC_EVIL,
-  hitpoints: {current: 11, max: 11, temp: 0},
-  class: CharacterClassName.BARBARIAN,
+  hitPoints: {current: 11, max: 11, temp: 0},
+  className: CharacterClassName.BARBARIAN,
   background: CharacterBackground.HERMIT,
   ac: 10,
   movementSpeed: 7.5,
@@ -189,7 +191,7 @@ export const DefaultCharacter: PlayerCharacterData = {
     proficiencyBonus: 2,
     armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.SHIELDS],
     weapons: [WeaponType.SIMPLE, WeaponType.MARTIAL],
-    skills: [Skill.INTIMIDATION, Skill.NATURE],
+    skills: [SkillName.INTIMIDATION, SkillName.NATURE],
     languages: [Language.DWARVISH, Language.COMMON, Language.DEEP_SPEECH],
   },
   currency: {
@@ -198,10 +200,10 @@ export const DefaultCharacter: PlayerCharacterData = {
     copper: 2
   },
   specialization: CharacterSpecialization.NONE,
-  weapons: [Weapon.GREATAXE],
+  weapons: [Weapon.GREAT_AXE],
   shield: true,
   race: CharacterRace.DWARF,
-  subrace: CharacterSubRaceName.HILL_DWARF,
+  subRace: CharacterSubRaceName.HILL_DWARF,
   ammunition: [Ammunition.DARTS, Ammunition.BOLTS, Ammunition.ARROWS],
   equipment: {
     backpack: ['Bedroll'],

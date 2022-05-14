@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  font-family: Verdana, Arial, sans-serif;
+  margin: 3rem 0 0 0;
+  width: 100%;
+
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none !important;
+
+      &:hover {
+        color: var(--section-background-darker);
+        background-color: var(--section-color);
+      }
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

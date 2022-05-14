@@ -1,0 +1,21 @@
+<div class="settings section">
+  <h2 class="settings-icon">Settings</h2>
+  <article>
+      <h3>Distance Units</h3>
+      <p>Do you want to use <em>feet</em> or <em>meters</em> for your character's speed stat?</p>
+      <app-custom-radio [options]="distanceSettingsOptions"
+                        (optionSelected)="changeDistanceSetting($event)"
+      ></app-custom-radio>
+  </article>
+  <article>
+    <h3>Level up Strategy</h3>
+    <p>When you level up, do you want to roll for hit points, use the maximum value, or use as described in the player's handbook?</p>
+    <p class="hint">Die rolls are currently not implemented, sorry about that.</p>
+    <app-custom-radio [options]="levelupStrategyOptions"
+                      (optionSelected)="changeLevelUpStrategy($event)"
+    ></app-custom-radio>
+  </article>
+  <article>
+    <button (click)="navigate()">I'm done here, take me back</button>
+  </article>
+</div>

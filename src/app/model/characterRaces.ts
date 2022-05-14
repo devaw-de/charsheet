@@ -1,7 +1,8 @@
-import { Skill } from "./abilities";
-import { Language } from "./base";
-import { Tool } from "./equipment";
-import { CharacterFeats } from "./skills";
+import {SkillName} from './abilities';
+import {Tool} from './equipment';
+import {CharacterTraits} from './traits';
+import {Language} from './language';
+import {DWARVEN_WEAPON_PROFICIENCIES, ELVISH_WEAPON_PROFICIENCIES} from './weapons';
 
 export enum CharacterRace {
   DRAGONBORN = 'Dragonborn',
@@ -13,7 +14,7 @@ export enum CharacterRace {
   HALFLING = 'Halfling',
   HUMAN = 'Human',
   TIEFLING = 'Tiefling'
-};
+}
 
 export enum CharacterSubRaceName {
   HILL_DWARF = 'Hill Dwarf',
@@ -27,9 +28,9 @@ export enum CharacterSubRaceName {
   VARIANT = 'Human (Variant)',
   FOREST_GNOME = 'Forest gnome',
   ROCK_GNOME = 'Rock gnome'
-};
+}
 
-export interface CharacterSubraceDetails {
+export interface CharacterSubRaceDetails {
   name: CharacterSubRaceName;
   extendsRace: CharacterRace;
   attributeBonus?: {
@@ -41,7 +42,7 @@ export interface CharacterSubraceDetails {
     wis?: number;
     cha?: number;
   };
-  feats?: Array<CharacterFeats>;
+  feats?: Array<CharacterTraits>;
   speed?: number;
   pickableLanguages?: number;
   extraProficiencies?: {
@@ -51,50 +52,50 @@ export interface CharacterSubraceDetails {
   pickableFeats?: number;
 }
 
-export const CharacterSubracesList: Array<CharacterSubraceDetails> = [
+export const CharacterSubRacesList: Array<CharacterSubRaceDetails> = [
   {
     name: CharacterSubRaceName.HILL_DWARF,
     extendsRace: CharacterRace.DWARF,
     attributeBonus: { wis: 1 },
-    feats: [CharacterFeats.DWARVEN_TOUGHNESS]
+    feats: [CharacterTraits.DWARVEN_TOUGHNESS]
   },
   {
     name: CharacterSubRaceName.MOUNTAIN_DWARF,
     extendsRace: CharacterRace.DWARF,
     attributeBonus: { str: 2 },
-    feats: [CharacterFeats.DWARVEN_ARMOR_TRAINING]
+    feats: [CharacterTraits.DWARVEN_ARMOR_TRAINING]
   },
   {
     name: CharacterSubRaceName.HIGH_ELF,
     extendsRace: CharacterRace.ELF,
     attributeBonus: { int: 1 },
-    feats: [CharacterFeats.ELF_WEAPON_TRAINING, CharacterFeats.ELVEN_CANTRIP],
+    feats: [CharacterTraits.ELF_WEAPON_TRAINING, CharacterTraits.ELVEN_CANTRIP],
     pickableLanguages: 1
   },
   {
     name: CharacterSubRaceName.WOOD_ELF,
     extendsRace: CharacterRace.ELF,
     attributeBonus: { wis: 1 },
-    feats: [CharacterFeats.ELF_WEAPON_TRAINING],
+    feats: [CharacterTraits.ELF_WEAPON_TRAINING],
     speed: 35
   },
   {
     name: CharacterSubRaceName.DROW,
     extendsRace: CharacterRace.ELF,
     attributeBonus: { cha: 1 },
-    feats: [CharacterFeats.DROW_WEAPON_TRAINING, CharacterFeats.SUPERIOR_DARKVISION, CharacterFeats.SUNLIGHT_SENSITIVITY]
+    feats: [CharacterTraits.DROW_WEAPON_TRAINING, CharacterTraits.SUPERIOR_DARK_VISION, CharacterTraits.SUNLIGHT_SENSITIVITY]
   },
   {
     name: CharacterSubRaceName.LIGHTFOOT,
     extendsRace: CharacterRace.HALFLING,
     attributeBonus: { cha: 1 },
-    feats: [CharacterFeats.NATURALLY_STEALTHY]
+    feats: [CharacterTraits.NATURALLY_STEALTHY]
   },
   {
     name: CharacterSubRaceName.STOUT,
     extendsRace: CharacterRace.HALFLING,
     attributeBonus: { con: 1 },
-    feats: [CharacterFeats.STOUT_RESILIENCE]
+    feats: [CharacterTraits.STOUT_RESILIENCE]
   },
   {
     name: CharacterSubRaceName.HUMAN,
@@ -119,13 +120,13 @@ export const CharacterSubracesList: Array<CharacterSubraceDetails> = [
     name: CharacterSubRaceName.FOREST_GNOME,
     extendsRace: CharacterRace.GNOME,
     attributeBonus: { dex: 1 },
-    feats: [CharacterFeats.SPEAK_WITH_SMALL_BEASTS, CharacterFeats.NATURAL_ILLUSIONIST]
+    feats: [CharacterTraits.SPEAK_WITH_SMALL_BEASTS, CharacterTraits.NATURAL_ILLUSIONIST]
   },
   {
     name: CharacterSubRaceName.ROCK_GNOME,
     extendsRace: CharacterRace.GNOME,
     attributeBonus: { con: 1 },
-    feats: [CharacterFeats.ARTIFICERS_LORE, CharacterFeats.TINKER],
+    feats: [CharacterTraits.ARTIFICERS_LORE, CharacterTraits.TINKER],
     extraProficiencies: { tools: Tool.ARTISAN_TOOLS }
   }
 ];
@@ -144,14 +145,14 @@ export interface CharacterRaceDetails {
   languages: Array<Language>;
   pickableLanguages?: number;
   speed: number;
-  feats?: Array<CharacterFeats>;
-  subrace?: boolean; // TODO: change this to the list of matching subraces
+  feats?: Array<CharacterTraits>;
+  subRace?: boolean; // TODO: change this to the list of matching subraces
   proficiencies?: {
-    skills?: Array<Skill>,
+    skills?: Array<SkillName>,
     tools?: Array<string>,
     weapons?: Array<string>
-  }
-};
+  };
+}
 
 export const CharacterRacesList: Array<CharacterRaceDetails> = [
   {
@@ -163,9 +164,9 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     },
     languages: [Language.DRACONIC, Language.COMMON],
     feats: [
-      CharacterFeats.BREATH_WEAPON,
-      CharacterFeats.DRACONIC_ANCESTRY,
-      CharacterFeats.DAMAGE_RESISTANCE_DRACONIC,
+      CharacterTraits.BREATH_WEAPON,
+      CharacterTraits.DRACONIC_ANCESTRY,
+      CharacterTraits.DAMAGE_RESISTANCE_DRACONIC,
     ],
     speed: 30
   },
@@ -177,16 +178,16 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
       },
       languages: [Language.DWARVISH, Language.COMMON],
       feats: [
-        CharacterFeats.DARKVISION,
-        CharacterFeats.DWARVEN_RESILIENCE,
-        CharacterFeats.STONECUNNING
+        CharacterTraits.DARK_VISION,
+        CharacterTraits.DWARVEN_RESILIENCE,
+        CharacterTraits.STONE_CUNNING
       ],
       proficiencies: {
         tools: ['Smiths tools'],
-        weapons: ['Battleaxe', 'Handaxe', 'Throwing hammer', 'Warhammer']
+        weapons: DWARVEN_WEAPON_PROFICIENCIES
       },
       speed: 25,
-      subrace: true
+      subRace: true
     },
 
    {
@@ -198,13 +199,14 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     languages: [Language.ELVISH, Language.COMMON],
     speed: 30,
     feats: [
-      CharacterFeats.DARKVISION,
-      CharacterFeats.KEEN_SENSES,
+      CharacterTraits.DARK_VISION,
+      CharacterTraits.KEEN_SENSES,
     ],
     proficiencies: {
-      skills: [Skill.PERCEPTION]
+      skills: [SkillName.PERCEPTION],
+      weapons: ELVISH_WEAPON_PROFICIENCIES
     },
-    subrace: true
+    subRace: true
   },
   {
     // ------- GNOME -------
@@ -213,9 +215,9 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
       int: 2
     },
     languages: [Language.GNOMISH, Language.COMMON],
-    feats: [CharacterFeats.GNOME_CUNNING],
+    feats: [CharacterTraits.GNOME_CUNNING],
     speed: 25,
-    subrace: true
+    subRace: true
   },
   {
     // ------- HALFLING -------
@@ -226,11 +228,11 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     languages: [Language.COMMON],
     speed: 25,
     feats: [
-      CharacterFeats.BRAVE,
-      CharacterFeats.HALFLING_NIMBLENESS,
-      CharacterFeats.LUCKY
+      CharacterTraits.BRAVE,
+      CharacterTraits.HALFLING_NIMBLENESS,
+      CharacterTraits.LUCKY
     ],
-    subrace: true
+    subRace: true
   },
   {
     // ------- HALF-ELF -------
@@ -242,9 +244,9 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     languages: [Language.COMMON],
     pickableLanguages: 1,
     feats: [
-      CharacterFeats.DARKVISION,
-      CharacterFeats.FEY_ANCESTRY,
-      CharacterFeats.SKILL_VERSATILIY
+      CharacterTraits.DARK_VISION,
+      CharacterTraits.FEY_ANCESTRY,
+      CharacterTraits.SKILL_VERSATILITY
     ],
     speed: 30,
   },
@@ -257,10 +259,10 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     },
     languages: [Language.COMMON, Language.ORCISH],
     feats: [
-      CharacterFeats.DARKVISION,
-      CharacterFeats.MENACING,
-      CharacterFeats.RELENTLESS_ENDURANCE,
-      CharacterFeats.SAVAGE_ATTACKS
+      CharacterTraits.DARK_VISION,
+      CharacterTraits.MENACING,
+      CharacterTraits.RELENTLESS_ENDURANCE,
+      CharacterTraits.SAVAGE_ATTACKS
     ],
     speed: 30
   },
@@ -287,9 +289,9 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     },
     languages: [Language.INFERNAL, Language.COMMON],
     feats: [
-      CharacterFeats.DARKVISION,
-      CharacterFeats.HELLISH_RESISTANCE,
-      CharacterFeats.INFERNAL_LEGACY
+      CharacterTraits.DARK_VISION,
+      CharacterTraits.HELLISH_RESISTANCE,
+      CharacterTraits.INFERNAL_LEGACY
     ],
     speed: 30
   }

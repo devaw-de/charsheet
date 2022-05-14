@@ -2,7 +2,6 @@
   size: a4 portrait;
 }
 
-
 @media print {
   :root {
     --highlight: #000;
@@ -13,6 +12,12 @@
     margin: 0 !important;
     padding: 0 !important;
     background-image: none !important;
+    font-size: 10pt;
+  }
+
+  * {
+    -webkit-clip-path: unset !important;
+    clip-path: unset !important;
   }
 
   app-character {

@@ -1,72 +1,35 @@
 .armor-wrap {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
   height: 100%;
 
-
   & > div {
-    width: 20%;
-    margin-right: 2rem;
-    height: 90px;
-    flex-grow: 0;
-    text-align: right;
+    text-align: center;
     display: flex;
     flex-direction: column-reverse;
-    background-size: 3rem;
-    background-repeat: no-repeat;
-    background-position: left center;
   }
 
   .armor {
-    background-image: url('/assets/icons/shield.png');
-  }
+    min-width: 5rem;
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/src/assets/icons/shield.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 5rem;
 
-  .initiative {
-    background-image: url('/assets/icons/d20.png');
-  }
-
-  .movement {
-    background-image: url('/assets/icons/wind.png');
+    .label {
+      display: none;
+    }
   }
 
   .value {
     font-size: var(--extra-large-text);
   }
 
-  @media print {
-    .armor, .initiative, .movement {
-      text-align: center;
-      background-image: none;
-    }
-
-    .armor {
-      order: 2;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-image: url('/assets/icons/shield.png');
-      background-size: 5rem;
-      background-repeat: no-repeat;
-      background-position: center center;
-
-      .value {
-        font-size: 2.25rem;
-      }
-      .label {
-        display: none;
-      }
-    }
-
-    .initiative {
-      order: 1;
-
-    }
-    .movement {
-      order: 3;
-    }
-
-  }
 }

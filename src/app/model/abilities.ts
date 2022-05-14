@@ -1,6 +1,7 @@
-import { Attribute } from "./attributes";
+import {Attribute} from './attributes';
+import {CharacterClassName} from './characterClasses';
 
-export enum Skill {
+export enum SkillName {
   ACROBATICS = 'Acrobatics',
   ANIMAL_HANDLING = 'Animal handling',
   ARCANA = 'Arcana',
@@ -19,86 +20,217 @@ export enum Skill {
   SLEIGHT_OF_HAND = 'Sleight of hand',
   STEALTH = 'Stealth',
   SURVIVAL = 'Survival'
-};
+}
 
 export interface CharacterSkill {
-  name: Skill;
+  name: SkillName;
   relatedAttribute: Attribute;
+  canBeChosenByClass: Array<CharacterClassName>;
   proficient?: boolean;
   expertise?: boolean;
 }
 
 export const CharacterSkillList: Array<CharacterSkill> = [
   {
-    name: Skill.ACROBATICS,
-    relatedAttribute: Attribute.DEX
+    name: SkillName.ACROBATICS,
+    relatedAttribute: Attribute.DEX,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.MONK,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.ANIMAL_HANDLING,
-    relatedAttribute: Attribute.WIS
+    name: SkillName.ANIMAL_HANDLING,
+    relatedAttribute: Attribute.WIS,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.DRUID,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.RANGER
+    ]
   },
   {
-    name: Skill.ARCANA,
-    relatedAttribute: Attribute.INT
+    name: SkillName.ARCANA,
+    relatedAttribute: Attribute.INT,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.DRUID,
+      CharacterClassName.SORCERER,
+      CharacterClassName.WARLOCK,
+      CharacterClassName.WIZARD
+    ]
   },
   {
-    name: Skill.ATHLETICS,
-    relatedAttribute: Attribute.STR
+    name: SkillName.ATHLETICS,
+    relatedAttribute: Attribute.STR,
+    canBeChosenByClass: [
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.BARD,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.MONK,
+      CharacterClassName.PALADIN,
+      CharacterClassName.RANGER,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.DECEPTION,
-    relatedAttribute: Attribute.CHA
+    name: SkillName.DECEPTION,
+    relatedAttribute: Attribute.CHA,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.ROGUE,
+      CharacterClassName.SORCERER,
+      CharacterClassName.WARLOCK,
+    ]
   },
   {
-    name: Skill.HISTORY,
-    relatedAttribute: Attribute.INT
+    name: SkillName.HISTORY,
+    relatedAttribute: Attribute.INT,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.CLERIC,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.MONK,
+      CharacterClassName.WARLOCK,
+      CharacterClassName.WIZARD
+    ]
   },
   {
-    name: Skill.INSIGHT,
-    relatedAttribute: Attribute.WIS
+    name: SkillName.INSIGHT,
+    relatedAttribute: Attribute.WIS,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.CLERIC,
+      CharacterClassName.DRUID,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.MONK,
+      CharacterClassName.PALADIN,
+      CharacterClassName.RANGER,
+      CharacterClassName.ROGUE,
+      CharacterClassName.SORCERER,
+      CharacterClassName.WIZARD
+    ]
   },
   {
-    name: Skill.INTIMIDATION,
-    relatedAttribute: Attribute.CHA
+    name: SkillName.INTIMIDATION,
+    relatedAttribute: Attribute.CHA,
+    canBeChosenByClass: [
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.BARD,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.PALADIN,
+      CharacterClassName.ROGUE,
+      CharacterClassName.SORCERER,
+      CharacterClassName.WARLOCK,
+    ]
   },
   {
-    name: Skill.INVESTIGATION,
-    relatedAttribute: Attribute.INT
+    name: SkillName.INVESTIGATION,
+    relatedAttribute: Attribute.INT,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.RANGER,
+      CharacterClassName.ROGUE,
+      CharacterClassName.WARLOCK,
+      CharacterClassName.WIZARD
+    ]
   },
   {
-    name: Skill.MEDICINE,
-    relatedAttribute: Attribute.WIS
+    name: SkillName.MEDICINE,
+    relatedAttribute: Attribute.WIS,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.CLERIC,
+      CharacterClassName.DRUID,
+      CharacterClassName.PALADIN,
+      CharacterClassName.WIZARD
+    ]
   },
   {
-    name: Skill.NATURE,
-    relatedAttribute: Attribute.INT
+    name: SkillName.NATURE,
+    relatedAttribute: Attribute.INT,
+    canBeChosenByClass: [
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.BARD,
+      CharacterClassName.DRUID,
+      CharacterClassName.WARLOCK,
+    ]
   },
   {
-    name: Skill.PERCEPTION,
-    relatedAttribute: Attribute.WIS
+    name: SkillName.PERCEPTION,
+    relatedAttribute: Attribute.WIS,
+    canBeChosenByClass: [
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.BARD,
+      CharacterClassName.DRUID,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.RANGER,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.PERFORMANCE,
-    relatedAttribute: Attribute.CHA
+    name: SkillName.PERFORMANCE,
+    relatedAttribute: Attribute.CHA,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.PERSUASION,
-    relatedAttribute: Attribute.CHA
+    name: SkillName.PERSUASION,
+    relatedAttribute: Attribute.CHA,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.CLERIC,
+      CharacterClassName.PALADIN,
+      CharacterClassName.ROGUE,
+      CharacterClassName.SORCERER
+    ]
   },
   {
-    name: Skill.RELIGION,
-    relatedAttribute: Attribute.INT
+    name: SkillName.RELIGION,
+    relatedAttribute: Attribute.INT,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.CLERIC,
+      CharacterClassName.DRUID,
+      CharacterClassName.MONK,
+      CharacterClassName.PALADIN,
+      CharacterClassName.SORCERER,
+      CharacterClassName.WARLOCK,
+      CharacterClassName.WIZARD
+      ]
   },
   {
-    name: Skill.SLEIGHT_OF_HAND,
-    relatedAttribute: Attribute.DEX
+    name: SkillName.SLEIGHT_OF_HAND,
+    relatedAttribute: Attribute.DEX,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.STEALTH,
-    relatedAttribute: Attribute.DEX
+    name: SkillName.STEALTH,
+    relatedAttribute: Attribute.DEX,
+    canBeChosenByClass: [
+      CharacterClassName.BARD,
+      CharacterClassName.MONK,
+      CharacterClassName.RANGER,
+      CharacterClassName.ROGUE
+    ]
   },
   {
-    name: Skill.SURVIVAL,
-    relatedAttribute: Attribute.WIS
+    name: SkillName.SURVIVAL,
+    relatedAttribute: Attribute.WIS,
+    canBeChosenByClass: [
+      CharacterClassName.BARBARIAN,
+      CharacterClassName.BARD,
+      CharacterClassName.DRUID,
+      CharacterClassName.FIGHTER,
+      CharacterClassName.RANGER
+    ]
   }
 ];

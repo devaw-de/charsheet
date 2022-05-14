@@ -1,0 +1,20 @@
+export enum Language {
+    ABYSSAL = 'Abyssal',
+    AURAN = 'Auran',
+    COMMON = 'Common',
+    DEEP_SPEECH = 'Deep Speech',
+    DRACONIC = 'Draconic',
+    DRUIDIC = 'Druidic',
+    DWARVISH = 'Dwarvish',
+    ELEMENTAL = 'Elemental',
+    ELVISH = 'Elvish',
+    GIANT = 'Giant',
+    GNOMISH = 'Gnomish',
+    GOBLIN = 'Goblin',
+    HALFLING = 'Halfling',
+    INFERNAL = 'Infernal',
+    ORCISH = 'Orcish',
+    PRIMORDIAL = 'Primordial',
+    SYLVAIN = 'Sylvain',
+    UNDERCOMMON = 'Undercommon'
+}

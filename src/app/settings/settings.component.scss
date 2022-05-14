@@ -1,0 +1,24 @@
+.settings {
+  --custom-radio-button-text-color: var(--light);
+  --custom-radio-button-background-color: var(--section-background-darker);
+  --custom-radio-button-selected-text-color: var(--font-color);
+  --custom-radio-button-selected-background-color: var(--success-color);
+  --custom-radio-button-active-text-color: var(--section-background-darker);
+  --custom-radio-button-active-background-color: var(--border-color);
+
+  width: 70%;
+  margin: auto;
+  padding: 2rem;
+
+  article {
+    margin: 2rem 0;
+  }
+
+  h2 {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 2rem;
+  }
+
+}

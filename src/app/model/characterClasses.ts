@@ -1,9 +1,9 @@
-import { Skill } from "./abilities";
-import { Attribute } from "./attributes";
-import { Dice, Language } from "./base";
-import { Armor, ArmorType, EquipmentSets, Tool } from "./equipment";
-import { CharacterFeats } from "./skills";
-import { Ammunition, SPELLCASTER_WEAPONS, Weapon, WeaponType } from "./weapons";
+import {Attribute} from './attributes';
+import {Armor, ArmorType, EquipmentSets, Tool} from './equipment';
+import {CharacterTraits} from './traits';
+import {Ammunition, CASTER_WEAPON_PROFICIENCIES, Weapon, WeaponType} from './weapons';
+import {Language} from './language';
+import {Dice} from './dice';
 
 export enum CharacterClassName {
   BARBARIAN = 'Barbarian',
@@ -18,25 +18,23 @@ export enum CharacterClassName {
   SORCERER = 'Sorcerer',
   WARLOCK = 'Warlock',
   WIZARD = 'Wizard'
-};
+}
 
 export interface CharacterClass {
   name: CharacterClassName;
   hitDie: Dice;
   proficiencies: {
-    skillsToChoose: {
-      amount: number,
-      limitedTo?: Array<Skill>
-    },
+    skillsToChoose: number,
     languages?: Array<Language>,
     armor?: Array<string>,
     tools?: Array<string>,
     weapons: Array<string>,
     savingThrows: Array<Attribute>
   };
-  feats: Array<CharacterFeats>;
+  feats: Array<CharacterTraits>;
   equipment: Array<string>;
-};
+}
+
 
 export const CharacterClassesList: Array<CharacterClass> = [
   // ------ BARBARIAN ------
@@ -44,16 +42,13 @@ export const CharacterClassesList: Array<CharacterClass> = [
     name: CharacterClassName.BARBARIAN,
     hitDie: Dice.D12,
     proficiencies: {
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ANIMAL_HANDLING, Skill.ATHLETICS, Skill.INTIMIDATION, Skill.NATURE, Skill.PERCEPTION, Skill.SURVIVAL]
-      },
+      skillsToChoose: 2,
       armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.SHIELDS],
       weapons: [WeaponType.SIMPLE, WeaponType.MARTIAL],
       savingThrows: [Attribute.STR, Attribute.CON]
     },
-    equipment: [Weapon.GREATAXE, 'Two handaxes', 'Four javelins', EquipmentSets.EXPLORER_PACK],
-    feats: [CharacterFeats.RAGE, CharacterFeats.UNARMORED_DEFENSE_BARBARIAN]
+    equipment: [Weapon.GREAT_AXE, 'Two handaxes', 'Four javelins', EquipmentSets.EXPLORER_PACK],
+    feats: [CharacterTraits.RAGE, CharacterTraits.UNARMORED_DEFENSE_BARBARIAN]
   },
   // ------ BARD ------
   {
@@ -61,32 +56,27 @@ export const CharacterClassesList: Array<CharacterClass> = [
     hitDie: Dice.D8,
     proficiencies: {
       armor: [ArmorType.LIGHT_ARMOR],
-      weapons: [WeaponType.SIMPLE, WeaponType.HAND_CROSSBOWS, WeaponType.LONGSWORDS, WeaponType.RAPIERS, WeaponType.SHORTSWORDS],
+      weapons: [WeaponType.SIMPLE, WeaponType.HAND_CROSSBOWS, WeaponType.LONG_SWORDS, WeaponType.RAPIERS, WeaponType.SHORT_SWORDS],
       tools: ['Three musical instruments'],
       savingThrows: [Attribute.DEX, Attribute.CHA],
-      skillsToChoose: {
-        amount: 3
-      }
+      skillsToChoose: 3,
     },
     equipment: [EquipmentSets.ENTERTAINER_PACK, Weapon.RAPIER, 'A musical instrument', Weapon.DAGGER, Armor.LEATHER_ARMOR],
-    feats: [CharacterFeats.BARDIC_INSPIRATION]
+    feats: [CharacterTraits.BARDIC_INSPIRATION]
   },
   // ------ CLERIC ------
   {
     name: CharacterClassName.CLERIC,
     hitDie: Dice.D8,
     proficiencies: {
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.HISTORY, Skill.INSIGHT, Skill.MEDICINE, Skill.PERSUASION, Skill.RELIGION]
-      },
+      skillsToChoose: 2,
       savingThrows: [Attribute.WIS, Attribute.CHA],
       armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.SHIELDS],
       weapons: [WeaponType.SIMPLE],
       tools: [],
     },
     equipment: [Weapon.MACE, Armor.SCALE_MAIL, Weapon.LIGHT_CROSSBOW, Ammunition.BOLTS, Armor.SHIELD, 'Holy Symbol'],
-    feats: [CharacterFeats.DIVINE_DOMAIN]
+    feats: [CharacterTraits.DIVINE_DOMAIN]
   },
   // ------ DRUID ------
   {
@@ -97,10 +87,7 @@ export const CharacterClassesList: Array<CharacterClass> = [
       weapons: ['Clubs', 'Daggers', 'Darts', 'Javelins', 'Maces', 'Quarterstaffs', 'Scimitars', 'Sickles', 'Slings', 'Spears'],
       tools: [Tool.HERBALISM_KIT],
       savingThrows: [Attribute.INT, Attribute.WIS],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ARCANA, Skill.ANIMAL_HANDLING, Skill.INSIGHT, Skill.MEDICINE, Skill.NATURE, Skill.PERCEPTION, Skill.RELIGION, Skill.SURVIVAL]
-      },
+      skillsToChoose: 2,
       languages: [Language.DRUIDIC]
     },
     equipment: ['Wooden shield', 'Scimitar', Armor.LEATHER_ARMOR, EquipmentSets.EXPLORER_PACK, 'Druidic Focus'],
@@ -111,16 +98,13 @@ export const CharacterClassesList: Array<CharacterClass> = [
     name: CharacterClassName.FIGHTER,
     hitDie: Dice.D10,
     proficiencies: {
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ACROBATICS, Skill.ANIMAL_HANDLING, Skill.ATHLETICS, Skill.HISTORY, Skill.INSIGHT, Skill.INTIMIDATION, Skill.PERCEPTION, Skill.SURVIVAL]
-      },
+      skillsToChoose: 2,
       armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.HEAVY_ARMOR, ArmorType.SHIELDS],
       weapons: [WeaponType.SIMPLE, WeaponType.MARTIAL],
       savingThrows: [Attribute.STR, Attribute.CON]
     },
     equipment: [Armor.CHAIN_MAIL, 'A martial weapon', Armor.SHIELD, Weapon.LIGHT_CROSSBOW, Ammunition.BOLTS, EquipmentSets.EXPLORER_PACK],
-    feats: [CharacterFeats.FIGHTING_STYLE, CharacterFeats.SECOND_WIND]
+    feats: [CharacterTraits.FIGHTING_STYLE, CharacterTraits.SECOND_WIND]
   },
   // ------ MONK ------
   {
@@ -128,17 +112,14 @@ export const CharacterClassesList: Array<CharacterClass> = [
     hitDie: Dice.D8,
     proficiencies: {
       savingThrows: [Attribute.STR, Attribute.DEX],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ATHLETICS, Skill.ACROBATICS, Skill.HISTORY, Skill.INSIGHT, Skill.RELIGION, Skill.STEALTH]
-      },
-      weapons: [WeaponType.SIMPLE, WeaponType.SHORTSWORDS],
+      skillsToChoose: 2,
+      weapons: [WeaponType.SIMPLE, WeaponType.SHORT_SWORDS],
       tools: ['One instrument or one type of artisans tools']
     },
-    equipment: [Weapon.SHORTSWORD, EquipmentSets.EXPLORER_PACK, Ammunition.DARTS],
+    equipment: [Weapon.SHORT_SWORD, EquipmentSets.EXPLORER_PACK, Ammunition.DARTS],
     feats: [
-      CharacterFeats.UNARMORED_DEFENSE_MONK,
-      CharacterFeats.MARTIAL_ARTS
+      CharacterTraits.UNARMORED_DEFENSE_MONK,
+      CharacterTraits.MARTIAL_ARTS
     ]
   },
   // ------ PALADIN ------
@@ -149,29 +130,30 @@ export const CharacterClassesList: Array<CharacterClass> = [
       armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.HEAVY_ARMOR, ArmorType.SHIELDS],
       weapons: [WeaponType.SIMPLE, WeaponType.MARTIAL],
       savingThrows: [Attribute.WIS, Attribute.CHA],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.RELIGION, Skill.INSIGHT, Skill.ATHLETICS, Skill.MEDICINE, Skill.INTIMIDATION, Skill.PERSUASION]
-      }
+      skillsToChoose: 2,
     },
     equipment: ['A martial weapon', Armor.SHIELD, EquipmentSets.EXPLORER_PACK, Armor.CHAIN_MAIL, 'Holy symbol', '5 Javelins'],
-    feats: [CharacterFeats.LAY_ON_HANDS, CharacterFeats.DIVINE_SENSE]
+    feats: [CharacterTraits.LAY_ON_HANDS, CharacterTraits.DIVINE_SENSE]
   },
   // ------ RANGER ------
   {
     name: CharacterClassName.RANGER,
     hitDie: Dice.D10,
     proficiencies: {
-      skillsToChoose: {
-        amount: 3,
-        limitedTo: [Skill.ANIMAL_HANDLING, Skill.ATHLETICS, Skill.NATURE, Skill.INSIGHT, Skill.INVESTIGATION, Skill.PERCEPTION, Skill.SURVIVAL, Skill.STEALTH]
-      },
+      skillsToChoose: 3,
       savingThrows: [Attribute.DEX, Attribute.STR],
       armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.SHIELDS],
       weapons: [WeaponType.SIMPLE, WeaponType.MARTIAL]
     },
-    equipment: [Armor.LEATHER_ARMOR, Weapon.SHORTSWORD, Weapon.SHORTSWORD, Weapon.LONGBOW, EquipmentSets.EXPLORER_PACK, Ammunition.ARROWS],
-    feats: [CharacterFeats.NATURAL_EXPLORER, CharacterFeats.FAVORED_ENEMY]
+    equipment: [
+      Armor.LEATHER_ARMOR,
+      Weapon.SHORT_SWORD,
+      Weapon.SHORT_SWORD,
+      Weapon.LONGBOW,
+      EquipmentSets.EXPLORER_PACK,
+      Ammunition.ARROWS
+    ],
+    feats: [CharacterTraits.NATURAL_EXPLORER, CharacterTraits.FAVORED_ENEMY]
   },
   // ------ ROGUE ------
   {
@@ -179,39 +161,30 @@ export const CharacterClassesList: Array<CharacterClass> = [
     hitDie: Dice.D8,
     proficiencies: {
       savingThrows: [Attribute.DEX, Attribute.INT],
-      weapons: [WeaponType.SIMPLE, WeaponType.RAPIERS, WeaponType.SHORTSWORDS, WeaponType.LONGSWORDS, WeaponType.HAND_CROSSBOWS],
+      weapons: [WeaponType.SIMPLE, WeaponType.RAPIERS, WeaponType.SHORT_SWORDS, WeaponType.LONG_SWORDS, WeaponType.HAND_CROSSBOWS],
       tools: [Tool.THIEVES_TOOLS],
-      skillsToChoose: {
-        amount: 4,
-        limitedTo: [
-          Skill.ACROBATICS,
-          Skill.ATHLETICS,
-          Skill.DECEPTION,
-          Skill.INSIGHT,
-          Skill.INTIMIDATION,
-          Skill.INVESTIGATION,
-          Skill.PERCEPTION,
-          Skill.PERFORMANCE,
-          Skill.PERSUASION,
-          Skill.SLEIGHT_OF_HAND,
-          Skill.STEALTH
-        ]
-      }
+      skillsToChoose: 4
     },
-    equipment: [Weapon.RAPIER, Weapon.SHORTBOW, Ammunition.ARROWS, EquipmentSets.BURGLAR_PACK, Weapon.DAGGER, Weapon.DAGGER, Tool.THIEVES_TOOLS, Armor.LEATHER_ARMOR],
-    feats: [CharacterFeats.EXPERTISE, CharacterFeats.SNEAK_ATTACK]
+    equipment: [
+      Weapon.RAPIER,
+      Weapon.SHORT_BOW,
+      Ammunition.ARROWS,
+      EquipmentSets.BURGLAR_PACK,
+      Weapon.DAGGER,
+      Weapon.DAGGER,
+      Tool.THIEVES_TOOLS,
+      Armor.LEATHER_ARMOR
+    ],
+    feats: [CharacterTraits.EXPERTISE, CharacterTraits.SNEAK_ATTACK]
   },
   // ------ SORCERER ------
   {
     name: CharacterClassName.SORCERER,
     hitDie: Dice.D6,
     proficiencies: {
-      weapons: [...SPELLCASTER_WEAPONS],
+      weapons: [...CASTER_WEAPON_PROFICIENCIES],
       savingThrows: [Attribute.CON, Attribute.CHA],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ARCANA, Skill.DECEPTION, Skill.INSIGHT, Skill.INTIMIDATION, Skill.PERSUASION, Skill.RELIGION]
-      }
+      skillsToChoose: 2
     },
     equipment: [Weapon.LIGHT_CROSSBOW, Ammunition.BOLTS, 'Arcane Focus', EquipmentSets.EXPLORER_PACK, Weapon.DAGGER, Weapon.DAGGER],
     feats: []
@@ -224,10 +197,7 @@ export const CharacterClassesList: Array<CharacterClass> = [
       savingThrows: [Attribute.CHA, Attribute.WIS],
       armor: [ArmorType.LIGHT_ARMOR],
       weapons: [WeaponType.SIMPLE],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ARCANA, Skill.DECEPTION, Skill.HISTORY, Skill.INTIMIDATION, Skill.INVESTIGATION, Skill.NATURE, Skill.RELIGION]
-      }
+      skillsToChoose: 2
     },
     equipment: [Weapon.LIGHT_CROSSBOW, Ammunition.BOLTS],
     feats: []
@@ -238,13 +208,10 @@ export const CharacterClassesList: Array<CharacterClass> = [
     hitDie: Dice.D6,
     proficiencies: {
       savingThrows: [Attribute.INT, Attribute.WIS],
-      weapons: [...SPELLCASTER_WEAPONS],
-      skillsToChoose: {
-        amount: 2,
-        limitedTo: [Skill.ARCANA, Skill.HISTORY, Skill.INSIGHT, Skill.INVESTIGATION, Skill.MEDICINE, Skill.RELIGION]
-      }
+      weapons: [...CASTER_WEAPON_PROFICIENCIES],
+      skillsToChoose: 2
     },
-    equipment: [Weapon.QUARTERSTAFF, 'Component pouch', EquipmentSets.EXPLORER_PACK, 'Spellbook'],
+    equipment: [Weapon.QUARTER_STAFF, 'Component pouch', EquipmentSets.EXPLORER_PACK, 'Spellbook'],
     feats: []
   },
 ];
