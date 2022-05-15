@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {LanguagePickerComponent} from '../../builder/language-picker/language-picker.component';
-import {PointBuyComponent} from '../../character-sheet/attributes/point-buy/point-buy.component';
+import {LanguagePickerComponent} from '../../views/builder/language-picker/language-picker.component';
+import {PointBuyComponent} from '../../views/character-sheet/attributes/point-buy/point-buy.component';
 import {
   Alignment,
   CharacterBackground,

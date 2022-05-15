@@ -50,11 +50,12 @@
 	></button>
 	<button type="button"
 					(click)="exportCharacter()"
-					[disabled]="true"
-					[class.disabled]="true"
 					[innerText]="'Export Character'"
-					[title]="'Not yet implemented'"
 	></button>
+  <button type="button"
+          (click)="importCharacter()"
+          [innerText]="'Import saved Character'"
+  ></button>
 	<button type="button"
 					(click)="clearLocalData()"
 					[disabled]="!isLocalDataAvailable()"

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CharacterService} from '@app/services';
 import {PlayerCharacterData} from '@app/models';
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-character',
@@ -28,6 +29,17 @@ export class CharacterComponent implements OnInit {
   }
 
   public exportCharacter(): void {
+    try {
+      const fileExtension = '.json.txt';
+      const fileName = this.character.name.toLowerCase().trim().replace(/\s/g, '_');
+      const blob = new Blob([JSON.stringify(this.character)], {type: 'text/plain;charset=utf-8'});
+      saveAs(blob, fileName + fileExtension);
+    } catch (e) {
+
+    }
+  }
+
+  public async importCharacter(): Promise<void> {
 
   }
 
