@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { CharacterBackgroundDetails } from '../model/backgrounds';
-import { PlayerCharacterData } from '../model/character';
-import { CharacterClassName } from '../model/characterClasses';
-import { CharacterRace, CharacterSubRaceName } from '../model/characterRaces';
-import { Utils } from '../lib/utils';
-import { CharacterService } from '../lib/character.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {CharacterBackgroundDetails} from '../model/backgrounds';
+import {PlayerCharacterData} from '../model/character';
+import {CharacterClassName} from '../model/characterClasses';
+import {CharacterRace, CharacterSubRaceName} from '../model/characterRaces';
+import {Utils} from '../lib/utils';
+import {CharacterService} from '../lib/character.service';
 
 @Component({
   selector: 'app-builder',
@@ -51,8 +51,6 @@ export class BuilderComponent {
     } else {
       this._router.navigate(['/sheet']);
     }
-
-
   }
 
 }
