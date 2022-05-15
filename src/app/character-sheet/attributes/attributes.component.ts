@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Utils } from 'src/app/lib/utils';
-import { Attribute } from 'src/app/model/attributes';
-import { CharacterAttributes, PointBuyDTO } from '../../model/character';
-import { PointBuyComponent } from './point-buy/point-buy.component';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {CharacterService} from 'src/app/lib/character.service';
+import {Utils} from 'src/app/lib/utils';
+import {Attribute} from 'src/app/model/attributes';
+import {CharacterAttributes, PointBuyDTO} from '../../model/character';
+import {PointBuyComponent} from './point-buy/point-buy.component';
 
 @Component({
   selector: 'app-attributes',

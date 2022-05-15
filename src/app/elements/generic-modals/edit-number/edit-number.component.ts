@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
 
 @Component({
   selector: 'app-edit-number',
@@ -16,7 +16,9 @@ export class EditNumberComponent implements OnInit, AfterViewInit {
 
   @ViewChild('numberInput') numberInput;
 
-  constructor(private _dialogRef: DialogRef) {}
+  constructor(
+    private _dialogRef: DialogRef
+  ) {}
 
   ngOnInit(): void {
     this.value = this._dialogRef.data.currentValue;

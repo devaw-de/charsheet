@@ -107,7 +107,8 @@ import {CustomRadioComponent} from './elements/custom-radio/custom-radio.compone
     EditTextComponent,
     SettingsComponent,
     FooterComponent,
-    CustomRadioComponent
+    CustomRadioComponent,
+    LanguagePickerComponent
   ],
   imports: [
     CommonModule,

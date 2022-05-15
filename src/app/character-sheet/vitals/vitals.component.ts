@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { EditNumberComponent } from 'src/app/elements/generic-modals/edit-number/edit-number.component';
-import { EditStringComponent } from 'src/app/elements/generic-modals/edit-string/edit-string.component';
-import { CharacterService } from 'src/app/lib/character.service';
-import { CharacterVitals } from '../../model/character';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {EditNumberComponent} from 'src/app/elements/generic-modals/edit-number/edit-number.component';
+import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
+import {CharacterService} from 'src/app/lib/character.service';
+import {CharacterVitals} from '../../model/character';
 
 @Component({
   selector: 'app-vitals',
@@ -69,12 +69,12 @@ export class VitalsComponent {
 
   private _editNumberValue(config: any): void {
     config.minValue = 1;
-    config.maxValue= 999;
+    config.maxValue = 999;
 
     const modal = this._dialogService.open(EditNumberComponent, {data: config});
     const modalSubscription = modal.afterClosed$.subscribe((value: number) => {
-      if(value >= config.minValue && value <= config.maxValue) {
-        switch(config.title) {
+      if (value >= config.minValue && value <= config.maxValue) {
+        switch (config.title) {
           case 'Age':
             this._service.setPartialVitals({age: value});
             break;
@@ -100,8 +100,8 @@ export class VitalsComponent {
 
     const modal = this._dialogService.open(EditStringComponent, {data: config});
     const modalSubscription = modal.afterClosed$.subscribe((value: string) => {
-      if(value.length >= config.minLenth && value.length <= config.maxLength) {
-        switch(config.title) {
+      if (value.length >= config.minLenth && value.length <= config.maxLength) {
+        switch (config.title) {
           case 'Eyes':
             this._service.setPartialVitals({eyes: value});
             break;
@@ -118,4 +118,5 @@ export class VitalsComponent {
       modalSubscription.unsubscribe();
     });
   }
+
 }

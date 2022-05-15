@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { EditStringComponent } from 'src/app/elements/generic-modals/edit-string/edit-string.component';
-import { CharacterService } from 'src/app/lib/character.service';
-import { PlayerCharacterData } from '../../model/character';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
+import {CharacterService} from 'src/app/lib/character.service';
+import {PlayerCharacterData} from '../../model/character';
 
 @Component({
   selector: 'app-name',
@@ -28,7 +28,7 @@ export class NameComponent {
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((value: string) => {
-      if(value) this._service.setCharacterName(value);
+      if (value) { this._service.setCharacterName(value); }
       modalSubscription.unsubscribe();
     });
   }

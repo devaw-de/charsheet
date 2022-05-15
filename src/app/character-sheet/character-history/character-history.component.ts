@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { EditTextComponent } from 'src/app/elements/generic-modals/edit-text/edit-text.component';
-import { CharacterService } from 'src/app/lib/character.service';
-import { PlayerCharacterData } from 'src/app/model/character';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {EditTextComponent} from 'src/app/elements/generic-modals/edit-text/edit-text.component';
+import {CharacterService} from 'src/app/lib/character.service';
+import {PlayerCharacterData} from 'src/app/model/character';
 
 @Component({
   selector: 'app-character-history',

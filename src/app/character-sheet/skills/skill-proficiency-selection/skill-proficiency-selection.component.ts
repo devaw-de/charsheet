@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { SkillName } from 'src/app/model/abilities';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {SkillName} from 'src/app/model/abilities';
 
 @Component({
   selector: 'app-skill-proficiency-selection',

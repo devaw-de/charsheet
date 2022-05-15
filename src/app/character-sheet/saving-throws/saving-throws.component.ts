@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Utils } from 'src/app/lib/utils';
-import { Attribute } from 'src/app/model/attributes';
-import { PlayerCharacterData } from 'src/app/model/character';
-import { CharacterClass } from 'src/app/model/characterClasses';
+import {Component, Input, OnInit} from '@angular/core';
+import {CharacterService} from 'src/app/lib/character.service';
+import {Utils} from 'src/app/lib/utils';
+import {Attribute} from 'src/app/model/attributes';
+import {PlayerCharacterData} from 'src/app/model/character';
+import {CharacterClass} from 'src/app/model/characterClasses';
 
 @Component({
   selector: 'app-saving-throws',
@@ -26,11 +26,11 @@ export class SavingThrowsComponent implements OnInit {
 
   public getSavingThrowModifier(attribute: Attribute): string {
     const attributeValue = this.character.attributes[attribute.substring(0, 3).toLowerCase()];
-    const profifiencyBonus = this._characterClass.proficiencies.savingThrows.includes(attribute)
+    const proficiencyBonus = this._characterClass.proficiencies.savingThrows.includes(attribute)
                              ? this.character.proficiencies.proficiencyBonus : 0;
     const attributeBonus = Utils.getAbilityModifier(attributeValue);
 
-    return Utils.formatModifier(profifiencyBonus + attributeBonus);
+    return Utils.formatModifier(proficiencyBonus + attributeBonus);
   }
 
   public isProficient(attribute: Attribute): boolean {

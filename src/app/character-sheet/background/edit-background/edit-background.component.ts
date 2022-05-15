@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { CharacterBackground } from 'src/app/model/backgrounds';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {CharacterBackground} from 'src/app/model/backgrounds';
 
 
 @Component({

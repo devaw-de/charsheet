@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Currency } from 'src/app/model/equipment';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Currency} from 'src/app/model/equipment';
 
 @Component({
   selector: 'app-edit-currency',
@@ -19,14 +19,13 @@ export class EditCurrencyComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
-    console.log(this._dialogRef.data);
     this.platinum.nativeElement.value = this._dialogRef.data.cash.platinum ? this._dialogRef.data.cash.platinum  : 0;
     this.gold.nativeElement.value = this._dialogRef.data.cash.gold ? this._dialogRef.data.cash.gold : 0;
     this.silver.nativeElement.value = this._dialogRef.data.cash.silver ? this._dialogRef.data.cash.silver : 0;
     this.copper.nativeElement.value = this._dialogRef.data.cash.copper ? this._dialogRef.data.cash.copper : 0;
   }
 
-  public save() {
+  public save(): void {
     this._dialogRef.close({
       platinum: this.platinum.nativeElement.value,
       gold: this.gold.nativeElement.value,

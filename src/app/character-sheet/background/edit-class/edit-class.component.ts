@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { CharacterClassName } from 'src/app/model/characterClasses';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {CharacterClassName} from 'src/app/model/characterClasses';
 
 @Component({
   selector: 'app-edit-class',

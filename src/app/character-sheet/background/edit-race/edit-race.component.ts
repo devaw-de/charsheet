@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { Utils } from 'src/app/lib/utils';
-import { CharacterRace } from 'src/app/model/characterRaces';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {Utils} from 'src/app/lib/utils';
+import {CharacterRace} from 'src/app/model/characterRaces';
 
 @Component({
   selector: 'app-edit-race',

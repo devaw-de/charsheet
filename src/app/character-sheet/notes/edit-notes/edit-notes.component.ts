@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
 
 @Component({
   selector: 'app-edit-notes',
@@ -17,7 +17,7 @@ export class EditNotesComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.notes = this._dialogRef.data.notes.join("\n\n");
+    this.notes = this._dialogRef.data.notes.join('\n\n');
   }
 
   ngAfterViewInit(): void {
@@ -25,8 +25,8 @@ export class EditNotesComponent implements OnInit, AfterViewInit {
     this.textarea.nativeElement.focus();
   }
 
-  public saveNotes() {
-    this._dialogRef.close(this.textarea.nativeElement.value.split("\n\n"));
+  public saveNotes(): void {
+    this._dialogRef.close(this.textarea.nativeElement.value.split('\n\n'));
   }
 
 }

@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
 
 @Component({
   selector: 'app-edit-string',
@@ -16,7 +16,9 @@ export class EditStringComponent implements OnInit, AfterViewInit {
 
   @ViewChild('inputElement') inputElement;
 
-  constructor(private _dialogRef: DialogRef) { }
+  constructor(
+    private _dialogRef: DialogRef
+  ) { }
 
   ngOnInit(): void {
     this.title = this._dialogRef.data.title;

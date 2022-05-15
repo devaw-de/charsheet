@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogRef } from '@ngneat/dialog';
-import { CharacterSubRaceDetails, CharacterSubRacesList } from 'src/app/model/characterRaces';
+import {Component, OnInit} from '@angular/core';
+import {DialogRef} from '@ngneat/dialog';
+import {CharacterSubRaceDetails, CharacterSubRacesList} from 'src/app/model/characterRaces';
 
 @Component({
   selector: 'app-select-sub-race',

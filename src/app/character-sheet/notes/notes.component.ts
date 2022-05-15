@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { CharacterService } from 'src/app/lib/character.service';
-import { EditNotesComponent } from './edit-notes/edit-notes.component';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {CharacterService} from 'src/app/lib/character.service';
+import {EditNotesComponent} from './edit-notes/edit-notes.component';
 
 @Component({
   selector: 'app-notes',
@@ -26,9 +26,8 @@ export class NotesComponent {
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((notes: Array<string>) => {
-      if(notes) {
-        this._service.setCharacterNotes(notes);
-      }
+      if (notes) { this._service.setCharacterNotes(notes); }
+      modalSubscription.unsubscribe();
     });
   }
 

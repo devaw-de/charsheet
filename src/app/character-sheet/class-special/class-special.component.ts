@@ -1,18 +1,18 @@
-import { Component, Input } from '@angular/core';
-import { Utils } from 'src/app/lib/utils';
-import { PlayerCharacterData } from 'src/app/model/character';
-import { CharacterClassName } from 'src/app/model/characterClasses';
+import {Component, Input} from '@angular/core';
+import {Utils} from 'src/app/lib/utils';
+import {PlayerCharacterData} from 'src/app/model/character';
+import {CharacterClassName} from 'src/app/model/characterClasses';
 
 export interface WizardSpellSlots {
-  level1?: number,
-  level2?: number,
-  level3?: number,
-  level4?: number,
-  level5?: number,
-  level6?: number,
-  level7?: number,
-  level8?: number,
-  level9?: number
+  level1?: number;
+  level2?: number;
+  level3?: number;
+  level4?: number;
+  level5?: number;
+  level6?: number;
+  level7?: number;
+  level8?: number;
+  level9?: number;
 }
 
 @Component({
@@ -29,18 +29,18 @@ export class ClassSpecialComponent {
   constructor() { }
 
   public getBarbarianRagesPerDay(): number {
-    if(this.character.level < 3 ) return 2;
-    else if(this.character.level < 6) return 3;
-    else if(this.character.level < 12) return 4;
-    else if(this.character.level < 17) return 5;
-    else return 6;
+    if (this.character.level < 3 ) { return 2; }
+    else if (this.character.level < 6) { return 3; }
+    else if (this.character.level < 12) { return 4; }
+    else if (this.character.level < 17) { return 5; }
+    else { return 6; }
   }
 
   public getBardicInspiration(): {die: string, amount: number} {
-    let inspirationDie: string = 'd6';
-    if(this.character.level > 14) inspirationDie = 'd12';
-    else if(this.character.level > 9) inspirationDie = 'd10';
-    else if(this.character.level > 4) inspirationDie = 'd8';
+    let inspirationDie = 'd6';
+    if (this.character.level > 14) { inspirationDie = 'd12'; }
+    else if (this.character.level > 9) { inspirationDie = 'd10'; }
+    else if (this.character.level > 4) { inspirationDie = 'd8'; }
 
     return {
       die: inspirationDie,
@@ -49,40 +49,40 @@ export class ClassSpecialComponent {
   }
 
   public getClericalDivinity(): {channelDivinityPerRest: number, destroyUndeadCr: string} {
-    let channelDivinityPerRest: number = 0;
-    if(this.character.level > 17) channelDivinityPerRest = 3;
-    else if(this.character.level > 5) channelDivinityPerRest = 2;
-    else if(this.character.level > 1) channelDivinityPerRest = 1;
+    let channelDivinityPerRest = 0;
+    if (this.character.level > 17) { channelDivinityPerRest = 3; }
+    else if (this.character.level > 5) { channelDivinityPerRest = 2; }
+    else if (this.character.level > 1) { channelDivinityPerRest = 1; }
 
-    let destroyUndeadCr: string = '';
-    if(this.character.level > 16) destroyUndeadCr = '4';
-    else if(this.character.level > 13) destroyUndeadCr = '3';
-    else if(this.character.level > 10) destroyUndeadCr = '2';
-    else if(this.character.level > 7) destroyUndeadCr = '1';
-    else if(this.character.level > 4) destroyUndeadCr = '1/2';
+    let destroyUndeadCr = '';
+    if (this.character.level > 16) { destroyUndeadCr = '4'; }
+    else if (this.character.level > 13) { destroyUndeadCr = '3'; }
+    else if (this.character.level > 10) { destroyUndeadCr = '2'; }
+    else if (this.character.level > 7) { destroyUndeadCr = '1'; }
+    else if (this.character.level > 4) { destroyUndeadCr = '1/2'; }
 
     return {
-      channelDivinityPerRest: channelDivinityPerRest,
-      destroyUndeadCr: destroyUndeadCr
+      channelDivinityPerRest,
+      destroyUndeadCr
     };
   }
 
   public getDruidicWildshape(): {wildshapeCr: string, wildshapeLimitations: string} {
-    let wildshapeCr: string = '';
-    let wildshapeLimitations: string = ''
-    if(this.character.level > 7) wildshapeCr = '1';
-    else if(this.character.level > 3) {
+    let wildshapeCr = '';
+    let wildshapeLimitations = '';
+    if (this.character.level > 7) { wildshapeCr = '1'; }
+    else if (this.character.level > 3) {
       wildshapeCr = '1/2';
       wildshapeLimitations = 'No flying speed';
     }
-    else if(this.character.level > 1) {
+    else if (this.character.level > 1) {
       wildshapeCr = '1/4';
       wildshapeLimitations = 'No flying or swimming speed';
     }
 
     return {
-      wildshapeCr: wildshapeCr,
-      wildshapeLimitations: wildshapeLimitations
+      wildshapeCr,
+      wildshapeLimitations
     };
   }
 
@@ -127,7 +127,7 @@ export class ClassSpecialComponent {
   }
 
   public getWizardSpellSlots(): Array<number> {
-    switch(this.character.level) {
+    switch (this.character.level) {
       case 1:
         return [2];
       case 2:

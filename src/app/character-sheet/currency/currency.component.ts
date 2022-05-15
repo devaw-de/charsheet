@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { DialogService } from '@ngneat/dialog';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Currency } from 'src/app/model/equipment';
-import { EditCurrencyComponent } from './edit-currency/edit-currency.component';
+import {Component, Input} from '@angular/core';
+import {DialogService} from '@ngneat/dialog';
+import {CharacterService} from 'src/app/lib/character.service';
+import {Currency} from 'src/app/model/equipment';
+import {EditCurrencyComponent} from './edit-currency/edit-currency.component';
 
 @Component({
   selector: 'app-currency',
@@ -18,16 +18,15 @@ export class CurrencyComponent {
     private _dialog: DialogService
   ) {}
 
-  public editCurrency() {
+  public editCurrency(): void {
     const modal = this._dialog.open(EditCurrencyComponent, {
       data: {
         cash: this.currency
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((result: Currency) => {
-      if(result) {
-        this._service.setCurrency(result);
-      }
+      if (result) { this._service.setCurrency(result); }
+      modalSubscription.unsubscribe();
     });
   }
 

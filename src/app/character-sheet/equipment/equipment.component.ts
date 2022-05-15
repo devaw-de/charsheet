@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { CharacterService } from 'src/app/lib/character.service';
-import { Equipment } from 'src/app/model/character';
+import {Component, Input} from '@angular/core';
+import {CharacterService} from 'src/app/lib/character.service';
+import {Equipment} from 'src/app/model/character';
 
 @Component({
   selector: 'app-equipment',
@@ -15,7 +15,7 @@ export class EquipmentComponent {
     private _service: CharacterService
   ) {}
 
-  private saveEquipment() {
+  private saveEquipment(): void {
     this._service.setEquipment(this.equipment);
   }
 
@@ -23,7 +23,6 @@ export class EquipmentComponent {
     const item = this.equipment.backpack[itemIndex];
     this.equipment.equipped.push(item);
     this.equipment.backpack.splice(itemIndex, 1);
-
   }
 
   public unequip(itemIndex: number): void {

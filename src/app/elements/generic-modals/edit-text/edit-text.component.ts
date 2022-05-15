@@ -16,7 +16,9 @@ export class EditTextComponent implements OnInit {
 
   @ViewChild('inputElement') inputElement;
 
-  constructor(private _dialogRef: DialogRef) { }
+  constructor(
+    private _dialogRef: DialogRef
+  ) { }
 
   ngOnInit(): void {
     this.title = this._dialogRef.data.title;
