@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {CharacterService} from 'src/app/lib/character.service';
-import {Utils} from 'src/app/lib/utils';
+import {CharacterService} from 'src/app/services/src/character.service';
 import {DialogRef} from '@ngneat/dialog';
-import {Alignment} from '../../../model/alignments';
+import {Alignment} from '@app/models';
+import {EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-edit-alignment',
@@ -21,7 +21,7 @@ export class EditAlignmentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._alignments = Utils.getAlignmentsList();
+    this._alignments = EnumHelper.getAlignmentsList();
     this.alignmentSets = [
       this._alignments.slice(0, 3),
       this._alignments.slice(3, 6),

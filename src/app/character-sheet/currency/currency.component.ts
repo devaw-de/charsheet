@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {CharacterService} from 'src/app/lib/character.service';
-import {Currency} from 'src/app/model/equipment';
+import {CharacterService} from '@app/services';
+import {Currency} from '@app/models';
 import {EditCurrencyComponent} from './edit-currency/edit-currency.component';
 
 @Component({

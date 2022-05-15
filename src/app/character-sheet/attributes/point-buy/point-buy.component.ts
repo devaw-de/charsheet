@@ -1,10 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {DialogRef} from '@ngneat/dialog';
-import {Utils} from 'src/app/lib/utils';
-import {Attribute} from 'src/app/model/attributes';
-import {CharacterRaceDetails, CharacterSubRaceDetails} from 'src/app/model/characterRaces';
-import {CharacterAttributes, PlayerCharacterData} from '../../../model/character';
+import {Attribute} from 'src/library/models/src/lib/src/attributes';
+import {CharacterRaceDetails, CharacterSubRaceDetails, CharacterAttributes, PlayerCharacterData} from '@app/models';
+import {AbilityHelper, ClassHelper, EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-point-buy',
@@ -14,7 +13,7 @@ import {CharacterAttributes, PlayerCharacterData} from '../../../model/character
 export class PointBuyComponent implements OnInit {
 
   Math = Math;
-  Utils = Utils;
+  AbilityHelper = AbilityHelper;
   Attribute = Attribute;
 
   public readonly totalPoints = 27;
@@ -26,7 +25,7 @@ export class PointBuyComponent implements OnInit {
   public subRace: CharacterSubRaceDetails;
   public character: PlayerCharacterData;
   public attributes: CharacterAttributes;
-  public attributesList: Array<Attribute> = Utils.getAttributesList();
+  public attributesList: Array<Attribute> = EnumHelper.getAttributesList();
   public form: FormGroup;
 
   @Output() pointBuyComplete = new EventEmitter<boolean>();
@@ -65,8 +64,8 @@ export class PointBuyComponent implements OnInit {
     });
 
     this.character = this._dialogRef.data.character;
-    this.race = Utils.getRaceDetailsByName(this.character.race);
-    this.subRace = Utils.getSubRaceDetailsByName(this.character.subRace);
+    this.race = ClassHelper.getRaceDetailsByName(this.character.race);
+    this.subRace = ClassHelper.getSubRaceDetailsByName(this.character.subRace);
 
     // Set flags and limits for pickable attributes
     if (this.race.attributeBonus.pickable) {

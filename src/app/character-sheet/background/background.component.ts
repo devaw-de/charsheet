@@ -1,20 +1,15 @@
 import {Component, Input} from '@angular/core';
-import {CharacterService} from 'src/app/lib/character.service';
-import {PlayerCharacterData} from '../../model/character';
+import {DialogService} from '@ngneat/dialog';
+import {CharacterService} from '@app/services';
 import {EditAlignmentComponent} from './edit-alignment/edit-alignment.component';
 import {EditBackgroundComponent} from './edit-background/edit-background.component';
 import {EditClassComponent} from './edit-class/edit-class.component';
 import {EditRaceComponent} from './edit-race/edit-race.component';
 import {SelectSubRaceComponent} from './select-subrace/select-subrace.component';
 import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
-import {DialogService} from '@ngneat/dialog';
-import {CharacterClassName} from 'src/app/model/characterClasses';
-import {CharacterBackground} from 'src/app/model/backgrounds';
-import {CharacterRace, CharacterSubRaceName} from 'src/app/model/characterRaces';
-import {Utils} from 'src/app/lib/utils';
+import {ClassHelper} from '@app/helpers';
 import {SetXpComponent} from './set-xp/set-xp.component';
-import {Alignment} from '../../model/alignments';
-
+import {Alignment, CharacterBackground, CharacterClassName, CharacterRace, CharacterSubRaceName, PlayerCharacterData} from '@app/models';
 
 @Component({
   selector: 'app-background',
@@ -101,7 +96,7 @@ export class BackgroundComponent {
       if (race) {
         this._service.setRace(race);
 
-        if (Utils.subRaceSelectionRequired(race)) {
+        if (ClassHelper.subRaceSelectionRequired(race)) {
           const subRaceModal = this._dialogService.open(SelectSubRaceComponent, {
             data: {
               race: race

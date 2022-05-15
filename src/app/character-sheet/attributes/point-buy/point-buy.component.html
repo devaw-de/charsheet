@@ -12,8 +12,8 @@
   ></td>
   <td class="modifier number"
       [innerText]="race.attributeBonus[attr]
-                   ? Utils.getAbilityModifierAsString(form.get(attr).value + race.attributeBonus[attr])
-                   : Utils.getAbilityModifierAsString(form.get(attr).value)"
+                   ? AbilityHelper.getAbilityModifierAsString(form.get(attr).value + race.attributeBonus[attr])
+                   : AbilityHelper.getAbilityModifierAsString(form.get(attr).value)"
   ></td>
 </ng-template>
 

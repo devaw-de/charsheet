@@ -1,9 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {Utils} from 'src/app/lib/utils';
-import {CharacterSkillList, CharacterSkill, SkillName} from '../../model/abilities';
-import {PlayerCharacterData} from '../../model/character';
+import {CharacterSkillList, CharacterSkill, PlayerCharacterData, SkillName} from '@app/models';
 import {SkillProficiencySelectionComponent} from './skill-proficiency-selection/skill-proficiency-selection.component';
+import {AbilityHelper, EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-skills',
@@ -22,11 +21,11 @@ export class SkillsComponent {
   public getSkillModifier(skill: CharacterSkill): string {
     const bonus = this.character.proficiencies.proficiencyBonus;
     const relatedAttribute = this.character.attributes[skill.relatedAttribute.substring(0, 3).toLocaleLowerCase()];
-    const attributeModifier = Utils.getAbilityModifier(relatedAttribute);
+    const attributeModifier = AbilityHelper.getAbilityModifier(relatedAttribute);
     const skillModifier = this.character.proficiencies.skills.includes(skill.name) ? bonus : 0;
     // TODO: handle Expertise
 
-    return Utils.formatModifier(attributeModifier + skillModifier);
+    return AbilityHelper.formatModifier(attributeModifier + skillModifier);
   }
 
   public isProficient(skillName: SkillName): boolean {
@@ -40,7 +39,7 @@ export class SkillsComponent {
 
     const modal = this._dialogService.open(SkillProficiencySelectionComponent, {
       data: {
-        pickableSkills: restrictedSkills ? restrictedSkills : Utils.getSkillList(),
+        pickableSkills: restrictedSkills ? restrictedSkills : EnumHelper.getSkillList(),
         selectedSkills: this.character.proficiencies.skills,
         maxSelections: 3
       }

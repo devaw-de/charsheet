@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {LevelLimits} from 'src/app/model/xp';
+import {LevelLimits} from '@app/models';
 
 @Component({
   selector: 'app-set-xp',

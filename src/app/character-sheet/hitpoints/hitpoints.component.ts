@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HitPoints} from 'src/app/model/character';
+import {HitPoints} from '@app/models';
 
 @Component({
   selector: 'app-hitpoints',

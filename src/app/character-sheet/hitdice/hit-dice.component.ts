@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {Dice} from '../../model/dice';
+import {Dice} from '@app/models';
 
 @Component({
   selector: 'app-hit-dice',

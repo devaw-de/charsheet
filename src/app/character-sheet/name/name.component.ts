@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
-import {CharacterService} from 'src/app/lib/character.service';
-import {PlayerCharacterData} from '../../model/character';
+import {CharacterService} from '@app/services';
+import {PlayerCharacterData} from '@app/models';
 
 @Component({
   selector: 'app-name',

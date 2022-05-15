@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Distances, LevelUpStrategy, Settings} from '../model/settings';
+import {Distances, LevelUpStrategy, Settings} from '@app/models';
 import {Router} from '@angular/router';
 import {CustomRadioOptions} from '../elements/custom-radio/custom-radio.component';
-import {SettingsService} from '../lib/settings.service';
+import {SettingsService} from '@app/services';
 
 @Component({
   selector: 'app-settings',

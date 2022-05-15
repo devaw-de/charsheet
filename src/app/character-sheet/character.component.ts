@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CharacterService} from '../lib/character.service';
-import {PlayerCharacterData} from '../model/character';
+import {CharacterService} from '@app/services';
+import {PlayerCharacterData} from '@app/models';
 
 @Component({
   selector: 'app-character',

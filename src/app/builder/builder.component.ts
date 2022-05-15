@@ -1,11 +1,14 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {CharacterBackgroundDetails} from '../model/backgrounds';
-import {PlayerCharacterData} from '../model/character';
-import {CharacterClassName} from '../model/characterClasses';
-import {CharacterRace, CharacterSubRaceName} from '../model/characterRaces';
-import {Utils} from '../lib/utils';
-import {CharacterService} from '../lib/character.service';
+import {
+  CharacterBackgroundDetails,
+  CharacterClassName,
+  CharacterRace,
+  CharacterSubRaceName,
+  PlayerCharacterData
+} from '@app/models';
+import {CharacterService} from '@app/services';
+import {EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-builder',
@@ -24,8 +27,8 @@ export class BuilderComponent {
   ) {
     this._service.createNewCharacter();
     this.character = this._service.getCharacter();
-    this.availableClasses = Utils.getClassesList();
-    this.availableRaces = Utils.getRacesList();
+    this.availableClasses = EnumHelper.getClassesList();
+    this.availableRaces = EnumHelper.getRacesList();
   }
 
   public setCharacterClass(charClass: CharacterClassName): void {

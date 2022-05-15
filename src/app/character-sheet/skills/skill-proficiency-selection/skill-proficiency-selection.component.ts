@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {Utils} from 'src/app/lib/utils';
-import {SkillName} from 'src/app/model/abilities';
+import {SkillName} from '@app/models';
+import {EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-skill-proficiency-selection',
@@ -10,7 +10,7 @@ import {SkillName} from 'src/app/model/abilities';
 })
 export class SkillProficiencySelectionComponent implements OnInit {
 
-  public readonly availableSkills: Array<SkillName> = Utils.getSkillList();
+  public readonly availableSkills: Array<SkillName> = EnumHelper.getSkillList();
   public selectedSkills: Array<SkillName>;
   public pickableSkills: Array<SkillName>;
   public maxSelections: number;

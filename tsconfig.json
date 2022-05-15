@@ -9,6 +9,15 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "@app/helpers": ["./src/app/helpers/"],
+      "@app/models": ["./src/library/models/"],
+      "@app/services": ["./src/app/services/"],
+      "models": [
+        "dist/models/models",
+        "dist/models"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,

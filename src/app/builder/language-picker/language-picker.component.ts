@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {Utils} from 'src/app/lib/utils';
-import {Language} from '../../model/language';
+import {Language} from '@app/models';
+import {EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-language-picker',
@@ -10,7 +10,7 @@ import {Language} from '../../model/language';
 })
 export class LanguagePickerComponent implements OnInit {
 
-  public availableLanguages: Array<Language> = Utils.getLanguagesList();
+  public availableLanguages: Array<Language> = EnumHelper.getLanguagesList();
   public characterOwnedLanguages: Array<Language>;
   public selectedLanguages: Array<Language> = [];
   public totalPicks = 0;

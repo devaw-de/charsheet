@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {Distances, LevelUpStrategy} from '../model/settings';
+import {Distances, LevelUpStrategy} from '@app/models';
 
 @Injectable({
   providedIn: 'root'

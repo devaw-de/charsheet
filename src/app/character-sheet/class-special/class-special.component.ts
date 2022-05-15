@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Utils} from 'src/app/lib/utils';
-import {PlayerCharacterData} from 'src/app/model/character';
-import {CharacterClassName} from 'src/app/model/characterClasses';
+import {CharacterClassName, PlayerCharacterData} from '@app/models';
+import {AbilityHelper} from '@app/helpers';
 
 export interface WizardSpellSlots {
   level1?: number;
@@ -44,7 +43,7 @@ export class ClassSpecialComponent {
 
     return {
       die: inspirationDie,
-      amount: Math.min(1, Utils.getAbilityModifier(this.character.attributes.cha))
+      amount: Math.min(1, AbilityHelper.getAbilityModifier(this.character.attributes.cha))
     };
   }
 
@@ -99,7 +98,7 @@ export class ClassSpecialComponent {
   }
 
   public getPaladinDivineSense(): number {
-    return 1 + Utils.getAbilityModifier(this.character.attributes.cha);
+    return 1 + AbilityHelper.getAbilityModifier(this.character.attributes.cha);
   }
 
   public getRogueishExpertise(): string {
@@ -115,15 +114,15 @@ export class ClassSpecialComponent {
   }
 
   public getRangerSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + Utils.getAbilityModifier(this.character.attributes.wis);
+    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.wis);
   }
 
   public getWarlockSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + Utils.getAbilityModifier(this.character.attributes.cha);
+    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.cha);
   }
 
   public getWizardSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + Utils.getAbilityModifier(this.character.attributes.int);
+    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.int);
   }
 
   public getWizardSpellSlots(): Array<number> {

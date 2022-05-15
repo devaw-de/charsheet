@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {CharacterService} from 'src/app/lib/character.service';
-import {PlayerCharacterData} from 'src/app/model/character';
-import {CharacterTraits} from 'src/app/model/traits';
+import {CharacterService} from '@app/services';
+import {CharacterTraits, PlayerCharacterData} from '@app/models';
 
 @Component({
   selector: 'app-feats',

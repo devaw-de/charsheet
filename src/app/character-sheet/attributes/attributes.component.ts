@@ -1,10 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {CharacterService} from 'src/app/lib/character.service';
-import {Utils} from 'src/app/lib/utils';
-import {Attribute} from 'src/app/model/attributes';
-import {CharacterAttributes, PointBuyDTO} from '../../model/character';
+import {CharacterService} from '@app/services';
+import {Attribute, CharacterAttributes, PointBuyDTO} from '@app/models';
 import {PointBuyComponent} from './point-buy/point-buy.component';
+import {AbilityHelper, EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-attributes',
@@ -21,11 +20,11 @@ export class AttributesComponent {
     private _dialog: DialogService
   ) {
 
-    this.attributesList = Utils.getAttributesList();
+    this.attributesList = EnumHelper.getAttributesList();
   }
 
   public getModifier(attributeValue: number): string {
-    return Utils.getAbilityModifierAsString(attributeValue);
+    return AbilityHelper.getAbilityModifierAsString(attributeValue);
   }
 
   public startPointBuy(): void {

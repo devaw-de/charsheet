@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {Utils} from 'src/app/lib/utils';
-import {CharacterClassName} from 'src/app/model/characterClasses';
+import {CharacterClassName} from 'src/library/models/src/lib/src/characterClasses';
+import {EnumHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-edit-class',
@@ -10,7 +10,7 @@ import {CharacterClassName} from 'src/app/model/characterClasses';
 })
 export class EditClassComponent implements OnInit {
 
-  public classesList: Array<CharacterClassName> = Utils.getClassesList();
+  public classesList: Array<CharacterClassName> = EnumHelper.getClassesList();
   public currentClass: CharacterClassName;
 
   constructor(private _dialogRef: DialogRef) { }

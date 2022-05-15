@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {CharacterService} from 'src/app/lib/character.service';
-import {Equipment} from 'src/app/model/character';
+import {CharacterService} from 'src/app/services/src/character.service';
+import {Equipment} from '@app/models';
 
 @Component({
   selector: 'app-equipment',

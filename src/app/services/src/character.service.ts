@@ -1,30 +1,38 @@
 import {Injectable} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {LanguagePickerComponent} from '../builder/language-picker/language-picker.component';
-import {PointBuyComponent} from '../character-sheet/attributes/point-buy/point-buy.component';
-import {SkillName} from '../model/abilities';
-import {CharacterBackground, CharacterBackgroundsList} from '../model/backgrounds';
+import {LanguagePickerComponent} from '../../builder/language-picker/language-picker.component';
+import {PointBuyComponent} from '../../character-sheet/attributes/point-buy/point-buy.component';
 import {
+  Alignment,
+  CharacterBackground,
+  CharacterBackgroundsList,
+  CharacterClassLevelList,
   CharacterAttributes,
   CharacterVitals,
   DefaultCharacter,
   Equipment,
   HitPoints,
+  Currency,
+  CharacterClass,
+  CharacterClassesList,
+  CharacterClassName,
+  CharacterRace,
+  CharacterRacesList,
+  CharacterSubRaceName,
+  CharacterSubRacesList,
+  CharacterTraits,
+  LevelLimits,
+  LevelUpStrategy,
+  Dice,
+  Language,
   OptionalCharacterAttributes,
   PlayerCharacterData,
-  PointBuyDTO
-} from '../model/character';
-import {CharacterClass, CharacterClassesList, CharacterClassName} from '../model/characterClasses';
-import {CharacterRace, CharacterRacesList, CharacterSubRaceName, CharacterSubRacesList} from '../model/characterRaces';
-import {Currency, Tool} from '../model/equipment';
-import {LevelUpStrategy} from '../model/settings';
-import {CharacterTraits} from '../model/traits';
-import {CharacterClassLevelList, LevelLimits} from '../model/xp';
-import {Utils} from './utils';
-import {Language} from '../model/language';
-import {Dice} from '../model/dice';
-import {Alignment} from '../model/alignments';
+  PointBuyDTO,
+  SkillName,
+  Tool,
+} from '@app/models';
 import {SettingsService} from './settings.service';
+import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
 
 @Injectable({
   providedIn: 'root',
@@ -141,6 +149,7 @@ import {SettingsService} from './settings.service';
       });
       const modalSubscription = modal.afterClosed$.subscribe((result: Array<Language>) => {
         result.forEach(lang => this._character.proficiencies.languages.push(lang));
+        modalSubscription.unsubscribe();
       });
     }
   }
@@ -214,7 +223,7 @@ import {SettingsService} from './settings.service';
   public setRace(r: CharacterRace): void {
     this._character.race = r;
     this._character.subRace = undefined;
-    if (Utils.subRaceSelectionRequired(r)) { this._adjustAttributeBonuses(); }
+    if (ClassHelper.subRaceSelectionRequired(r)) { this._adjustAttributeBonuses(); }
   }
 
   /**
@@ -305,7 +314,7 @@ import {SettingsService} from './settings.service';
       this._character.attributes[key] = this._character.attributes[key] - this._character.appliedRacialBonuses[key];
     });
 
-    const racialBonus = Utils.getRaceDetailsByName(this._character.race).attributeBonus;
+    const racialBonus = ClassHelper.getRaceDetailsByName(this._character.race).attributeBonus;
     if (racialBonus.pickable) {
       // user interaction required
       const modal = this._dialogService.open(PointBuyComponent, {
@@ -331,14 +340,14 @@ import {SettingsService} from './settings.service';
 
   private _adjustArmorClass(): void {
     const shieldBonus = this._character.shield ? 2 : 0;
-    const nakedAc = 10 + Utils.getAbilityModifier(this._character.attributes.dex);
+    const nakedAc = 10 + AbilityHelper.getAbilityModifier(this._character.attributes.dex);
 
     switch (this._character.className) {
       case CharacterClassName.MONK:
-        this._character.ac = nakedAc + Utils.getAbilityModifier(this._character.attributes.wis);
+        this._character.ac = nakedAc + AbilityHelper.getAbilityModifier(this._character.attributes.wis);
         break;
       case CharacterClassName.BARBARIAN:
-        this._character.ac = nakedAc + shieldBonus + Utils.getAbilityModifier(this._character.attributes.con);
+        this._character.ac = nakedAc + shieldBonus + AbilityHelper.getAbilityModifier(this._character.attributes.con);
         break;
       default:
         this._character.ac = nakedAc + shieldBonus;
@@ -352,7 +361,7 @@ import {SettingsService} from './settings.service';
   private _adjustHitPoints(): void {
     const characterClass: CharacterClass = CharacterClassesList.find(cls => cls.name === this._character.className);
     const hitDie: Dice = characterClass.hitDie;
-    const initialHitPointsValue: number = Utils.getMaxDieValue(hitDie);
+    const initialHitPointsValue: number = DiceHelper.getMaxDieValue(hitDie);
     const hitPoints: HitPoints = {
         max: initialHitPointsValue,
         current: initialHitPointsValue,
@@ -360,7 +369,7 @@ import {SettingsService} from './settings.service';
     };
 
     if (this._character.level > 1) {
-      const hitPointsPerLevel = Utils.getAbilityModifier(this._character.attributes.con) + this._getLevelUpHitPoints(hitDie);
+      const hitPointsPerLevel = AbilityHelper.getAbilityModifier(this._character.attributes.con) + this._getLevelUpHitPoints(hitDie);
 
       for (let i = 1; i < this._character.level; i++) {
         hitPoints.levelHistory.push(hitPointsPerLevel);
@@ -389,9 +398,9 @@ import {SettingsService} from './settings.service';
   private _getLevelUpHitPoints(hitDie: Dice): number {
     switch (this._settingsService.levelUpStrategySetting) {
       case LevelUpStrategy.AVG:
-        return Utils.getAverageDieValue(hitDie);
+        return DiceHelper.getAverageDieValue(hitDie);
       case LevelUpStrategy.MAX:
-        return Utils.getMaxDieValue(hitDie);
+        return DiceHelper.getMaxDieValue(hitDie);
       default:
         throw new Error('Non-implemented levelup-strategy to determine hit points selected');
     }
@@ -493,4 +502,5 @@ import {SettingsService} from './settings.service';
       equipped: [],
     };
   }
+
  }

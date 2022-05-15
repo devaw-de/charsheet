@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Ammunition} from 'src/app/model/weapons';
+import {Ammunition} from '@app/models';
 
 @Component({
   selector: 'app-ammunition',

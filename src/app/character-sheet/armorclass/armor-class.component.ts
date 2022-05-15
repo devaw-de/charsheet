@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {Utils} from 'src/app/lib/utils';
-import {PlayerCharacterData} from 'src/app/model/character';
-import {SettingsService} from '../../lib/settings.service';
-import {Distances} from '../../model/settings';
+import {PlayerCharacterData} from 'src/library/models/src/lib/src/character';
+import {SettingsService} from '@app/services';
+import {Distances} from '@app/models';
+import {AbilityHelper, UnitHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-armor-class',
@@ -19,13 +19,13 @@ export class ArmorClassComponent {
   }
 
   public get initiative(): string {
-    return Utils.getAbilityModifierAsString(this.character.attributes.dex);
+    return AbilityHelper.getAbilityModifierAsString(this.character.attributes.dex);
   }
 
   public get movementSpeed(): string {
     return this._settingsService.distanceUnitSetting === Distances.FEET
       ? this.character.movementSpeedInFeet.toString() + '\''
-      : Utils.feetToMeters(this.character.movementSpeedInFeet) + 'm';
+      : UnitHelper.feetToMeters(this.character.movementSpeedInFeet) + 'm';
   }
 
 }

@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Utils} from 'src/app/lib/utils';
-import {SkillName} from 'src/app/model/abilities';
-import {PlayerCharacterData} from 'src/app/model/character';
+import {AbilityHelper} from '@app/helpers';
+import {PlayerCharacterData, SkillName} from '@app/models';
 
 @Component({
   selector: 'app-passive-perception',
@@ -18,7 +17,7 @@ export class PassivePerceptionComponent {
       this.character.proficiencies.skills.includes(SkillName.PERCEPTION)
       ? this.character.proficiencies.proficiencyBonus
       : 0;
-    const wisdomModifier = Utils.getAbilityModifier(this.character.attributes.wis);
+    const wisdomModifier = AbilityHelper.getAbilityModifier(this.character.attributes.wis);
     return 10 + wisdomModifier + perceptionSkillProficiencyBonus;
   }
 

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {CharacterService} from 'src/app/lib/character.service';
+import {CharacterService} from '@app/services';
 import {EditNotesComponent} from './edit-notes/edit-notes.component';
 
 @Component({
