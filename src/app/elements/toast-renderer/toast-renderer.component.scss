@@ -1,0 +1,39 @@
+.toast-renderer {
+  font-family: Verdana, Arial, sans-serif;
+  font-weight: 600;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
+  .toast {
+    position: relative;
+    width: 500px;
+    max-width: 90vw;
+    padding: 1rem 2rem;
+    color: var(--regular-color);
+    background-color: var(--section-background);
+
+    &.error {
+      color: var(--section-background);
+      background: var(--error-color);
+    }
+
+    &.success {
+      color: var(--section-background);
+      background-color: var(--success-color);
+    }
+
+    .close-button {
+      position: absolute;
+      top: .25rem;
+      right: .25rem;
+      cursor: pointer;
+      font-weight: normal;
+
+      &:hover {
+        font-weight: 900;
+      }
+    }
+  }
+}

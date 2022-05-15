@@ -58,6 +58,7 @@ import {SettingsComponent} from './views/settings/settings.component';
 import {CustomRadioComponent} from './elements/custom-radio/custom-radio.component';
 import {FeedbackComponent} from './views/feedback/feedback.component';
 import {FaqComponent} from './views/faq/faq.component';
+import {ToastRendererComponent} from './elements/toast-renderer/toast-renderer.component';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import {FaqComponent} from './views/faq/faq.component';
     CustomRadioComponent,
     LanguagePickerComponent,
     FeedbackComponent,
-    FaqComponent
+    FaqComponent,
+    ToastRendererComponent
   ],
   imports: [
     CommonModule,

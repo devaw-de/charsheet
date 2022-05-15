@@ -56,6 +56,12 @@
           (click)="importCharacter()"
           [innerText]="'Import saved Character'"
   ></button>
+  <input type="file"
+         #filePickerInput
+         (change)="handleFileSelection()"
+         class="hidden"
+         accept=".json.txt"
+  >
 	<button type="button"
 					(click)="clearLocalData()"
 					[disabled]="!isLocalDataAvailable()"

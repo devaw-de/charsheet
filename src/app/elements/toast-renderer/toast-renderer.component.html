@@ -1,0 +1,15 @@
+<div class="toast-renderer">
+  <div *ngFor="let toast of toasts"
+       class="toast"
+       [class.error]="toast.type === ToastType.ERROR"
+       [class.success]="toast.type === ToastType.SUCCESS"
+  >
+    <div class="toast-content"
+         [innerText]="toast.content"
+    ></div>
+    <div class="close-button"
+         [innerText]="'X'"
+         (click)="closeToast(toast)"
+    ></div>
+  </div>
+</div>

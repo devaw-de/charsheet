@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {CharacterService} from '@app/services';
+import {CharacterService, ToastService, ToastType} from '@app/services';
 import {PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
+import {FileHelper, GlobalConstants} from '@app/helpers';
 
 @Component({
   selector: 'app-character',
@@ -13,11 +14,14 @@ export class CharacterComponent implements OnInit {
 
   public character: PlayerCharacterData;
 
+  @ViewChild('filePickerInput') filePickerInput: ElementRef<HTMLInputElement>;
+
   constructor(
     private _router: Router,
-    private _service: CharacterService
+    private _characterService: CharacterService,
+    private _toastService: ToastService
   ) {
-    this.character = this._service.getCharacter();
+    this.character = this._characterService.getCharacter();
   }
 
   ngOnInit(): void {
@@ -29,22 +33,54 @@ export class CharacterComponent implements OnInit {
   }
 
   public exportCharacter(): void {
+    const fileExtension = '.json.txt';
+    const fileName = this.character.name.toLowerCase().trim().replace(/\s/g, '_');
+
     try {
-      const fileExtension = '.json.txt';
-      const fileName = this.character.name.toLowerCase().trim().replace(/\s/g, '_');
-      const blob = new Blob([JSON.stringify(this.character)], {type: 'text/plain;charset=utf-8'});
+      const blob = new Blob([JSON.stringify(this.character)], {type: GlobalConstants.fileBlobParams});
       saveAs(blob, fileName + fileExtension);
     } catch (e) {
-
+      this._toastService.show({
+        type: ToastType.ERROR,
+        content: 'Something went wrong. The file could not be saved.',
+        timeOut: GlobalConstants.defaultToastDuration
+      });
+      return;
     }
+
+    this._toastService.show({
+      type: ToastType.SUCCESS,
+      content: `Character saved as "${fileName}${fileExtension}" You should find it in your Download folder`,
+      timeOut: GlobalConstants.defaultToastDuration
+    });
   }
 
-  public async importCharacter(): Promise<void> {
+  public importCharacter(): void {
+    this.filePickerInput.nativeElement.click();
+  }
+
+  public handleFileSelection(): void {
+    const selectedFile = this.filePickerInput.nativeElement.files[0];
+
+    try {
+      this.character = FileHelper.handleFile(selectedFile);
+      this._toastService.show({
+        type: ToastType.SUCCESS,
+        content: 'Character Sheet updated',
+        timeOut: GlobalConstants.defaultToastDuration
+      });
+    } catch (e) {
+      this._toastService.show({
+        type: ToastType.ERROR,
+        content: 'There was an error trying to handle that file. Please try again.',
+        timeOut: GlobalConstants.defaultToastDuration
+      });
+    }
 
   }
 
   public saveCharacter(): void {
-    localStorage.setItem('character', JSON.stringify(this._service.getCharacter()));
+    localStorage.setItem('character', JSON.stringify(this._characterService.getCharacter()));
   }
 
   public isLocalDataAvailable(): boolean {
@@ -52,8 +88,8 @@ export class CharacterComponent implements OnInit {
   }
 
   private _loadCharacter(): void {
-    this._service.loadCharacter();
-    this.character = this._service.getCharacter();
+    this._characterService.loadCharacter();
+    this.character = this._characterService.getCharacter();
   }
 
   public clearLocalData(): void {
@@ -61,20 +97,20 @@ export class CharacterComponent implements OnInit {
   }
 
   public debug(): void {
-    console.dir(this._service.getCharacter());
+    console.dir(this._characterService.getCharacter());
   }
 
   public test(): void {
-    const str = this._service.getCharacter().attributes.str;
-    const dex = this._service.getCharacter().attributes.dex;
-    const con = this._service.getCharacter().attributes.con;
-    const int = this._service.getCharacter().attributes.int;
-    const wis = this._service.getCharacter().attributes.wis;
-    const cha = this._service.getCharacter().attributes.cha;
+    const str = this._characterService.getCharacter().attributes.str;
+    const dex = this._characterService.getCharacter().attributes.dex;
+    const con = this._characterService.getCharacter().attributes.con;
+    const int = this._characterService.getCharacter().attributes.int;
+    const wis = this._characterService.getCharacter().attributes.wis;
+    const cha = this._characterService.getCharacter().attributes.cha;
 
     console.warn('Attributes: ' + str + '/' + dex + '/' + con + '/' + int + '/' + wis + '/' + cha);
     console.warn('AppliedRacialstuff');
-    console.warn(this._service.getCharacter().appliedRacialBonuses);
+    console.warn(this._characterService.getCharacter().appliedRacialBonuses);
   }
 
 }
