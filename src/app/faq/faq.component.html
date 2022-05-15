@@ -1,6 +1,15 @@
 <div class="faq">
   <h2>Frequently asked questions</h2>
   <div class="faq-item section">
+    <div class="question">What is this?</div>
+    <div class="answer">
+      It's an interactive character sheet for pen and paper role playing games.<br>
+      It aims to give provide a decent looking sheet on the screen and on paper.<br>
+      You can edit most fields by clicking on them. Some fields implement the rules of the most famous role playing game.
+      Just give it a try.
+    </div>
+  </div>
+  <div class="faq-item section">
     <div class="question">Something isn't working right. Can you fix it?</div>
     <div class="answer">
       I'll try. Please report any bugs using the <a routerLink="/feedback">feedback page</a>.<br>
@@ -9,37 +18,27 @@
     </div>
   </div>
   <div class="faq-item section">
-    <div class="question">
-      What kind of devices can I use?
-    </div>
+    <div class="question">What kind of devices can I use?</div>
     <div class="answer">
       Any reasonably recent device of a certain size. Tablets and desktop computers just have more pixels than most phones.
-      Browser that should work best are Firefox and Chrome.
+      Browsers that should work best are Firefox and Chrome.
       <br>
       When in doubt, give it a try.
     </div>
   </div>
   <div class="faq-item section">
-    <div class="question">
-      I don't like how this looks. Can change some things around?
-    </div>
+    <div class="question">I don't like how this looks. Can change some things around?</div>
     <div class="answer">
       Probably not, sorry. It's a time issue.<br>
       But you or someone you know could check out the code for this app on github and change it to your heart's delight.
     </div>
   </div>
   <div class="faq-item section">
-    <div class="question">
-      Some features are missing.
-    </div>
-    <div class="answer">
-      That's not a question.
-    </div>
+    <div class="question">Some features are missing.</div>
+    <div class="answer">That's not a question.</div>
   </div>
   <div class="faq-item section">
-    <div class="question">
-      Are you gonna add missing features?.
-    </div>
+    <div class="question">Are you gonna add missing features?.</div>
     <div class="answer">
       Possibly. If the required time can be found. Some features might never make it into the app though.<br>
       Things that probably will not make it anytime soon include:
@@ -56,12 +55,27 @@
     </div>
   </div>
   <div class="faq-item section">
-    <div class="question">
-      Are these questions really asked frequently?
-    </div>
+    <div class="question">What does "Save Character" actually do? What about "Clear local data"?</div>
     <div class="answer">
-      Hell nah. But I do hope this list helps.
+      Clicking the "Save Character" button will save the character
     </div>
+  </div>
+  <div class="faq-item section">
+    <div class="question">Cookies, huh?</div>
+    <div class="answer">
+      This app uses no cookies, no adds, and no trackers of any kind.<br>
+      When you use the save character feature, a small amount of information will be saved on your device.<br>
+      This enables the app to restore your changes when you visit again.<br>
+      While this data can theoretically be used to check whether you have been on this page before, it is not being
+      sent anywhere at any time.<br>
+      You can delete this piece of information with the "clear local data" button at the bottom of the character sheet.
+      Some devices will clear this data automatically after a certain time. If you want to ensure your changes will
+      not be lost, please use the "export character" feature.
+    </div>
+  </div>
+  <div class="faq-item section">
+    <div class="question">Are these questions really asked frequently?</div>
+    <div class="answer">Hell nah. But I do hope this list helps.</div>
   </div>
   <div class="faq-item section">
     <button (click)="navigate()">I'm done here, take me back</button>
