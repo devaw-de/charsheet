@@ -1,0 +1,22 @@
+.faq {
+  width: 80%;
+  margin: 0 auto;
+
+  .faq-item {
+    margin: 1rem;
+    padding: 1rem;
+
+    .question {
+      font-weight: 600;
+    }
+
+    .answer {
+      margin-top: .375rem;
+      color: var(--lighter);
+
+      ul {
+        margin-left: 2rem;
+      }
+    }
+  }
+}

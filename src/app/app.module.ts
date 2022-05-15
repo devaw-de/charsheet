@@ -56,6 +56,8 @@ import {CharacterHistoryComponent} from './character-sheet/character-history/cha
 import {FooterComponent} from './footer/footer.component';
 import {SettingsComponent} from './settings/settings.component';
 import {CustomRadioComponent} from './elements/custom-radio/custom-radio.component';
+import {FeedbackComponent} from './feedback/feedback.component';
+import {FaqComponent} from './faq/faq.component';
 
 
 @NgModule({
@@ -108,7 +110,9 @@ import {CustomRadioComponent} from './elements/custom-radio/custom-radio.compone
     SettingsComponent,
     FooterComponent,
     CustomRadioComponent,
-    LanguagePickerComponent
+    LanguagePickerComponent,
+    FeedbackComponent,
+    FaqComponent
   ],
   imports: [
     CommonModule,

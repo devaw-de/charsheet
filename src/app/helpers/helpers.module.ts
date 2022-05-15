@@ -6,6 +6,7 @@ export * from './src/classHelper';
 export * from './src/diceHelper';
 export * from './src/enumHelper';
 export * from './src/unitHelper';
+export * from './src/globalConstants';
 
 @NgModule({
   declarations: [],

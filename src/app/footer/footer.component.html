@@ -1,8 +1,10 @@
 <div class="footer">
   <ul>
+    <li><a routerLink="/faq">FAQ</a></li>
+    <li><a routerLink="/feedback">Feedback</a></li>
     <li><a routerLink="/settings">Settings</a></li>
-    <li><a href="#">Check out the code</a></li>
-    <li><a href="#">Feedback</a></li>
-    <li><a href="#">All icons by freepik</a></li>
+    <li><a [href]="githubUrl">Check out the code</a></li>
+    <li><a routerLink="/feedback">Feedback</a></li>
+    <li><a [href]="freePikUrl">All icons by freepik</a></li>
   </ul>
 </div>
