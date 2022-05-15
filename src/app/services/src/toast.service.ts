@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {v4 as uuidv4} from 'uuid';
+import {CryptoHelper} from '@app/helpers';
 
 export enum ToastType {
   NOTIFICATION = 'NOTIFICATION',
@@ -26,7 +26,7 @@ export class ToastService {
   public show(toast: ToastConfig): void {
     toast = {
       ...toast,
-      id: uuidv4()
+      id: CryptoHelper.createFakeUuid()
     };
     this._currentToasts.next([
       ... this._currentToasts.value,

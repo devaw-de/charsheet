@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 
 export * from './src/abilityHelper';
 export * from './src/classHelper';
+export * from './src/cryptoHelper';
 export * from './src/diceHelper';
 export * from './src/enumHelper';
 export * from './src/fileHelper';

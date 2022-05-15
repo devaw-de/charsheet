@@ -4,8 +4,10 @@ Interactive Character Sheet for Fantasy Role Playing Games.
 v.0.0.2
 
 ## Dependencies
+* Angular
+* rxjs
+* ngneat/dialog
 * FileSaver.js https://github.com/eligrey/FileSaver.js
-* Uuid https://github.com/uuidjs/uuid
 
 ## How to
 1 Grab it
