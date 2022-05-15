@@ -1,0 +1,18 @@
+.set-xp {
+  ul {
+    li {
+      border: none;
+      padding: 0;
+      width: unset;
+      min-width: unset;
+
+      button {
+        width: 3rem;
+
+        &.passed {
+          background-color: var(--border-color);
+        }
+      }
+    }
+  }
+}

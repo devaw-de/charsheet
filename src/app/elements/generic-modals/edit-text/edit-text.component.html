@@ -1,0 +1,21 @@
+<h4 class="section-header"
+    [innerText]="title"
+></h4>
+
+<p>
+  <textarea #inputElement
+            type="text"
+            [innerText]="value.length > 0 ? value : ''"
+            (blur)="updateValue()"
+            autofocus="true"
+            autocapitalize="sentences"
+            rows="20"
+            cols="40"
+  ></textarea>
+</p>
+
+<button (click)="saveValue()"
+        [class.disabled]="isInputInvalid"
+        [disabled]="isInputInvalid"
+        [innerText]="'Save'"
+></button>

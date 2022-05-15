@@ -1,0 +1,27 @@
+<div class="set-xp">
+  <h4 class="section-header">Experience points</h4>
+  <input type="number"
+         #xpElement
+         (change)="onXpChange()"
+         [min]="minValue"
+         [max]="maxValue"
+         [value]="currentValue"
+         [step]="100"
+  >
+  <h4 class="section-header">Level</h4>
+  <ul>
+    <li *ngFor="let lvl of levels; let i = index">
+      <button type="button"
+              (click)="setLevel(i + 1)"
+              [class.passed]="currentLevel >= (i + 1)"
+              [innerText]="i + 1"
+              [title]="'Set level ' + (i + 1)"
+      ></button>
+    </li>
+  </ul>
+
+  <button type="button"
+          (click)="save()"
+          [innerText]="'Save'"
+  ></button>
+</div>

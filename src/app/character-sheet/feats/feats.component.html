@@ -1,0 +1,10 @@
+<div class="feats striped">
+  <h4 class="section-header">Feats</h4>
+  <ng-container *ngIf="getFeats().length">
+    <ng-container *ngFor="let feat of getFeats(); let i=index">
+      <div class="single-note"
+           [innerText]="feat"
+      ></div>
+    </ng-container>
+  </ng-container>
+</div>
