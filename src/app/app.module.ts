@@ -18,7 +18,7 @@ import {SkillsComponent} from './character-sheet/skills/skills.component';
 import {BackgroundComponent} from './character-sheet/background/background.component';
 import {ClassIconComponent} from './character-sheet/name/class-icon/class-icon.component';
 import {BackgroundSelectionComponent} from './builder/background-selection/background-selection.component';
-import {ArmorclassComponent} from './character-sheet/armorclass/armorclass.component';
+import {ArmorClassComponent} from './character-sheet/armorclass/armor-class.component';
 import {WeaponsComponent} from './character-sheet/weapons/weapons.component';
 import {SavingThrowsComponent} from './character-sheet/saving-throws/saving-throws.component';
 import {HitpointsComponent} from './character-sheet/hitpoints/hitpoints.component';
@@ -77,7 +77,7 @@ import {CustomRadioComponent} from './elements/custom-radio/custom-radio.compone
     ClassSelectionComponent,
     LanguagePickerComponent,
     WeaponsComponent,
-    ArmorclassComponent,
+    ArmorClassComponent,
     SavingThrowsComponent,
     HitpointsComponent,
     HitDiceComponent,

@@ -73,13 +73,13 @@ import {SettingsService} from './settings.service';
     const charClass = CharacterClassesList.find(c => c.name === this._character.className);
     const race = CharacterRacesList.find(r => r.name === this._character.race);
     const subRace = CharacterSubRacesList.find(s => s.name === this._character.subRace);
-    charClass.feats.forEach(ft => {
+    charClass?.feats?.forEach(ft => {
       feats.push(ft);
     });
-    race.feats.forEach(ft => {
+    race?.feats?.forEach(ft => {
       feats.push(ft);
     });
-    subRace.feats.forEach(ft => {
+    subRace?.feats?.forEach(ft => {
       feats.push(ft);
     });
     return feats;
@@ -194,8 +194,8 @@ import {SettingsService} from './settings.service';
   /**
    * Override the character's class
    */
-  public setClass(c: CharacterClassName): void {
-    this._character.className = c;
+  public setClass(className: CharacterClassName): void {
+    this._character.className = className;
     this._adjustSavingThrows();
     this._adjustHitPoints();
     this._adjustArmorClass();

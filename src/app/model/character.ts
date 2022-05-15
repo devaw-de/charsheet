@@ -80,7 +80,7 @@ export interface PlayerCharacterData {
   hitDice: Array<Dice>;
   hitPoints: HitPoints;
   level: number;
-  movementSpeed: number;
+  movementSpeedInFeet: number;
   name: string;
   notes?: Array<string>;
   playerName: string;
@@ -130,7 +130,7 @@ export const StartingPlayerCharacter: PlayerCharacterData = {
   hitPoints: ZeroHitPoints,
   className: CharacterClassName.RANGER,
   ac: 10,
-  movementSpeed: 9,
+  movementSpeedInFeet: 30,
   hitDice: [Dice.D6],
   proficiencies: {
     proficiencyBonus: 2,
@@ -185,7 +185,7 @@ export const DefaultCharacter: PlayerCharacterData = {
   className: CharacterClassName.BARBARIAN,
   background: CharacterBackground.HERMIT,
   ac: 10,
-  movementSpeed: 7.5,
+  movementSpeedInFeet: 25,
   hitDice: [Dice.D10],
   proficiencies: {
     proficiencyBonus: 2,

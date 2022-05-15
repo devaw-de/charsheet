@@ -43,7 +43,7 @@ export interface CharacterSubRaceDetails {
     cha?: number;
   };
   feats?: Array<CharacterTraits>;
-  speed?: number;
+  speed: number;
   pickableLanguages?: number;
   extraProficiencies?: {
     skill?: number;
@@ -57,20 +57,23 @@ export const CharacterSubRacesList: Array<CharacterSubRaceDetails> = [
     name: CharacterSubRaceName.HILL_DWARF,
     extendsRace: CharacterRace.DWARF,
     attributeBonus: { wis: 1 },
-    feats: [CharacterTraits.DWARVEN_TOUGHNESS]
+    feats: [CharacterTraits.DWARVEN_TOUGHNESS],
+    speed: 25
   },
   {
     name: CharacterSubRaceName.MOUNTAIN_DWARF,
     extendsRace: CharacterRace.DWARF,
     attributeBonus: { str: 2 },
-    feats: [CharacterTraits.DWARVEN_ARMOR_TRAINING]
+    feats: [CharacterTraits.DWARVEN_ARMOR_TRAINING],
+    speed: 25
   },
   {
     name: CharacterSubRaceName.HIGH_ELF,
     extendsRace: CharacterRace.ELF,
     attributeBonus: { int: 1 },
     feats: [CharacterTraits.ELF_WEAPON_TRAINING, CharacterTraits.ELVEN_CANTRIP],
-    pickableLanguages: 1
+    pickableLanguages: 1,
+    speed: 30
   },
   {
     name: CharacterSubRaceName.WOOD_ELF,
@@ -83,19 +86,22 @@ export const CharacterSubRacesList: Array<CharacterSubRaceDetails> = [
     name: CharacterSubRaceName.DROW,
     extendsRace: CharacterRace.ELF,
     attributeBonus: { cha: 1 },
-    feats: [CharacterTraits.DROW_WEAPON_TRAINING, CharacterTraits.SUPERIOR_DARK_VISION, CharacterTraits.SUNLIGHT_SENSITIVITY]
+    feats: [CharacterTraits.DROW_WEAPON_TRAINING, CharacterTraits.SUPERIOR_DARK_VISION, CharacterTraits.SUNLIGHT_SENSITIVITY],
+    speed: 30
   },
   {
     name: CharacterSubRaceName.LIGHTFOOT,
     extendsRace: CharacterRace.HALFLING,
     attributeBonus: { cha: 1 },
-    feats: [CharacterTraits.NATURALLY_STEALTHY]
+    feats: [CharacterTraits.NATURALLY_STEALTHY],
+    speed: 25
   },
   {
     name: CharacterSubRaceName.STOUT,
     extendsRace: CharacterRace.HALFLING,
     attributeBonus: { con: 1 },
-    feats: [CharacterTraits.STOUT_RESILIENCE]
+    feats: [CharacterTraits.STOUT_RESILIENCE],
+    speed: 25
   },
   {
     name: CharacterSubRaceName.HUMAN,
@@ -108,26 +114,30 @@ export const CharacterSubRacesList: Array<CharacterSubRaceDetails> = [
       wis: 1,
       cha: 1
     },
+    speed: 30
   },
   {
     name: CharacterSubRaceName.VARIANT,
     extendsRace: CharacterRace.HUMAN,
     attributeBonus: { pickable: 2 },
     extraProficiencies: { skill: 1 },
-    pickableFeats: 1
+    pickableFeats: 1,
+    speed: 30
   },
   {
     name: CharacterSubRaceName.FOREST_GNOME,
     extendsRace: CharacterRace.GNOME,
     attributeBonus: { dex: 1 },
-    feats: [CharacterTraits.SPEAK_WITH_SMALL_BEASTS, CharacterTraits.NATURAL_ILLUSIONIST]
+    feats: [CharacterTraits.SPEAK_WITH_SMALL_BEASTS, CharacterTraits.NATURAL_ILLUSIONIST],
+    speed: 25
   },
   {
     name: CharacterSubRaceName.ROCK_GNOME,
     extendsRace: CharacterRace.GNOME,
     attributeBonus: { con: 1 },
     feats: [CharacterTraits.ARTIFICERS_LORE, CharacterTraits.TINKER],
-    extraProficiencies: { tools: Tool.ARTISAN_TOOLS }
+    extraProficiencies: { tools: Tool.ARTISAN_TOOLS },
+    speed: 25
   }
 ];
 
@@ -146,7 +156,7 @@ export interface CharacterRaceDetails {
   pickableLanguages?: number;
   speed: number;
   feats?: Array<CharacterTraits>;
-  subRace?: boolean; // TODO: change this to the list of matching subraces
+  hasSubRaces?: boolean;
   proficiencies?: {
     skills?: Array<SkillName>,
     tools?: Array<string>,
@@ -187,7 +197,7 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
         weapons: DWARVEN_WEAPON_PROFICIENCIES
       },
       speed: 25,
-      subRace: true
+      hasSubRaces: true
     },
 
    {
@@ -206,7 +216,7 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
       skills: [SkillName.PERCEPTION],
       weapons: ELVISH_WEAPON_PROFICIENCIES
     },
-    subRace: true
+    hasSubRaces: true
   },
   {
     // ------- GNOME -------
@@ -217,7 +227,7 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
     languages: [Language.GNOMISH, Language.COMMON],
     feats: [CharacterTraits.GNOME_CUNNING],
     speed: 25,
-    subRace: true
+    hasSubRaces: true
   },
   {
     // ------- HALFLING -------
@@ -232,7 +242,7 @@ export const CharacterRacesList: Array<CharacterRaceDetails> = [
       CharacterTraits.HALFLING_NIMBLENESS,
       CharacterTraits.LUCKY
     ],
-    subRace: true
+    hasSubRaces: true
   },
   {
     // ------- HALF-ELF -------

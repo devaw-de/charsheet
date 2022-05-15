@@ -1,13 +1,15 @@
-<div class="hitdice translucent">
-  <h4 class="section-header">Hitdice</h4>
-  <div class="total">
-    <div class="label" [innerText]="'Total'"></div>
-    <div class="value">
-      <div class="value d6" [innerText]="d6"></div>
-      <div class="value d8" [innerText]="d8"></div>
-      <div class="value d10" [innerText]="d10"></div>
-      <div class="value d12" [innerText]="d12"></div>
+<div class="dragon-icon">
+  <div class="hitdice translucent">
+    <h4 class="section-header">Hitdice</h4>
+    <div class="total">
+      <div class="label" [innerText]="'Total'"></div>
+      <div class="value">
+        <div class="value dice-icon-d6" [innerText]="d6"></div>
+        <div class="value dice-icon-d8" [innerText]="d8"></div>
+        <div class="value dice-icon-d10" [innerText]="d10"></div>
+        <div class="value dice-icon-d12" [innerText]="d12"></div>
+      </div>
     </div>
+    <div class="current"></div>
   </div>
-  <div class="current"></div>
 </div>

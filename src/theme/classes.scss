@@ -1,3 +1,14 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  @media print {
+    display: none;
+  }
+}
+
 .section {
   background: var(--section-background);
   color: var(--section-color);
@@ -70,6 +81,79 @@
       var(--border-color) 20px
     );
   }
+}
+
+
+.barbarian-icon {
+  background-image: url('../assets/icons/class-icons/barbarian.png');
+}
+
+.bard-icon {
+  background-image: url('../assets/icons/class-icons/bard.png');
+}
+
+.cleric-icon {
+  background-image: url('../assets/icons/class-icons/cleric.png');
+}
+
+.druid-icon {
+  background-image: url('../assets/icons/class-icons/druid.png');
+}
+
+.fighter-icon {
+  background-image: url('../assets/icons/class-icons/fighter.png');
+}
+
+.monk-icon {
+  background-image: url('../assets/icons/class-icons/monk.png');
+}
+
+.paladin-icon {
+  background-image: url('../assets/icons/class-icons/paladin.png');
+}
+
+.ranger-icon {
+  background-image: url('../assets/icons/class-icons/ranger.png');
+}
+
+.rogue-icon {
+  background-image: url('../assets/icons/class-icons/rogue.png');
+}
+
+.sorcerer-icon {
+  background-image: url('../assets/icons/class-icons/sorcerer.png');
+}
+
+.warlock-icon {
+  background-image: url('../assets/icons/class-icons/warlock.png');
+}
+
+.wizard-icon {
+  background-image: url('../assets/icons/class-icons/wizard.png');
+}
+
+.settings-icon {
+  background-image: url('../assets/icons/settings.png');
+}
+
+.dragon-icon {
+  background-image: url('../assets/icons/dragon.png');
+}
+
+.dice-icon-d6 {
+  background-image: url('../assets/icons/dice/d6.png');
+}
+
+.dice-icon-d8 {
+  background-image: url('../assets/icons/dice/d8.png');
+}
+
+.dice-icon-d10 {
+  background-image: url('../assets/icons/dice/d10.png');
+}
+
+.dice-icon-d12 {
+  background-image: url('../assets/icons/dice/d12.png');
 }
 
 .pentagon {

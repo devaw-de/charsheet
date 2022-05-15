@@ -1,11 +1,10 @@
 @import './vars.scss';
-@import './nav.scss';
 @import './modals.scss';
 @import './print.scss';
 
 @font-face {
   font-family: 'Gloria';
-  src: url('/src/assets/fonts/GloriaHallelujah-Regular.ttf') format('truetype');
+  src: url('../assets/fonts/GloriaHallelujah-Regular.ttf') format('truetype');
 }
 
 html, body {
@@ -17,7 +16,7 @@ html, body {
 body {
   margin: 1rem;
   color: var(--font-color);
-  background-image: url('/src/assets/204860-landscape-drawing-fantasy_art-Guild_Wars.jpg');
+  background-image: url('../assets/background/204860-landscape-drawing-fantasy_art-Guild_Wars.jpg');
 }
 
 input[type="text"],
@@ -46,56 +45,4 @@ div, p, h1, h2, h3, h4, ul, ol, li {
   padding: 0;
   margin: 0;
   border-radius: var(--border-radius);
-}
-
-.barbarian-icon {
-  background-image: url('/src/assets/class-icons/barbarian.png');
-}
-
-.bard-icon {
-  background-image: url('/src/assets/class-icons/bard.png');
-}
-
-.cleric-icon {
-  background-image: url('/src/assets/class-icons/cleric.png');
-}
-
-.druid-icon {
-  background-image: url('/src/assets/class-icons/druid.png');
-}
-
-.fighter-icon {
-  background-image: url('/src/assets/class-icons/fighter.png');
-}
-
-.monk-icon {
-  background-image: url('/src/assets/class-icons/monk.png');
-}
-
-.paladin-icon {
-  background-image: url('/src/assets/class-icons/paladin.png');
-}
-
-.ranger-icon {
-  background-image: url('/src/assets/class-icons/ranger.png');
-}
-
-.rogue-icon {
-  background-image: url('/src/assets/class-icons/rogue.png');
-}
-
-.sorcerer-icon {
-  background-image: url('/src/assets/class-icons/sorcerer.png');
-}
-
-.warlock-icon {
-  background-image: url('/src/assets/class-icons/warlock.png');
-}
-
-.wizard-icon {
-  background-image: url('/src/assets/class-icons/wizard.png');
-}
-
-.settings-icon {
-  background-image: url('/src/assets/icons/settings.png');
 }

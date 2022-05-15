@@ -1,6 +1,5 @@
-:host {
+.dragon-icon {
   @media screen {
-    background-image: url('/src/assets/icons/dragon.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -31,19 +30,6 @@
 
       & > div {
         margin-top: .75rem;
-      }
-
-      &.d6 {
-        background-image: url('/src/assets/icons/d6.png');
-      }
-      &.d8 {
-        background-image: url('/src/assets/icons/d8.png');
-      }
-      &.d10 {
-        background-image: url('/src/assets/icons/d10.png');
-      }
-      &.d12 {
-        background-image: url('/src/assets/icons/d12.png');
       }
     }
   }
