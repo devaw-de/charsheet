@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
-import {Attribute, CharacterAttributes, PointBuyDTO} from '@app/models';
+import {Attribute, PlayerCharacterData, PointBuyDTO} from '@app/models';
 import {PointBuyComponent} from './point-buy/point-buy.component';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
 
@@ -12,7 +12,7 @@ import {AbilityHelper, EnumHelper} from '@app/helpers';
 })
 export class AttributesComponent {
 
-  @Input() attributes: CharacterAttributes;
+  @Input() character: PlayerCharacterData;
   public attributesList: Array<Attribute> = [];
 
   constructor(
@@ -30,7 +30,7 @@ export class AttributesComponent {
   public startPointBuy(): void {
     const modal = this._dialog.open(PointBuyComponent, {
       data: {
-        attr: this.attributes
+        character: this.character
     }});
     const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
       if (result) {

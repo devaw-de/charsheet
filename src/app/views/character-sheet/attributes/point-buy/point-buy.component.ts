@@ -21,9 +21,9 @@ export class PointBuyComponent implements OnInit {
   public isRacialBonusAvailable = false;
   public remainingRacialBonusPoints = 0;
   public totalRacialBonusPoints = 0;
+  public character: PlayerCharacterData;
   public race: CharacterRaceDetails;
   public subRace: CharacterSubRaceDetails;
-  public character: PlayerCharacterData;
   public attributes: CharacterAttributes;
   public attributesList: Array<Attribute> = EnumHelper.getAttributesList();
   public form: FormGroup;

@@ -1,11 +1,11 @@
-<ng-container *ngIf="attributes">
+<ng-container *ngIf="character">
   <ul class="attributes interactive" (click)=startPointBuy()>
 
     <ng-container *ngFor="let attr of attributesList">
       <li class="single-attribute">
         <h4 class="label">{{ attr }}</h4>
-        <div class="modifier">{{ getModifier(attributes[attr.substr(0, 3).toLowerCase()]) }}</div>
-        <div class="value gradient-radial hexagon">{{ attributes[attr.substr(0, 3).toLowerCase()] }}</div>
+        <div class="modifier">{{ getModifier(character.attributes[attr.substr(0, 3).toLowerCase()]) }}</div>
+        <div class="value gradient-radial hexagon">{{ character.attributes[attr.substr(0, 3).toLowerCase()] }}</div>
       </li>
     </ng-container>
 
