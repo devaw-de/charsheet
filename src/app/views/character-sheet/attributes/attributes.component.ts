@@ -31,7 +31,8 @@ export class AttributesComponent {
     const modal = this._dialog.open(PointBuyComponent, {
       data: {
         character: this.character
-    }});
+      }
+    });
     const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
       if (result) {
         this._service.setAttributes(result.attributes);
