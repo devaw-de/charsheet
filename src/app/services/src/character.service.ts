@@ -29,7 +29,7 @@ import {
   PlayerCharacterData,
   PointBuyDTO,
   SkillName,
-  Tool,
+  Tool, LocalStorageKey,
 } from '@app/models';
 import {SettingsService} from './settings.service';
 import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
@@ -49,12 +49,16 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
   /**
    * Try and load a character from localStorage
    */
-  public loadCharacter(): void {
+  public readCharacterFromStorage(): void {
     try {
-      this._character = JSON.parse(localStorage.getItem('character'));
+      this._character = JSON.parse(localStorage.getItem(LocalStorageKey.CHARACTER));
     } catch (e) {
       console.warn(e);
     }
+  }
+
+  public saveCharacterToStorage(): void {
+    localStorage.setItem(LocalStorageKey.CHARACTER, JSON.stringify(this._character));
   }
 
   /**

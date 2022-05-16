@@ -1,7 +1,7 @@
 export enum LevelUpStrategy {
-  MAX = 'Max value',
-  AVG = 'Average value',
-  ROLL = 'Die roll'
+  MAX = 'MAX',
+  AVG = 'AVG',
+  ROLL = 'ROLL'
 }
 
 export enum Settings {
@@ -11,4 +11,14 @@ export enum Settings {
 export enum Distances {
   FEET = 'FEET',
   METERS = 'METERS'
+}
+
+export interface SettingsEntity {
+  units: Distances;
+  levelUpStrategy: LevelUpStrategy;
+}
+
+export enum LocalStorageKey {
+  SETTINGS = 'SETTINGS',
+  CHARACTER = 'CHARACTER'
 }

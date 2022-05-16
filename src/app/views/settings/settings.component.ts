@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Distances, LevelUpStrategy, Settings} from '@app/models';
+import {Distances, LevelUpStrategy} from '@app/models';
 import {Router} from '@angular/router';
 import {CustomRadioOptions} from '../../elements/custom-radio/custom-radio.component';
 import {SettingsService} from '@app/services';
@@ -11,19 +11,16 @@ import {SettingsService} from '@app/services';
 })
 export class SettingsComponent {
 
-  Distances = Distances;
-  Settings = Settings;
-
   public distanceSettingsOptions: Array<CustomRadioOptions> = [
     {
       id: Distances.FEET,
       text: 'Use imperial distance units',
-      selected: false
+      selected: this._settingsService.distanceUnitSetting === Distances.FEET
     },
     {
       id: Distances.METERS,
       text: 'Use metric distance units',
-      selected: true
+      selected: this._settingsService.distanceUnitSetting === Distances.METERS
     }
   ];
 

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {CharacterService, ToastService, ToastType} from '@app/services';
-import {PlayerCharacterData} from '@app/models';
+import {CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
+import {LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
 
@@ -19,7 +19,8 @@ export class CharacterComponent implements OnInit {
   constructor(
     private _router: Router,
     private _characterService: CharacterService,
-    private _toastService: ToastService
+    private _toastService: ToastService,
+    private _settingsService: SettingsService
   ) {
     this.character = this._characterService.getCharacter();
   }
@@ -80,24 +81,22 @@ export class CharacterComponent implements OnInit {
   }
 
   public saveCharacter(): void {
-    localStorage.setItem('character', JSON.stringify(this._characterService.getCharacter()));
+    this._characterService.saveCharacterToStorage();
+    this._settingsService.saveSettingsToStorage();
   }
 
   public isLocalDataAvailable(): boolean {
-    return !!localStorage.getItem('character');
+    return !!localStorage.getItem(LocalStorageKey.CHARACTER);
   }
 
   private _loadCharacter(): void {
-    this._characterService.loadCharacter();
+    this._settingsService.readSettingsFromStorage();
+    this._characterService.readCharacterFromStorage();
     this.character = this._characterService.getCharacter();
   }
 
   public clearLocalData(): void {
     localStorage.clear();
-  }
-
-  public debug(): void {
-    console.dir(this._characterService.getCharacter());
   }
 
   public test(): void {
