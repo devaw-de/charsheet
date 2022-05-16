@@ -1,9 +1,9 @@
 export enum EquipmentSets {
-  BURGLAR_PACK = 'Burglar Pack',
-  EXPLORER_PACK = 'EXPLORER_PACK',
-  DUNGEONEERING_PACK = 'DUNGEONEERING_PACK',
-  DIPLOMAT_PACK = 'DIPLOMAT_PACK',
-  ENTERTAINER_PACK = 'ENTERTAINER_PACK'
+  BURGLAR_PACK = 'Burglar pack',
+  EXPLORER_PACK = 'Explorer pack',
+  DUNGEONEERING_PACK = 'Dungeoneering pack',
+  DIPLOMAT_PACK = 'Diplomat pack',
+  ENTERTAINER_PACK = 'Entertainer pack'
 }
 
 export interface Currency {
@@ -42,16 +42,16 @@ export enum Tool {
   VEHICLE_LAND = 'Vehicles(land)',
   NAVIGATORS_TOOLS = 'Navigators tools',
   SHOVEL = 'Shovel',
-  CROWBAR = 'CROWBAR',
+  CROWBAR = 'Crowbar',
   ROPE_SILK = 'Silken Rope',
   ROPE_HEMP = 'Hempen Rope',
   IRON_POT = 'Iron pot'
 }
 
 export enum Clothes {
-  TRAVELERS_CLOTHES = 'TRAVELERS_CLOTHES',
-  COMMON_CLOTHES = 'COMMON_CLOTHES',
-  FINE_CLOTHES = 'FINE_CLOTHES',
-  COSTUME = 'COSTUME',
+  TRAVELERS_CLOTHES = 'Travelers clothes',
+  COMMON_CLOTHES = 'Common clothes',
+  FINE_CLOTHES = 'Fine clothes',
+  COSTUME = 'Costume',
   DARK_CLOTHES = 'Dark clothes with hood'
 }

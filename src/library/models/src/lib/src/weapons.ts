@@ -23,22 +23,22 @@ export enum WeaponType {
 }
 
 export enum WeaponProficiencies {
-  SIMPLE = 'SIMPLE',
-  MARTIAL = 'MARTIAL',
-  DAGGERS = 'DAGGERS',
-  DARTS = 'DARTS',
-  SLINGS = 'SLINGS',
-  QUARTER_STAFFS = 'QUARTER_STAFFS',
-  LIGHT_CROSSBOWS = 'LIGHT_CROSSBOWS',
-  CLUBS = 'CLUBS',
-  LONG_SWORDS = 'LONG_SWORDS',
-  LONG_BOWS = 'LONG_BOWS',
-  BATTLE_AXE = 'BATTLE_AXE',
-  HAND_AXE = 'HAND_AXE',
-  WAR_HAMMER = 'WAR_HAMMER',
-  THROWING_HAMMER = 'THROWING_HAMMER',
-  SHORT_BOWS = 'SHORT_BOWS',
-  SHORT_SWORDS = 'SHORT_SWORDS'
+  SIMPLE = 'Simple Weapons',
+  MARTIAL = 'Martial Weapons',
+  DAGGERS = 'Daggers',
+  DARTS = 'Darts',
+  SLINGS = 'Slings',
+  QUARTER_STAFFS = 'Quarterstaffs',
+  LIGHT_CROSSBOWS = 'Light crossbows',
+  CLUBS = 'Clubs',
+  LONG_SWORDS = 'Longswords',
+  LONG_BOWS = 'Longbows',
+  BATTLE_AXE = 'Battle axes',
+  HAND_AXE = 'Hand axes',
+  WAR_HAMMER = 'War hammers',
+  THROWING_HAMMER = 'Throwing hammers',
+  SHORT_BOWS = 'Shortbows',
+  SHORT_SWORDS = 'Shortswords'
 }
 
 export const DWARVEN_WEAPON_PROFICIENCIES: Array<WeaponProficiencies> = [
