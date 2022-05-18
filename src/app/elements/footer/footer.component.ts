@@ -9,6 +9,7 @@ import {GlobalConstants} from '@app/helpers';
 export class FooterComponent {
 
   public freePikUrl = GlobalConstants.freepikUrl;
+  public flatIconUrl = GlobalConstants.flatIconUrl;
   public githubUrl = GlobalConstants.githubUrl;
 
 }

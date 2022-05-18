@@ -5,6 +5,7 @@ export class GlobalConstants {
    */
   public static readonly githubUrl = 'toBeDefined';
   public static readonly freepikUrl = 'https://www.freepik.com/freepik';
+  public static readonly flatIconUrl = 'https://www.flaticon.com';
 
   /**
    * FileReader parameters
