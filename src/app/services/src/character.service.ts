@@ -29,7 +29,7 @@ import {
   PlayerCharacterData,
   PointBuyDTO,
   SkillName,
-  Tool, LocalStorageKey,
+  Tool, LocalStorageKey, DeathSavingThrowState,
 } from '@app/models';
 import {SettingsService} from './settings.service';
 import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
@@ -61,18 +61,12 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     localStorage.setItem(LocalStorageKey.CHARACTER, JSON.stringify(this._character));
   }
 
-  /**
-   * Get the character
-   */
   public getCharacter(): PlayerCharacterData {
     if (!this._character) { this.createNewCharacter(); }
 
     return this._character;
   }
 
-  /**
-   * Get the character's class
-   */
   public getClass(): CharacterClass {
     return CharacterClassesList.find(c => c.name === this._character.className);
   }
@@ -97,26 +91,21 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     return feats;
   }
 
-  /**
-   * Create a new character with basic starting values
-   */
   public createNewCharacter(): void {
     console.warn('Creating new Character');
-    this._character = DefaultCharacter; // StartingPlayerCharacter;
+    this._character = DefaultCharacter;
   }
 
-  /**
-   * Override the character's alignment
-   */
   public setAlignment(alignment: Alignment): void {
     this._character.alignment = alignment;
   }
 
-  /**
-   * Override the character's background story
-   */
   public setHistory(history: string): void {
     this._character.history = history;
+  }
+
+  public setDeathSavingThrowState(savingThrows: DeathSavingThrowState): void {
+    this._character.deathSavingThrows = savingThrows;
   }
 
   /**
@@ -166,7 +155,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
 
     if (!bg) { return; }
 
-    // Skills
     if (this._character.proficiencies.skills?.length && bg.proficiencies?.length) {
       this._character.proficiencies.skills = this._character.proficiencies.skills.filter(
         skill => !bg.proficiencies.some(
@@ -174,7 +162,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
         )
       );
     }
-    // Tools
     if (this._character.proficiencies.tools?.length && bg.toolProficiencies?.length) {
       this._character.proficiencies.tools = this._character.proficiencies.tools.filter(
         tool => !bg.toolProficiencies.some(
@@ -182,7 +169,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
         )
       );
     }
-    // Instruments
     if (this._character.proficiencies.instruments?.length && bg.instrumentProficiencies?.length) {
       this._character.proficiencies.instruments = this._character.proficiencies.instruments.filter(
         inst => !bg.instrumentProficiencies.some(
@@ -190,7 +176,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
         )
       );
     }
-    // Languages -> every race has at least 2 languages
     if (bg.pickableLanguages && this._character.proficiencies.languages.length > bg.pickableLanguages + 1) {
       for (let i = 0; i < bg.pickableLanguages; i++) {
         this._character.proficiencies.languages.pop();
@@ -204,9 +189,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     };
   }
 
-  /**
-   * Override the character's class
-   */
   public setClass(className: CharacterClassName): void {
     this._character.className = className;
     this._adjustSavingThrows();
@@ -214,34 +196,22 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     this._adjustArmorClass();
   }
 
-  /**
-   * Override the character's money
-   */
   public setCurrency(currency: Currency): void {
     this._character.currency = currency;
   }
 
-  /**
-   * Override the character's race
-   */
   public setRace(r: CharacterRace): void {
     this._character.race = r;
     this._character.subRace = undefined;
     if (ClassHelper.subRaceSelectionRequired(r)) { this._adjustAttributeBonuses(); }
   }
 
-  /**
-   * Override the character's subRace
-   */
   public setSubRace(s: CharacterSubRaceName): void {
     this._character.subRace = s;
     this._adjustArmorClass();
     this._adjustAttributeBonuses();
   }
 
-  /**
-   * Override the character's name
-   */
   public setCharacterName(name: string): void {
     this._character.name = name;
   }
@@ -250,16 +220,10 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     this._character.notes = notes;
   }
 
-  /**
-   * Override the player-name
-   */
   public setPlayerName(name: string): void {
     this._character.playerName = name;
   }
 
-  /**
-   * Override the character's attribute scores
-   */
   public setAttributes(attributes: CharacterAttributes): void {
     if (attributes) {
       this._character.attributes = attributes;
@@ -278,9 +242,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     }
   }
 
-  /**
-   * Override the character's equipment
-   */
   public setEquipment(equipment: Equipment): void {
     this._character.equipment = equipment;
   }
@@ -425,25 +386,16 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     );
   }
 
-  /**
-   * Add an array of items to the character's backpack
-   */
   public addEquipment(equipment: Array<string>): void {
     this._character.equipment.backpack = this._character.equipment.backpack.concat(equipment);
   }
 
-  /**
-   * Add an array of instrument proficiencies to the character
-   */
   public addInstrumentProficiencies(profs: Array<string>): void {
     if (this._character.proficiencies.instruments) {
       this._character.proficiencies.instruments = this._character.proficiencies.instruments.concat(profs);
     } else { this._character.proficiencies.instruments = profs; }
   }
 
-  /**
-   * Add an array of languages to the known languages
-   */
   public addLanguages(languages: Array<Language>): void {
     if (this._character.proficiencies.languages) {
       this._character.proficiencies.languages = this._character.proficiencies.languages.concat(languages);
@@ -452,25 +404,12 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     }
   }
 
-  /**
-   * Set age, eyes, hair, skin, height, or weight
-   */
   public setPartialVitals(vitals: CharacterVitals): void {
     Object.getOwnPropertyNames(vitals).forEach((prop) => {
       this._character.vitals[prop] = vitals[prop];
     });
   }
 
-  /**
-   * Override age, eyes, hair, skin, height, and weight
-   */
-  public setVitals(vitals: CharacterVitals): void {
-    this._character.vitals = vitals;
-  }
-
-  /**
-   * Add an array of Skills to the character
-   */
   public addSkills(skills: Array<SkillName>): void {
     if (this._character.proficiencies.skills) {
       this._character.proficiencies.skills = this._character.proficiencies.skills.concat(skills);
@@ -479,9 +418,6 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     }
   }
 
-  /**
-   * Add an array of tool proficiencies to the character
-   */
   public addToolProficiencies(profs: Array<Tool>): void {
     if (this._character.proficiencies.tools) {
       this._character.proficiencies.tools = this._character.proficiencies.tools.concat(profs);
@@ -490,16 +426,10 @@ import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
     }
   }
 
-  /**
-   * Empty the character's money
-   */
   public clearCurrency(): void {
     this._character.currency = {};
   }
 
-  /**
-   * Empty the character's equipment list
-   */
   public clearEquipment(): void {
     this._character.equipment = {
       backpack: [],

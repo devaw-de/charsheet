@@ -49,17 +49,17 @@ export class SettingsComponent {
   ) {
   }
 
-  public changeDistanceSetting(selectedId: string): void {
-    this._settingsService.distanceUnitSetting = selectedId as Distances;
+  public changeDistanceSetting(selectedOption: CustomRadioOptions): void {
+    this._settingsService.distanceUnitSetting = selectedOption.id as Distances;
     this.distanceSettingsOptions.forEach(option => {
-      option.selected = option.id === selectedId;
+      option.selected = option.id === selectedOption.id;
     });
   }
 
-  public changeLevelUpStrategy(selectedId: string): void {
-    this._settingsService.levelUpStrategySetting = selectedId as LevelUpStrategy;
+  public changeLevelUpStrategy(selectedOption: CustomRadioOptions): void {
+    this._settingsService.levelUpStrategySetting = selectedOption.id as LevelUpStrategy;
     this.levelupStrategyOptions.forEach(option => {
-      option.selected = option.id === selectedId;
+      option.selected = option.id === selectedOption.id;
     });
   }
 

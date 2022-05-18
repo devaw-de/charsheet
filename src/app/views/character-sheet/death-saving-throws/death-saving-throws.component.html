@@ -1,15 +1,17 @@
 <div class="death-saving-throws">
   <h4 class="section-header">Death saves</h4>
   <div class="wrap">
-    <div class="saves">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="saves" (click)="handleSuccess()">
+      <div *ngFor="let index of [0, 1, 2]"
+           class="cardiology-icon"
+           [class.checked]="savingThrows.successCount > index"
+      ></div>
     </div>
-    <div class="fails">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="fails" (click)="handleFailure()">
+      <div *ngFor="let index of [0, 1, 2]"
+           class="skull-icon"
+           [class.checked]="savingThrows.failureCount > index"
+      ></div>
     </div>
   </div>
 </div>

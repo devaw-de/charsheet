@@ -19,10 +19,7 @@ import {ClassIconComponent} from './views/character-sheet/name/class-icon/class-
 import {ClassSelectionComponent} from './views/builder/class-selection/class-selection.component';
 import {ClassSpecialComponent} from './views/character-sheet/class-special/class-special.component';
 import {CurrencyComponent} from './views/character-sheet/currency/currency.component';
-import {
-  DeathSavingThrowsComponent, SavingThrowFailureDirective,
-  SavingThrowSuccessDirective
-} from './views/character-sheet/death-saving-throws/death-saving-throws.component';
+import {DeathSavingThrowsComponent} from './views/character-sheet/death-saving-throws/death-saving-throws.component';
 import {EditAlignmentComponent} from './views/character-sheet/background/edit-alignment/edit-alignment.component';
 import {EditBackgroundComponent} from './views/character-sheet/background/edit-background/edit-background.component';
 import {EditClassComponent} from './views/character-sheet/background/edit-class/edit-class.component';
@@ -118,9 +115,7 @@ import {DebugComponent} from './debug/debug.component';
     FeedbackComponent,
     FaqComponent,
     ToastRendererComponent,
-    DebugComponent,
-    SavingThrowFailureDirective,
-    SavingThrowSuccessDirective
+    DebugComponent
   ],
   imports: [
     CommonModule,

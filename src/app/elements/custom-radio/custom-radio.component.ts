@@ -15,11 +15,11 @@ export interface CustomRadioOptions {
 export class CustomRadioComponent {
 
   @Input() options: Array<CustomRadioOptions> = [];
-  @Output() optionSelected = new EventEmitter<string>();
+  @Output() optionSelected = new EventEmitter<CustomRadioOptions>();
 
   public selectOption(option: CustomRadioOptions): void {
     this.options.forEach(o => o.selected = o.id === option.id);
-    this.optionSelected.emit(option.id);
+    this.optionSelected.emit(option);
   }
 
 }

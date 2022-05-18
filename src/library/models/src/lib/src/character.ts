@@ -67,6 +67,11 @@ export interface Proficiencies {
   instruments?: Array<string>;
 }
 
+export interface DeathSavingThrowState {
+  successCount: number;
+  failureCount: number;
+}
+
 export interface PlayerCharacterData {
   ac: number;
   alignment: Alignment;
@@ -75,6 +80,7 @@ export interface PlayerCharacterData {
   background: CharacterBackground;
   className: CharacterClassName;
   currency: Currency;
+  deathSavingThrows?: DeathSavingThrowState;
   equipment: Equipment;
   history?: string;
   hitDice: Array<Dice>;
@@ -155,25 +161,34 @@ export const StartingPlayerCharacter: PlayerCharacterData = {
   }
 };
 
+export const InitialSavingTrowState: DeathSavingThrowState = {
+  successCount: 0,
+  failureCount: 0
+};
+
+export const DefaultCharacterVitals: CharacterVitals = {
+  age: 100,
+  height: 150,
+  weight: 220,
+  eyes: 'amber',
+  skin: 'pale',
+  hair: 'dark brown'
+};
+
+export const DefaultCharacterAttributes: CharacterAttributes = {
+  str: 14,
+  dex: 14,
+  con: 10,
+  int: 8,
+  wis: 15,
+  cha: 12
+};
+
 export const DefaultCharacter: PlayerCharacterData = {
   playerName: 'Char Sheet Player',
   name: 'Char Sheet Character',
-  vitals: {
-    age: 100,
-    height: 150,
-    weight: 220,
-    eyes: 'amber',
-    skin: 'pale',
-    hair: 'dark brown'
-  },
-  attributes: {
-    str: 14,
-    dex: 14,
-    con: 10,
-    int: 8,
-    wis: 15,
-    cha: 12
-  },
+  vitals: { ...DefaultCharacterVitals },
+  attributes: { ...DefaultCharacterAttributes },
   appliedRacialBonuses: {
     con: 2,
     wis: 1,
