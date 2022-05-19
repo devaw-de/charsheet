@@ -1,0 +1,111 @@
+$die-icon-size: 12rem;
+$die-icon-size-d8: 10rem;
+$die-icon-size-d6: 8rem;
+
+.die-roll {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+
+  .result {
+    height: $die-icon-size;
+    width: $die-icon-size;
+    max-height: $die-icon-size;
+    min-height: $die-icon-size;
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-align: center;
+    flex: 0;
+    background-size: $die-icon-size;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--highlight);
+
+    &.hidden-text {
+      font-size: 0;
+    }
+
+    &.dice-icon-d6 {
+      background-size: $die-icon-size-d6;
+    }
+
+    &.dice-icon-d8 {
+      background-size: $die-icon-size-d8;
+    }
+
+    &.dice-icon-d10 {
+      background-size: $die-icon-size-d8;
+    }
+
+    &.dice-icon-d12 {
+      background-size: $die-icon-size-d8;
+    }
+
+    &.critical-success {
+      filter: drop-shadow(0 0 2px var(--success-color));
+    }
+
+    &.critical-failure {
+      filter: drop-shadow(0 0 2px var(--error-color));
+    }
+  }
+
+  button {
+    width: 120px;
+    padding: .75rem 1.25rem .75rem .75rem;
+    flex: 0;
+    background-size: 2.25rem;
+    background-position: calc(100% - .125rem);
+    background-repeat: no-repeat;
+  }
+
+  .history {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 2rem;
+    margin: auto;
+    font-size: .825rem;
+    opacity: .825;
+
+    div {
+      width: 2ch;
+      margin: .25rem;
+
+      &:last-of-type {
+        color: var(--highlight);
+      }
+    }
+  }
+
+  .shake-bottom {
+    animation: shake-bottom 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+  }
+
+  .roll-out-blurred-left {
+    animation: roll-out-blurred-left 0.65s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  }
+
+  .roll-out-blurred-right {
+    animation: roll-out-blurred-right 0.65s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  }
+
+  .roll-out-blurred-top {
+    animation: roll-out-blurred-top 0.65s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  }
+
+  .roll-out-blurred-bottom {
+    animation: roll-out-blurred-bottom 0.65s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+  }
+}

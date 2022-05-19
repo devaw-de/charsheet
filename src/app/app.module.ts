@@ -51,8 +51,6 @@ import {SkillsComponent} from './views/character-sheet/skills/skills.component';
 import {SpellListTableComponent} from './elements/spell-list-table/spell-list-table.component';
 import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';
-
-/** Boilerplate */
 import {FooterComponent} from './elements/footer/footer.component';
 import {SettingsComponent} from './views/settings/settings.component';
 import {CustomRadioComponent} from './elements/custom-radio/custom-radio.component';
@@ -60,6 +58,7 @@ import {FeedbackComponent} from './views/feedback/feedback.component';
 import {FaqComponent} from './views/faq/faq.component';
 import {ToastRendererComponent} from './elements/toast-renderer/toast-renderer.component';
 import {DebugComponent} from './debug/debug.component';
+import {DieRollComponent} from './views/character-sheet/die-roll/die-roll.component';
 
 
 @NgModule({
@@ -103,6 +102,7 @@ import {DebugComponent} from './debug/debug.component';
     SkillProficiencySelectionComponent,
     EditCurrencyComponent,
     DeathSavingThrowsComponent,
+    DieRollComponent,
     ClassSpecialComponent,
     SpellListTableComponent,
     FeatsComponent,

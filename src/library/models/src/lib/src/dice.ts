@@ -6,3 +6,9 @@ export enum Dice {
   D12 = 'D12',
   D20 = 'D20'
 }
+
+export interface DiceDetails {
+  type: Dice;
+  max: number;
+  className: string;
+}

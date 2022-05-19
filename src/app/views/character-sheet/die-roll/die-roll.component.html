@@ -1,0 +1,27 @@
+<div class="die-roll">
+  <div class="result {{ die.className }}"
+       #result
+       [class.hidden-text]="die.type === Dice.D6"
+       [class.dice-icon-d6-1]="die.type === Dice.D6 && !hideDieFace && latestResult === 1"
+       [class.dice-icon-d6-2]="die.type === Dice.D6 && !hideDieFace && latestResult === 2"
+       [class.dice-icon-d6-3]="die.type === Dice.D6 && !hideDieFace && latestResult === 3"
+       [class.dice-icon-d6-4]="die.type === Dice.D6 && !hideDieFace && latestResult === 4"
+       [class.dice-icon-d6-5]="die.type === Dice.D6 && !hideDieFace && latestResult === 5"
+       [class.dice-icon-d6-6]="die.type === Dice.D6 && !hideDieFace && latestResult === 6"
+       [class.dice-icon-d6-0]="die.type === Dice.D6 && (hideDieFace || !latestResult)"
+       [class.critical-failure]="die.type === Dice.D20 && latestResult === 1"
+       [class.critical-success]="die.type === Dice.D20 && latestResult === 20"
+  >
+      <div>{{ latestResult ? latestResult : '' }}</div>
+  </div>
+  <button class="dice-roll-icon"
+          [disabled]="hideDieFace"
+          [class.disabled]="hideDieFace"
+          (click)="roll()"
+  >roll {{ die.type }}</button>
+  <div class="history">
+    <div *ngFor="let roll of history;">
+      {{ roll }}
+    </div>
+  </div>
+</div>
