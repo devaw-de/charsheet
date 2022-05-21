@@ -3,7 +3,7 @@ export class GlobalConstants {
   /**
    * External URLs
    */
-  public static readonly githubUrl = 'toBeDefined';
+  public static readonly githubUrl = '#';
   public static readonly freepikUrl = 'https://www.freepik.com/freepik';
   public static readonly flatIconUrl = 'https://www.flaticon.com';
 
