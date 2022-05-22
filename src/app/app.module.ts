@@ -35,12 +35,12 @@ import {ExtraProficienciesComponent} from './views/character-sheet/extra-profici
 import {FaqComponent} from './views/faq/faq.component';
 import {FeatsComponent} from './views/character-sheet/feats/feats.component';
 import {FeedbackComponent} from './views/feedback/feedback.component';
-import {FooterComponent} from './views/layout/footer/footer.component';
+import {FooterComponent} from './components/layout/footer/footer.component';
 import {HitDiceComponent} from './views/character-sheet/hitdice/hit-dice.component';
 import {HitpointsComponent} from './views/character-sheet/hitpoints/hitpoints.component';
 import {InspirationComponent} from './views/character-sheet/inspiration/inspiration.component';
 import {LanguagePickerComponent} from './components/modals/language-picker/language-picker.component';
-import {MenuComponent} from './views/layout/menu/menu.component';
+import {MenuComponent} from './components/layout/menu/menu.component';
 import {NameComponent} from './views/character-sheet/name/name.component';
 import {NotesComponent} from './views/character-sheet/notes/notes.component';
 import {PassivePerceptionComponent} from './views/character-sheet/passive-perception/passive-perception.component';
@@ -55,7 +55,7 @@ import {SetXpComponent} from './views/character-sheet/background/set-xp/set-xp.c
 import {SkillProficiencySelectionComponent} from './views/character-sheet/skills/skill-proficiency-selection/skill-proficiency-selection.component';
 import {SkillsComponent} from './views/character-sheet/skills/skills.component';
 import {SpellListTableComponent} from './components/spell-list-table/spell-list-table.component';
-import {ToastRendererComponent} from './views/layout/toast-renderer/toast-renderer.component';
+import {ToastRendererComponent} from './components/layout/toast-renderer/toast-renderer.component';
 import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';
 

@@ -8,6 +8,8 @@
          [innerText]="toast.content"
     ></div>
     <div class="close-button"
+         [class.close-icon-inverted]="toast.type === ToastType.ERROR || toast.type === ToastType.SUCCESS"
+         [class.close-icon]="toast.type === ToastType.NOTIFICATION"
          [innerText]="'X'"
          (click)="closeToast(toast)"
     ></div>
