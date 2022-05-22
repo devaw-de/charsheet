@@ -1,9 +1,20 @@
-import {CharacterClassName, SpellSchool} from '@app/models';
-import {SpellNames} from './spell.names';
+import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
-export const Level2SpellList = [
+export enum Level2SpellNames {
+  AID = 'Aid',
+  ANIMAL_MESSENGER = 'Animal Messenger',
+  BRANDING_SMITE = 'Branding Smite',
+  FIND_STEED = 'Find Steed',
+  LESSER_RESTORATION = 'Lesser Restoration',
+  LOCATE_OBJECT = 'Locate Object',
+  MAGIC_WEAPON = 'Magic Weapon',
+  PROTECTION_FROM_POISON = 'Protection from Poison',
+  ZONE_OF_TRUTH = 'Zone of Truth'
+}
+
+export const Level2SpellList: Array<Spell> = [
   {
-    name: SpellNames.AID,
+    name: Level2SpellNames.AID,
     level: 2,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -11,7 +22,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.ANIMAL_MESSENGER,
+    name: Level2SpellNames.ANIMAL_MESSENGER,
     level: 2,
     school: SpellSchool.ENCHANTMENT,
     ritual: true,
@@ -19,7 +30,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.RANGER]
   },
   {
-    name: SpellNames.BRANDING_SMITE,
+    name: Level2SpellNames.BRANDING_SMITE,
     level: 2,
     school: SpellSchool.EVOCATION,
     ritual: false,
@@ -27,7 +38,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.FIND_STEED,
+    name: Level2SpellNames.FIND_STEED,
     level: 2,
     school: SpellSchool.CONJURATION,
     ritual: false,
@@ -35,7 +46,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.LESSER_RESTORATION,
+    name: Level2SpellNames.LESSER_RESTORATION,
     level: 2,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -43,7 +54,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name:  SpellNames.LOCATE_OBJECT,
+    name:  Level2SpellNames.LOCATE_OBJECT,
     level: 2,
     school: SpellSchool.DIVINATION,
     ritual: false,
@@ -51,7 +62,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.MAGIC_WEAPON,
+    name: Level2SpellNames.MAGIC_WEAPON,
     level: 2,
     school: SpellSchool.TRANSMUTATION,
     ritual: false,
@@ -59,7 +70,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.PROTECTION_FROM_POISON,
+    name: Level2SpellNames.PROTECTION_FROM_POISON,
     level: 2,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -67,7 +78,7 @@ export const Level2SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: SpellNames.ZONE_OF_TRUTH,
+    name: Level2SpellNames.ZONE_OF_TRUTH,
     level: 2,
     school: SpellSchool.ENCHANTMENT,
     ritual: false,

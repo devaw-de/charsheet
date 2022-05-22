@@ -1,8 +1,17 @@
-import {CharacterClassName, SpellSchool} from '@app/models';
+import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
-export const Level5SpellList = [
+export enum Level5SpellNames {
+  CIRCLE_OF_POWER = 'Circle of Power',
+  DESTRUCTIVE_WAVE = 'Destructive Wave',
+  DISPEL_EVIL_AND_GOOD = 'Dispel Evil and Good',
+  GEAS = 'Geas',
+  HOLY_WEAPON = 'Holy Weapon',
+  RAISE_DEAD = 'Raise Dead',
+}
+
+export const Level5SpellList: Array<Spell> = [
   {
-    name: 'Circle of Power',
+    name: Level5SpellNames.CIRCLE_OF_POWER,
     level: 5,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -10,7 +19,7 @@ export const Level5SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Destructive Wave',
+    name: Level5SpellNames.DESTRUCTIVE_WAVE,
     level: 5,
     school: SpellSchool.EVOCATION,
     ritual: false,
@@ -18,7 +27,7 @@ export const Level5SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Dispel Evil and Good',
+    name: Level5SpellNames.DISPEL_EVIL_AND_GOOD,
     level: 5,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -26,7 +35,7 @@ export const Level5SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Geas',
+    name: Level5SpellNames.GEAS,
     level: 5,
     school: SpellSchool.ENCHANTMENT,
     ritual: false,
@@ -34,7 +43,7 @@ export const Level5SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Holy Weapon',
+    name: Level5SpellNames.HOLY_WEAPON,
     level: 5,
     school: SpellSchool.EVOCATION,
     ritual: false,
@@ -42,7 +51,7 @@ export const Level5SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Raise Dead',
+    name: Level5SpellNames.RAISE_DEAD,
     level: 5,
     school: SpellSchool.NECROMANCY,
     ritual: false,

@@ -1,8 +1,17 @@
-import {CharacterClassName, SpellSchool} from '@app/models';
+import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
-export const Level4SpellList = [
+export enum Level4SpellNames {
+  AURA_OF_PURITY = 'Aura of Purity',
+  BANISHMENT = 'Banishment',
+  DEATH_WARD = 'Death Ward',
+  FIND_GREATER_STEED = 'Find Greater Steed',
+  LOCATE_CREATURE = 'Locate Creature',
+  STAGGERING_SMITE = 'Staggering Smite',
+}
+
+export const Level4SpellList: Array<Spell> = [
   {
-    name: 'Aura of Purity',
+    name: Level4SpellNames.AURA_OF_PURITY,
     level: 4,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -10,7 +19,7 @@ export const Level4SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Banishment',
+    name: Level4SpellNames.BANISHMENT,
     level: 4,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -18,7 +27,7 @@ export const Level4SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Death Ward',
+    name: Level4SpellNames.DEATH_WARD,
     level: 4,
     school: SpellSchool.ABJURATION,
     ritual: false,
@@ -26,7 +35,7 @@ export const Level4SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Find Greater Steed',
+    name: Level4SpellNames.FIND_GREATER_STEED,
     level: 4,
     school: SpellSchool.CONJURATION,
     ritual: false,
@@ -34,7 +43,7 @@ export const Level4SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Locate Creature',
+    name: Level4SpellNames.LOCATE_CREATURE,
     level: 4,
     school: SpellSchool.DIVINATION,
     ritual: false,
@@ -42,7 +51,7 @@ export const Level4SpellList = [
     availableTo: [CharacterClassName.PALADIN]
   },
   {
-    name: 'Staggering Smite',
+    name: Level4SpellNames.STAGGERING_SMITE,
     level: 4,
     school: SpellSchool.EVOCATION,
     ritual: false,
