@@ -36,8 +36,10 @@
     font-size: 8pt !important;
   }
 
-  .no-print {
-    display: none;
+  .no-print,
+  .menu,
+  .toast-renderer {
+    display: none !important;
   }
 
 }

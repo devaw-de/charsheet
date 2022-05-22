@@ -59,6 +59,7 @@ import {FaqComponent} from './views/faq/faq.component';
 import {ToastRendererComponent} from './elements/toast-renderer/toast-renderer.component';
 import {DebugComponent} from './debug/debug.component';
 import {DieRollComponent} from './views/character-sheet/die-roll/die-roll.component';
+import {MenuComponent} from './elements/menu/menu.component';
 
 
 @NgModule({
@@ -115,7 +116,8 @@ import {DieRollComponent} from './views/character-sheet/die-roll/die-roll.compon
     FeedbackComponent,
     FaqComponent,
     ToastRendererComponent,
-    DebugComponent
+    DebugComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,

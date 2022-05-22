@@ -16,7 +16,7 @@
     [row] 108px // 2 - inspiration, armorclass
     [row] 228px // 3 - saving throws, class-special, hitpoints
     [row] 196px // 4 - hitdice, death saves
-    [row] 294px  // 5 - weapons
+    [row] 294px // 5 - weapons
     [row] 48px  // 6 - ammunition
     [row] 48px  // 7 - passive perception
     [row] auto  // 8 - profiencies, currency, equipment
@@ -208,4 +208,26 @@
       background: unset;
     }
   }
+}
+
+.additional-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  li {
+    width: 40%;
+    margin: 1rem 0;
+
+    button {
+      font-size: inherit;
+      width: calc(100% - .5rem);
+      text-align: center;
+    }
+  }
+}
+
+.hidden {
+  display: none;
 }

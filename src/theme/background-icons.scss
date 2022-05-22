@@ -118,14 +118,18 @@
   background-image: url('../assets/icons/dice/dices-no-face.png');
 }
 
-.semi-transparent {
-  background-image: url('../assets/background/semi-transparent.png');
-}
-
 .hamburger-menu-icon {
-  background-image: url('../assets/icons/list.png');
+  background-image: url('../assets/icons/menu.png');
 }
 
 .hamburger-menu-icon-inverted {
   background-image: url('../assets/icons/list-inverted.png');
+}
+
+.close-icon {
+  background-image: url('../assets/icons/delete.png');
+}
+
+.close-icon-inverted {
+  background-image: url('../assets/icons/delete-inverted.png');
 }

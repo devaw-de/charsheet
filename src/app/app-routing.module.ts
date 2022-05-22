@@ -5,11 +5,12 @@ import {SpellListTableComponent} from './elements/spell-list-table/spell-list-ta
 import {SettingsComponent} from './views/settings/settings.component';
 import {FaqComponent} from './views/faq/faq.component';
 import {FeedbackComponent} from './views/feedback/feedback.component';
-import {LanguagePickerComponent} from './views/builder/language-picker/language-picker.component';
 import {DebugComponent} from './debug/debug.component';
+import {BuilderComponent} from './views/builder/builder.component';
 
 const routes: Routes = [
   {path: '', component: CharacterComponent},
+  {path: 'builder', component: BuilderComponent},
   {path: 'settings', component: SettingsComponent},
   {path: 'faq', component: FaqComponent},
   {path: 'feedback', component: FeedbackComponent},

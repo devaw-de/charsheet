@@ -51,3 +51,9 @@ div, p, h1, h2, h3, h4, ul, ol, li {
   margin: 0;
   border-radius: var(--border-radius);
 }
+
+#main {
+  @media screen and (max-width: 1328px) {
+    margin-top: 100px;
+  }
+}

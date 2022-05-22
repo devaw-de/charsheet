@@ -43,30 +43,41 @@
 	<app-character-history class="section" [character]="character"></app-character-history>
 </div>
 
-<div class="navigation">
-	<button type="button"
-					(click)="saveCharacter()"
-					[innerText]="'Save Character'"
-	></button>
-	<button type="button"
-					(click)="exportCharacter()"
-					[innerText]="'Export Character'"
-	></button>
-  <button type="button"
-          (click)="importCharacter()"
-          [innerText]="'Import saved Character'"
-  ></button>
-  <input type="file"
-         #filePickerInput
-         (change)="handleFileSelection()"
-         class="hidden"
-         accept=".json.txt"
-  >
-	<button type="button"
-					(click)="clearLocalData()"
-					[disabled]="!isLocalDataAvailable()"
-					[class.disabled]="!isLocalDataAvailable()"
-					[innerText]="'Clear local data'"
-					[title]="isLocalDataAvailable() ? '' : 'Nothing to delete'"
-	></button>
-</div>
+<input type="file"
+       #filePickerInput
+       (change)="handleFileSelection()"
+       class="hidden"
+       accept=".json.txt"
+>
+
+<ng-template #menuTemplate>
+  <ul class="additional-menu">
+    <li>
+      <button type="button"
+              (click)="saveCharacter()"
+              [innerText]="'Save Character'"
+      ></button>
+    </li>
+    <li>
+      <button type="button"
+              (click)="clearLocalData()"
+              [disabled]="!isLocalDataAvailable()"
+              [class.disabled]="!isLocalDataAvailable()"
+              [innerText]="'Clear local data'"
+              [title]="isLocalDataAvailable() ? '' : 'Nothing to delete'"
+      ></button>
+    </li>
+    <li>
+      <button type="button"
+              (click)="exportCharacter()"
+              [innerText]="'Export Character'"
+      ></button>
+    </li>
+    <li>
+      <button type="button"
+              (click)="importCharacter()"
+              [innerText]="'Import saved Character'"
+      ></button>
+    </li>
+  </ul>
+</ng-template>

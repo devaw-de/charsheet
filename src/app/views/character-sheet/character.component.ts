@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
-import {CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
+import {AppMenuService, CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
 import {LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
@@ -10,23 +10,29 @@ import {FileHelper, GlobalConstants} from '@app/helpers';
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent implements OnInit, AfterViewInit {
 
   public character: PlayerCharacterData;
 
   @ViewChild('filePickerInput') filePickerInput: ElementRef<HTMLInputElement>;
+  @ViewChild('menuTemplate') menuTemplate: TemplateRef<HTMLUListElement>;
 
   constructor(
     private _router: Router,
     private _characterService: CharacterService,
     private _toastService: ToastService,
-    private _settingsService: SettingsService
+    private _settingsService: SettingsService,
+    private _menuService: AppMenuService
   ) {
     this.character = this._characterService.getCharacter();
   }
 
   ngOnInit(): void {
     this._loadCharacter();
+  }
+
+  ngAfterViewInit(): void {
+    this._menuService.componentDefinedMenuItems = this.menuTemplate;
   }
 
   public toBuilder(): void {

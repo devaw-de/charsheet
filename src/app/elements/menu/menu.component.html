@@ -1,0 +1,27 @@
+<div class="menu">
+  <a class="menu-trigger"
+     [class.hamburger-menu-icon-inverted]="!showMenu"
+     [class.close-icon-inverted]="showMenu"
+     (click)="toggleMenu()"
+  >Menu</a>
+
+  <div class="menu-wrapper"
+      [class.hidden]="!showMenu"
+  >
+    <div class="menu-content">
+      <ul class="primary">
+        <li><a (click)="navigate('/')">Character sheet</a></li>
+        <li><a (click)="navigate('/builder')">Builder</a></li>
+        <li><a (click)="navigate('/faq')">FAQ</a></li>
+        <li><a (click)="navigate('/feedback')">Feedback</a></li>
+        <li><a (click)="navigate('/settings')">Settings</a></li>
+        <li><a [href]="githubUrl">CharSheet on github</a></li>
+      </ul>
+
+      <ng-container *ngIf="additionalMenuItems">
+        <ng-container *ngTemplateOutlet="additionalMenuItems"></ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

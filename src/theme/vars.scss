@@ -20,4 +20,8 @@
   --main-grid-gap-size: .5rem;
   --default-border: 1px solid var(--border-color);
   --extra-large-text: 2rem;
+  --menu-background: rgba(0, 0, 0, .95);
+  --menu-close-button-size: 32px;
+  --menu-z-index: 500;
+  --toast-z-index: 1000;
 }

@@ -17,6 +17,12 @@
   <p (click)="setCharacterSubRace(null)">nyi - click here please</p>
 </ng-template>
 
+<ng-template #menu>
+  <ul>
+    <li>Builder-related extra-menu-items go here</li>
+  </ul>
+</ng-template>
+
 <div class="builder">
   <ng-container *ngIf="!character.race || !character.className.length">
     <ng-container *ngTemplateOutlet="character.race ? classSelection : raceSelection"></ng-container>

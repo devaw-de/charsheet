@@ -50,9 +50,9 @@ export class BuilderComponent {
   public showCharacterSheet(ev?): void {
     if (ev) {
       this.character.attributes = ev;
-      this._router.navigate(['/sheet'], {state: this.character});
+      this._router.navigate(['/'], {state: this.character});
     } else {
-      this._router.navigate(['/sheet']);
+      this._router.navigate(['/']);
     }
   }
 
