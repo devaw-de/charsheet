@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {CharacterService} from 'src/app/services/src/character.service';
+import {CharacterService} from 'src/library/services/src/character.service';
 import {CharacterBackgroundDetails, CharacterBackgroundsList} from 'src/library/models/src/lib/src/backgrounds';
 import {PlayerCharacterData} from 'src/library/models/src/lib/src/character';
 

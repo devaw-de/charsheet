@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {EditNumberComponent} from 'src/app/elements/generic-modals/edit-number/edit-number.component';
-import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
+import {EditNumberComponent} from 'src/app/components/modals/generic-modals/edit-number/edit-number.component';
+import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {CharacterService} from '@app/services';
 import {CharacterVitals} from '@app/models';
 

@@ -7,8 +7,8 @@ import {DialogRef} from '@ngneat/dialog';
   selector: 'app-die-roll',
   templateUrl: './die-roll.component.html',
   styleUrls: [
-    './die-roll.component.scss',
-    './die-roll.component.animation-frames.scss'
+      './die-roll.component.scss',
+      './die-roll.component.animation-frames.scss'
   ]
 })
 export class DieRollComponent implements OnInit {

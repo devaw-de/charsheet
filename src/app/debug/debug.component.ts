@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {Dice} from '@app/models';
-import {DieRollComponent} from '../views/character-sheet/die-roll/die-roll.component';
+import {DieRollComponent} from '../components/modals/die-roll/die-roll.component';
 
 @Component({
   selector: 'app-debug',

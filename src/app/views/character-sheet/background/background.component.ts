@@ -6,7 +6,7 @@ import {EditBackgroundComponent} from './edit-background/edit-background.compone
 import {EditClassComponent} from './edit-class/edit-class.component';
 import {EditRaceComponent} from './edit-race/edit-race.component';
 import {SelectSubRaceComponent} from './select-subrace/select-subrace.component';
-import {EditStringComponent} from 'src/app/elements/generic-modals/edit-string/edit-string.component';
+import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {ClassHelper} from '@app/helpers';
 import {SetXpComponent} from './set-xp/set-xp.component';
 import {Alignment, CharacterBackground, CharacterClassName, CharacterRace, CharacterSubRaceName, PlayerCharacterData} from '@app/models';

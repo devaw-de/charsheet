@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Distances, LevelUpStrategy} from '@app/models';
 import {Router} from '@angular/router';
-import {CustomRadioOptions} from '../../elements/custom-radio/custom-radio.component';
+import {CustomRadioOptions} from '../../components/custom-radio/custom-radio.component';
 import {SettingsService} from '@app/services';
 
 @Component({

@@ -10,9 +10,9 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "@app/helpers": ["./src/app/helpers/"],
+      "@app/helpers": ["./src/library/helpers/"],
       "@app/models": ["./src/library/models/"],
-      "@app/services": ["./src/app/services/"],
+      "@app/services": ["./src/library/services/"],
       "models": [
         "dist/models/models",
         "dist/models"

@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {EditTextComponent} from 'src/app/elements/generic-modals/edit-text/edit-text.component';
+import {EditTextComponent} from 'src/app/components/modals/generic-modals/edit-text/edit-text.component';
 import {CharacterService} from '@app/services';
 import {PlayerCharacterData} from '@app/models';
 
