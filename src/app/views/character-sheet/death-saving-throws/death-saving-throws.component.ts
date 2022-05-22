@@ -11,6 +11,10 @@ export class DeathSavingThrowsComponent {
 
   public savingThrows: DeathSavingThrowState;
 
+  private static _getSingularOrPlural(amount: number): string {
+    return amount === 1 ? 'throw' : 'throws';
+  }
+
   constructor(
     private _characterService: CharacterService
   ) {
@@ -36,6 +40,17 @@ export class DeathSavingThrowsComponent {
       this.savingThrows.failureCount++;
     }
     this._characterService.setDeathSavingThrowState(this.savingThrows);
+  }
+
+  public getTooltip(): string {
+    if (!this.savingThrows.successCount && !this.savingThrows.failureCount) {
+      return '';
+    }
+    const successText = DeathSavingThrowsComponent._getSingularOrPlural(this.savingThrows.successCount);
+    const failureText = DeathSavingThrowsComponent._getSingularOrPlural(this.savingThrows.failureCount);
+    const successes = `${this.savingThrows.successCount} death saving ${successText} succeeded`;
+    const failures = `${this.savingThrows.failureCount} death saving ${failureText} failed`;
+    return successes + '\n' + failures;
   }
 
 }
