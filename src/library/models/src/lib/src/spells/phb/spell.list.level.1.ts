@@ -1,4 +1,4 @@
-import {CharacterClassName, SpellSchool} from '@app/models';
+import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
 export enum Level1SpellNames {
   ABSORB_ELEMENTS = 'Absorb Elements',
@@ -67,7 +67,7 @@ export enum Level1SpellNames {
   WRATHFUL_SMITE = 'Wrathful Smite'
 }
 
-export const Level1SpellList = [
+export const Level1SpellList: Array<Spell> = [
   {
     name: Level1SpellNames.ABSORB_ELEMENTS,
     level: 1,
@@ -153,7 +153,8 @@ export const Level1SpellList = [
     level: 1,
     school: SpellSchool.EVOCATION,
     ritual: false,
-    concentration: false
+    concentration: false,
+    availableTo: []
   },
   {
     name: Level1SpellNames.COLOR_SPRAY,
@@ -560,7 +561,8 @@ export const Level1SpellList = [
     level: 1,
     school: SpellSchool.CONJURATION,
     ritual: true,
-    concentration: false
+    concentration: false,
+    availableTo: []
   },
   {
     name: Level1SpellNames.WITCH_BOLT,

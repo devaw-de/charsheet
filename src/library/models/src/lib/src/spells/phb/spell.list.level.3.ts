@@ -1,4 +1,4 @@
-import {CharacterClassName, SpellSchool} from '@app/models';
+import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
 export enum Level3SpellNames {
   AURA_OF_VITALITY = 'Aura of Vitality',
@@ -13,7 +13,7 @@ export enum Level3SpellNames {
   REVIVIFY = 'Revivify',
 }
 
-export const Level3SpellList = [
+export const Level3SpellList: Array<Spell> = [
   {
     name: Level3SpellNames.AURA_OF_VITALITY,
     level: 3,
