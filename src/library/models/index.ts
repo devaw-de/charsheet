@@ -9,6 +9,7 @@ export * from './src/lib/src/dice';
 export * from './src/lib/src/equipment';
 export * from './src/lib/src/language';
 export * from './src/lib/src/settings';
+export * from './src/lib/src/spells';
 export * from './src/lib/src/traits';
 export * from './src/lib/src/weapons';
 export * from './src/lib/src/xp';
