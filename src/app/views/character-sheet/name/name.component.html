@@ -1,8 +1,8 @@
-<div class="name">
+<div *ngIf="character"
+     class="name"
+>
     <app-class-icon [characterClass]="character.className"></app-class-icon>
-    <h1 #name
-        *ngIf="character"
-        class="interactive"
+    <h1 class="interactive"
         (click)="edit()"
         [innerText]="character.name"
     ></h1>

@@ -1,6 +1,5 @@
 import {PlayerCharacterData} from '@app/models';
 import {GlobalConstants} from './globalConstants';
-import {FileDependencyGraph} from '@angular/compiler-cli/src/ngtsc/incremental/src/dependency_tracking';
 
 export class FileHandlerError extends Error {
   constructor(errorMessage: string = 'Unknown FileHandler Error') {

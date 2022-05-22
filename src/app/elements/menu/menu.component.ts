@@ -45,9 +45,9 @@ export class MenuComponent implements OnDestroy {
     }
   }
 
-  public navigate(target: string): void {
+  public async navigate(target: string): Promise<void> {
     this.toggleMenu(false);
-    this._router.navigate([target]);
+    await this._router.navigate([target]);
   }
 
 }

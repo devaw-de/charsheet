@@ -47,12 +47,12 @@ export class BuilderComponent {
     this._service.setBackground(background.name);
   }
 
-  public showCharacterSheet(ev?): void {
+  public async showCharacterSheet(ev?): Promise<void> {
     if (ev) {
       this.character.attributes = ev;
-      this._router.navigate(['/'], {state: this.character});
+      await this._router.navigate(['/'], {state: this.character});
     } else {
-      this._router.navigate(['/']);
+      await this._router.navigate(['/']);
     }
   }
 

@@ -9,12 +9,10 @@ import {PlayerCharacterData, SkillName} from '@app/models';
 })
 export class PassivePerceptionComponent {
 
-  public passivePerception: number;
   @Input() character: PlayerCharacterData;
 
   public getPassivePerception(): number {
-    const perceptionSkillProficiencyBonus: number =
-      this.character.proficiencies.skills.includes(SkillName.PERCEPTION)
+    const perceptionSkillProficiencyBonus: number = this.character.proficiencies.skills.includes(SkillName.PERCEPTION)
       ? this.character.proficiencies.proficiencyBonus
       : 0;
     const wisdomModifier = AbilityHelper.getAbilityModifier(this.character.attributes.wis);

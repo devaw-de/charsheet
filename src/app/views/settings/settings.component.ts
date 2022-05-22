@@ -63,8 +63,8 @@ export class SettingsComponent {
     });
   }
 
-  public navigate(): void {
-    this._router.navigate(['/']);
+  public async navigate(): Promise<void> {
+    await this._router.navigate(['/']);
   }
 
 }

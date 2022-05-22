@@ -2,22 +2,42 @@
   <h4 class="section-header">Give yourself some coin</h4>
   <p>
     <label for="platinum">Platinum</label>
-    <input #platinum type="number" min="0" value="cash.platinum">
+    <input [attr.id]="platinum"
+           #platinum
+           type="number"
+           min="0"
+           value="cash.platinum"
+    >
   </p>
 
   <p>
     <label for="gold">Gold</label>
-    <input #gold type="number" min="0" value="cash.gold">
+    <input [attr.id]="gold"
+           #gold
+           type="number"
+           min="0"
+           value="cash.gold"
+    >
   </p>
 
   <p>
     <label for="silver">Silver</label>
-    <input #silver type="number" min="0" value="cash.silver">
+    <input [attr.id]="silver"
+           #silver
+           type="number"
+           min="0"
+           value="cash.silver"
+    >
   </p>
 
   <p>
     <label for="copper">Copper</label>
-    <input #copper type="number" min="0" value="cash.copper">
+    <input [attr.id]="copper"
+           #copper
+           type="number"
+           min="0"
+           value="cash.copper"
+    >
   </p>
 
   <p>

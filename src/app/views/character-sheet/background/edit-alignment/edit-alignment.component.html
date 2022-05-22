@@ -1,4 +1,4 @@
-<ng-template #tripple let-set="set">
+<ng-template #triple let-set="set">
   <td *ngFor="let a of set"
       class="interactive"
       (click)="setAlignment(a)"
@@ -11,7 +11,7 @@
   <h3>Select your Alignment</h3>
   <table>
     <tr *ngFor="let set of alignmentSets">
-      <ng-container [ngTemplateOutlet]="tripple"
+      <ng-container [ngTemplateOutlet]="triple"
                     [ngTemplateOutletContext]="{set: set}"
       ></ng-container>
     </tr>

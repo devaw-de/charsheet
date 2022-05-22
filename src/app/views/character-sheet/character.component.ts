@@ -35,8 +35,8 @@ export class CharacterComponent implements OnInit, AfterViewInit {
     this._menuService.componentDefinedMenuItems = this.menuTemplate;
   }
 
-  public toBuilder(): void {
-    this._router.navigate(['']);
+  public async toBuilder(): Promise<void> {
+    await this._router.navigate(['']);
   }
 
   public exportCharacter(): void {
