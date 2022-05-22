@@ -1,6 +1,7 @@
 import {CharacterClassName, Spell, SpellSchool} from '@app/models';
 
 export enum Level4SpellNames {
+  AURA_OF_LIFE = 'Aura of Life',
   AURA_OF_PURITY = 'Aura of Purity',
   BANISHMENT = 'Banishment',
   DEATH_WARD = 'Death Ward',
@@ -10,6 +11,14 @@ export enum Level4SpellNames {
 }
 
 export const Level4SpellList: Array<Spell> = [
+  {
+    name: Level4SpellNames.AURA_OF_LIFE,
+    level: 4,
+    school: SpellSchool.ABJURATION,
+    ritual: false,
+    concentration: true,
+    availableTo: [CharacterClassName.PALADIN]
+  },
   {
     name: Level4SpellNames.AURA_OF_PURITY,
     level: 4,
