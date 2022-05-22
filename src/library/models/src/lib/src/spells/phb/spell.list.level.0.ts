@@ -6,7 +6,7 @@ export enum CantripSpellNames {
 
 export const CantripSpellList: Array<Spell> = [
   {
-    name: 'Aura of Life',
+    name: CantripSpellNames.AURA_OF_LIFE,
     level: 0,
     school: SpellSchool.ABJURATION,
     ritual: false,
