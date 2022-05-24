@@ -1,50 +1,6 @@
-import {CharacterClassName, Spell, SpellSchool} from '@app/models';
-
-export enum Level5SpellNames {
-  ANIMATE_OBJECTS = 'Animate Objects',
-  ANTILIFE_SHELL = 'Antilife Shell',
-  AWAKEN = 'Awaken',
-  BANISHING_SMITE = 'Banishing Smite',
-  BIGBYS_HAND = 'Bigby\'s Hand',
-  CIRCLE_OF_POWER = 'Circle of Power',
-  CLOUDKILL = 'Cloudkill',
-  COMMUNE = 'Commune',
-  COMMUNE_WITH_NATURE = 'Commune with Nature',
-  CONE_OF_COLD = 'Cone of Cold',
-  CONJURE_ELEMENTAL = 'Conjure Elemental',
-  CONJURE_VOLLEY = 'Conjure Volley',
-  CONTACT_OTHER_PLANE = 'Contact Other Plane',
-  CONTAGION = 'Contagion',
-  CREATION = 'Creation',
-  DESTRUCTIVE_WAVE = 'Destructive Wave',
-  DISPEL_EVIL_AND_GOOD = 'Dispel Evil and Good',
-  DOMINATE_PERSON = 'Dominate Person',
-  DREAM = 'Dream',
-  FLAME_STRIKE = 'Flame Strike',
-  GEAS = 'Geas',
-  GREATER_RESTORATION = 'Greater Restoration',
-  HALLOW = 'Hallow',
-  HOLD_MONSTER = 'Hold Monster',
-  HOLY_WEAPON = 'Holy Weapon',
-  INSECT_PLAGUE = 'Insect Plague',
-  LEGEND_LORE = 'Legend Lore',
-  MASS_CURE_WOUNDS = 'Mass Cure Wounds',
-  MISLEAD = 'Mislead',
-  MODIFY_MEMORY = 'Modify Memory',
-  PASSWALL = 'Passwall',
-  PLANAR_BINDING = 'Planar Binding',
-  RAISE_DEAD = 'Raise Dead',
-  RARYS_TELEPATHIC_BOND = 'Rary\'s Telepathic Bond',
-  REINCARNATE = 'Reincarnate',
-  SCRYING = 'Scrying',
-  SEEMING = 'Seeming',
-  SWIFT_QUIVER = 'Swift Quiver',
-  TELEKINESIS = 'Telekinesis',
-  TELEPORTATION_CIRCLE = 'Teleportation Circle',
-  TREE_STRIDE = 'Tree Stride',
-  WALL_OF_FORCE = 'Wall of Force',
-  WALL_OF_STONE = 'Wall of Stone'
-}
+import {Spell, SpellSchool} from '../spells';
+import {Level5SpellNames} from './spell-names';
+import {CharacterClassName} from '@app/models';
 
 export const Level5SpellList: Array<Spell> = [
   {

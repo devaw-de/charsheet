@@ -1,27 +1,6 @@
-import {Spell, SpellSchool} from '@app/models';
-
-export enum Level7SpellNames {
-  CONJURE_CELESTIAL = 'Conjure Celestial',
-  DELAYED_BLAST_FIREBALL = 'Delayed Blast Fireball',
-  DIVINE_WORD = 'Divine Word',
-  ETHEREALNESS = 'Etherealness',
-  FINGER_OF_DEATH = 'Finger of Death',
-  FIRE_STORM = 'Fire Storm',
-  FORCECAGE = 'Forcecage',
-  MIRAGE_ARCANE = 'Mirage Arcane',
-  MORDEKAINENS_MANSION = 'Mordenkainen\'s Magnificent Mansion',
-  MORDEKAINENS_SWORD = 'Mordenkainen\'s Sword',
-  PLANE_SHIFT = 'Plane Shift',
-  PRISMATIC_SPRAY = 'Prismatic Spray',
-  PROJECT_IMAGE = 'Project Image',
-  REGENERATE = 'Regenerate',
-  RESURRECTION = 'Resurrection',
-  REVERSE_GRAVITY = 'Reverse Gravity',
-  SEQUESTER = 'Sequester',
-  SIMULACRUM = 'Simulacrum',
-  SYMBOL = 'Symbol',
-  TELEPORT = 'Teleport'
-}
+import {Spell, SpellSchool} from '../spells';
+import {Level7SpellNames} from './spell-names';
+import {CharacterClassName} from '@app/models';
 
 export const Level7SpellList: Array<Spell> = [
   {

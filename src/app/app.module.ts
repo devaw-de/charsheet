@@ -54,7 +54,7 @@ import {SettingsComponent} from './views/settings/settings.component';
 import {SetXpComponent} from './views/character-sheet/background/set-xp/set-xp.component';
 import {SkillProficiencySelectionComponent} from './views/character-sheet/skills/skill-proficiency-selection/skill-proficiency-selection.component';
 import {SkillsComponent} from './views/character-sheet/skills/skills.component';
-import {SpellListTableComponent} from './components/spell-list-table/spell-list-table.component';
+import {SpellListTableComponent} from './views/character-sheet/spell-list-table/spell-list-table.component';
 import {ToastRendererComponent} from './components/layout/toast-renderer/toast-renderer.component';
 import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';

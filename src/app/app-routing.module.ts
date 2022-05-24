@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {CharacterComponent} from './views/character-sheet/character.component';
-import {SpellListTableComponent} from './components/spell-list-table/spell-list-table.component';
+import {SpellListTableComponent} from './views/character-sheet/spell-list-table/spell-list-table.component';
 import {SettingsComponent} from './views/settings/settings.component';
 import {FaqComponent} from './views/faq/faq.component';
 import {FeedbackComponent} from './views/feedback/feedback.component';

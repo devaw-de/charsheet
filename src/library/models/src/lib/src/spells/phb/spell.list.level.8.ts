@@ -1,25 +1,6 @@
-import {Spell, SpellSchool} from '@app/models';
-
-export enum Level8SpellNames {
-  ANIMAL_SHAPES = 'Animal Shapes',
-  ANTIMAGIC_FIELD = 'Antimagic Field',
-  ANTIPATHY_SYMPATHY = 'Antipathy/Sympathy',
-  CLONE = 'Clone',
-  CONTROL_WEATHER = 'Control Weather',
-  DEMIPLANE = 'Demiplane',
-  DOMINATE_MONSTER = 'Dominate Monster',
-  EARTHQUAKE = 'Earthquake',
-  FEEBLEMIND = 'Feeblemind',
-  GLIBNESS = 'Glibness',
-  HOLY_AURA = 'Holy Aura',
-  INCENDIARY_CLOUD = 'Incendiary Cloud',
-  MAZE = 'Maze',
-  MIND_BLANK = 'Mind Blank',
-  POWER_WORD_STUN = 'Power Word Stun',
-  SUNBURST = 'Sunburst',
-  TELEPATHY = 'Telepathy',
-  TSUNAMI = 'Tsunami'
-}
+import {Spell, SpellSchool} from '../spells';
+import {Level8SpellNames} from './spell-names';
+import {CharacterClassName} from '@app/models';
 
 export const Level8SpellList: Array<Spell> = [
   {

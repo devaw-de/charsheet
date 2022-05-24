@@ -1,53 +1,6 @@
-import {CharacterClassName, Spell, SpellSchool} from '@app/models';
-
-export enum Level4SpellNames {
-  ARCANE_EYE = 'Arcane Eye',
-  AURA_OF_LIFE = 'Aura of Life',
-  AURA_OF_PURITY = 'Aura of Purity',
-  BANISHMENT = 'Banishment',
-  BLIGHT = 'Blight',
-  CHARM_MONSTER = 'Charm Monster',
-  COMPULSION = 'Compulsion',
-  CONFUSION = 'Confusion',
-  CONJURE_MINOR_ELEMENTALS = 'Conjure Minor Elementals',
-  CONJURE_WOODLAND_BEINGS = 'Conjure Woodland Beings',
-  CONTROL_WATER = 'Control Water',
-  DEATH_WARD = 'Death Ward',
-  DIMENSION_DOOR = 'Dimension Door',
-  DIVINATION = 'Divination',
-  DOMINATE_BEAST = 'Dominate Beast',
-  ELEMENTAL_BANE = 'Elemental Bane',
-  EVARDS_BLACK_TENTACLES = 'Evard\'s Black Tentacles',
-  FABRICATE = 'Fabricate',
-  FIND_GREATER_STEED = 'Find Greater Steed',
-  FIRE_SHIELD = 'Fire Shield',
-  FREEDOM_OF_MOVEMENT = 'Freedom of Movement',
-  GIANT_INSECT = 'Giant Insect',
-  GRASPING_VINE = 'Grasping Vine',
-  GREATER_INVISIBILITY = 'Greater Invisibility',
-  GUARDIAN_OF_FAITH = 'Guardian of Faith',
-  GUARDIAN_OF_NATURE = 'Guardian of Nature',
-  HALLUCINATORY_TERRAIN = 'Hallucinatory Terrain',
-  ICE_STORM = 'Ice Storm',
-  LEOMUNDS_SECRET_CHEST = 'Leomund\'s Secret Chest',
-  LOCATE_CREATURE = 'Locate Creature',
-  MORDEKAINENS_FAITHFUL_HOUND = 'Mordenkainen\'s Faithful Hound',
-  MORDEKAINENS_PRIVATE_SANCTUM = 'Mordenkainen\'s Private Sanctum',
-  OTILUKES_RESILIENT_SPHERE = 'Otiluke\'s Resilient Sphere',
-  PHANTASMAL_KILLER = 'Phantasmal Killer',
-  POLYMORPH = 'Polymorph',
-  SHADOW_OF_MOIL = 'Shadow of Moil',
-  SICKENING_RADIANCE = 'Sickening Radiance',
-  STAGGERING_SMITE = 'Staggering Smite',
-  STONE_SHAPE = 'Stone Shape',
-  STONESKIN = 'Stoneskin',
-  STORM_SPHERE = 'Storm Sphere',
-  SUMMON_GREATER_DEMON = 'Summon Greater Demon',
-  VITRIOLIC_SPHERE = 'Vitriolic Sphere',
-  WALL_OF_FIRE = 'Wall of Fire',
-  WATERY_SPHERE = 'Watery Sphere'
-
-}
+import {Spell, SpellSchool} from '../spells';
+import {Level4SpellNames} from './spell-names';
+import {CharacterClassName} from '@app/models';
 
 export const Level4SpellList: Array<Spell> = [
   {

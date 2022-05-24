@@ -1,23 +1,6 @@
-import {Spell, SpellSchool} from '@app/models';
-
-export enum Level9SpellNames {
-  ASTRAL_PROJECTION = 'Astral Projection',
-  FORESIGHT = 'Foresight',
-  GATE = 'Gate',
-  IMPRISONMENT = 'Imprisonment',
-  MASS_HEAL = 'Mass Heal',
-  METEOR_SWARM = 'Meteor Swarm',
-  POWER_WORD_HEAL = 'Power Word Heal',
-  POWER_WORD_KILL = 'Power Word Kill',
-  PRISMATIC_WALL = 'Prismatic Wall',
-  SHAPECHANGE = 'Shapechange',
-  STORM_OF_VENGEANCE = 'Storm of Vengeance',
-  TIME_STOP = 'Time Stop',
-  TRUE_POLYMORPH = 'True Polymorph',
-  TRUE_RESURRECTION = 'True Resurrection',
-  WEIRD = 'Weird',
-  WISH = 'Wish'
-}
+import {Spell, SpellSchool} from '../spells';
+import {CharacterClassName} from '@app/models';
+import {Level9SpellNames} from './spell-names';
 
 export const Level9SpellList: Array<Spell> = [
   {

@@ -1,34 +1,6 @@
-import {Spell, SpellSchool} from '@app/models';
-
-export enum CantripSpellNames {
-  ACID_SPLASH = 'Acid Splash',
-  BLADE_WARD = 'Blade Ward',
-  CHILL_TOUCH = 'Chill Touch',
-  DANCING_LIGHTS = 'Dancing Lights',
-  DRUIDCRAFT = 'Druidcraft',
-  ELDRITCH_BLAST = 'Eldritch Blast',
-  FIRE_BOLT = 'Fire Bolt',
-  FRIENDS = 'Friends',
-  GUIDANCE = 'Guidance',
-  LIGHT = 'Light',
-  MAGE_HAND = 'Mage Hand',
-  MENDING = 'Mending',
-  MESSAGE = 'Message',
-  MINOR_ILLUSION = 'Minor Illusion',
-  POISON_SPRAY = 'Poison Spray',
-  PRESTIDIGITATION = 'Prestidigitation',
-  PRODUCE_FLAME = 'Produce Flame',
-  RAY_OF_FROST = 'Ray of Frost',
-  RESISTANCE = 'Resistance',
-  SACRED_FLAME = 'Sacred Flame',
-  SHILLELAGH = 'Shillelagh',
-  SHOCKING_GRASP = 'Shocking Grasp',
-  SPARE_THE_DYING = 'Spare the Dying',
-  THAUMATURGY = 'Thaumaturgy',
-  THORN_WHIP = 'Thorn Whip',
-  TRUE_STRIKE = 'True Strike',
-  VICIOUS_MOCKERY = 'Vicious Mockery'
-}
+import {Spell, SpellSchool} from '../spells';
+import {CharacterClassName} from '../../characterClasses';
+import {CantripSpellNames} from './spell-names';
 
 export const CantripSpellList: Array<Spell> = [
   {

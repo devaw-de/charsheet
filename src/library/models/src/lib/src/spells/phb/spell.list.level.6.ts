@@ -1,39 +1,6 @@
-import {Spell, SpellSchool} from '@app/models';
-
-export enum Level6SpellNames {
-  ARCANE_GATE = 'Arcane Gate',
-  BLADE_BARRIER = 'Blade Barrier',
-  CHAIN_LIGHTNING = 'Chain Lightning',
-  CIRCLE_OF_DEATH = 'Circle of Death',
-  CONJURE_FEY = 'Conjure Fey',
-  CONTINGENCY = 'Contingency',
-  CREATE_UNDEAD = 'Create Undead',
-  DISINTEGRATE = 'Disintegrate',
-  DRAWMIJS_INSTANT_SUMMONS = 'Drawmij\'s Instant Summons',
-  EYEBITE = 'Eyebite',
-  FIND_THE_PATH = 'Find the Path',
-  FLESH_TO_STONE = 'Flesh to Stone',
-  FORBIDDANCE = 'Forbiddance',
-  GLOBE_OF_INVULNERABILITY = 'Globe of Invulnerability',
-  GUARDS_AND_WARDS = 'Guards and Wards',
-  HARM = 'Harm',
-  HEAL = 'Heal',
-  HEROES_FEAST = 'Heroes\' Feast',
-  MAGIC_JAR = 'Magic Jar',
-  MASS_SUGGESTION = 'Mass Suggestion',
-  MOVE_EARTH = 'Move Earth',
-  OTILUKES_FREEZING_SPHERE = 'Otiluke\'s Freezing Sphere',
-  OTTOS_IRRESISTIBLE_DANCE = 'Otto\'s Irresistible Dance',
-  PLANAR_ALLY = 'Planar Ally',
-  PROGRAMMED_ILLUSION = 'Programmed Illusion',
-  SUNBEAM = 'Sunbeam',
-  TRANSPORT_VIA_PLANTS = 'Transport via Plants',
-  TRUE_SEEING = 'True Seeing',
-  WALL_OF_ICE = 'Wall of Ice',
-  WALL_OF_THORNS = 'Wall of Thorns',
-  WIND_WALK = 'Wind Walk',
-  WORD_OF_RECALL = 'Word of Recall'
-}
+import {Spell, SpellSchool} from '../spells';
+import {Level6SpellNames} from './spell-names';
+import {CharacterClassName} from '@app/models';
 
 export const Level6SpellList: Array<Spell> = [
   {
