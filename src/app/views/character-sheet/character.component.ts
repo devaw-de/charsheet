@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppMenuService, CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
-import {LocalStorageKey, PlayerCharacterData} from '@app/models';
+import {CasterClasses, LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
 
@@ -118,4 +118,7 @@ export class CharacterComponent implements OnInit, AfterViewInit {
     console.warn(this._characterService.getCharacter().appliedRacialBonuses);
   }
 
+  public isCaster(): boolean {
+    return CasterClasses.includes(this.character.className);
+  }
 }

@@ -18,14 +18,16 @@
 	<app-skills class="sub-section" [character]="character"></app-skills>
 	<app-armor-class [character]="character" class="sub-section"></app-armor-class>
 
-	<div class="class-specific-wrap">
+	<div class="class-specific-wrap" [class.caster]="isCaster()">
 		<app-class-special [character]="character" class="sub-section"></app-class-special>
-		<app-hitpoints [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
+		<app-hitpoints *ngIf="!isCaster()" [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
+    <app-death-saving-throws *ngIf="isCaster()" class="section"></app-death-saving-throws>
 	</div>
 
-	<div class="hitdie-wrap">
+	<div class="hitdie-wrap" [class.caster]="isCaster()">
 		<app-hit-dice [hitDice]="character.hitDice" class="sub-section"></app-hit-dice>
-		<app-death-saving-throws class="section"></app-death-saving-throws>
+    <app-hitpoints *ngIf="isCaster()" [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
+		<app-death-saving-throws *ngIf="!isCaster()" class="section"></app-death-saving-throws>
 	</div>
 
 	<app-weapons [weapons]="character.weapons" class="section"></app-weapons>

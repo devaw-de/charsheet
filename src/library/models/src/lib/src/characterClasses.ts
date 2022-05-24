@@ -20,6 +20,16 @@ export enum CharacterClassName {
   WIZARD = 'Wizard'
 }
 
+export const CasterClasses: Array<CharacterClassName> = [
+  CharacterClassName.BARD,
+  CharacterClassName.CLERIC,
+  CharacterClassName.DRUID,
+  CharacterClassName.PALADIN,
+  CharacterClassName.SORCERER,
+  CharacterClassName.WARLOCK,
+  CharacterClassName.WIZARD
+];
+
 export interface CharacterClass {
   name: CharacterClassName;
   hitDie: Dice;
