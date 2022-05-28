@@ -9,6 +9,7 @@ export * from './src/enumHelper';
 export * from './src/fileHelper';
 export * from './src/unitHelper';
 export * from './src/globalConstants';
+export * from './src/spellHelper';
 
 @NgModule({
   declarations: [],
