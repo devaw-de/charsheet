@@ -14,5 +14,5 @@ export * from './src/lib/src/traits';
 export * from './src/lib/src/weapons';
 export * from './src/lib/src/xp';
 export * from './src/lib/src/spells/spells';
-// export * from './src/lib/src/spells/phb/spell-list';
-export * from './src/lib/src/spells/phb/spell-names';
+export * from './src/lib/src/spells/phb-spells/spell-names';
+export * from './src/lib/src/spells/character-classes.index';
