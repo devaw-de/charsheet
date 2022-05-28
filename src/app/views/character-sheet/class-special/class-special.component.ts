@@ -73,10 +73,6 @@ export class ClassSpecialComponent {
     };
   }
 
-  public getFighterFightingStyle(): string {
-    return 'todo: pick a fighting style';
-  }
-
   public getMonkKiPoints(): number {
     return this.character.level > 2 ? this.character.level : 0;
   }
@@ -99,62 +95,6 @@ export class ClassSpecialComponent {
 
   public getSorceryPoints(): number {
     return this.character.level > 1 ? this.character.level : 0;
-  }
-
-  public getRangerSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.wis);
-  }
-
-  public getWarlockSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.cha);
-  }
-
-  public getWizardSpellDc(): number {
-    return 8 + this.character.proficiencies.proficiencyBonus + AbilityHelper.getAbilityModifier(this.character.attributes.int);
-  }
-
-  public getWizardSpellSlots(): Array<number> {
-    switch (this.character.level) {
-      case 1:
-        return [2];
-      case 2:
-        return [3];
-      case 3:
-        return [4, 2];
-      case 4:
-        return [4, 3];
-      case 5:
-        return [4, 3, 2];
-      case 6:
-        return [4, 3, 3];
-      case 7:
-        return [4, 3, 3, 1];
-      case 8:
-        return [4, 3, 3, 2];
-      case 9:
-        return [4, 3, 3, 3, 1];
-      case 10:
-        return [4, 3, 3, 3, 2];
-      case 11:
-      case 12:
-        return [4, 3, 3, 3, 2, 1];
-      case 13:
-      case 14:
-        return [4, 3, 3, 3, 2, 1, 1];
-      case 15:
-      case 16:
-        return [4, 3, 3, 3, 2, 1, 1, 1];
-      case 17:
-        return [4, 3, 3, 3, 2, 1, 1, 1, 1];
-      case 18:
-        return [4, 3, 3, 3, 3, 1, 1, 1, 1];
-      case 19:
-        return [4, 3, 3, 3, 3, 2, 1, 1, 1];
-      case 20:
-        return [4, 3, 3, 3, 3, 2, 2, 1, 1];
-      default:
-        throw new Error('Character level out of bounds');
-    }
   }
 
 }

@@ -1,0 +1,22 @@
+<div class="spell-slot-table">
+  <p>Spell DC: {{ spellDC }}</p>
+  <table>
+    <thead>
+    <tr>
+      <th *ngFor="let level of null; index as i;"
+          [innerText]="i"
+      ></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let level of null; index as i;"
+            [innerText]="level"
+        ></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Spellslots</h2>
+<p>{{characterSpellSlots | json}}</p>

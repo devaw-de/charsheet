@@ -58,6 +58,7 @@ import {SpellListTableComponent} from './views/character-sheet/spell-list-table/
 import {ToastRendererComponent} from './components/layout/toast-renderer/toast-renderer.component';
 import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';
+import {SpellSlotTableComponent} from './views/character-sheet/class-special/spell-slot-table/spell-slot-table.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import {WeaponsComponent} from './views/character-sheet/weapons/weapons.componen
     SpellListTableComponent,
     ToastRendererComponent,
     VitalsComponent,
-    WeaponsComponent
+    WeaponsComponent,
+    SpellSlotTableComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-<table class="spell-list">
+<!--<table class="spell-list">
   <thead>
     <tr>
       <th class="label">Level</th>
@@ -11,4 +11,15 @@
       <td>{{ level }}</td>
     </tr>
   </tbody>
+</table>
+-->
+<table class="spell-list">
+  <tr>
+    <th>Level</th>
+    <td *ngFor="let level of spells; index as i">i</td>
+  </tr>
+  <tr>
+    <th>Slots</th>
+    <td></td>
+  </tr>
 </table>
