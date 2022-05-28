@@ -1,46 +1,50 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
-import {CharacterSkillList, CharacterSkill, PlayerCharacterData, SkillName} from '@app/models';
-import {SkillProficiencySelectionComponent} from './skill-proficiency-selection/skill-proficiency-selection.component';
+import {CharacterSkillList, CharacterSkill, SkillName} from '@app/models';
+import {SkillProficiencySelectionComponent} from '../../../components/modals/skill-proficiency-selection/skill-proficiency-selection.component';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
+import {CharacterService} from '@app/services';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent {
+export class SkillsComponent extends CharacterSheetBaseComponent {
 
   public skills: Array<CharacterSkill> = CharacterSkillList;
-  @Input() character: PlayerCharacterData;
 
   constructor(
+    protected _characterService: CharacterService,
     private _dialogService: DialogService
-  ) {}
+  ) {
+    super(_characterService);
+  }
 
   public getSkillModifier(skill: CharacterSkill): string {
-    const bonus = this.character.proficiencies.proficiencyBonus;
-    const relatedAttribute = this.character.attributes[skill.relatedAttribute.substring(0, 3).toLocaleLowerCase()];
+    const bonus = this._character.proficiencies.proficiencyBonus;
+    const relatedAttribute = this._character.attributes[skill.relatedAttribute.substring(0, 3).toLocaleLowerCase()];
     const attributeModifier = AbilityHelper.getAbilityModifier(relatedAttribute);
-    const skillModifier = this.character.proficiencies.skills.includes(skill.name) ? bonus : 0;
+    const skillModifier = this._character.proficiencies.skills.includes(skill.name) ? bonus : 0;
     // TODO: handle Expertise
 
     return AbilityHelper.formatModifier(attributeModifier + skillModifier);
   }
 
   public isProficient(skillName: SkillName): boolean {
-    return this.character.proficiencies.skills.includes(skillName);
+    return this._character.proficiencies.skills.includes(skillName);
   }
 
   public startSkillProficiencySelection(): void {
     const restrictedSkills = CharacterSkillList.filter(
-      skill => skill.canBeChosenByClass.includes(this.character.className)
+      skill => skill.canBeChosenByClass.includes(this._character.className)
     );
 
     const modal = this._dialogService.open(SkillProficiencySelectionComponent, {
       data: {
         pickableSkills: restrictedSkills ? restrictedSkills : EnumHelper.getSkillList(),
-        selectedSkills: this.character.proficiencies.skills,
+        selectedSkills: this._character.proficiencies.skills,
         maxSelections: 3
       }
     });

@@ -2,30 +2,32 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CharacterService} from 'src/library/services/src/character.service';
 import {Attribute, CharacterClass, PlayerCharacterData} from '@app/models';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-saving-throws',
   templateUrl: './saving-throws.component.html',
   styleUrls: ['./saving-throws.component.scss']
 })
-export class SavingThrowsComponent implements OnInit {
+export class SavingThrowsComponent extends CharacterSheetBaseComponent implements OnInit {
 
   public attributes = EnumHelper.getAttributesList();
-  @Input() character: PlayerCharacterData;
   private _characterClass: CharacterClass;
 
   constructor(
-    private _service: CharacterService
-  ) { }
+    protected _characterService: CharacterService
+  ) {
+    super(_characterService);
+  }
 
   ngOnInit(): void {
-    this._characterClass = this._service.getClass();
+    this._characterClass = this._characterService.getClass();
   }
 
   public getSavingThrowModifier(attribute: Attribute): string {
-    const attributeValue = this.character.attributes[attribute.substring(0, 3).toLowerCase()];
+    const attributeValue = this._character.attributes[attribute.substring(0, 3).toLowerCase()];
     const proficiencyBonus = this._characterClass.proficiencies.savingThrows.includes(attribute)
-                             ? this.character.proficiencies.proficiencyBonus : 0;
+                             ? this._character.proficiencies.proficiencyBonus : 0;
     const attributeBonus = AbilityHelper.getAbilityModifier(attributeValue);
 
     return AbilityHelper.formatModifier(proficiencyBonus + attributeBonus);

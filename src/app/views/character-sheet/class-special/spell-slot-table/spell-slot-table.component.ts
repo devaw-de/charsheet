@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CharacterClassName, CharacterClassSpellSlots, CharacterClassSpellSlotsPerLevel, PlayerCharacterData} from '@app/models';
 import {AbilityHelper, SpellHelper} from '@app/helpers';
+import {CharacterService} from '@app/services';
+import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-spell-slot-table',
   templateUrl: './spell-slot-table.component.html',
   styleUrls: []
 })
-export class SpellSlotTableComponent {
-
-  private _character: PlayerCharacterData;
+export class SpellSlotTableComponent extends CharacterSheetBaseComponent {
 
   @Input() public set character(c: PlayerCharacterData) {
     console.log('c update');
@@ -25,6 +25,11 @@ export class SpellSlotTableComponent {
   public characterSpellSlots: CharacterClassSpellSlotsPerLevel;
   public spellDC: number;
 
+  constructor(
+    protected _characterService: CharacterService
+  ) {
+    super(_characterService);
+  }
 
   private _getSpellDc(): number {
     let castingAbilityModifier: number;

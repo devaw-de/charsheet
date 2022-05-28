@@ -1,11 +1,10 @@
-<ng-container *ngIf="vitals">
   <div class="vitals">
     <ul>
       <li class="interactive">
         <div class="label">Age</div>
         <div #age
              class="value"
-             [innerText]="vitals.age"
+             [innerText]="characterVitals.age"
              (click)="editAge()"
         ></div>
       </li>
@@ -14,7 +13,7 @@
         <div #height
              class="value"
              (click)="editHeight()"
-             [innerText]="vitals.height"
+             [innerText]="characterVitals.height"
         ></div>
       </li>
       <li class="interactive">
@@ -22,7 +21,7 @@
         <div #weight
              class="value"
              (click)="editWeight()"
-             [innerText]="vitals.weight"
+             [innerText]="characterVitals.weight"
         ></div>
       </li>
       <li class="interactive">
@@ -30,7 +29,7 @@
         <div #eyes
              class="value"
              (click)="editEyes()"
-             [innerText]="vitals.eyes"
+             [innerText]="characterVitals.eyes"
         ></div>
       </li>
       <li class="interactive">
@@ -38,7 +37,7 @@
         <div #skin
              class="value"
              (click)="editSkin()"
-             [innerHTML]="vitals.skin"
+             [innerHTML]="characterVitals.skin"
         ></div>
       </li>
       <li class="interactive">
@@ -46,9 +45,8 @@
         <div #hair
              class="value"
              (click)="editHair()"
-             [innerText]="vitals.hair"
+             [innerText]="characterVitals.hair"
         ></div>
       </li>
     </ul>
   </div>
-</ng-container>

@@ -1,6 +1,6 @@
-<div class="class-special" [class]="character.className.toLowerCase() + '-icon'">
+<div class="class-special" [class]="characterClassName.toLowerCase() + '-icon'">
 
-  <ng-container [ngSwitch]="character.className">
+  <ng-container [ngSwitch]="characterClassName">
     <div class="translucent">
       <ng-container *ngSwitchCase="CharacterClassName.BARBARIAN">
         <h4 class="section-header barbarian">Rage</h4>
@@ -63,7 +63,7 @@
       <ng-container *ngSwitchCase="CharacterClassName.WIZARD">
         <h4 class="section-header wizard">Wizard</h4>
         <div class="spell-list">
-          <app-spell-slot-table [character]="character"></app-spell-slot-table>
+          <app-spell-slot-table></app-spell-slot-table>
         </div>
       </ng-container>
     </div>

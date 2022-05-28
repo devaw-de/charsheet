@@ -1,21 +1,19 @@
-<ng-container *ngIf="character">
-  <div class="skills" (click)="startSkillProficiencySelection()">
-    <h4 class="section-header">Skill Proficiencies</h4>
-    <ul>
-      <li *ngFor="let skill of skills"
-          [class.proficient]="isProficient(skill.name)"
-      >
-        <div class="indicator"></div>
-        <div class="modifier"
-            [innerText]="getSkillModifier(skill)"
-        ></div>
-        <div class="label"
-            [innerText]="skill.name"
-        ></div>
-        <div class="attribute"
-            [innerText]="skill.relatedAttribute.substring(0, 3).toUpperCase()"
-        ></div>
-      </li>
-    </ul>
-  </div>
-</ng-container>
+<div class="skills" (click)="startSkillProficiencySelection()">
+  <h4 class="section-header">Skill Proficiencies</h4>
+  <ul>
+    <li *ngFor="let skill of skills"
+        [class.proficient]="isProficient(skill.name)"
+    >
+      <div class="indicator"></div>
+      <div class="modifier"
+          [innerText]="getSkillModifier(skill)"
+      ></div>
+      <div class="label"
+          [innerText]="skill.name"
+      ></div>
+      <div class="attribute"
+          [innerText]="skill.relatedAttribute.substring(0, 3).toUpperCase()"
+      ></div>
+    </li>
+  </ul>
+</div>

@@ -1,6 +1,6 @@
 <div class="notes striped">
-  <ng-container *ngIf="notes.length">
-    <ng-container *ngFor="let note of notes; let i=index">
+  <ng-container *ngIf="characterNotes.length">
+    <ng-container *ngFor="let note of characterNotes; let i=index">
       <div class="single-note"
            [class.odd]="i % 2 !== 0"
            [innerText]="note"

@@ -1,48 +1,48 @@
 <div *ngIf="character" class="sheet">
-	<app-name class="section" [character]="character"></app-name>
+	<app-name class="section"></app-name>
 
 	<div class="upper-wrap">
-		<app-background class="sub-section" [character]="character"></app-background>
-		<app-vitals class="sub-section" [vitals]="character.vitals"></app-vitals>
+		<app-background class="sub-section"></app-background>
+		<app-vitals class="sub-section"></app-vitals>
 	</div>
 
-	<app-attributes [character]="character"></app-attributes>
-	<app-passive-perception [character]="character"></app-passive-perception>
+	<app-attributes></app-attributes>
+	<app-passive-perception></app-passive-perception>
 
 	<div class="inspiration-wrap section-wrapper">
 			<app-inspiration class="section"></app-inspiration>
-			<app-proficiency-bonus class="section" [bonus]="character.proficiencies.proficiencyBonus"></app-proficiency-bonus>
+			<app-proficiency-bonus class="section"></app-proficiency-bonus>
 	</div>
 
-	<app-saving-throws class="sub-section" [character]="character"></app-saving-throws>
-	<app-skills class="sub-section" [character]="character"></app-skills>
-	<app-armor-class [character]="character" class="sub-section"></app-armor-class>
+	<app-saving-throws class="sub-section"></app-saving-throws>
+	<app-skills class="sub-section"></app-skills>
+	<app-armor-class class="sub-section"></app-armor-class>
 
 	<div class="class-specific-wrap" [class.caster]="isCaster()">
-		<app-class-special [character]="character" class="sub-section"></app-class-special>
-		<app-hitpoints *ngIf="!isCaster()" [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
+		<app-class-special class="sub-section"></app-class-special>
+		<app-hitpoints *ngIf="!isCaster()" class="sub-section"></app-hitpoints>
     <app-death-saving-throws *ngIf="isCaster()" class="section"></app-death-saving-throws>
 	</div>
 
 	<div class="hitdie-wrap" [class.caster]="isCaster()">
-		<app-hit-dice [hitDice]="character.hitDice" class="sub-section"></app-hit-dice>
-    <app-hitpoints *ngIf="isCaster()" [hitpoints]="character.hitPoints" class="sub-section"></app-hitpoints>
+		<app-hit-dice class="sub-section"></app-hit-dice>
+    <app-hitpoints *ngIf="isCaster()" class="sub-section"></app-hitpoints>
 		<app-death-saving-throws *ngIf="!isCaster()" class="section"></app-death-saving-throws>
 	</div>
 
-	<app-weapons [weapons]="character.weapons" class="section"></app-weapons>
-	<app-ammunition [ammunition]="character.ammunition" class="section"></app-ammunition>
+	<app-weapons class="section"></app-weapons>
+	<app-ammunition class="section"></app-ammunition>
 
-	<app-extra-profs class="section" [proficiencies]="character.proficiencies"></app-extra-profs>
-	<app-currency class="section" [currency]="character.currency"></app-currency>
-	<app-equipment class="section" [equipment]="character.equipment"></app-equipment>
+	<app-extra-profs class="section"></app-extra-profs>
+	<app-currency class="section"></app-currency>
+	<app-equipment class="section"></app-equipment>
 
 	<div class="notes-wrap">
-		<app-feats class="section" [character]="character"></app-feats>
-		<app-notes class="section" [notes]="character.notes"></app-notes>
+		<app-feats class="section"></app-feats>
+		<app-notes class="section"></app-notes>
 	</div>
 
-	<app-character-history class="section" [character]="character"></app-character-history>
+	<app-character-history class="section"></app-character-history>
 </div>
 
 <input type="file"

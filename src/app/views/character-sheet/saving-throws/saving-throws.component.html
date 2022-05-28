@@ -1,21 +1,18 @@
-<ng-container *ngIf="character">
-  <div class="section saving-throws dice-icon-d20">
-    <h4 class="section-header">Saving Throws</h4>
+<div class="section saving-throws dice-icon-d20">
+  <h4 class="section-header">Saving Throws</h4>
 
-    <ul>
-      <ng-container *ngFor="let attr of attributes">
-        <li class="single-attribute"
-            [class.proficient]="isProficient(attr)">
-          <div class="indicator"></div>
-          <div class="modifier"
-              [innerText]="getSavingThrowModifier(attr)"
-          ></div>
-          <div class="label"
-              [innerText]="attr"
-          ></div>
-        </li>
-      </ng-container>
-
-    </ul>
+  <ul>
+    <ng-container *ngFor="let attr of attributes">
+      <li class="single-attribute"
+          [class.proficient]="isProficient(attr)">
+        <div class="indicator"></div>
+        <div class="modifier"
+            [innerText]="getSavingThrowModifier(attr)"
+        ></div>
+        <div class="label"
+            [innerText]="attr"
+        ></div>
+      </li>
+    </ng-container>
+  </ul>
 </div>
-</ng-container>

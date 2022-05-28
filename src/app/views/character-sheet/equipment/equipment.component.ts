@@ -1,22 +1,26 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {CharacterService} from 'src/library/services/src/character.service';
 import {Equipment} from '@app/models';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-equipment',
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.scss']
 })
-export class EquipmentComponent {
+export class EquipmentComponent extends CharacterSheetBaseComponent {
 
-  @Input() equipment: Equipment;
+  public equipment: Equipment;
 
   constructor(
-    private _service: CharacterService
-  ) {}
+    protected _characterService: CharacterService
+  ) {
+    super(_characterService);
+    this.equipment = { ...this._character.equipment };
+  }
 
   private saveEquipment(): void {
-    this._service.setEquipment(this.equipment);
+    this._characterService.setEquipment(this.equipment);
   }
 
   public equip(itemIndex: number): void {

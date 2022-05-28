@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
 import {EditAlignmentComponent} from './edit-alignment/edit-alignment.component';
@@ -9,29 +9,30 @@ import {SelectSubRaceComponent} from './select-subrace/select-subrace.component'
 import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {ClassHelper} from '@app/helpers';
 import {SetXpComponent} from './set-xp/set-xp.component';
-import {Alignment, CharacterBackground, CharacterClassName, CharacterRace, CharacterSubRaceName, PlayerCharacterData} from '@app/models';
+import {Alignment, CharacterBackground, CharacterClassName, CharacterRace, CharacterSubRaceName} from '@app/models';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-background',
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']
 })
-export class BackgroundComponent {
-
-  @Input() character: PlayerCharacterData;
+export class BackgroundComponent extends CharacterSheetBaseComponent{
 
   constructor(
-    private _service: CharacterService,
+    protected _characterService: CharacterService,
     private _dialogService: DialogService
-    ) {}
+    ) {
+    super(_characterService);
+  }
 
   public editAlignment(): void {
     const modal = this._dialogService.open(EditAlignmentComponent, {
       data: {
-        currentBackground: this.character.alignment
+        currentBackground: this._character.alignment
     }});
     const modalSubscription = modal.afterClosed$.subscribe((alignment: Alignment) => {
-      if (alignment) { this._service.setAlignment(alignment); }
+      if (alignment) { this._characterService.setAlignment(alignment); }
       modalSubscription.unsubscribe();
     });
   }
@@ -39,12 +40,12 @@ export class BackgroundComponent {
   public editExperiencePoints(): void {
     const modal = this._dialogService.open(SetXpComponent, {
       data: {
-        currentValue: this.character.xp,
+        currentValue: this._character.xp,
         minValue: 0,
         maxValue: 355000
     }});
     const modalSubscription = modal.afterClosed$.subscribe((value: number) => {
-      this._service.setXp(value);
+      this._characterService.setXp(value);
       modalSubscription.unsubscribe();
     });
   }
@@ -54,12 +55,12 @@ export class BackgroundComponent {
       size: 'sm',
       data: {
         title: 'Player Name',
-        currentValue: this.character.playerName,
+        currentValue: this._character.playerName,
         minLength: 1,
         maxLength: 200,
     }});
     const modalSubscription = modal.afterClosed$.subscribe(value => {
-      if (value) { this._service.setPlayerName(value); }
+      if (value) { this._characterService.setPlayerName(value); }
       modalSubscription.unsubscribe();
     });
   }
@@ -67,10 +68,10 @@ export class BackgroundComponent {
   public editClass(): void {
     const modal = this._dialogService.open(EditClassComponent, {
       data: {
-        currentClass : this.character.className
+        currentClass : this._character.className
     }});
     const modalSubscription = modal.afterClosed$.subscribe((characterClass: CharacterClassName) => {
-      if (characterClass) { this._service.setClass(characterClass); }
+      if (characterClass) { this._characterService.setClass(characterClass); }
       modalSubscription.unsubscribe();
     });
   }
@@ -78,10 +79,10 @@ export class BackgroundComponent {
   public editBackground(): void {
     const modal = this._dialogService.open(EditBackgroundComponent, {
       data: {
-        currentBackground: this.character.background
+        currentBackground: this._character.background
     }});
     const modalSubscription = modal.afterClosed$.subscribe((background: CharacterBackground) => {
-      if (background) { this._service.setBackground(background); }
+      if (background) { this._characterService.setBackground(background); }
       modalSubscription.unsubscribe();
     });
   }
@@ -89,12 +90,12 @@ export class BackgroundComponent {
   public editRace(): void {
     const raceModal = this._dialogService.open(EditRaceComponent, {
       data: {
-        currentRace: this.character.race
+        currentRace: this._character.race
       }
     });
     const raceModalSubscription = raceModal.afterClosed$.subscribe((race: CharacterRace) => {
       if (race) {
-        this._service.setRace(race);
+        this._characterService.setRace(race);
 
         if (ClassHelper.subRaceSelectionRequired(race)) {
           const subRaceModal = this._dialogService.open(SelectSubRaceComponent, {
@@ -105,7 +106,7 @@ export class BackgroundComponent {
             closeButton: false
           });
           const subRaceModalSubscription = subRaceModal.afterClosed$.subscribe((subRace: CharacterSubRaceName) => {
-            this._service.setSubRace(subRace);
+            this._characterService.setSubRace(subRace);
             subRaceModalSubscription.unsubscribe();
           });
         }

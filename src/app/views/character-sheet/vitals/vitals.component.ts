@@ -3,6 +3,7 @@ import {DialogService} from '@ngneat/dialog';
 import {EditNumberComponent} from 'src/app/components/modals/generic-modals/edit-number/edit-number.component';
 import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {CharacterService} from '@app/services';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 import {CharacterVitals} from '@app/models';
 
 @Component({
@@ -10,19 +11,19 @@ import {CharacterVitals} from '@app/models';
   templateUrl: './vitals.component.html',
   styleUrls: ['./vitals.component.scss']
 })
-export class VitalsComponent {
-
-  @Input() vitals: CharacterVitals;
+export class VitalsComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    private _service: CharacterService,
+    protected _characterService: CharacterService,
     private _dialogService: DialogService
-  ) { }
+  ) {
+    super(_characterService);
+  }
 
   public editAge(): void {
     const config = {
       title: 'Age',
-      currentValue: this.vitals.age
+      currentValue: this._character.vitals.age
     };
     this._editNumberValue(config);
   }
@@ -30,7 +31,7 @@ export class VitalsComponent {
   public editHeight(): void {
     const config = {
       title: 'Height',
-      currentValue: this.vitals.height
+      currentValue: this._character.vitals.height
     };
     this._editNumberValue(config);
   }
@@ -38,7 +39,7 @@ export class VitalsComponent {
   public editWeight(): void {
     const config = {
       title: 'Weight',
-      currentValue: this.vitals.weight
+      currentValue: this._character.vitals.weight
     };
     this._editNumberValue(config);
   }
@@ -46,7 +47,7 @@ export class VitalsComponent {
   public editEyes(): void {
     const config = {
       title: 'Eyes',
-      currentValue: this.vitals.eyes
+      currentValue: this._character.vitals.eyes
     };
     this._editStringValue(config);
   }
@@ -54,7 +55,7 @@ export class VitalsComponent {
   public editHair(): void {
     const config = {
       title: 'Hair',
-      currentValue: this.vitals.hair
+      currentValue: this._character.vitals.hair
     };
     this._editStringValue(config);
   }
@@ -62,7 +63,7 @@ export class VitalsComponent {
   public editSkin(): void {
     const config = {
       title: 'Skin',
-      currentValue: this.vitals.skin
+      currentValue: this._character.vitals.skin
     };
     this._editStringValue(config);
   }
@@ -76,13 +77,13 @@ export class VitalsComponent {
       if (value >= config.minValue && value <= config.maxValue) {
         switch (config.title) {
           case 'Age':
-            this._service.setPartialVitals({age: value});
+            this._characterService.setPartialVitals({age: value});
             break;
           case 'Height':
-            this._service.setPartialVitals({height: value});
+            this._characterService.setPartialVitals({height: value});
             break;
           case 'Weight':
-            this._service.setPartialVitals({weight: value});
+            this._characterService.setPartialVitals({weight: value});
             break;
           default:
             break;
@@ -103,13 +104,13 @@ export class VitalsComponent {
       if (value.length >= config.minLenth && value.length <= config.maxLength) {
         switch (config.title) {
           case 'Eyes':
-            this._service.setPartialVitals({eyes: value});
+            this._characterService.setPartialVitals({eyes: value});
             break;
           case 'Hair':
-            this._service.setPartialVitals({hair: value});
+            this._characterService.setPartialVitals({hair: value});
             break;
           case 'Skin':
-            this._service.setPartialVitals({skin: value});
+            this._characterService.setPartialVitals({skin: value});
             break;
           default:
             break;

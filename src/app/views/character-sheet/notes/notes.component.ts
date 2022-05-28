@@ -1,32 +1,34 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
-import {EditNotesComponent} from './edit-notes/edit-notes.component';
+import {EditNotesComponent} from '../../../components/modals/edit-notes/edit-notes.component';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent {
+export class NotesComponent extends CharacterSheetBaseComponent {
 
-  @Input() notes: Array<string>;
   public lines = Array(30);
 
   constructor(
-    private _service: CharacterService,
+    protected _characterService: CharacterService,
     private _dialogService: DialogService
-  ) {}
+  ) {
+    super(_characterService);
+  }
 
   public editNotes(): void {
     const modal = this._dialogService.open(EditNotesComponent, {
       size: 'lg',
       data: {
-        notes: this.notes
+        notes: this.characterNotes
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((notes: Array<string>) => {
-      if (notes) { this._service.setCharacterNotes(notes); }
+      if (notes) { this._characterService.setCharacterNotes(notes); }
       modalSubscription.unsubscribe();
     });
   }

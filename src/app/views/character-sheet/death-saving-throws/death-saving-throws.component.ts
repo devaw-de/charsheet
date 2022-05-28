@@ -1,13 +1,14 @@
 import {Component} from '@angular/core';
 import {DeathSavingThrowState, InitialSavingTrowState, PlayerCharacterData} from '@app/models';
 import {CharacterService} from '@app/services';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-death-saving-throws',
   templateUrl: './death-saving-throws.component.html',
   styleUrls: ['./death-saving-throws.component.scss']
 })
-export class DeathSavingThrowsComponent {
+export class DeathSavingThrowsComponent extends CharacterSheetBaseComponent {
 
   public savingThrows: DeathSavingThrowState;
 
@@ -16,8 +17,10 @@ export class DeathSavingThrowsComponent {
   }
 
   constructor(
-    private _characterService: CharacterService
+    protected _characterService: CharacterService
   ) {
+    super(_characterService);
+
     const character: PlayerCharacterData = this._characterService.getCharacter();
     this.savingThrows = character.deathSavingThrows
                         ? character.deathSavingThrows

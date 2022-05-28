@@ -1,12 +1,22 @@
 import {Component, Input} from '@angular/core';
+import {CharacterService} from '@app/services';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-proficiency-bonus',
   templateUrl: './proficiency-bonus.component.html',
   styleUrls: ['./proficiency-bonus.component.scss']
 })
-export class ProficiencyBonusComponent {
+export class ProficiencyBonusComponent extends CharacterSheetBaseComponent {
 
-  @Input() bonus: number;
+  public get bonus(): number {
+    return this._character.proficiencies.proficiencyBonus;
+  }
+
+  constructor(
+    protected _characterService: CharacterService
+  ) {
+    super(_characterService);
+  }
 
 }

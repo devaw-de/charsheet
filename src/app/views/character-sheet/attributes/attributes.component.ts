@@ -1,25 +1,25 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
-import {Attribute, PlayerCharacterData, PointBuyDTO} from '@app/models';
+import {Attribute, PointBuyDTO} from '@app/models';
 import {PointBuyComponent} from './point-buy/point-buy.component';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-attributes',
   templateUrl: './attributes.component.html',
   styleUrls: ['./attributes.component.scss']
 })
-export class AttributesComponent {
+export class AttributesComponent extends CharacterSheetBaseComponent {
 
-  @Input() character: PlayerCharacterData;
   public attributesList: Array<Attribute> = [];
 
   constructor(
-    private _service: CharacterService,
-    private _dialog: DialogService
+    protected _characterService: CharacterService,
+    private _dialogService: DialogService
   ) {
-
+    super(_characterService);
     this.attributesList = EnumHelper.getAttributesList();
   }
 
@@ -28,15 +28,15 @@ export class AttributesComponent {
   }
 
   public startPointBuy(): void {
-    const modal = this._dialog.open(PointBuyComponent, {
+    const modal = this._dialogService.open(PointBuyComponent, {
       data: {
-        character: this.character
+        character: this._character
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
       if (result) {
-        this._service.setAttributes(result.attributes);
-        this._service.setAppliedRacialBonuses(result.racialBonus);
+        this._characterService.setAttributes(result.attributes);
+        this._characterService.setAppliedRacialBonuses(result.racialBonus);
       }
       modalSubscription.unsubscribe();
     });

@@ -1,19 +1,20 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {CharacterService} from '@app/services';
-import {CharacterTraits, PlayerCharacterData} from '@app/models';
+import {CharacterTraits} from '@app/models';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-feats',
   templateUrl: './feats.component.html',
   styleUrls: ['../notes/notes.component.scss']
 })
-export class FeatsComponent {
-
-  @Input() character: PlayerCharacterData;
+export class FeatsComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    private _characterService: CharacterService
-  ) {}
+    protected _characterService: CharacterService
+  ) {
+    super(_characterService);
+  }
 
   public getFeats(): Array<CharacterTraits> {
     return this._characterService.getCharacterFeats();

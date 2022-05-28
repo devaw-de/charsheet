@@ -1,34 +1,34 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditTextComponent} from 'src/app/components/modals/generic-modals/edit-text/edit-text.component';
 import {CharacterService} from '@app/services';
-import {PlayerCharacterData} from '@app/models';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-character-history',
   templateUrl: './character-history.component.html',
   styleUrls: ['./character-history.component.scss']
 })
-export class CharacterHistoryComponent {
-
-  @Input() character: PlayerCharacterData;
+export class CharacterHistoryComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    private _service: CharacterService,
-    private _dialog: DialogService
-  ) { }
+    protected _characterService: CharacterService,
+    private _dialogService: DialogService
+  ) {
+    super(_characterService);
+  }
 
   edit(): void {
-    const modal = this._dialog.open(EditTextComponent, {
+    const modal = this._dialogService.open(EditTextComponent, {
       data: {
         title: 'Character Background',
-        value: this.character.history ? this.character.history : '',
+        value: this._character.history ? this._character.history : '',
         minLength: 0,
         maxLength: 999999
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe(result => {
-      this._service.setHistory(result);
+      this._characterService.setHistory(result);
       modalSubscription.unsubscribe();
     });
   }

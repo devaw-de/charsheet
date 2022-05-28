@@ -1,22 +1,22 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {CharacterService} from '@app/services';
-import {PlayerCharacterData} from '@app/models';
+import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
 @Component({
   selector: 'app-name',
   templateUrl: './name.component.html',
   styleUrls: ['./name.component.scss']
 })
-export class NameComponent {
-
-  @Input() character: PlayerCharacterData;
+export class NameComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    private _service: CharacterService,
+    protected _characterService: CharacterService,
     private _dialog: DialogService
-  ) { }
+  ) {
+    super(_characterService);
+  }
 
   public edit(): void {
     const modal = this._dialog.open(EditStringComponent, {
@@ -24,11 +24,11 @@ export class NameComponent {
         title: 'Name your Character',
         minLength: 1,
         maxLength: 99,
-        currentValue: this.character.name
+        currentValue: this._character.name
       }
     });
     const modalSubscription = modal.afterClosed$.subscribe((value: string) => {
-      if (value) { this._service.setCharacterName(value); }
+      if (value) { this._characterService.setCharacterName(value); }
       modalSubscription.unsubscribe();
     });
   }

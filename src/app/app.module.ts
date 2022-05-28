@@ -24,8 +24,8 @@ import {DieRollComponent} from './components/modals/die-roll/die-roll.component'
 import {EditAlignmentComponent} from './views/character-sheet/background/edit-alignment/edit-alignment.component';
 import {EditBackgroundComponent} from './views/character-sheet/background/edit-background/edit-background.component';
 import {EditClassComponent} from './views/character-sheet/background/edit-class/edit-class.component';
-import {EditCurrencyComponent} from './views/character-sheet/currency/edit-currency/edit-currency.component';
-import {EditNotesComponent} from './views/character-sheet/notes/edit-notes/edit-notes.component';
+import {EditCurrencyComponent} from './components/modals/edit-currency/edit-currency.component';
+import {EditNotesComponent} from './components/modals/edit-notes/edit-notes.component';
 import {EditNumberComponent} from './components/modals/generic-modals/edit-number/edit-number.component';
 import {EditRaceComponent} from './views/character-sheet/background/edit-race/edit-race.component';
 import {EditStringComponent} from './components/modals/generic-modals/edit-string/edit-string.component';
@@ -52,13 +52,14 @@ import {SavingThrowsComponent} from './views/character-sheet/saving-throws/savin
 import {SelectSubRaceComponent} from './views/character-sheet/background/select-subrace/select-subrace.component';
 import {SettingsComponent} from './views/settings/settings.component';
 import {SetXpComponent} from './views/character-sheet/background/set-xp/set-xp.component';
-import {SkillProficiencySelectionComponent} from './views/character-sheet/skills/skill-proficiency-selection/skill-proficiency-selection.component';
+import {SkillProficiencySelectionComponent} from './components/modals/skill-proficiency-selection/skill-proficiency-selection.component';
 import {SkillsComponent} from './views/character-sheet/skills/skills.component';
 import {SpellListTableComponent} from './views/character-sheet/spell-list-table/spell-list-table.component';
 import {ToastRendererComponent} from './components/layout/toast-renderer/toast-renderer.component';
 import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';
 import {SpellSlotTableComponent} from './views/character-sheet/class-special/spell-slot-table/spell-slot-table.component';
+import {CharacterSheetBaseComponent} from './views/character-sheet/_base/character-sheet-base.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import {SpellSlotTableComponent} from './views/character-sheet/class-special/spe
     ToastRendererComponent,
     VitalsComponent,
     WeaponsComponent,
-    SpellSlotTableComponent
+    SpellSlotTableComponent,
+    CharacterSheetBaseComponent
   ],
   imports: [
     CommonModule,
