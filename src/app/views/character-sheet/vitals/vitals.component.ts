@@ -1,10 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditNumberComponent} from 'src/app/components/modals/generic-modals/edit-number/edit-number.component';
 import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
-import {CharacterVitals} from '@app/models';
 
 @Component({
   selector: 'app-vitals',
