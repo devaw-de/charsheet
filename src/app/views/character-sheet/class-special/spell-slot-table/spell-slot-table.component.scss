@@ -1,0 +1,31 @@
+.spell-slot-table {
+  width: 100%;
+  align-self: flex-end;
+  border-collapse: collapse;
+  text-align: center;
+
+  tr {
+    td, th {
+      border-right: 1px solid var(--border-color);
+    }
+
+    th {
+      width: 10%;
+    }
+
+    td{
+      width: 10%
+    ;
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+
+    &:first-of-type {
+      td, th {
+        border-bottom: 1px solid var(--border-color);
+        color: var(--border-color-dark);
+      }
+    }
+  }
+}

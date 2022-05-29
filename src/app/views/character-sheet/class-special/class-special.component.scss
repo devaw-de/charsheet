@@ -3,6 +3,14 @@
   background-size: 5rem;
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
+
+  .translucent > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
 
   .ki-points,
   .rages,
@@ -14,6 +22,32 @@
 
   .expertise {
     margin-top: .5rem;
+  }
+
+  &.wizard-icon {
+    app-spell-slot-table {
+      width: 100%;
+      display: flex;
+      justify-self: flex-end !important;
+      padding-bottom: .5rem;
+    }
+  }
+
+  .spell-book-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3rem;
+    height: 4rem;
+    max-height: 4rem;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+
+    &:hover {
+      filter: drop-shadow(0 0 1px crimson);
+    }
   }
 
 }

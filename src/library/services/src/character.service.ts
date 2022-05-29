@@ -4,36 +4,45 @@ import {LanguagePickerComponent} from '../../../app/components/modals/language-p
 import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/point-buy/point-buy.component';
 import {
   Alignment,
+  BardSpellSlotsMap,
+  CharacterAttributes,
   CharacterBackground,
   CharacterBackgroundsList,
-  CharacterClassLevelList,
-  CharacterAttributes,
-  CharacterVitals,
-  DefaultCharacter,
-  Equipment,
-  HitPoints,
-  Currency,
   CharacterClass,
   CharacterClassesList,
+  CharacterClassLevelList,
   CharacterClassName,
   CharacterRace,
   CharacterRacesList,
   CharacterSubRaceName,
   CharacterSubRacesList,
   CharacterTraits,
+  CharacterVitals,
+  ClericSpellSlotsMap,
+  Currency,
+  DeathSavingThrowState,
+  DefaultCharacter,
+  Dice,
+  DruidSpellSlotsMap,
+  Equipment,
+  HitPoints,
+  Language,
   LevelLimits,
   LevelUpStrategy,
-  Dice,
-  Language,
+  LocalStorageKey,
   OptionalCharacterAttributes,
+  PaladinSpellSlotsMap,
   PlayerCharacterData,
   PointBuyDTO,
+  RangerSpellSlotsMap, RestType,
   SkillName,
-  Tool, LocalStorageKey, DeathSavingThrowState,
+  SorcererSpellSlotsMap,
+  Tool, WizardSpellSlotsMap,
 } from '@app/models';
 import {SettingsService} from './settings.service';
 import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
 import {BehaviorSubject} from 'rxjs';
+import {JsonHelper} from '../../helpers/src/jsonHelper';
 
 @Injectable({
   providedIn: 'root',
@@ -46,21 +55,28 @@ import {BehaviorSubject} from 'rxjs';
   constructor(
     private _dialogService: DialogService,
     private _settingsService: SettingsService
-  ) {  }
+  ) {
+    this._readCharacterFromStorage();
+  }
 
-  /**
-   * Try and load a character from localStorage
-   */
-  public readCharacterFromStorage(): void {
+  private _readCharacterFromStorage(): void {
+    console.log('reading from LS');
+
     try {
-      this._character.next(JSON.parse(localStorage.getItem(LocalStorageKey.CHARACTER)));
+      const character = JsonHelper.parseCharacter(localStorage.getItem(LocalStorageKey.CHARACTER));
+      console.log(character);
+      this._character.next(character);
     } catch (e) {
       console.warn(e);
+      this._character.next(DefaultCharacter);
     }
   }
 
   public saveCharacterToStorage(): void {
-    localStorage.setItem(LocalStorageKey.CHARACTER, JSON.stringify(this._character.value));
+    localStorage.setItem(
+      LocalStorageKey.CHARACTER,
+      JsonHelper.stringifyCharacter(this._character.value)
+    );
   }
 
   public getCharacter(): PlayerCharacterData {
@@ -226,11 +242,44 @@ import {BehaviorSubject} from 'rxjs';
   public setClass(className: CharacterClassName): void {
     this._character.next({
       ...this._character.value,
-      className: className
+      className: className,
+      spellSlots: this._getSpellSlots(className)
     });
     this._adjustSavingThrows();
     this._adjustHitPoints();
     this._adjustArmorClass();
+  }
+
+  private _getSpellSlots(className: CharacterClassName): Map<number, number> {
+    let slots: Map<number, Map<number, number>>;
+
+    switch (className) {
+      case CharacterClassName.BARD:
+        slots = new Map(BardSpellSlotsMap);
+        break;
+      case CharacterClassName.CLERIC:
+        slots = new Map(ClericSpellSlotsMap);
+        break;
+      case CharacterClassName.DRUID:
+        slots = new Map(DruidSpellSlotsMap);
+        break;
+      case CharacterClassName.PALADIN:
+        slots = new Map(PaladinSpellSlotsMap);
+        break;
+      case CharacterClassName.RANGER:
+        slots = new Map(RangerSpellSlotsMap);
+        break;
+      case CharacterClassName.SORCERER:
+        slots = new Map(SorcererSpellSlotsMap);
+        break;
+      case CharacterClassName.WIZARD:
+        slots = new Map(WizardSpellSlotsMap);
+        break;
+      default:
+        return null;
+    }
+
+    return slots.get(this._character.value.level);
   }
 
   public setCurrency(currency: Currency): void {
@@ -325,6 +374,7 @@ import {BehaviorSubject} from 'rxjs';
    * TODO: handle level up
    */
   public setXp(xp: number): void {
+    console.log('setting xp');
     this._character.next({
       ...this._character.value,
       xp: xp
@@ -561,6 +611,20 @@ import {BehaviorSubject} from 'rxjs';
       ...this._character.value,
       vitals: characterVitals
     });
+  }
+
+  public setCurrentSpellSlots(level, remainingSlots): void {
+    const spellSlots = new Map(this._character.value.spellSlots);
+    spellSlots.set(level, remainingSlots);
+
+    this._character.next({
+      ...this._character.value,
+      spellSlots: spellSlots
+    });
+  }
+
+  public applyRestEffects(restType: RestType): void {
+    console.log('short/long rest NYI', restType);
   }
 
  }

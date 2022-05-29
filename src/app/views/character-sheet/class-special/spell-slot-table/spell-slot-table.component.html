@@ -1,22 +1,14 @@
-<div class="spell-slot-table">
-  <p>Spell DC: {{ spellDC }}</p>
-  <table>
-    <thead>
-    <tr>
-      <th *ngFor="let level of null; index as i;"
-          [innerText]="i"
-      ></th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td *ngFor="let level of null; index as i;"
-            [innerText]="level"
-        ></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h2>Spellslots</h2>
-<p>{{characterSpellSlots | json}}</p>
+<table class="spell-slot-table">
+  <tr>
+    <th scope="row">Level</th>
+    <td *ngFor="let spellLevel of characterSpellSlots | keyvalue"
+    >{{ spellLevel.key }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Spells</th>
+    <td *ngFor="let spellLevel of characterSpellSlots | keyvalue"
+       class="interactive"
+       (click)="reduceSpellSlots(spellLevel.key)"
+    >{{ spellLevel.value }}</td>
+  </tr>
+</table>

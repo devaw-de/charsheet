@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
-import {CharacterClassName, PlayerCharacterData} from '@app/models';
+import {CharacterClassName} from '@app/models';
 import {AbilityHelper} from '@app/helpers';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 import {CharacterService} from '@app/services';
+import {SpellBookComponent} from '../../../components/modals/spell-book/spell-book.component';
+import {DialogService} from '@ngneat/dialog';
 
 @Component({
   selector: 'app-class-special',
@@ -14,7 +16,8 @@ export class ClassSpecialComponent extends CharacterSheetBaseComponent {
   CharacterClassName = CharacterClassName;
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    private _dialogService: DialogService
   ) {
     super(_characterService);
   }
@@ -99,6 +102,10 @@ export class ClassSpecialComponent extends CharacterSheetBaseComponent {
 
   public getSorceryPoints(): number {
     return this._character.level > 1 ? this._character.level : 0;
+  }
+
+  public openSpellBook(): void {
+    this._dialogService.open(SpellBookComponent);
   }
 
 }
