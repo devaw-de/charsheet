@@ -1,5 +1,6 @@
 import {PlayerCharacterData} from '@app/models';
 import {GlobalConstants} from './globalConstants';
+import {JsonHelper} from './jsonHelper';
 
 export class FileHandlerError extends Error {
   constructor(errorMessage: string = 'Unknown FileHandler Error') {
@@ -50,7 +51,7 @@ export class FileHelper {
 
   public static parseFileContent(file: string): PlayerCharacterData {
     console.log(file);
-    return JSON.parse(file);
+    return JsonHelper.parseCharacter(file);
   }
 
 }
