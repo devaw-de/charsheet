@@ -43,7 +43,6 @@ BardSpellSlotsMap.set(18, WizardSpellSlotsCharacterLevel18);
 BardSpellSlotsMap.set(19, WizardSpellSlotsCharacterLevel19);
 BardSpellSlotsMap.set(20, WizardSpellSlotsCharacterLevel20);
 
-
 export function BardSpellsKnownPerLevel(level: number): number {
   if (level < 1 || level > 20) {
     return 0;
