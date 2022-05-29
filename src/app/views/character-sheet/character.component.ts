@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppMenuService, CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
-import {CasterClasses, LocalStorageKey, PlayerCharacterData} from '@app/models';
+import {LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
 import {CharacterSheetBaseComponent} from './_base/character-sheet-base.component';
