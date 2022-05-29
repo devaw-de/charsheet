@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CharacterService} from 'src/library/services/src/character.service';
-import {Attribute, CharacterClass, PlayerCharacterData} from '@app/models';
+import {Attribute, CharacterClass} from '@app/models';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 

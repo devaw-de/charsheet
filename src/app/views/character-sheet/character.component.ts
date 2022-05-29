@@ -1,16 +1,18 @@
-import {AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppMenuService, CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
 import {CasterClasses, LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
+import {CharacterSheetBaseComponent} from './_base/character-sheet-base.component';
+import {JsonHelper} from '../../../library/helpers/src/jsonHelper';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.scss']
 })
-export class CharacterComponent implements OnInit, AfterViewInit {
+export class CharacterComponent extends CharacterSheetBaseComponent implements AfterViewInit {
 
   public character: PlayerCharacterData;
 
@@ -18,17 +20,13 @@ export class CharacterComponent implements OnInit, AfterViewInit {
   @ViewChild('menuTemplate') menuTemplate: TemplateRef<HTMLUListElement>;
 
   constructor(
+    protected _characterService: CharacterService,
     private _router: Router,
-    private _characterService: CharacterService,
     private _toastService: ToastService,
     private _settingsService: SettingsService,
     private _menuService: AppMenuService
   ) {
-    this.character = this._characterService.getCharacter();
-  }
-
-  ngOnInit(): void {
-    this._loadCharacter();
+    super(_characterService);
   }
 
   ngAfterViewInit(): void {
@@ -44,7 +42,7 @@ export class CharacterComponent implements OnInit, AfterViewInit {
     const fileName = this.character.name.toLowerCase().trim().replace(/\s/g, '_');
 
     try {
-      const blob = new Blob([JSON.stringify(this.character)], {type: GlobalConstants.fileBlobParams});
+      const blob = new Blob([JsonHelper.stringifyCharacter(this.character)], {type: GlobalConstants.fileBlobParams});
       saveAs(blob, fileName + fileExtension);
     } catch (e) {
       this._toastService.show({
@@ -83,7 +81,6 @@ export class CharacterComponent implements OnInit, AfterViewInit {
         timeOut: GlobalConstants.defaultToastDuration
       });
     }
-
   }
 
   public saveCharacter(): void {
@@ -95,30 +92,8 @@ export class CharacterComponent implements OnInit, AfterViewInit {
     return !!localStorage.getItem(LocalStorageKey.CHARACTER);
   }
 
-  private _loadCharacter(): void {
-    this._settingsService.readSettingsFromStorage();
-    this._characterService.readCharacterFromStorage();
-    this.character = this._characterService.getCharacter();
-  }
-
   public clearLocalData(): void {
     localStorage.clear();
   }
 
-  public test(): void {
-    const str = this._characterService.getCharacter().attributes.str;
-    const dex = this._characterService.getCharacter().attributes.dex;
-    const con = this._characterService.getCharacter().attributes.con;
-    const int = this._characterService.getCharacter().attributes.int;
-    const wis = this._characterService.getCharacter().attributes.wis;
-    const cha = this._characterService.getCharacter().attributes.cha;
-
-    console.warn('Attributes: ' + str + '/' + dex + '/' + con + '/' + int + '/' + wis + '/' + cha);
-    console.warn('AppliedRacialstuff');
-    console.warn(this._characterService.getCharacter().appliedRacialBonuses);
-  }
-
-  public isCaster(): boolean {
-    return CasterClasses.includes(this.character.className);
-  }
 }

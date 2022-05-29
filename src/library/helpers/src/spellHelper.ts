@@ -1,7 +1,6 @@
 import {
   BardSpellSlotsMap,
   CharacterClassName,
-  CharacterClassSpellSlotsPerLevel,
   ClericSpellSlotsMap,
   DruidSpellSlotsMap,
   PaladinSpellSlotsMap,
@@ -12,22 +11,22 @@ import {
 
 export class SpellHelper {
 
-  public static getSpellSlots(characterClass: CharacterClassName, characterLevel: number): CharacterClassSpellSlotsPerLevel {
+  public static getMaxSpellSlots(characterClass: CharacterClassName, characterLevel: number): Map<number, number> {
     switch (characterClass) {
       case CharacterClassName.BARD:
-        return BardSpellSlotsMap.get(characterLevel);
+        return new Map(BardSpellSlotsMap.get(characterLevel));
       case CharacterClassName.CLERIC:
-        return ClericSpellSlotsMap.get(characterLevel);
+        return new Map(ClericSpellSlotsMap.get(characterLevel));
       case CharacterClassName.DRUID:
-        return DruidSpellSlotsMap.get(characterLevel);
+        return new Map(DruidSpellSlotsMap.get(characterLevel));
       case CharacterClassName.PALADIN:
-        return PaladinSpellSlotsMap.get(characterLevel);
+        return new Map(PaladinSpellSlotsMap.get(characterLevel));
       case CharacterClassName.RANGER:
-        return RangerSpellSlotsMap.get(characterLevel);
+        return new Map(RangerSpellSlotsMap.get(characterLevel));
       case CharacterClassName.SORCERER:
-        return SorcererSpellSlotsMap.get(characterLevel);
+        return new Map(SorcererSpellSlotsMap.get(characterLevel));
       case CharacterClassName.WIZARD:
-        return WizardSpellSlotsMap.get(characterLevel);
+        return new Map(WizardSpellSlotsMap.get(characterLevel));
       default:
         return null;
     }

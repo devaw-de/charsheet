@@ -7,7 +7,7 @@ import {Ammunition, Weapon, WeaponType} from './weapons';
 import {Language} from './language';
 import {Dice} from './dice';
 import {Alignment} from './alignments';
-import {SpellSlots, SpellBook} from './spells/spells';
+import {SpellBook} from './spells/spells';
 
 export enum CharacterSpecialization {
   NONE = 'NONE'
@@ -100,7 +100,7 @@ export interface PlayerCharacterData {
   vitals: CharacterVitals;
   weapons: Array<Weapon>;
   xp: number;
-  spellSlots?: SpellSlots;
+  spellSlots?: Map<number, number>;
   spellBook?: SpellBook;
 }
 

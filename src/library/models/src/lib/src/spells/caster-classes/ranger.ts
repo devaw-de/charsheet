@@ -20,9 +20,8 @@ import {
   PaladinSpellSlotsCharacterLevel19,
   PaladinSpellSlotsCharacterLevel20
 } from './paladin';
-import {CharacterClassSpellSlots, CharacterClassSpellSlotsPerLevel} from '@app/models';
 
-export const RangerSpellSlotsMap = new Map<number, CharacterClassSpellSlotsPerLevel>();
+export const RangerSpellSlotsMap = new Map<number, Map<number, number>>();
 RangerSpellSlotsMap.set(1, PaladinSpellSlotsCharacterLevel1);
 RangerSpellSlotsMap.set(2, PaladinSpellSlotsCharacterLevel2);
 RangerSpellSlotsMap.set(3, PaladinSpellSlotsCharacterLevel3);

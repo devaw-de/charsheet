@@ -19,7 +19,7 @@ export class BackgroundSelectionComponent {
   constructor(
     private _service: CharacterService
   ) {
-    this.character = this._service.getCharacter();
+    // this.character = this._service.getCharacter();
   }
 
   public onBackgroundSelection(event: CharacterBackgroundDetails): void {

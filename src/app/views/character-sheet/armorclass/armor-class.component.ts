@@ -11,10 +11,6 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
 })
 export class ArmorClassComponent extends CharacterSheetBaseComponent {
 
-  public get characterAc(): number {
-    return this._character.ac;
-  }
-
   public get initiative(): string {
     return AbilityHelper.getAbilityModifierAsString(this._character.attributes.dex);
   }

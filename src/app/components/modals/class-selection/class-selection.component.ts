@@ -14,7 +14,7 @@ export class ClassSelectionComponent {
   constructor(
     private _service: CharacterService
   ) {
-    this.character = this._service.getCharacter();
+    // this.character = this._service.getCharacter();
   }
 
 }

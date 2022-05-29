@@ -23,8 +23,6 @@ export enum SpellSchool {
   TRANSMUTATION = 'Transmutation'
 }
 
-export type SpellLevel =  0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-
 export type SpellNames = CantripSpellNames
     | Level1SpellNames
     | Level2SpellNames
@@ -38,7 +36,7 @@ export type SpellNames = CantripSpellNames
 
 export interface Spell {
   name: SpellNames;
-  level: SpellLevel;
+  level: number;
   school: SpellSchool;
   ritual: boolean;
   concentration: boolean;
@@ -49,10 +47,6 @@ export interface SpellSlotsPerLevel {
   max: number;
   current: number;
 }
-
-export type SpellSlots = {
-  [key in SpellLevel]: SpellSlotsPerLevel;
-};
 
 export interface SpellBookPerLevel {
   learned: Array<Spell>;
@@ -70,16 +64,4 @@ export interface SpellBook {
   level7?: SpellBookPerLevel;
   level8?: SpellBookPerLevel;
   level9?: SpellBookPerLevel;
-}
-
-export interface CharacterClassSpellSlotsPerLevel {
-  spellLevel1?: number;
-  spellLevel2?: number;
-  spellLevel3?: number;
-  spellLevel4?: number;
-  spellLevel5?: number;
-  spellLevel6?: number;
-  spellLevel7?: number;
-  spellLevel8?: number;
-  spellLevel9?: number;
 }

@@ -45,7 +45,11 @@ export class SettingsService {
     this._settingsSubject.next(settings);
   }
 
-  public readSettingsFromStorage(): void {
+  constructor() {
+    this._readSettingsFromStorage();
+  }
+
+  private _readSettingsFromStorage(): void {
     try {
       const settings = JSON.parse(localStorage.getItem(LocalStorageKey.SETTINGS));
       if (settings) { this._settingsSubject.next(settings); }

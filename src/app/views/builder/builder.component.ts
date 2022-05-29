@@ -26,7 +26,7 @@ export class BuilderComponent {
     private _service: CharacterService
   ) {
     this._service.createNewCharacter();
-    this.character = this._service.getCharacter();
+    // this.character = this._service.getCharacter();
     this.availableClasses = EnumHelper.getClassesList();
     this.availableRaces = EnumHelper.getRacesList();
   }
