@@ -1,8 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
-import {CharacterService} from '@app/services';
 import {Subscription} from 'rxjs';
+import {CharacterService} from '@app/services';
 import {
-  Alignment, CharacterAttributes,
+  Alignment,
+  CasterClasses,
+  CharacterAttributes,
   CharacterBackground,
   CharacterClassName,
   CharacterRace,
@@ -11,6 +13,7 @@ import {
   Currency,
   PlayerCharacterData
 } from '@app/models';
+import {AbilityHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-character-base',
@@ -20,6 +23,10 @@ export class CharacterSheetBaseComponent implements OnDestroy {
 
   protected _characterSubscription: Subscription;
   protected _character: PlayerCharacterData;
+
+  public get characterLoaded(): boolean {
+    return !!this._character;
+  }
 
   public get characterAc(): number {
     return this._character.ac;
@@ -53,6 +60,10 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     return this._character.history ?? '';
   }
 
+  public get isCaster(): boolean {
+    return CasterClasses.includes(this._character.className);
+  }
+
   public get characterLevel(): number {
     return this._character.level;
   }
@@ -77,6 +88,38 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     return this._character.subRace;
   }
 
+  public get spellAttackModifier(): string {
+    return '+X';
+  }
+
+  public get spellDc(): number {
+    let castingAbilityModifier: number;
+
+    switch (this._character.className) {
+      case CharacterClassName.BARD:
+      case CharacterClassName.PALADIN:
+      case CharacterClassName.SORCERER:
+      case CharacterClassName.WARLOCK:
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.cha);
+        break;
+      case CharacterClassName.CLERIC:
+      case CharacterClassName.DRUID:
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.wis);
+        break;
+      case CharacterClassName.WIZARD:
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.int);
+        break;
+      default:
+        return 0;
+    }
+
+    return 8 + this._character.proficiencies.proficiencyBonus + castingAbilityModifier;
+  }
+
+  public get characterSpellSlots(): Map<number, number> {
+    return this._character.spellSlots;
+  }
+
   public get characterVitals(): CharacterVitals {
     return this._character.vitals;
   }
@@ -89,7 +132,10 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     protected _characterService: CharacterService
   ) {
     this._characterSubscription = this._characterService.character$.subscribe(
-      (c) => this._character = c
+      (c) => {
+        this._character = c;
+        console.log('char updated', c);
+      }
     );
   }
 
