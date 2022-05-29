@@ -60,6 +60,9 @@ import {VitalsComponent} from './views/character-sheet/vitals/vitals.component';
 import {WeaponsComponent} from './views/character-sheet/weapons/weapons.component';
 import {SpellSlotTableComponent} from './views/character-sheet/class-special/spell-slot-table/spell-slot-table.component';
 import {CharacterSheetBaseComponent} from './views/character-sheet/_base/character-sheet-base.component';
+import {SpellStatsComponent} from './views/character-sheet/class-special/spell-stats/spell-stats.component';
+import {SpellBookComponent} from './components/modals/spell-book/spell-book.component';
+import {RestComponent} from './components/modals/rest/rest.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +121,10 @@ import {CharacterSheetBaseComponent} from './views/character-sheet/_base/charact
     VitalsComponent,
     WeaponsComponent,
     SpellSlotTableComponent,
-    CharacterSheetBaseComponent
+    CharacterSheetBaseComponent,
+    SpellStatsComponent,
+    SpellBookComponent,
+    RestComponent
   ],
   imports: [
     CommonModule,

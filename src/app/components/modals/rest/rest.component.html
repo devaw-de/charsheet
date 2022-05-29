@@ -1,0 +1,13 @@
+<div class="rest" *ngIf="step === RestStep.SELECTION">
+  <button type="button"
+          (click)="selectRestType(RestType.LONG)"
+  >Long Rest</button>
+  <button type="button"
+          (click)="selectRestType(RestType.SHORT)"
+  >Short Rest</button>
+</div>
+
+<div class="rest" *ngIf="step === RestStep.HIT_DICE">
+  <p>Current / max HP</p>
+  <p>Select Hitdie</p>
+</div>

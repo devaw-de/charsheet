@@ -16,3 +16,4 @@ export * from './src/lib/src/xp';
 export * from './src/lib/src/spells/spells';
 export * from './src/lib/src/spells/phb-spells/spell-names';
 export * from './src/lib/src/spells/character-classes.index';
+export * from './src/lib/src/resting';
