@@ -1,4 +1,4 @@
-<div *ngIf="character" class="sheet">
+<div *ngIf="characterLoaded" class="sheet">
 	<app-name class="section"></app-name>
 
 	<div class="upper-wrap">
@@ -18,16 +18,16 @@
 	<app-skills class="sub-section"></app-skills>
 	<app-armor-class class="sub-section"></app-armor-class>
 
-	<div class="class-specific-wrap" [class.caster]="isCaster()">
+	<div class="class-specific-wrap" [class.caster]="isCaster">
 		<app-class-special class="sub-section"></app-class-special>
-		<app-hitpoints *ngIf="!isCaster()" class="sub-section"></app-hitpoints>
-    <app-death-saving-throws *ngIf="isCaster()" class="section"></app-death-saving-throws>
+		<app-hitpoints *ngIf="!isCaster" class="sub-section"></app-hitpoints>
+    <app-death-saving-throws *ngIf="isCaster" class="section"></app-death-saving-throws>
 	</div>
 
-	<div class="hitdie-wrap" [class.caster]="isCaster()">
+	<div class="hitdie-wrap" [class.caster]="isCaster">
 		<app-hit-dice class="sub-section"></app-hit-dice>
-    <app-hitpoints *ngIf="isCaster()" class="sub-section"></app-hitpoints>
-		<app-death-saving-throws *ngIf="!isCaster()" class="section"></app-death-saving-throws>
+    <app-hitpoints *ngIf="isCaster" class="sub-section"></app-hitpoints>
+		<app-death-saving-throws *ngIf="!isCaster" class="section"></app-death-saving-throws>
 	</div>
 
 	<app-weapons class="section"></app-weapons>
