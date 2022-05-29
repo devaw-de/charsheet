@@ -1,82 +1,46 @@
-import {CharacterClassSpellSlotsPerLevel} from '../spells';
+const DruidSpellSlotsCharacterLevel1 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel2 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel3 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel4 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel5 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel6 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel7 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel8 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel9 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel10 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel11 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel12 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel13 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel14 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel15 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel16 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel17 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel18 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel19 = new Map<number, number>();
+const DruidSpellSlotsCharacterLevel20 = new Map<number, number>();
 
-const DruidSpellSlotsCharacterLevel1: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 2
-};
-const DruidSpellSlotsCharacterLevel2: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 3
-};
-const DruidSpellSlotsCharacterLevel3: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 4,
-  spellLevel2: 2
-};
-const DruidSpellSlotsCharacterLevel4: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 4,
-  spellLevel2: 3
-};
-const DruidSpellSlotsCharacterLevel5: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel4,
-  spellLevel3: 2
-};
-const DruidSpellSlotsCharacterLevel6: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel4,
-  spellLevel3: 3
-};
-const DruidSpellSlotsCharacterLevel7: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel6,
-  spellLevel4: 1
-};
-const DruidSpellSlotsCharacterLevel8: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel4,
-  spellLevel4: 2
-};
-const DruidSpellSlotsCharacterLevel9: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel8,
-  spellLevel4: 3,
-  spellLevel5: 1
-};
-const DruidSpellSlotsCharacterLevel10: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel9,
-  spellLevel5: 2
-};
-const DruidSpellSlotsCharacterLevel11: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel10
-};
-const DruidSpellSlotsCharacterLevel12: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel10,
-  spellLevel6: 1
-};
-const DruidSpellSlotsCharacterLevel13: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel12,
-  spellLevel7: 1
-};
-const DruidSpellSlotsCharacterLevel14: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel13
-};
-const DruidSpellSlotsCharacterLevel15: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel14,
-  spellLevel8: 1
-};
-const DruidSpellSlotsCharacterLevel16: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel15
-};
-const DruidSpellSlotsCharacterLevel17: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel15,
-  spellLevel9: 1
-};
-const DruidSpellSlotsCharacterLevel18: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel17,
-  spellLevel5: 3
-};
-const DruidSpellSlotsCharacterLevel19: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel18,
-  spellLevel6: 2
-};
-const DruidSpellSlotsCharacterLevel20: CharacterClassSpellSlotsPerLevel = {
-  ...DruidSpellSlotsCharacterLevel19,
-  spellLevel7: 2
-};
-export const DruidSpellSlotsMap = new Map<number, CharacterClassSpellSlotsPerLevel>();
+DruidSpellSlotsCharacterLevel1.set(1, 2);
+DruidSpellSlotsCharacterLevel2.set(1, 3);
+DruidSpellSlotsCharacterLevel3.set(1, 4).set(2, 2);
+DruidSpellSlotsCharacterLevel4.set(1, 4).set(2, 3);
+DruidSpellSlotsCharacterLevel5.set(1, 4).set(2, 3).set(3, 2);
+DruidSpellSlotsCharacterLevel6.set(1, 4).set(2, 3).set(3, 3);
+DruidSpellSlotsCharacterLevel7.set(1, 4).set(2, 3).set(3, 3).set(4, 1);
+DruidSpellSlotsCharacterLevel8.set(1, 4).set(2, 3).set(3, 3).set(4, 2);
+DruidSpellSlotsCharacterLevel9.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 1);
+DruidSpellSlotsCharacterLevel10.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2);
+DruidSpellSlotsCharacterLevel11.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2);
+DruidSpellSlotsCharacterLevel12.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1);
+DruidSpellSlotsCharacterLevel13.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1).set(7, 1);
+DruidSpellSlotsCharacterLevel14.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1).set(7, 1);
+DruidSpellSlotsCharacterLevel15.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1).set(7, 1).set(8, 1);
+DruidSpellSlotsCharacterLevel16.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1).set(7, 1).set(8, 1);
+DruidSpellSlotsCharacterLevel17.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2).set(6, 1).set(7, 1).set(8, 1).set(9, 1);
+DruidSpellSlotsCharacterLevel18.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 3).set(6, 1).set(7, 1).set(8, 1).set(9, 1);
+DruidSpellSlotsCharacterLevel19.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 3).set(6, 2).set(7, 1).set(8, 1).set(9, 1);
+DruidSpellSlotsCharacterLevel20.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 3).set(6, 2).set(7, 2).set(8, 1).set(9, 1);
+
+export const DruidSpellSlotsMap = new Map<number, Map<number, number>>();
 DruidSpellSlotsMap.set(1, DruidSpellSlotsCharacterLevel1);
 DruidSpellSlotsMap.set(2, DruidSpellSlotsCharacterLevel2);
 DruidSpellSlotsMap.set(3, DruidSpellSlotsCharacterLevel3);
@@ -99,6 +63,10 @@ DruidSpellSlotsMap.set(19, DruidSpellSlotsCharacterLevel19);
 DruidSpellSlotsMap.set(20, DruidSpellSlotsCharacterLevel20);
 
 export function DruidCantripsKnownPerLevel(level: number): number {
+  if (level < 1 || level > 20) {
+    return 0;
+  }
+
   switch (true) {
     case level < 4:
       return 2;

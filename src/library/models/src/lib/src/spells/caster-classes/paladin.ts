@@ -1,76 +1,47 @@
-import {CharacterClassSpellSlots, CharacterClassSpellSlotsPerLevel} from '@app/models';
+export const PaladinSpellSlotsCharacterLevel1 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel2 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel3 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel4 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel5 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel6 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel7 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel8 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel9 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel10 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel11 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel12 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel13 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel14 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel15 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel16 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel17 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel18 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel19 = new Map<number, number>();
+export const PaladinSpellSlotsCharacterLevel20 = new Map<number, number>();
 
-export const PaladinSpellSlotsCharacterLevel1: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 0
-};
-export const PaladinSpellSlotsCharacterLevel2: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 2
-};
-export const PaladinSpellSlotsCharacterLevel3: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 3
-};
-export const PaladinSpellSlotsCharacterLevel4: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel3
-};
-export const PaladinSpellSlotsCharacterLevel5: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 4,
-  spellLevel2: 2
-};
-export const PaladinSpellSlotsCharacterLevel6: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel5
-};
-export const PaladinSpellSlotsCharacterLevel7: CharacterClassSpellSlotsPerLevel = {
-  spellLevel1: 4,
-  spellLevel2: 3
-};
-export const PaladinSpellSlotsCharacterLevel8: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel7
-};
-export const PaladinSpellSlotsCharacterLevel9: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel7,
-  spellLevel3: 2
-};
-export const PaladinSpellSlotsCharacterLevel10: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel9
-};
-export const PaladinSpellSlotsCharacterLevel11: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel9,
-  spellLevel3: 3
-};
-export const PaladinSpellSlotsCharacterLevel12: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel11
-};
-export const PaladinSpellSlotsCharacterLevel13: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel11,
-  spellLevel4: 1
-};
-export const PaladinSpellSlotsCharacterLevel14: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel13
-};
-export const PaladinSpellSlotsCharacterLevel15: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel13,
-  spellLevel4: 2
-};
-export const PaladinSpellSlotsCharacterLevel16: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel15
-};
-export const PaladinSpellSlotsCharacterLevel17: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel15,
-  spellLevel4: 3,
-  spellLevel5: 1
-};
-export const PaladinSpellSlotsCharacterLevel18: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel17
-};
-export const PaladinSpellSlotsCharacterLevel19: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel17,
-  spellLevel5: 2
-};
-export const PaladinSpellSlotsCharacterLevel20: CharacterClassSpellSlotsPerLevel = {
-  ...PaladinSpellSlotsCharacterLevel19
-};
+PaladinSpellSlotsCharacterLevel1.set(1, 0);
+PaladinSpellSlotsCharacterLevel2.set(1, 2);
+PaladinSpellSlotsCharacterLevel3.set(1, 3);
+PaladinSpellSlotsCharacterLevel4.set(1, 3);
+PaladinSpellSlotsCharacterLevel5.set(1, 4).set(2, 2);
+PaladinSpellSlotsCharacterLevel6.set(1, 4).set(2, 2);
+PaladinSpellSlotsCharacterLevel7.set(1, 4).set(2, 3);
+PaladinSpellSlotsCharacterLevel8.set(1, 4).set(2, 3);
+PaladinSpellSlotsCharacterLevel9.set(1, 4).set(2, 3).set(3, 2);
+PaladinSpellSlotsCharacterLevel10.set(1, 4).set(2, 3).set(3, 2);
+PaladinSpellSlotsCharacterLevel11.set(1, 4).set(2, 3).set(3, 3);
+PaladinSpellSlotsCharacterLevel12.set(1, 4).set(2, 3).set(3, 3);
+PaladinSpellSlotsCharacterLevel13.set(1, 4).set(2, 3).set(3, 3).set(4, 1);
+PaladinSpellSlotsCharacterLevel14.set(1, 4).set(2, 3).set(3, 3).set(4, 1);
+PaladinSpellSlotsCharacterLevel15.set(1, 4).set(2, 3).set(3, 3).set(4, 2);
+PaladinSpellSlotsCharacterLevel16.set(1, 4).set(2, 3).set(3, 3).set(4, 2);
+PaladinSpellSlotsCharacterLevel17.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 1);
+PaladinSpellSlotsCharacterLevel18.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 1);
+PaladinSpellSlotsCharacterLevel19.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2);
+PaladinSpellSlotsCharacterLevel20.set(1, 4).set(2, 3).set(3, 3).set(4, 3).set(5, 2);
 
-export const PaladinSpellSlotsMap = new Map<number, CharacterClassSpellSlotsPerLevel>();
+
+export const PaladinSpellSlotsMap = new Map<number, Map<number, number>>();
 PaladinSpellSlotsMap.set(1, PaladinSpellSlotsCharacterLevel1);
 PaladinSpellSlotsMap.set(2, PaladinSpellSlotsCharacterLevel2);
 PaladinSpellSlotsMap.set(3, PaladinSpellSlotsCharacterLevel3);

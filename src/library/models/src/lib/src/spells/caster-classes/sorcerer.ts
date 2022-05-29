@@ -20,9 +20,8 @@ import {
   WizardSpellSlotsCharacterLevel19,
   WizardSpellSlotsCharacterLevel20,
 } from './wizard';
-import {CharacterClassSpellSlots, CharacterClassSpellSlotsPerLevel} from '@app/models';
 
-export const SorcererSpellSlotsMap = new Map<number, CharacterClassSpellSlotsPerLevel>();
+export const SorcererSpellSlotsMap = new Map<number, Map<number, number>>();
 SorcererSpellSlotsMap.set(1, WizardSpellSlotsCharacterLevel1);
 SorcererSpellSlotsMap.set(2, WizardSpellSlotsCharacterLevel2);
 SorcererSpellSlotsMap.set(3, WizardSpellSlotsCharacterLevel3);
@@ -64,22 +63,22 @@ export function SorcererSpellsKnownPerLevel(level: number): number {
 }
 
 export function SorcererCantripsKnownPerLevel(level: number): number {
+  if (level < 1 || level > 20) {
+    return 0;
+  }
+
   switch (true) {
-    case level < 1:
-      return 0;
     case level < 4:
       return 4;
     case level < 10:
       return 5;
-    case level < 21:
-      return 6;
     default:
-      return 0;
+      return 6;
   }
 }
 
 export function SorcererSorceryPointsPerLevel(level: number): number {
-  if (level < 2) {
+  if (level < 2 || level > 20) {
     return 0;
   }
   return level;
