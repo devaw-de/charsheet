@@ -7,7 +7,8 @@ import {
   CharacterRacesList,
   CharacterSubRaceDetails,
   CharacterSubRaceName,
-  CharacterSubRacesList
+  CharacterSubRacesList,
+  Dice
 } from '@app/models';
 
 export class ClassHelper {
@@ -27,6 +28,27 @@ export class ClassHelper {
   public static subRaceSelectionRequired(race: CharacterRace): boolean {
     const subRace = CharacterSubRacesList.find(sub => sub.extendsRace === race);
     return subRace !== undefined;
+  }
+
+  public static getHitDieByClassName(className: CharacterClassName): Dice {
+    switch (className) {
+      case CharacterClassName.BARBARIAN:
+        return Dice.D12;
+      case CharacterClassName.FIGHTER:
+      case CharacterClassName.PALADIN:
+      case CharacterClassName.RANGER:
+        return Dice.D10;
+      case CharacterClassName.BARD:
+      case CharacterClassName.CLERIC:
+      case CharacterClassName.DRUID:
+      case CharacterClassName.MONK:
+      case CharacterClassName.ROGUE:
+      case CharacterClassName.WARLOCK:
+        return Dice.D8;
+      case CharacterClassName.SORCERER:
+      case CharacterClassName.WIZARD:
+        return Dice.D6;
+    }
   }
 
 }

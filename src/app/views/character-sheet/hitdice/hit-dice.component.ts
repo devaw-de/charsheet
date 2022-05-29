@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Dice} from '@app/models';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
+import {ClassHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-hit-dice',
@@ -10,14 +11,9 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
 })
 export class HitDiceComponent extends CharacterSheetBaseComponent implements OnInit {
 
-  public d6 = 0;
-  public d8 = 0;
-  public d10 = 0;
-  public d12 = 0;
+  Dice = Dice;
 
-  public get hitDice(): Array<Dice> {
-    return this._character.hitDice;
-  }
+  public hitDieType: Dice;
 
   constructor(
     protected _characterService: CharacterService
@@ -26,10 +22,15 @@ export class HitDiceComponent extends CharacterSheetBaseComponent implements OnI
   }
 
   ngOnInit(): void {
-    this.d6 = this.hitDice.filter(d => d === Dice.D6).length;
-    this.d8 = this.hitDice.filter(d => d === Dice.D8).length;
-    this.d10 = this.hitDice.filter(d => d === Dice.D10).length;
-    this.d12 = this.hitDice.filter(d => d === Dice.D12).length;
+    this.hitDieType = ClassHelper.getHitDieByClassName(this.characterClassName);
+  }
+
+  public getValue(dice: Dice): number {
+    if (this.hitDieType !== dice) {
+      return 0;
+    }
+
+    return this.characterLevel;
   }
 
 }

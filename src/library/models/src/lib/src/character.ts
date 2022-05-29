@@ -5,7 +5,6 @@ import {CharacterRace, CharacterSubRaceName} from './characterRaces';
 import {ArmorType, Currency, Tool} from './equipment';
 import {Ammunition, Weapon, WeaponType} from './weapons';
 import {Language} from './language';
-import {Dice} from './dice';
 import {Alignment} from './alignments';
 import {SpellBook} from './spells/spells';
 
@@ -84,7 +83,7 @@ export interface PlayerCharacterData {
   deathSavingThrows?: DeathSavingThrowState;
   equipment: Equipment;
   history?: string;
-  hitDice: Array<Dice>;
+  hitDice: number;
   hitPoints: HitPoints;
   level: number;
   movementSpeedInFeet: number;
@@ -128,42 +127,6 @@ export const ZeroHitPoints: HitPoints = {
   temp: 0
 };
 
-export const StartingPlayerCharacter: PlayerCharacterData = {
-  playerName: 'Player',
-  name: 'Test Character',
-  vitals: StartingCharacterVitals,
-  attributes: MinimumCharacterAttributes,
-  xp: 0,
-  level: 1,
-  alignment: Alignment.TRUE_NEUTRAL,
-  hitPoints: ZeroHitPoints,
-  className: CharacterClassName.RANGER,
-  ac: 10,
-  movementSpeedInFeet: 30,
-  hitDice: [Dice.D6],
-  proficiencies: {
-    proficiencyBonus: 2,
-    skills: [SkillName.ACROBATICS, SkillName.INSIGHT],
-    expertise: [],
-    tools: [Tool.SMITH_TOOLS],
-    languages: [],
-    instruments: ['Lute'],
-  },
-  currency: {},
-  specialization: CharacterSpecialization.NONE,
-  weapons: [Weapon.LONGSWORD],
-  shield: false,
-  race: undefined,
-  appliedRacialBonuses: null,
-  subRace: undefined,
-  background: undefined,
-  ammunition: [],
-  equipment: {
-    equipped: [],
-    backpack: []
-  }
-};
-
 export const InitialSavingTrowState: DeathSavingThrowState = {
   successCount: 0,
   failureCount: 0
@@ -204,7 +167,7 @@ export const DefaultCharacter: PlayerCharacterData = {
   background: CharacterBackground.HERMIT,
   ac: 10,
   movementSpeedInFeet: 25,
-  hitDice: [Dice.D10],
+  hitDice: 1,
   proficiencies: {
     proficiencyBonus: 2,
     armor: [ArmorType.LIGHT_ARMOR, ArmorType.MEDIUM_ARMOR, ArmorType.SHIELDS],

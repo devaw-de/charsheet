@@ -4,10 +4,22 @@
     <div class="total">
       <div class="label" [innerText]="'Total'"></div>
       <div class="value">
-        <div class="value dice-icon-d6" [innerText]="d6"></div>
-        <div class="value dice-icon-d8" [innerText]="d8"></div>
-        <div class="value dice-icon-d10" [innerText]="d10"></div>
-        <div class="value dice-icon-d12" [innerText]="d12"></div>
+        <div class="value dice-icon-d6"
+             [class.applicable]="hitDieType === Dice.D6"
+             [innerText]="getValue(Dice.D6)"
+        ></div>
+        <div class="value dice-icon-d8"
+             [class.applicable]="hitDieType === Dice.D8"
+             [innerText]="getValue(Dice.D8)"
+        ></div>
+        <div class="value dice-icon-d10"
+             [class.applicable]="hitDieType === Dice.D10"
+             [innerText]="getValue(Dice.D10)"
+        ></div>
+        <div class="value dice-icon-d12"
+             [class.applicable]="hitDieType === Dice.D12"
+             [innerText]="getValue(Dice.D12)"
+        ></div>
       </div>
     </div>
     <div class="current"></div>

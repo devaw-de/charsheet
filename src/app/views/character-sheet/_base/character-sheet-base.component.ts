@@ -52,6 +52,10 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     return this._character.className.toString().toLowerCase();
   }
 
+  public get hitDice(): number {
+    return this._character.hitDice;
+  }
+
   public get characterClassName(): CharacterClassName {
     return this._character.className;
   }
