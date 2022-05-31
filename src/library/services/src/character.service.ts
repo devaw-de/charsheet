@@ -60,11 +60,14 @@ import {JsonHelper} from '../../helpers/src/jsonHelper';
   }
 
   private _readCharacterFromStorage(): void {
-    console.log('reading from LS');
-
     try {
       const character = JsonHelper.parseCharacter(localStorage.getItem(LocalStorageKey.CHARACTER));
-      console.log(character);
+      if (!character) {
+        console.log('using Default character');
+        this._character.next(DefaultCharacter);
+        return;
+      }
+      console.log('character restored from storage', character);
       this._character.next(character);
     } catch (e) {
       console.warn(e);

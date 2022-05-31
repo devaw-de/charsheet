@@ -136,10 +136,7 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     protected _characterService: CharacterService
   ) {
     this._characterSubscription = this._characterService.character$.subscribe(
-      (c) => {
-        this._character = c;
-        console.log('char updated', c);
-      }
+      (c) => this._character = c
     );
   }
 
