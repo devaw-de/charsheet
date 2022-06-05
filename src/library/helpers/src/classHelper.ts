@@ -48,6 +48,8 @@ export class ClassHelper {
       case CharacterClassName.SORCERER:
       case CharacterClassName.WIZARD:
         return Dice.D6;
+      default:
+        throw new Error('unhandled CharacterClass');
     }
   }
 
