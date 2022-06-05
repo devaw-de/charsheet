@@ -10,6 +10,7 @@ export * from './src/fileHelper';
 export * from './src/unitHelper';
 export * from './src/globalConstants';
 export * from './src/spellHelper';
+export * from './src/jsonHelper';
 
 @NgModule({
   declarations: [],
