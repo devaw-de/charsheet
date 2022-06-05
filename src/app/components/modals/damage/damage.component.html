@@ -1,0 +1,31 @@
+<div class="damage">
+  <div class="title">
+    <h2>Take Damage</h2>
+    <div class="hitpoints">
+      {{characterHitpoints.current}}/{{characterHitpoints.max}}
+    </div>
+  </div>
+
+  <div class="buttons">
+    <div class="fixed-values">
+      <button *ngFor="let value of rawValues"
+              type="button"
+              (click)="takeFixedDamage(value)"
+      >{{value}} {{value === 1 ? 'point' : 'points'}}</button>
+    </div>
+    <div class="dice-values">
+      <button *ngFor="let die of diceValues"
+              type="button"
+              [class]="'dice-icon-' + die.toLowerCase()"
+              (click)="takeDieDamage(die)"
+      >{{die}}</button>
+    </div>
+  </div>
+
+  <div class="history">
+    <div *ngFor="let entry of history.log; let first=first"
+         [class.latest]="first"
+         [innerText]="entry"
+    ></div>
+  </div>
+</div>

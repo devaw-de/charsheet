@@ -3,7 +3,10 @@
 
   <div class="current-hp">
     <div class="label">Current Hitpoints</div>
-    <div class="value" [innerText]="hitpoints.current !== 0 ? hitpoints.current : ''"></div>
+    <div class="value interactive"
+         (click)="openDamageModal()"
+         [innerText]="hitpoints.current !== 0 ? hitpoints.current : ''"
+    ></div>
   </div>
   <aside>
     <div class="max-hp">
