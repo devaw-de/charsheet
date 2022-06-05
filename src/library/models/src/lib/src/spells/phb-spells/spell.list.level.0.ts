@@ -1,5 +1,4 @@
 import {Spell, SpellSchool} from '../spells';
-import {CharacterClassName} from '../../characterClasses';
 import {CantripSpellNames} from './spell-names';
 
 export const CantripSpellList: Array<Spell> = [

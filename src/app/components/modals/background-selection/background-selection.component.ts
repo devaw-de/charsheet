@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {CharacterService} from 'src/library/services/src/character.service';
-import {CharacterBackgroundDetails, CharacterBackgroundsList} from 'src/library/models/src/lib/src/backgrounds';
-import {PlayerCharacterData} from 'src/library/models/src/lib/src/character';
+import {CharacterService} from '@app/services';
+import {CharacterBackgroundDetails, CharacterBackgroundsList, PlayerCharacterData} from '@app/models';
 
 @Component({
   selector: 'app-background-selection',

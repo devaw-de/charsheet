@@ -1,8 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {DialogRef} from '@ngneat/dialog';
-import {Attribute} from 'src/library/models/src/lib/src/attributes';
-import {CharacterRaceDetails, CharacterSubRaceDetails, CharacterAttributes, PlayerCharacterData} from '@app/models';
+import {
+  Attribute,
+  CharacterRaceDetails,
+  CharacterSubRaceDetails,
+  CharacterAttributes,
+  PlayerCharacterData
+} from '@app/models';
 import {AbilityHelper, ClassHelper, EnumHelper} from '@app/helpers';
 
 @Component({

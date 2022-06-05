@@ -3,7 +3,7 @@ import {Armor, ArmorType, EquipmentSets, Tool} from './equipment';
 import {CharacterTraits} from './traits';
 import {Ammunition, CASTER_WEAPON_PROFICIENCIES, Weapon, WeaponType} from './weapons';
 import {Language} from './language';
-import {Dice} from './dice';
+import {Dice} from '../dice';
 
 export enum CharacterClassName {
   BARBARIAN = 'Barbarian',

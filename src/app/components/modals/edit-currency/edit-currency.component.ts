@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {Currency} from 'src/library/models/src/lib/src/equipment';
+import {Currency} from '@app/models';
 
 @Component({
   selector: 'app-edit-currency',

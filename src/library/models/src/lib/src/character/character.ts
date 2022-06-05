@@ -6,7 +6,7 @@ import {ArmorType, Currency, Tool} from './equipment';
 import {Ammunition, Weapon, WeaponType} from './weapons';
 import {Language} from './language';
 import {Alignment} from './alignments';
-import {SpellBook} from './spells/spells';
+import {SpellBook} from '../spells/spells';
 
 export enum CharacterSpecialization {
   NONE = 'NONE'

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {CharacterRace} from 'src/library/models/src/lib/src/characterRaces';
+import {CharacterRace} from '@app/models';
 import {EnumHelper} from '@app/helpers';
 
 @Component({

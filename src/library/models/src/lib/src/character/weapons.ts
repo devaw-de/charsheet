@@ -1,4 +1,4 @@
-import {Dice} from './dice';
+import {Dice} from '../dice';
 
 export enum WeaponProperty {
   LIGHT = 'Light',

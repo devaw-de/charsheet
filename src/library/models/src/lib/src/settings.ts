@@ -16,6 +16,7 @@ export enum Distances {
 export interface SettingsEntity {
   units: Distances;
   levelUpStrategy: LevelUpStrategy;
+  shortRestStrategy: LevelUpStrategy;
 }
 
 export enum LocalStorageKey {

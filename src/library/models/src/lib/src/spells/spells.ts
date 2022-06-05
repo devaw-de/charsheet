@@ -1,4 +1,4 @@
-import {CharacterClassName} from '../characterClasses';
+import {CharacterClassName} from '../character/characterClasses';
 import {
   CantripSpellNames,
   Level1SpellNames,
