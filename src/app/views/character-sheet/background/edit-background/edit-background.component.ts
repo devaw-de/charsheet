@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {CharacterBackground} from 'src/library/models/src/lib/src/backgrounds';
+import {CharacterBackground} from '@app/models';
 import {EnumHelper} from '@app/helpers';
 
 @Component({
