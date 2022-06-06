@@ -1,7 +1,7 @@
-import {Component, EventEmitter, OnDestroy, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
 import {DialogRef, DialogService} from '@ngneat/dialog';
-import {Dice, HistoryLog, HitPoints} from '@app/models';
-import {DiceHelper} from '@app/helpers';
+import {ButtonStyle, Dice, HistoryLog, HitPoints} from '@app/models';
+import {DiceHelper, EnumHelper} from '@app/helpers';
 import {Subscription} from 'rxjs';
 import {CharacterService} from '@app/services';
 
@@ -12,21 +12,19 @@ import {CharacterService} from '@app/services';
 })
 export class DamageComponent implements OnDestroy {
 
+  ButtonStyle = ButtonStyle;
+
   private readonly _characterSubscription: Subscription;
 
-  public rawValues: Array<number> = [1, 2, 3,  4, 5, 10];
-  public diceValues: Array<any> = [
-    Dice.D4,
-    Dice.D6,
-    Dice.D8,
-    Dice.D10,
-    Dice.D12,
-    Dice.D20
-  ];
+  public animating = false;
+  public rawValues: Array<number> = [1, 2, 3, 4, 5, 10];
+  public diceValues: Array<any> = EnumHelper.enumToArray(Dice);
   public history = new HistoryLog<number>(10);
-  public characterHitpoints: HitPoints;
+  public characterHitPoints: HitPoints;
 
-  @Output() public damageTaken$ = new EventEmitter<number>();
+  @Output() public hitPointChange$ = new EventEmitter<number>();
+
+  @ViewChild('currentHitPointsElement') currentHitPointsElement: ElementRef<HTMLDivElement>;
 
   constructor(
     private _dialogService: DialogService,
@@ -34,7 +32,7 @@ export class DamageComponent implements OnDestroy {
     private _characterService: CharacterService
   ) {
     this._characterSubscription = this._characterService.character$.subscribe(
-      character => this.characterHitpoints = character.hitPoints
+      character => this.characterHitPoints = character.hitPoints
     );
   }
 
@@ -42,15 +40,31 @@ export class DamageComponent implements OnDestroy {
     this._characterSubscription?.unsubscribe();
   }
 
-  public takeFixedDamage(damage: number): void {
-    this.history.addItem(damage);
-    this.damageTaken$.emit(damage);
+  private _triggerAnimation(): void {
+    if (this.animating) { return; }
+
+    this.animating = true;
+    this.currentHitPointsElement.nativeElement.classList.add('heartbeat');
+    window.setTimeout(() => {
+      this.currentHitPointsElement.nativeElement.classList.remove('heartbeat');
+      this.animating = false;
+      }, 500
+    );
   }
 
-  public takeDieDamage(die: Dice): void {
-    const damage = DiceHelper.getRandomDieValue(die);
-    this.history.addItem(damage);
-    this.damageTaken$.emit(damage);
+  public adjustHitPointsByValue(value: number, isDamage: boolean = false): void {
+    this._triggerAnimation();
+    const netHealing = isDamage ? (0 - value) : value;
+    this.history.addItem(netHealing);
+    this.hitPointChange$.emit(netHealing);
+  }
+
+  public adjustHitPointsByDie(die: any, isDamage: boolean = false): void {
+    this._triggerAnimation();
+    const value = DiceHelper.getRandomDieValue(die);
+    const netHealing = isDamage ? (0 - value) : value;
+    this.history.addItem(netHealing);
+    this.hitPointChange$.emit(netHealing);
   }
 
 }

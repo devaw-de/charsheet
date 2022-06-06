@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {Dice, DiceDetails} from '@app/models';
+import {Dice, DiceDetails, HistoryLog} from '@app/models';
 import {DiceHelper} from '@app/helpers';
 import {DialogRef} from '@ngneat/dialog';
 
@@ -13,19 +13,18 @@ import {DialogRef} from '@ngneat/dialog';
 })
 export class DieRollComponent implements OnInit {
 
-  private static _maxHistoryLength = 10;
   private static _exitAnimationDuration = 650;
   private static _shakeAnimationDuration = 800;
 
   Dice = Dice;
 
   public hideDieFace = false;
-  public history: Array<number> = [];
+  public history = new HistoryLog<number>(10);
   public die: DiceDetails;
 
   public get latestResult(): number {
-    if (!this.history.length) { return undefined; }
-    return this.history[this.history.length - 1];
+    if (!this.history.log.length) { return undefined; }
+    return this.history.latest;
   }
 
   @Input() set dieType(type: Dice) {
@@ -67,10 +66,7 @@ export class DieRollComponent implements OnInit {
 
   private _updateHistory(result: number): void {
     window.setTimeout(() => {
-      this.history.push(result);
-      if (this.history.length > DieRollComponent._maxHistoryLength) {
-        this.history = this.history.slice(0 - DieRollComponent._maxHistoryLength);
-      }
+      this.history.addItem(result);
     }, DieRollComponent._exitAnimationDuration);
   }
 

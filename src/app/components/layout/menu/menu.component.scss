@@ -82,6 +82,17 @@ $burger-icon-margin: .75rem;
             }
           }
         }
+
+        &.secondary {
+          justify-content: center;
+
+          li {
+            border-bottom: none;
+            --custom-button-width: 100%;
+            width: 14%;
+            min-width: 70px;
+          }
+        }
       }
     }
   }

@@ -1,0 +1,65 @@
+::ng-deep :root {
+  --custom-button-width: 200px;
+  --custom-button-padding-vertical: .25rem;
+  --custom-button-padding-horizontal: .5rem;
+  --custom-button-font-color: var(--section-background);
+  --custom-button-dice-background-color: var(--highlight);
+  --custom-button-primary-background-color: var(--highlight);
+  --custom-button-secondary-background-color: var(--border-color-dark);
+  --custom-button-disabled-background-color: var(--light);
+  --custom-button-hover-background-color: var(--lighter);
+}
+
+.custom-button {
+  color: var(--custom-button-font-color);
+  background-color: var(--highlight);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--custom-button-padding-vertical) var(--custom-button-padding-horizontal);
+  cursor: pointer;
+  width: var(--custom-button-width);
+  overflow: hidden;
+
+  &.dice-icon {
+    background-position: 2px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: var(--custom-button-dice-background-color);
+  }
+
+  &.primary-button {
+    background-color: var(--custom-button-primary-background-color);
+  }
+
+  &.secondary-button {
+    background-color: var(--custom-button-secondary-background-color);
+  }
+
+  &.disabled {
+    background-color: var(--custom-button-disabled-background-color);
+    cursor: not-allowed;
+
+    &:hover {
+      border-style: outset;
+      background-color: var(--custom-button-disabled-background-color);
+    }
+
+    &:active {
+      border-style: solid;
+    }
+  }
+
+  &:hover {
+    background-color: var(--custom-button-hover-background-color);
+    border-style: inset;
+  }
+
+  &:active {
+    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+
+  @media print {
+    display: none;
+  }
+}

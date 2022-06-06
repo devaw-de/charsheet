@@ -20,7 +20,7 @@
           (click)="roll()"
   >roll {{ die.type }}</button>
   <div class="history">
-    <div *ngFor="let roll of history;">
+    <div *ngFor="let roll of history.log;">
       {{ roll }}
     </div>
   </div>

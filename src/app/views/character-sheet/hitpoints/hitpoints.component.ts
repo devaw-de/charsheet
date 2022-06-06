@@ -25,10 +25,10 @@ export class HitpointsComponent extends CharacterSheetBaseComponent {
 
   public openDamageModal(): void {
     const modal = this._dialogService.open(DamageComponent);
-    const modalSubscription = modal.ref.instance.damageTaken$.subscribe((value: number) => {
-      this._characterService.takeDamage(value);
+    const modalSubscription = modal.ref.instance.hitPointChange$.subscribe((value: number) => {
+      this._characterService.takeDamage(0 - value);
     });
-    const modalClosedSubscription = modal.afterClosed$.subscribe((value: number) => {
+    const modalClosedSubscription = modal.afterClosed$.subscribe(() => {
       modalSubscription.unsubscribe();
       modalClosedSubscription.unsubscribe();
     });

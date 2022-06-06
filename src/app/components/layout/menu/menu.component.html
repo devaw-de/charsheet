@@ -21,6 +21,16 @@
       <ng-container *ngIf="additionalMenuItems">
         <ng-container *ngTemplateOutlet="additionalMenuItems"></ng-container>
       </ng-container>
+
+      <ul class="secondary">
+        <li *ngFor="let die of dice">
+          <app-custom-button [label]="die"
+                             [style]="ButtonStyle[die]"
+                             [title]="'Roll a ' + die"
+                             (clickEvent)="rollDie(die)"
+          ></app-custom-button>
+        </li>
+      </ul>
     </div>
   </div>
 

@@ -20,6 +20,7 @@ export * from './src/spells/phb-spells/spell-names';
 export * from './src/spells/character-classes.index';
 export * from './src/character/resting';
 export * from './src/historyLog';
+export * from './src/buttons';
 
 
 @NgModule({

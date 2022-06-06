@@ -7,6 +7,10 @@ export class HistoryLog<T> {
     return [...this._log];
   }
 
+  public get latest(): T {
+    return this.log[this._log.length - 1];
+  }
+
   constructor(maxLength: number) {
     this._maxLength = maxLength;
   }

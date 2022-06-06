@@ -1,30 +1,62 @@
-<div class="damage">
+<div class="damage-wrapper">
   <div class="title">
-    <h2>Take Damage</h2>
-    <div class="hitpoints">
-      {{characterHitpoints.current}}/{{characterHitpoints.max}}
+    <div class="hitpoints"
+         title="Current hit points: {{characterHitPoints.current}} / Maximum hit points: {{characterHitPoints.max}}"
+    >
+      <span #currentHitPointsElement>{{characterHitPoints.current}}</span>/{{characterHitPoints.max}}
     </div>
   </div>
 
-  <div class="buttons">
-    <div class="fixed-values">
-      <button *ngFor="let value of rawValues"
-              type="button"
-              (click)="takeFixedDamage(value)"
-      >{{value}} {{value === 1 ? 'point' : 'points'}}</button>
+  <div class="content">
+    <div class="damage">
+      <h2>Take Damage</h2>
+      <div class="buttons">
+        <div class="fixed-values">
+          <app-custom-button *ngFor="let value of rawValues"
+                             [style]="ButtonStyle.PRIMARY"
+                             [label]="value + (value === 1 ? ' point' : ' points')"
+                             [disabled]="animating || characterHitPoints.current <= 0"
+                             (clickEvent)="adjustHitPointsByValue(value, true)"
+          ></app-custom-button>
+        </div>
+        <div class="dice-values">
+          <app-custom-button *ngFor="let die of diceValues"
+                             [style]="ButtonStyle[die]"
+                             [label]="die"
+                             [disabled]="animating || characterHitPoints.current <= 0"
+                             (clickEvent)="adjustHitPointsByDie(die, true)"
+          ></app-custom-button>
+        </div>
+      </div>
     </div>
-    <div class="dice-values">
-      <button *ngFor="let die of diceValues"
-              type="button"
-              [class]="'dice-icon-' + die.toLowerCase()"
-              (click)="takeDieDamage(die)"
-      >{{die}}</button>
+    <div class="healing">
+      <h2>Heal</h2>
+      <div class="buttons">
+        <div class="fixed-values">
+          <app-custom-button *ngFor="let value of rawValues"
+                             [style]="ButtonStyle.PRIMARY"
+                             [label]="value + (value === 1 ? ' point' : ' points')"
+                             [disabled]="animating || characterHitPoints.current >= characterHitPoints.max"
+                             (clickEvent)="adjustHitPointsByValue(value, false)"
+          ></app-custom-button>
+        </div>
+        <div class="dice-values">
+          <app-custom-button *ngFor="let die of diceValues"
+                             [label]="die"
+                             [style]="ButtonStyle[die]"
+                             [disabled]="animating || characterHitPoints.current >= characterHitPoints.max"
+                             (clickEvent)="adjustHitPointsByDie(die, false)"
+          ></app-custom-button>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="history">
     <div *ngFor="let entry of history.log; let first=first"
          [class.latest]="first"
+         [class.positive-value]="entry > 0"
+         [class.negative-value]="entry < 0"
          [innerText]="entry"
     ></div>
   </div>
