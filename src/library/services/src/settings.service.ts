@@ -9,7 +9,8 @@ export class SettingsService {
 
   private static readonly defaultSettings: SettingsEntity = {
     units: Distances.METERS,
-    levelUpStrategy: LevelUpStrategy.MAX
+    levelUpStrategy: LevelUpStrategy.MAX,
+    shortRestStrategy: LevelUpStrategy.MAX
   };
 
   private _settingsSubject = new BehaviorSubject<SettingsEntity>(SettingsService.defaultSettings);
@@ -21,8 +22,8 @@ export class SettingsService {
 
   public set distanceUnitSetting(setting: Distances) {
     this._settingsSubject.next({
-      units: setting,
-      levelUpStrategy: this._settingsSubject.value.levelUpStrategy
+      ...this._settingsSubject.value,
+      units: setting
     });
   }
 
@@ -32,9 +33,20 @@ export class SettingsService {
 
   public set levelUpStrategySetting(setting: LevelUpStrategy) {
     this._settingsSubject.next({
-      units: this._settingsSubject.value.units,
+      ...this._settingsSubject.value,
       levelUpStrategy: setting
     });
+  }
+
+  public set shortRestStrategySetting(setting: LevelUpStrategy) {
+    this._settingsSubject.next({
+      ...this._settingsSubject.value,
+      shortRestStrategy: setting
+    });
+  }
+
+  public get shortRestStrategySetting(): LevelUpStrategy {
+    return this._settingsSubject.value.shortRestStrategy;
   }
 
   public get settings(): SettingsEntity {

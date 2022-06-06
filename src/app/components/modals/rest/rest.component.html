@@ -1,13 +1,57 @@
-<div class="rest" *ngIf="step === RestStep.SELECTION">
-  <button type="button"
-          (click)="selectRestType(RestType.LONG)"
-  >Long Rest</button>
-  <button type="button"
-          (click)="selectRestType(RestType.SHORT)"
-  >Short Rest</button>
+<div class="rest">
+  <div *ngIf="currentStep === RestStep.SELECTION"
+       class="selection"
+  >
+    <app-custom-radio [options]="restTypeOptions"
+                      (optionSelected)="setRestTypeOption($event)"
+    ></app-custom-radio>
+  </div>
+
+  <div *ngIf="currentStep === RestStep.HIT_DICE">
+    <ng-container *ngTemplateOutlet="restType === RestType.LONG ? longRestTemplate : shortRestTemplate"></ng-container>
+    <app-custom-button class="rest-button"
+                       [label]="'Rest'"
+                       [style]="ButtonStyle.PRIMARY"
+                       (clickEvent)="doRest()"
+    ></app-custom-button>
+  </div>
 </div>
 
-<div class="rest" *ngIf="step === RestStep.HIT_DICE">
-  <p>Current / max HP</p>
-  <p>Select Hitdie</p>
-</div>
+<ng-template #shortRestTemplate>
+  <div class="hitpoints">
+    <span class="current">{{ hitPoints.current }}</span>
+    <span class="slash">/</span>
+    <span class="max">{{ hitPoints.max }}</span>
+  </div>
+  <p *ngIf="hitDice > 0">
+    Select the amount of hit dice you want to use
+  </p>
+  <p *ngIf="hitDice < 1">
+    You have no hit die left and cannot gain any hitpoints during a short rest.
+  </p>
+  <div class="dice-wrap">
+    <div class="reset">
+      <div *ngIf="selectedDice > 0"
+           class="close-icon interactive"
+           (click)="selectDice(0)"
+      ></div>
+    </div>
+    <div class="dice">
+      <div *ngFor="let item of hitDiceArray; index as i;"
+           class="interactive die dice-icon-{{ hitDiceType.toLowerCase() }}"
+           [class.selected]="selectedDice > i"
+           (click)="selectDice(i + 1)"
+      ></div>
+    </div>
+  </div>
+  <div class="results"
+       [innerText]="expectedHitPointsResult"
+  ></div>
+</ng-template>
+
+<ng-template #longRestTemplate>
+  <div class="results">
+    <p *ngIf="hitPoints.current > 0">You will regain all your missing hitpoints and {{ expectedHitDiceResult }} hit dice.</p>
+    <p *ngIf="hitPoints.current < 1">You need at least 1 HP to gain any benefits from a long rest.</p>
+  </div>
+</ng-template>

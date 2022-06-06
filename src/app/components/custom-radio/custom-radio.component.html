@@ -3,6 +3,7 @@
     <button (click)="selectOption(option)"
             [class.selected]="option.selected"
             [disabled]="option.disabled || option.selected"
-    >{{option.text}}</button>
+            class="{{ option.className ? option.className : '' }}"
+    >{{ option.text }}</button>
   </ng-container>
 </div>

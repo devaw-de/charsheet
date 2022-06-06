@@ -96,11 +96,9 @@ export class VitalsComponent extends CharacterSheetBaseComponent {
     config.minLenth = 1;
     config.maxLength = 50;
 
-    console.log(config);
-
     const modal = this._dialogService.open(EditStringComponent, {data: config});
     const modalSubscription = modal.afterClosed$.subscribe((value: string) => {
-      if (value.length >= config.minLenth && value.length <= config.maxLength) {
+      if (value?.length >= config.minLenth && value.length <= config.maxLength) {
         switch (config.title) {
           case 'Eyes':
             this._characterService.setPartialVitals({eyes: value});

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 import {DialogService} from '@ngneat/dialog';
-import {LanguagePickerComponent} from '../../../app/components/modals/language-picker/language-picker.component';
-import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/point-buy/point-buy.component';
 import {
   Alignment,
   BardSpellSlotsMap,
@@ -34,15 +33,15 @@ import {
   PaladinSpellSlotsMap,
   PlayerCharacterData,
   PointBuyDTO,
-  RangerSpellSlotsMap, RestType,
+  RangerSpellSlotsMap,
   SkillName,
   SorcererSpellSlotsMap,
   Tool, WizardSpellSlotsMap,
 } from '@app/models';
 import {SettingsService} from './settings.service';
-import {AbilityHelper, ClassHelper, DiceHelper} from '@app/helpers';
-import {BehaviorSubject} from 'rxjs';
-import {JsonHelper} from '../../helpers/src/jsonHelper';
+import {AbilityHelper, ClassHelper, DiceHelper, JsonHelper} from '@app/helpers';
+import {LanguagePickerComponent} from '../../../app/components/modals/language-picker/language-picker.component';
+import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/point-buy/point-buy.component';
 
 @Injectable({
   providedIn: 'root',
@@ -389,12 +388,23 @@ import {JsonHelper} from '../../helpers/src/jsonHelper';
    * Calculate and set a character's level from the character's current experience points
    */
   private _setCharacterLevelByXp(): void {
+    const previousLevel = this._character.value.level;
+    const nextLevel = LevelLimits.filter(limit => this._character.value.xp >= limit).length - 1;
     this._character.next({
       ...this._character.value,
-      level: LevelLimits.filter(limit => this._character.value.xp >= limit).length - 1
+      level: nextLevel
     });
     this._adjustProficiencyBonus();
     this._adjustHitPoints();
+    this._adjustHitDice(nextLevel - previousLevel);
+  }
+
+  private _adjustHitDice(levelDifference: number): void {
+    const calculatedHitDice = Math.max(0, this._character.value.hitDice + levelDifference);
+    this._character.next({
+      ...this._character.value,
+      hitDice: calculatedHitDice
+    });
   }
 
   private _adjustProficiencyBonus(): void {
@@ -505,6 +515,22 @@ import {JsonHelper} from '../../helpers/src/jsonHelper';
     this._character.next({
       ...this._character.value,
       hitPoints: hitPoints
+    });
+  }
+
+  public takeDamage(damage: number): void {
+    const hitPoints = Math.min(
+      Math.max(
+        0, this._character.value.hitPoints.current - damage
+      ), this._character.value.hitPoints.max
+    );
+    this._character.next({
+      ...this._character.value,
+      hitPoints: {
+        max: this._character.value.hitPoints.max,
+        temp: this._character.value.hitPoints.temp,
+        current: hitPoints
+      }
     });
   }
 
@@ -626,8 +652,15 @@ import {JsonHelper} from '../../helpers/src/jsonHelper';
     });
   }
 
-  public applyRestEffects(restType: RestType): void {
-    console.log('short/long rest NYI', restType);
+  public addHitDice(dice: number): void {
+    const hitDice: number = Math.min(
+      this._character.value.level,
+      Math.max(this._character.value.hitDice + dice, 0)
+    );
+    this._character.next({
+      ...this._character.value,
+      hitDice: hitDice
+    });
   }
 
- }
+}

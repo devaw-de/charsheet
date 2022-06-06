@@ -63,6 +63,8 @@ import {CharacterSheetBaseComponent} from './views/character-sheet/_base/charact
 import {SpellStatsComponent} from './views/character-sheet/class-special/spell-stats/spell-stats.component';
 import {SpellBookComponent} from './components/modals/spell-book/spell-book.component';
 import {RestComponent} from './components/modals/rest/rest.component';
+import {DamageComponent} from './components/modals/damage/damage.component';
+import {CustomButtonComponent} from './components/buttons/custom-button.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +126,9 @@ import {RestComponent} from './components/modals/rest/rest.component';
     CharacterSheetBaseComponent,
     SpellStatsComponent,
     SpellBookComponent,
-    RestComponent
+    RestComponent,
+    DamageComponent,
+    CustomButtonComponent
   ],
   imports: [
     CommonModule,

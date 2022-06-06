@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Distances, LevelUpStrategy} from '@app/models';
 import {Router} from '@angular/router';
-import {CustomRadioOptions} from '../../components/custom-radio/custom-radio.component';
+import {CustomRadioOption} from '../../components/custom-radio/custom-radio.component';
 import {SettingsService} from '@app/services';
 
 @Component({
@@ -11,7 +11,7 @@ import {SettingsService} from '@app/services';
 })
 export class SettingsComponent {
 
-  public distanceSettingsOptions: Array<CustomRadioOptions> = [
+  public distanceSettingsOptions: Array<CustomRadioOption> = [
     {
       id: Distances.FEET,
       text: 'Use imperial distance units',
@@ -24,7 +24,7 @@ export class SettingsComponent {
     }
   ];
 
-  public levelupStrategyOptions: Array<CustomRadioOptions> = [
+  public levelupStrategyOptions: Array<CustomRadioOption> = [
     {
       id: LevelUpStrategy.ROLL,
       text: 'Roll',
@@ -43,22 +43,47 @@ export class SettingsComponent {
     }
   ];
 
+  public shortRestStrategyOptions: Array<CustomRadioOption> = [
+    {
+      id: LevelUpStrategy.ROLL,
+      text: 'Roll',
+      selected: this._settingsService.shortRestStrategySetting === LevelUpStrategy.ROLL,
+    },
+    {
+      id: LevelUpStrategy.MAX,
+      text: 'Maximum',
+      selected: this._settingsService.shortRestStrategySetting === LevelUpStrategy.MAX
+    },
+    {
+      id: LevelUpStrategy.AVG,
+      text: 'Average',
+      selected: this._settingsService.shortRestStrategySetting === LevelUpStrategy.AVG
+    }
+  ];
+
   constructor(
     private _router: Router,
     private _settingsService: SettingsService
   ) {
   }
 
-  public changeDistanceSetting(selectedOption: CustomRadioOptions): void {
+  public changeDistanceSetting(selectedOption: CustomRadioOption): void {
     this._settingsService.distanceUnitSetting = selectedOption.id as Distances;
     this.distanceSettingsOptions.forEach(option => {
       option.selected = option.id === selectedOption.id;
     });
   }
 
-  public changeLevelUpStrategy(selectedOption: CustomRadioOptions): void {
+  public changeLevelUpStrategy(selectedOption: CustomRadioOption): void {
     this._settingsService.levelUpStrategySetting = selectedOption.id as LevelUpStrategy;
     this.levelupStrategyOptions.forEach(option => {
+      option.selected = option.id === selectedOption.id;
+    });
+  }
+
+  public changeShortRestStrategy(selectedOption: CustomRadioOption): void {
+    this._settingsService.shortRestStrategySetting = selectedOption.id as LevelUpStrategy;
+    this.shortRestStrategyOptions.forEach(option => {
       option.selected = option.id === selectedOption.id;
     });
   }

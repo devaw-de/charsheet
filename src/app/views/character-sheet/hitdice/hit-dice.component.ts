@@ -30,7 +30,7 @@ export class HitDiceComponent extends CharacterSheetBaseComponent implements OnI
       return 0;
     }
 
-    return this.characterLevel;
+    return this._character.hitDice;
   }
 
 }

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CharacterService} from 'src/library/services/src/character.service';
-import {PlayerCharacterData} from 'src/library/models/src/lib/src/character';
+import {PlayerCharacterData} from 'src/library/models/src/lib/src/character/character';
 
 @Component({
   selector: 'app-class-selection',

@@ -1,10 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
-export interface CustomRadioOptions {
+export interface CustomRadioOption {
   id: string;
   text: string;
   selected: boolean;
   disabled?: boolean;
+  className?: string;
 }
 
 @Component({
@@ -14,10 +15,10 @@ export interface CustomRadioOptions {
 })
 export class CustomRadioComponent {
 
-  @Input() options: Array<CustomRadioOptions> = [];
-  @Output() optionSelected = new EventEmitter<CustomRadioOptions>();
+  @Input() options: Array<CustomRadioOption> = [];
+  @Output() optionSelected = new EventEmitter<CustomRadioOption>();
 
-  public selectOption(option: CustomRadioOptions): void {
+  public selectOption(option: CustomRadioOption): void {
     this.options.forEach(o => o.selected = o.id === option.id);
     this.optionSelected.emit(option);
   }
