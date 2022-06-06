@@ -414,7 +414,7 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
       ...this._character.value,
       proficiencies: {
         ...this._character.value.proficiencies,
-        proficiencyBonus: bonus
+        proficiencyBonus: bonus ?? 1
       }
     });
   }
