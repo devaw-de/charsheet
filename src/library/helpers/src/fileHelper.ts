@@ -49,9 +49,9 @@ export class FileHelper {
     return null;
   }
 
-  public static parseFileContent(file: string): PlayerCharacterData {
+  public static parseFileContent(file: string | ArrayBuffer): PlayerCharacterData {
     console.log(file);
-    return JsonHelper.parseCharacter(file);
+    return JsonHelper.parseCharacter(file as string);
   }
 
 }
