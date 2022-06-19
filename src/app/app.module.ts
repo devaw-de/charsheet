@@ -65,6 +65,7 @@ import {SpellBookComponent} from './components/modals/spell-book/spell-book.comp
 import {RestComponent} from './components/modals/rest/rest.component';
 import {DamageComponent} from './components/modals/damage/damage.component';
 import {CustomButtonComponent} from './components/buttons/custom-button.component';
+import {CustomNumberInputComponent} from './custom-number-input/custom-number-input.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import {CustomButtonComponent} from './components/buttons/custom-button.componen
     SpellBookComponent,
     RestComponent,
     DamageComponent,
-    CustomButtonComponent
+    CustomButtonComponent,
+    CustomNumberInputComponent
   ],
   imports: [
     CommonModule,

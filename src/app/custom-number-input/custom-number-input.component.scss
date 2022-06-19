@@ -1,0 +1,26 @@
+::ng-deep :root {
+  --custom-number-input-width: 9ch;
+}
+
+.custom-number-input {
+  width: var(--custom-number-input-width);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: stretch;
+
+  & > * {
+    width: calc(var(--custom-number-input-width) / 3);
+    text-align: center;
+  }
+
+  .interactive {
+    color: var(--section-background);
+    background-color: var(--highlight);
+  }
+
+  .gradient-radial-grey {
+    cursor: not-allowed;
+  }
+
+}
