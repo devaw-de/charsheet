@@ -1,0 +1,19 @@
+<div class="custom-number-input">
+  <button type="button"
+          class="interactive"
+          [class.gradient-radial]="currentValue > minValue"
+          [class.gradient-radial-grey]="currentValue <= minValue"
+          (click)="adjustValue(0 - stepValue)"
+          [innerText]="minusSign"
+  ></button>
+  <div class="value">
+    {{ currentValue }}
+  </div>
+  <button type="button"
+          class="interactive gradient-radial"
+          [class.gradient-radial]="currentValue < maxValue"
+          [class.gradient-radial-grey]="currentValue >= maxValue"
+          (click)="adjustValue(stepValue)"
+          [innerText]="plusSign"
+  ></button>
+</div>
