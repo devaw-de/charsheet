@@ -21,7 +21,7 @@ export class PassivePerceptionComponent extends CharacterSheetBaseComponent {
     const perceptionSkillProficiencyBonus: number = this._character.proficiencies.skills.includes(SkillName.PERCEPTION)
       ? this._character.proficiencies.proficiencyBonus
       : 0;
-    const wisdomModifier = AbilityHelper.getAbilityModifier(this._character.attributes.wis);
+    const wisdomModifier = AbilityHelper.getAbilityModifier(this.characterAttributes.wis);
     return 10 + wisdomModifier + perceptionSkillProficiencyBonus;
   }
 

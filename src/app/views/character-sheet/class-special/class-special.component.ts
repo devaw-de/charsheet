@@ -38,7 +38,7 @@ export class ClassSpecialComponent extends CharacterSheetBaseComponent {
 
     return {
       die: inspirationDie,
-      amount: Math.min(1, AbilityHelper.getAbilityModifier(this._character.attributes.cha))
+      amount: Math.min(1, AbilityHelper.getAbilityModifier(this.characterAttributes.cha))
     };
   }
 
@@ -89,7 +89,7 @@ export class ClassSpecialComponent extends CharacterSheetBaseComponent {
   }
 
   public getPaladinDivineSense(): number {
-    return 1 + AbilityHelper.getAbilityModifier(this._character.attributes.cha);
+    return 1 + AbilityHelper.getAbilityModifier(this.characterAttributes.cha);
   }
 
   public getRogueishExpertise(): string {

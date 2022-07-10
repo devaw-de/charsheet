@@ -24,7 +24,7 @@ export class SkillsComponent extends CharacterSheetBaseComponent {
 
   public getSkillModifier(skill: CharacterSkill): string {
     const bonus = this._character.proficiencies.proficiencyBonus;
-    const relatedAttribute = this._character.attributes[skill.relatedAttribute.substring(0, 3).toLocaleLowerCase()];
+    const relatedAttribute = this.characterAttributes[skill.relatedAttribute.substring(0, 3).toLocaleLowerCase()];
     const attributeModifier = AbilityHelper.getAbilityModifier(relatedAttribute);
     const skillModifier = this._character.proficiencies.skills.includes(skill.name) ? bonus : 0;
     // TODO: handle Expertise

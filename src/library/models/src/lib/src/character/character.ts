@@ -49,6 +49,7 @@ export interface OptionalCharacterAttributes {
 export interface PointBuyDTO {
   attributes: CharacterAttributes;
   racialBonus: OptionalCharacterAttributes;
+  asiBonus: OptionalCharacterAttributes;
 }
 
 export interface Equipment {
@@ -76,7 +77,9 @@ export interface PlayerCharacterData {
   ac: number;
   alignment: Alignment;
   ammunition: Array<Ammunition>;
-  attributes: CharacterAttributes;
+  baseAttributes: CharacterAttributes;
+  appliedRacialBonuses: OptionalCharacterAttributes;
+  appliedAttributeIncreases?: OptionalCharacterAttributes;
   background: CharacterBackground;
   className: CharacterClassName;
   currency: Currency;
@@ -92,7 +95,6 @@ export interface PlayerCharacterData {
   playerName: string;
   proficiencies: Proficiencies;
   race: CharacterRace;
-  appliedRacialBonuses: OptionalCharacterAttributes;
   shield: boolean;
   specialization: CharacterSpecialization;
   subRace: CharacterSubRaceName;
@@ -121,6 +123,15 @@ export const MinimumCharacterAttributes: CharacterAttributes = {
   cha: 8
 };
 
+export const NullAttributeSet: OptionalCharacterAttributes = {
+  str: 0,
+  dex: 0,
+  con: 0,
+  int: 0,
+  wis: 0,
+  cha: 0
+};
+
 export const ZeroHitPoints: HitPoints = {
   current: 0,
   max: 0,
@@ -141,12 +152,12 @@ export const DefaultCharacterVitals: CharacterVitals = {
   hair: 'dark brown'
 };
 
-export const DefaultCharacterAttributes: CharacterAttributes = {
+export const DefaultCharacterBaseAttributes: CharacterAttributes = {
   str: 14,
   dex: 14,
   con: 10,
   int: 8,
-  wis: 15,
+  wis: 14,
   cha: 12
 };
 
@@ -154,7 +165,7 @@ export const DefaultCharacter: PlayerCharacterData = {
   playerName: 'Char Sheet Player',
   name: 'Char Sheet Character',
   vitals: { ...DefaultCharacterVitals },
-  attributes: { ...DefaultCharacterAttributes },
+  baseAttributes: { ...DefaultCharacterBaseAttributes },
   appliedRacialBonuses: {
     con: 2,
     wis: 1,
@@ -162,7 +173,11 @@ export const DefaultCharacter: PlayerCharacterData = {
   xp: 200,
   level: 1,
   alignment: Alignment.CHAOTIC_EVIL,
-  hitPoints: {current: 11, max: 11, temp: 0},
+  hitPoints: {
+    current: 11,
+    max: 11,
+    temp: 0
+  },
   className: CharacterClassName.BARBARIAN,
   background: CharacterBackground.HERMIT,
   ac: 10,
@@ -192,7 +207,6 @@ export const DefaultCharacter: PlayerCharacterData = {
   },
   notes: [
     'This is a test character. You can create your own with the Builder.',
-    'Or you can edit this one. Start by clicking here to remove these pesky notes.',
-    'Multiclassing is not available (yet?)',
+    'Or you can edit this one. Start by clicking here to remove these pesky notes.'
   ]
 };

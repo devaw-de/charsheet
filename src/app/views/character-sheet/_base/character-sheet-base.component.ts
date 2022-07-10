@@ -7,13 +7,13 @@ import {
   CharacterAttributes,
   CharacterBackground,
   CharacterClassName,
-  CharacterRace,
+  CharacterRace, CharacterRaceDetails, CharacterSubRaceDetails,
   CharacterSubRaceName,
   CharacterVitals,
   Currency,
   PlayerCharacterData
 } from '@app/models';
-import {AbilityHelper} from '@app/helpers';
+import {AbilityHelper, ClassHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-character-base',
@@ -37,7 +37,11 @@ export class CharacterSheetBaseComponent implements OnDestroy {
   }
 
   public get characterAttributes(): CharacterAttributes {
-    return this._character.attributes;
+    return AbilityHelper.getAttributesTotal(this._character);
+  }
+
+  public get characterBaseAttributes(): CharacterAttributes {
+    return this._character.baseAttributes;
   }
 
   public get characterBackground(): CharacterBackground {
@@ -88,8 +92,16 @@ export class CharacterSheetBaseComponent implements OnDestroy {
     return this._character.race;
   }
 
+  public get characterRaceDetails(): CharacterRaceDetails {
+    return ClassHelper.getRaceDetailsByName(this.characterRace);
+  }
+
   public get characterSubRace(): CharacterSubRaceName {
     return this._character.subRace;
+  }
+
+  public get characterSubRaceDetails(): CharacterSubRaceDetails {
+    return ClassHelper.getSubRaceDetailsByName(this.characterSubRace);
   }
 
   public get spellAttackModifier(): string {
@@ -97,6 +109,7 @@ export class CharacterSheetBaseComponent implements OnDestroy {
   }
 
   public get spellDc(): number {
+    const attributes = AbilityHelper.getAttributesTotal(this._character);
     let castingAbilityModifier: number;
 
     switch (this._character.className) {
@@ -104,14 +117,14 @@ export class CharacterSheetBaseComponent implements OnDestroy {
       case CharacterClassName.PALADIN:
       case CharacterClassName.SORCERER:
       case CharacterClassName.WARLOCK:
-        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.cha);
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(attributes.cha);
         break;
       case CharacterClassName.CLERIC:
       case CharacterClassName.DRUID:
-        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.wis);
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(attributes.wis);
         break;
       case CharacterClassName.WIZARD:
-        castingAbilityModifier = AbilityHelper.getAbilityModifier(this._character.attributes.int);
+        castingAbilityModifier = AbilityHelper.getAbilityModifier(attributes.int);
         break;
       default:
         return 0;

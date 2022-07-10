@@ -12,7 +12,7 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
 export class ArmorClassComponent extends CharacterSheetBaseComponent {
 
   public get initiative(): string {
-    return AbilityHelper.getAbilityModifierAsString(this._character.attributes.dex);
+    return AbilityHelper.getAbilityModifierAsString(this.characterAttributes.dex);
   }
 
   public get movementSpeed(): string {

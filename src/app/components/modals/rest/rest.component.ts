@@ -65,7 +65,7 @@ export class RestComponent extends CharacterSheetBaseComponent {
     }
 
     // TODO: Adjust for Toughness
-    const conBonus = AbilityHelper.getAbilityModifier(this._character.attributes.con);
+    const conBonus = AbilityHelper.getAbilityModifier(this.characterAttributes.con);
     const avg = this.selectedDice * Math.max(1, conBonus + DiceHelper.getAverageDieValue(this.hitDiceType));
     const max = this.selectedDice * Math.max(1, conBonus + DiceHelper.getMaxDieValue(this.hitDiceType));
     const min = (conBonus + 1) * this.selectedDice;
@@ -134,7 +134,7 @@ export class RestComponent extends CharacterSheetBaseComponent {
   }
 
   private _getShortRestHitPoints(): number {
-    const conModifier = Math.max(0, AbilityHelper.getAbilityModifier(this._character.attributes.con));
+    const conModifier = Math.max(0, AbilityHelper.getAbilityModifier(this.characterAttributes.con));
     switch (this.strategy) {
       case LevelUpStrategy.MAX:
         return (conModifier + DiceHelper.getMaxDieValue(this.hitDiceType)) * this.selectedDice;

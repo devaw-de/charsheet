@@ -25,7 +25,7 @@ export class SavingThrowsComponent extends CharacterSheetBaseComponent implement
   }
 
   public getSavingThrowModifier(attribute: Attribute): string {
-    const attributeValue = this._character.attributes[attribute.substring(0, 3).toLowerCase()];
+    const attributeValue = this.characterAttributes[attribute.substring(0, 3).toLowerCase()];
     const proficiencyBonus = this._characterClass.proficiencies.savingThrows.includes(attribute)
                              ? this._character.proficiencies.proficiencyBonus : 0;
     const attributeBonus = AbilityHelper.getAbilityModifier(attributeValue);
