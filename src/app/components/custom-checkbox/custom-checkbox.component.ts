@@ -9,12 +9,28 @@ export class CustomCheckboxComponent {
 
   @Input() public label: string;
   @Input() public checked = false;
-  @Input() public disabled = false;
+  @Input() public canBeActivated = true;
+  @Input() public canBeDeactivated = true;
+  @Input() public set disabled(isDisabled: boolean) {
+    if (isDisabled) {
+      this.canBeActivated = false;
+      this.canBeDeactivated = false;
+    }
+  }
 
   @Output() public stateChange = new EventEmitter<boolean>();
 
   public toggleState(): void {
-    this.checked = !this.checked;
+    const newState = !this.checked;
+
+    if (
+      (newState && !this.canBeActivated)
+      || (!newState && !this.canBeDeactivated)
+    ) {
+      return;
+    }
+
+    this.checked = newState;
     this.stateChange.emit(this.checked);
   }
 

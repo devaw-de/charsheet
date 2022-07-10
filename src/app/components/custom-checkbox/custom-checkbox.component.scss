@@ -16,7 +16,6 @@
     display: flex;
     flex-flow: row nowrap;
     gap: var(--custom-checkbox-gap-width);
-    width: calc(100% - var(--custom-checkbox-size) - 2 * var(--custom-checkbox-border-width));
 
     &:before {
       content: '';

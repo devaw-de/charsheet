@@ -1,5 +1,5 @@
 <div class="custom-checkbox"
-     [class.disabled]="disabled"
+     [class.disabled]="(checked && !canBeDeactivated) || (!checked && !canBeActivated)"
      [class.checked]="checked"
      (click)="toggleState()"
 >
