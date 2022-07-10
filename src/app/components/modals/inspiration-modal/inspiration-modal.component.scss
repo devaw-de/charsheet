@@ -1,0 +1,22 @@
+.inspiration-modal {
+  --inspiration-die-hover-color: #0f0;
+
+  .wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .interactive {
+    padding: .25rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:hover {
+      filter: drop-shadow(0 0 16px var(--inspiration-die-hover-color));
+    }
+  }
+}

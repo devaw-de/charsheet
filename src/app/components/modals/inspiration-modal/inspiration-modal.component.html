@@ -1,0 +1,16 @@
+<div class="inspiration-modal">
+  <h3>Give yourself Inspiration</h3>
+  <div class="wrapper">
+    <div *ngFor="let die of dice"
+         (click)="selection$.emit(die)"
+         [title]="die"
+         class="interactive"
+         [class.dice-icon-d4]="die === Dice.D4"
+         [class.dice-icon-d6]="die === Dice.D6"
+         [class.dice-icon-d8]="die === Dice.D8"
+         [class.dice-icon-d10]="die === Dice.D10"
+         [class.dice-icon-d12]="die === Dice.D12"
+         [class.dice-icon-d20]="die === Dice.D20"
+    ></div>
+  </div>
+</div>

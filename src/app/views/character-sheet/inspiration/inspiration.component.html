@@ -2,7 +2,15 @@
   <div class="label"
        [innerText]="'Inspiration'"
   ></div>
-  <div class="value"
-       [innerText]="'&nbsp;'"
-  ></div>
+  <div class="value interactive"
+       [class.dice-icon-d4]="currentInspirationDie === Dice.D4"
+       [class.dice-icon-d6]="currentInspirationDie === Dice.D6"
+       [class.dice-icon-d8]="currentInspirationDie === Dice.D8"
+       [class.dice-icon-d10]="currentInspirationDie === Dice.D10"
+       [class.dice-icon-d12]="currentInspirationDie === Dice.D12"
+       [class.dice-icon-d20]="currentInspirationDie === Dice.D20"
+       (click)="handleClick()"
+       [title]="currentInspirationDie"
+  >
+  </div>
 </div>
