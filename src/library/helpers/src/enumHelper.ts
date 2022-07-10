@@ -16,6 +16,12 @@ export class EnumHelper {
     return EnumHelper.enumToArray(Attribute);
   }
 
+  public static getAttributesKeyList(): Array<string> {
+    return EnumHelper.getAttributesList().map(
+      attr => attr.toString().toLowerCase().substring(0, 3)
+    );
+  }
+
   public static getBackgroundList(): Array<CharacterBackground> {
     return EnumHelper.enumToArray(CharacterBackground);
   }

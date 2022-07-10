@@ -36,10 +36,11 @@ import {
   RangerSpellSlotsMap,
   SkillName,
   SorcererSpellSlotsMap,
-  Tool, WizardSpellSlotsMap,
+  Tool,
+  WizardSpellSlotsMap,
 } from '@app/models';
 import {SettingsService} from './settings.service';
-import {AbilityHelper, ClassHelper, DiceHelper, JsonHelper} from '@app/helpers';
+import {AbilityHelper, ClassHelper, DiceHelper, EnumHelper, JsonHelper} from '@app/helpers';
 import {LanguagePickerComponent} from '../../../app/components/modals/language-picker/language-picker.component';
 import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/point-buy/point-buy.component';
 
@@ -295,21 +296,59 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
     this.setCurrency({});
   }
 
-  public setRace(r: CharacterRace): void {
+  private _getRacialBonuses(race: CharacterRace): OptionalCharacterAttributes {
+    const details = ClassHelper.getRaceDetailsByName(race);
+    const attributeBonus = {};
+
+    EnumHelper.getAttributesKeyList().forEach((attribute) => {
+      if (details.attributeBonus[attribute]) {
+        Object.defineProperty(attributeBonus, attribute, {
+          value: details.attributeBonus[attribute],
+          writable: true
+        });
+      }
+    });
+
+    return attributeBonus;
+  }
+
+  private _getSubRaceRacialBonuses(
+    subRace: CharacterSubRaceName,
+    raceBonuses: OptionalCharacterAttributes
+  ): OptionalCharacterAttributes {
+    const subRaceDetails = ClassHelper.getSubRaceDetailsByName(subRace);
+
+    EnumHelper.getAttributesKeyList().forEach((attribute) => {
+      if (!raceBonuses[attribute] && subRaceDetails.attributeBonus[attribute]) {
+        Object.defineProperty(raceBonuses, attribute, {
+          value: subRaceDetails.attributeBonus[attribute],
+          writable: true
+        });
+      } else if (raceBonuses[attribute] && subRaceDetails.attributeBonus[attribute]) {
+        raceBonuses[attribute] = raceBonuses[attribute] + subRaceDetails.attributeBonus[attribute];
+      }
+    });
+
+    return raceBonuses;
+  }
+
+  public setRace(race: CharacterRace): void {
     this._character.next({
       ...this._character.value,
-      race: r,
-      subRace: undefined
+      race: race,
+      subRace: undefined,
+      appliedRacialBonuses: this._getRacialBonuses(race)
     });
     if (ClassHelper.subRaceSelectionRequired(r)) {
       this._adjustAttributeBonuses();
     }
   }
 
-  public setSubRace(s: CharacterSubRaceName): void {
+  public setSubRace(subRace: CharacterSubRaceName): void {
     this._character.next({
       ...this._character.value,
-      subRace: s
+      subRace: subRace,
+      appliedRacialBonuses: this._getSubRaceRacialBonuses(subRace, {...this._character.value.appliedRacialBonuses})
     });
     this._adjustArmorClass();
     this._adjustAttributeBonuses();
