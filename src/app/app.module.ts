@@ -10,7 +10,6 @@ import {ArmorClassComponent} from './views/character-sheet/armorclass/armor-clas
 import {AttributesComponent} from './views/character-sheet/attributes/attributes.component';
 import {BackgroundComponent} from './views/character-sheet/background/background.component';
 import {BackgroundSelectionComponent} from './components/modals/background-selection/background-selection.component';
-import {BuilderComponent} from './views/builder/builder.component';
 import {CharacterComponent} from './views/character-sheet/character.component';
 import {CharacterHistoryComponent} from './views/character-sheet/character-history/character-history.component';
 import {ClassIconComponent} from './views/character-sheet/name/class-icon/class-icon.component';
@@ -76,7 +75,6 @@ import {CustomCheckboxComponent} from './components/custom-checkbox/custom-check
     AttributesComponent,
     BackgroundComponent,
     BackgroundSelectionComponent,
-    BuilderComponent,
     CharacterComponent,
     CharacterHistoryComponent,
     ClassIconComponent,
