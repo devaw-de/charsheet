@@ -47,9 +47,18 @@ export interface OptionalCharacterAttributes {
 }
 
 export interface PointBuyDTO {
-  attributes: CharacterAttributes;
-  racialBonus: OptionalCharacterAttributes;
-  asiBonus: OptionalCharacterAttributes;
+  base: CharacterAttributes;
+  racial: OptionalCharacterAttributes;
+  asi: OptionalCharacterAttributes;
+}
+
+export interface RaceBonusSelectionDTO {
+  str: boolean;
+  dex: boolean;
+  con: boolean;
+  int: boolean;
+  wis: boolean;
+  cha: boolean;
 }
 
 export interface Equipment {
@@ -206,7 +215,9 @@ export const DefaultCharacter: PlayerCharacterData = {
     equipped: ['Copper ring']
   },
   notes: [
-    'This is a test character. You can create your own with the Builder.',
-    'Or you can edit this one. Start by clicking here to remove these pesky notes.'
+    'This is a starting character.',
+    'You can edit it freely. Start by clicking here to remove these pesky notes.',
+    'Or check out the tutorial in the main menu.',
+    'Unfortunately, multi-classing is not supported, sorry about that.'
   ]
 };

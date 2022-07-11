@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CharacterService, SettingsService} from '@app/services';
 import {Distances} from '@app/models';
 import {AbilityHelper, UnitHelper} from '@app/helpers';
@@ -23,9 +23,10 @@ export class ArmorClassComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _settingsService: SettingsService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
 }

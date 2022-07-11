@@ -1,13 +1,15 @@
-import {Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CharacterService} from '@app/services';
 import {
   Alignment,
   CasterClasses,
   CharacterAttributes,
-  CharacterBackground,
+  CharacterBackground, CharacterClass,
   CharacterClassName,
-  CharacterRace, CharacterRaceDetails, CharacterSubRaceDetails,
+  CharacterRace,
+  CharacterRaceDetails,
+  CharacterSubRaceDetails,
   CharacterSubRaceName,
   CharacterVitals,
   Currency,
@@ -19,13 +21,13 @@ import {AbilityHelper, ClassHelper} from '@app/helpers';
   selector: 'app-character-base',
   template: ''
 })
-export class CharacterSheetBaseComponent implements OnDestroy {
+export class CharacterSheetBaseComponent implements OnInit, OnDestroy {
 
   protected _characterSubscription: Subscription;
   protected _character: PlayerCharacterData;
 
   public get characterLoaded(): boolean {
-    return !!this._character;
+    return !!this._character.className;
   }
 
   public get characterAc(): number {
@@ -54,6 +56,10 @@ export class CharacterSheetBaseComponent implements OnDestroy {
 
   public get characterClass(): string {
     return this._character.className.toString().toLowerCase();
+  }
+
+  public get characterClassDetails(): CharacterClass {
+    return ClassHelper.getClassDetailsByName(this.characterClassName);
   }
 
   public get hitDice(): number {
@@ -105,6 +111,7 @@ export class CharacterSheetBaseComponent implements OnDestroy {
   }
 
   public get spellAttackModifier(): string {
+    console.log('spellAttackModifier NYI');
     return '+X';
   }
 
@@ -146,10 +153,16 @@ export class CharacterSheetBaseComponent implements OnDestroy {
   }
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    this._characterSubscription = this._characterService.character$.subscribe(
-      (c) => this._character = c
+  }
+
+  ngOnInit(): void {
+    this._characterSubscription = this._characterService.character$.subscribe((c) => {
+        this._character = c;
+        this._changeDetectorRef.detectChanges();
+      }
     );
   }
 

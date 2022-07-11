@@ -32,7 +32,6 @@ import {
   OptionalCharacterAttributes,
   PaladinSpellSlotsMap,
   PlayerCharacterData,
-  PointBuyDTO,
   RangerSpellSlotsMap,
   SkillName,
   SorcererSpellSlotsMap,
@@ -42,7 +41,6 @@ import {
 import {SettingsService} from './settings.service';
 import {AbilityHelper, ClassHelper, DiceHelper, EnumHelper, JsonHelper} from '@app/helpers';
 import {LanguagePickerComponent} from '../../../app/components/modals/language-picker/language-picker.component';
-import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/point-buy/point-buy.component';
 
 @Injectable({
   providedIn: 'root',
@@ -339,9 +337,6 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
       subRace: undefined,
       appliedRacialBonuses: this._getRacialBonuses(race)
     });
-    if (ClassHelper.subRaceSelectionRequired(r)) {
-      this._adjustAttributeBonuses();
-    }
   }
 
   public setSubRace(subRace: CharacterSubRaceName): void {
@@ -351,7 +346,6 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
       appliedRacialBonuses: this._getSubRaceRacialBonuses(subRace, {...this._character.value.appliedRacialBonuses})
     });
     this._adjustArmorClass();
-    this._adjustAttributeBonuses();
   }
 
   public setCharacterName(name: string): void {
@@ -375,28 +369,28 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
     });
   }
 
-  public setAttributes(attributes: CharacterAttributes): void {
-    if (attributes) {
-      this._character.next({
-        ...this._character.value,
-        attributes: attributes
-      });
-      this._adjustHitPoints();
-      this._adjustSavingThrows();
-      this._adjustArmorClass();
-    }
+  public setBaseAttributes(attributes: CharacterAttributes): void {
+    if (!attributes) { return; }
+
+    this._character.next({
+      ...this._character.value,
+      baseAttributes: attributes
+    });
+    this._adjustHitPoints();
+    this._adjustSavingThrows();
+    this._adjustArmorClass();
   }
 
   public setAppliedRacialBonuses(attributes: OptionalCharacterAttributes): void {
-    if (attributes) {
-      this._character.next({
-        ...this._character.value,
-        appliedRacialBonuses: attributes
-      });
-      this._adjustHitPoints();
-      this._adjustSavingThrows();
-      this._adjustArmorClass();
-    }
+    if (!attributes) { return; }
+
+    this._character.next({
+      ...this._character.value,
+      appliedRacialBonuses: attributes
+    });
+    this._adjustHitPoints();
+    this._adjustSavingThrows();
+    this._adjustArmorClass();
   }
 
   public setEquipment(equipment: Equipment): void {
@@ -458,62 +452,18 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
     });
   }
 
-  /**
-   * Remove attribute bonuses from race selection and re-apply the bonuses of the currently selected race/subRace
-   * Call this method when changing races / subRaces
-   */
-  private _adjustAttributeBonuses(): void {
-    const attributes = { ...this._character.value.attributes };
-    const racialBonuses = { ...this._character.value.appliedRacialBonuses };
-    Object.keys(racialBonuses).forEach(key => {
-      attributes[key] = attributes[key] - racialBonuses[key];
-    });
-    this._character.next({
-      ...this._character.value,
-      attributes: attributes
-    });
-
-    const racialBonus = ClassHelper.getRaceDetailsByName(this._character.value.race).attributeBonus;
-    if (racialBonus.pickable) {
-      // user interaction required
-      const modal = this._dialogService.open(PointBuyComponent, {
-        enableClose: false,
-        closeButton: false,
-        data: {
-          character: this._character
-        }
-      });
-      const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
-        if (!result) {
-          throw new Error('No result from Attribute Point Buy. Character corrupted.');
-        } else {
-          this.setAttributes(result.attributes);
-          this._character.next({
-            ...this._character.value,
-            appliedRacialBonuses: result.racialBonus
-          });
-        }
-        modalSubscription.unsubscribe();
-      });
-    } else {
-      this._character.next({
-        ...this._character.value,
-        appliedRacialBonuses: racialBonus
-      });
-    }
-  }
-
   private _adjustArmorClass(): void {
+    const attributes = AbilityHelper.getAttributesTotal(this._character.value);
     const shieldBonus = this._character.value.shield ? 2 : 0;
-    const nakedAc = 10 + AbilityHelper.getAbilityModifier(this._character.value.attributes.dex);
+    const nakedAc = 10 + AbilityHelper.getAbilityModifier(attributes.dex);
     let ac: number;
 
     switch (this._character.value.className) {
       case CharacterClassName.MONK:
-        ac = nakedAc + AbilityHelper.getAbilityModifier(this._character.value.attributes.wis);
+        ac = nakedAc + AbilityHelper.getAbilityModifier(attributes.wis);
         break;
       case CharacterClassName.BARBARIAN:
-        ac = nakedAc + shieldBonus + AbilityHelper.getAbilityModifier(this._character.value.attributes.con);
+        ac = nakedAc + shieldBonus + AbilityHelper.getAbilityModifier(attributes.con);
         break;
       default:
         ac = nakedAc + shieldBonus;
@@ -540,7 +490,7 @@ import {PointBuyComponent} from '../../../app/views/character-sheet/attributes/p
 
     if (this._character.value.level > 1) {
       const hitPointsPerLevel =
-        AbilityHelper.getAbilityModifier(this._character.value.attributes.con)
+        AbilityHelper.getAbilityModifier(AbilityHelper.getAttributesTotal(this._character.value).con)
         + this._getLevelUpHitPoints(characterClass.hitDie);
 
       for (let i = 1; i < this._character.value.level; i++) {

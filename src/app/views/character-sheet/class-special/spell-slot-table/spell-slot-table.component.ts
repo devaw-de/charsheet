@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {SpellHelper} from '@app/helpers';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.component';
@@ -11,9 +11,10 @@ import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.comp
 export class SpellSlotTableComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public getMaxCharacterSpellSlots(spellLevel: number): number {

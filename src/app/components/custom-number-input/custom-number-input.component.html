@@ -3,16 +3,18 @@
           class="interactive"
           [class.gradient-radial]="currentValue > minValue"
           [class.gradient-radial-grey]="currentValue <= minValue"
+          [class.hidden]="currentValue <= minValue && hideDisabledButtons"
           (click)="adjustValue(0 - stepValue)"
           [innerText]="minusSign"
   ></button>
-  <div class="value">
+  <div class="value" (click)="debug()">
     {{ currentValue }}
   </div>
   <button type="button"
           class="interactive gradient-radial"
           [class.gradient-radial]="currentValue < maxValue"
           [class.gradient-radial-grey]="currentValue >= maxValue"
+          [class.hidden]="currentValue >= maxValue && hideDisabledButtons"
           (click)="adjustValue(stepValue)"
           [innerText]="plusSign"
   ></button>

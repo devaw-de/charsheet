@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditTextComponent} from 'src/app/components/modals/generic-modals/edit-text/edit-text.component';
 import {CharacterService} from '@app/services';
@@ -13,9 +13,10 @@ export class CharacterHistoryComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   edit(): void {

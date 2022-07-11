@@ -6,4 +6,19 @@
   <button (click)="openShit(Dice.D12)">openShit 12</button>
   <button (click)="openShit(Dice.D20)">openShit 20</button>
 
+  <hr>
+
+  <app-custom-number-input [maxValue]="15"
+                           [minValue]="8"
+  ></app-custom-number-input>
+
+  <hr>
+  <app-custom-checkbox [checked]="true"></app-custom-checkbox>
+  <hr>
+  <app-custom-checkbox [disabled]="true"></app-custom-checkbox>
+  <hr>
+  <app-custom-checkbox [disabled]="true" [label]="'some label'"></app-custom-checkbox>
+  <hr>
+  <app-custom-checkbox [label]="'some label'"></app-custom-checkbox>
+
 </div>

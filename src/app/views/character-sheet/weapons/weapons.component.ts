@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 import {CharacterService} from '@app/services';
 
@@ -12,9 +12,10 @@ export class WeaponsComponent extends CharacterSheetBaseComponent {
   public lines = new Array(7);
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
 }

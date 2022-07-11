@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
 import {Currency} from '@app/models';
@@ -14,9 +14,10 @@ export class CurrencyComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public editCurrency(): void {

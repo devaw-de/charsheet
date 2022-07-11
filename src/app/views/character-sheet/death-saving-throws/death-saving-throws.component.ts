@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {DeathSavingThrowState, InitialSavingTrowState, PlayerCharacterData} from '@app/models';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {DeathSavingThrowState, InitialSavingTrowState} from '@app/models';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
 
@@ -8,7 +8,7 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
   templateUrl: './death-saving-throws.component.html',
   styleUrls: ['./death-saving-throws.component.scss']
 })
-export class DeathSavingThrowsComponent extends CharacterSheetBaseComponent {
+export class DeathSavingThrowsComponent extends CharacterSheetBaseComponent implements OnInit {
 
   public savingThrows: DeathSavingThrowState;
 
@@ -17,14 +17,15 @@ export class DeathSavingThrowsComponent extends CharacterSheetBaseComponent {
   }
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
+  }
 
-    const character: PlayerCharacterData = this._characterService.getCharacter();
-    this.savingThrows = character.deathSavingThrows
-                        ? character.deathSavingThrows
-                        : { ...InitialSavingTrowState };
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.savingThrows = this._character.deathSavingThrows ?? { ...InitialSavingTrowState };
   }
 
   public handleSuccess(): void {
@@ -46,7 +47,11 @@ export class DeathSavingThrowsComponent extends CharacterSheetBaseComponent {
   }
 
   public getTooltip(): string {
-    if (!this.savingThrows.successCount && !this.savingThrows.failureCount) {
+    if (
+      !this.characterLoaded
+      || !this.savingThrows
+      || (!this.savingThrows.successCount && !this.savingThrows.failureCount)
+    ) {
       return '';
     }
     const successText = DeathSavingThrowsComponent._getSingularOrPlural(this.savingThrows.successCount);

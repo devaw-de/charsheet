@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Dice} from '@app/models';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -16,12 +16,14 @@ export class HitDiceComponent extends CharacterSheetBaseComponent implements OnI
   public hitDieType: Dice;
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.hitDieType = ClassHelper.getHitDieByClassName(this.characterClassName);
   }
 

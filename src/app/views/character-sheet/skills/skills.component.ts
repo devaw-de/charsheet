@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterSkillList, CharacterSkill, SkillName} from '@app/models';
 import {SkillProficiencySelectionComponent} from '../../../components/modals/skill-proficiency-selection/skill-proficiency-selection.component';
@@ -17,9 +17,10 @@ export class SkillsComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public getSkillModifier(skill: CharacterSkill): string {

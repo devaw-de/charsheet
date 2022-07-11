@@ -1,4 +1,4 @@
-<div class="feats striped">
+<div class="feats striped" *ngIf="characterLoaded">
   <h4 class="section-header">Feats</h4>
   <ng-container *ngIf="getFeats().length">
     <ng-container *ngFor="let feat of getFeats(); let i=index">

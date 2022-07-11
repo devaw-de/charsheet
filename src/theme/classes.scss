@@ -157,3 +157,9 @@
     color: var(--border-color);
   }
 }
+
+.gradient-radial-gray,
+.gradient-radial-grey, {
+  background: #fff;
+  background: radial-gradient(ellipse at center, var(--font-color), var(--lighter));
+}

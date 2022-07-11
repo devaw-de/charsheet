@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
 import {Equipment} from '@app/models';
@@ -10,20 +10,21 @@ import {RestComponent} from '../../../components/modals/rest/rest.component';
   templateUrl: './equipment.component.html',
   styleUrls: ['./equipment.component.scss']
 })
-export class EquipmentComponent extends CharacterSheetBaseComponent {
+export class EquipmentComponent extends CharacterSheetBaseComponent implements OnInit {
 
   public equipment: Equipment;
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
-    this.equipment = { ...this._character.equipment };
+    super(_characterService, _changeDetectorRef);
   }
 
-  private saveEquipment(): void {
-    this._characterService.setEquipment(this.equipment);
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.equipment = { ...this._character.equipment };
   }
 
   public equip(itemIndex: number): void {

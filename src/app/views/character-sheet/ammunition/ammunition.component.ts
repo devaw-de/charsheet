@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {Ammunition} from '@app/models';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -16,8 +16,9 @@ export class AmmunitionComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CharacterClassName} from '@app/models';
 import {AbilityHelper} from '@app/helpers';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -17,9 +17,10 @@ export class ClassSpecialComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public getBarbarianRagesPerDay(): number {

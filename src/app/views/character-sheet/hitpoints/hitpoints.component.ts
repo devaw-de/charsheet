@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {HitPoints} from '@app/models';
 import {CharacterService} from '@app/services';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -18,9 +18,10 @@ export class HitpointsComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public openDamageModal(): void {

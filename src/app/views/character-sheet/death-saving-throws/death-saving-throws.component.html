@@ -1,4 +1,4 @@
-<div class="death-saving-throws">
+<div class="death-saving-throws" *ngIf="characterLoaded && savingThrows">
   <h4 class="section-header">Death saves</h4>
   <div class="wrap"
        [title]="getTooltip()"

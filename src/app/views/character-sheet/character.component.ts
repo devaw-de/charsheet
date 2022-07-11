@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, ElementRef, TemplateRef, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppMenuService, CharacterService, SettingsService, ToastService, ToastType} from '@app/services';
 import {LocalStorageKey, PlayerCharacterData} from '@app/models';
 import {saveAs} from 'file-saver';
 import {FileHelper, GlobalConstants} from '@app/helpers';
 import {CharacterSheetBaseComponent} from './_base/character-sheet-base.component';
-import {JsonHelper} from '../../../library/helpers/src/jsonHelper';
+import {JsonHelper} from '@app/helpers';
 
 @Component({
   selector: 'app-character',
@@ -21,12 +21,13 @@ export class CharacterComponent extends CharacterSheetBaseComponent implements A
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _router: Router,
     private _toastService: ToastService,
     private _settingsService: SettingsService,
     private _menuService: AppMenuService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   ngAfterViewInit(): void {

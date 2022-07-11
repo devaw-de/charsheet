@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
 import {CharacterService, SettingsService} from '@app/services';
 import {ButtonStyle, Dice, HitPoints, LevelUpStrategy, RestStep, RestType} from '@app/models';
@@ -86,10 +86,11 @@ export class RestComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _settingsService: SettingsService,
     private _dialogRef: DialogRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public setRestTypeOption(selectedOption: CustomRadioOption): void {

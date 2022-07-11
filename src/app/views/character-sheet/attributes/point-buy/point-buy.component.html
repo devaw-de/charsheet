@@ -1,86 +1,95 @@
-<ng-template #row let-attr="attr" let-form="form" let-name="name">
-  <ng-container [ngTemplateOutlet]="picker"
-                [ngTemplateOutletContext]="{attr: attr, name: name, form: form}"
-  ></ng-container>
-  <ng-container [ngTemplateOutlet]="isRacialBonusAvailable && !race.attributeBonus[attr]
-                                    ? racialPicker
-                                    : racialBonus"
-                [ngTemplateOutletContext]="{attr: attr, form: form}"
-  ></ng-container>
-  <td class="total number"
-      [innerText]="getTotal(attr)"
-  ></td>
-  <td class="modifier number"
-      [innerText]="race.attributeBonus[attr]
-                   ? AbilityHelper.getAbilityModifierAsString(form.get(attr).value + race.attributeBonus[attr])
-                   : AbilityHelper.getAbilityModifierAsString(form.get(attr).value)"
-  ></td>
-</ng-template>
-
-<ng-template #picker let-attr="attr" let-form="form" let-name="name">
-    <td [innerText]="name"></td>
-    <td>
-      <input type="number"
-             class="pick"
-             [formControl]="form.get(attr)"
-             (change)="updatePointCount(attr)"
-             [min]="8"
-             [max]="15"
-      >
-    </td>
-</ng-template>
-
-<ng-template #racialPicker let-attr="attr" let-form="form">
-  <td class="number">
-    <input type="checkbox"
-           [formControl]="form.get('bonus_' + attr)"
-           (change)="handleBonusSelection(attr)"
-    >
-  </td>
-</ng-template>
-
-<ng-template #racialBonus let-attr="attr">
-  <td class="number"
-      [innerText]="race.attributeBonus[attr]
-                   ? race.attributeBonus[attr]
-                   : 0"
-  ></td>
-</ng-template>
-
-<div class="point-buy">
+<div class="point-buy" *ngIf="characterLoaded && currentAttributes">
   <h3>Point Buy</h3>
-  <form [formGroup]="form">
-    <table *ngIf="character">
+    <table>
       <thead>
         <tr>
           <td>Attribute</td>
           <td>Score</td>
           <td>Bonus</td>
+          <td><abbr title="Ability Score Improvements from level ups">ASI</abbr></td>
           <td>Total</td>
           <td>Modifier</td>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let attr of attributesList">
-          <ng-container [ngTemplateOutlet]="row"
-                        [ngTemplateOutletContext]="{name: attr, attr: attr.toLowerCase().substr(0, 3), form: form}"
+          <ng-container [ngTemplateOutlet]="rowTemplate"
+                        [ngTemplateOutletContext]="{attr: attr}"
           ></ng-container>
         </tr>
       </tbody>
     </table>
-  </form>
 
-  <p>Points: {{ remainingPoints }} / {{ totalPoints }}</p>
-  <p *ngIf="isRacialBonusAvailable">
-    Pickable Bonus Attributes {{ remainingRacialBonusPoints }} / {{ totalRacialBonusPoints }}
-  </p>
+  <div class="points-count">
+    <p>Points: {{ remainingBasePoints }} / {{ totalPoints }}</p>
+  </div>
 
-  <p>
+  <div *ngIf="characterLevel > 3" class="asi-points-count">
+    <p>Points: {{ remainingAsiPoints }} / {{ totalAsiPoints }}</p>
+  </div>
+
+  <div *ngIf="totalRacialBonusPoints > 0" class="racial-points-count">
+    <p>Pickable Bonus Attributes {{ remainingRacialBonusPoints }} / {{ totalRacialBonusPoints }}</p>
+  </div>
+
+  <div class="buttons">
     <button type="button"
-            [disabled]="remainingPoints !== 0"
-            [class.disabled]="remainingPoints !== 0"
+            [disabled]="remainingBasePoints !== 0 || remainingRacialBonusPoints !== 0 || remainingAsiPoints !== 0"
+            [class.disabled]="remainingBasePoints !== 0 || remainingRacialBonusPoints !== 0 || remainingAsiPoints !== 0"
             (click)="save()"
             [innerText]="'Save'"
     ></button>
-  </p>
+  </div>
 </div>
+
+<ng-template #rowTemplate let-attr="attr">
+  <td>{{ attr }}</td>
+  <td>
+    <app-custom-number-input #baseInput
+                             [minValue]="8"
+                             [maxValue]="getBaseAttributeMaxValue(attr)"
+                             [currentValue]="currentAttributes.base[getAttributeKey(attr)]"
+                             [hideDisabledButtons]="true"
+                             (valueChange)="handleBaseAttributeChange($event, attr)"
+    ></app-custom-number-input>
+  </td>
+  <td class="number">
+    <ng-container [ngTemplateOutlet]="totalRacialBonusPoints && !characterRaceDetails.attributeBonus[getAttributeKey(attr)]
+                                    ? racialPickerTemplate
+                                    : racialBonusTemplate"
+                  [ngTemplateOutletContext]="{attr: attr}"
+    ></ng-container>
+  </td>
+  <td class="number">
+    <app-custom-number-input *ngIf="totalAsiPoints > 0; else noAsiPointsTemplate"
+                             #asiInput
+                             [minValue]="0"
+                             [maxValue]="getAsiMaxValue(currentAttributes.asi[getAttributeKey(attr)])"
+                             [hideDisabledButtons]="true"
+                             (valueChange)="handleAsiChange($event, attr)"
+    ></app-custom-number-input>
+  </td>
+  <td class="total number">
+      {{ getTotal(attr) }}
+  </td>
+  <td class="modifier number">
+      {{ getModifier(attr) }}
+  </td>
+</ng-template>
+
+<ng-template #racialPickerTemplate let-attr="attr">
+  <app-custom-checkbox [checked]="false"
+                       *ngIf="remainingRacialBonusPoints > 0 || selectedBonusAttributes[getAttributeKey(attr)]"
+                       (stateChange)="handleBonusSelection(attr, $event)"
+  ></app-custom-checkbox>
+</ng-template>
+
+<ng-template #racialBonusTemplate let-attr="attr">
+  {{ getRacialBonus(attr) }}
+</ng-template>
+
+<ng-template #noAsiPointsTemplate>
+  <div>-</div>
+</ng-template>
+
+<button (click)="debug()">debug</button>

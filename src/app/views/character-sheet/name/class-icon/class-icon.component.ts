@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.component';
 import {CharacterService} from '@app/services';
 
@@ -10,9 +10,10 @@ import {CharacterService} from '@app/services';
 export class ClassIconComponent extends CharacterSheetBaseComponent{
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
 }

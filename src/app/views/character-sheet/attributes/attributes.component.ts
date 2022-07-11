@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {CharacterService} from '@app/services';
-import {Attribute, PointBuyDTO} from '@app/models';
+import {Attribute} from '@app/models';
 import {PointBuyComponent} from './point-buy/point-buy.component';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -13,14 +13,14 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
 })
 export class AttributesComponent extends CharacterSheetBaseComponent {
 
-  public attributesList: Array<Attribute> = [];
+  public attributesList: Array<Attribute> = EnumHelper.getAttributesList();
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
-    this.attributesList = EnumHelper.getAttributesList();
+    super(_characterService, _changeDetectorRef);
   }
 
   public getModifier(attributeValue: number): string {
@@ -28,18 +28,7 @@ export class AttributesComponent extends CharacterSheetBaseComponent {
   }
 
   public startPointBuy(): void {
-    const modal = this._dialogService.open(PointBuyComponent, {
-      data: {
-        character: this._character
-      }
-    });
-    const modalSubscription = modal.afterClosed$.subscribe((result: PointBuyDTO) => {
-      if (result) {
-        this._characterService.setAttributes(result.attributes);
-        this._characterService.setAppliedRacialBonuses(result.racialBonus);
-      }
-      modalSubscription.unsubscribe();
-    });
+    const modal = this._dialogService.open(PointBuyComponent);
   }
 
 }

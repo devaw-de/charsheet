@@ -13,8 +13,8 @@ import {
 
 export class ClassHelper {
 
-  public static getClassDetailsByName(ccn: CharacterClassName): CharacterClass {
-    return CharacterClassesList.find(c => c.name === ccn);
+  public static getClassDetailsByName(className: CharacterClassName): CharacterClass {
+    return CharacterClassesList.find(c => c.name === className);
   }
 
   public static getRaceDetailsByName(race: CharacterRace): CharacterRaceDetails {
@@ -26,8 +26,7 @@ export class ClassHelper {
   }
 
   public static subRaceSelectionRequired(race: CharacterRace): boolean {
-    const subRace = CharacterSubRacesList.find(sub => sub.extendsRace === race);
-    return subRace !== undefined;
+    return CharacterSubRacesList.find(sub => sub.extendsRace === race) !== undefined;
   }
 
   public static getHitDieByClassName(className: CharacterClassName): Dice {

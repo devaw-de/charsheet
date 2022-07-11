@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {DialogService} from '@ngneat/dialog';
 import {EditNumberComponent} from 'src/app/components/modals/generic-modals/edit-number/edit-number.component';
 import {EditStringComponent} from 'src/app/components/modals/generic-modals/edit-string/edit-string.component';
@@ -14,9 +14,10 @@ export class VitalsComponent extends CharacterSheetBaseComponent {
 
   constructor(
     protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogService: DialogService
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public editAge(): void {

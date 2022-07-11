@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {CharacterService} from '@app/services';
 import {CharacterTraits} from '@app/models';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';
@@ -11,9 +11,10 @@ import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.compone
 export class FeatsComponent extends CharacterSheetBaseComponent {
 
   constructor(
-    protected _characterService: CharacterService
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef
   ) {
-    super(_characterService);
+    super(_characterService, _changeDetectorRef);
   }
 
   public getFeats(): Array<CharacterTraits> {

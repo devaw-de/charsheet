@@ -1,168 +1,152 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {DialogRef} from '@ngneat/dialog';
-import {
-  Attribute,
-  CharacterRaceDetails,
-  CharacterSubRaceDetails,
-  CharacterAttributes,
-  PlayerCharacterData
-} from '@app/models';
-import {AbilityHelper, ClassHelper, EnumHelper} from '@app/helpers';
+import {AbilityScoreImprovements, Attribute, NullAttributeSet, PointBuyDTO, RaceBonusSelectionDTO} from '@app/models';
+import {AbilityHelper, EnumHelper} from '@app/helpers';
+import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.component';
+import {CharacterService} from '@app/services';
+import {CustomCheckboxComponent} from '../../../../components/custom-checkbox/custom-checkbox.component';
+import {CustomNumberInputComponent} from '../../../../components/custom-number-input/custom-number-input.component';
+import {PointBuyHelper} from './point-buy.helper';
 
 @Component({
   selector: 'app-point-buy',
   templateUrl: './point-buy.component.html',
-  styleUrls: ['./point-buy.component.scss']
+  styleUrls: ['./point-buy.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PointBuyComponent implements OnInit {
+export class PointBuyComponent extends CharacterSheetBaseComponent implements OnInit {
 
-  Math = Math;
-  AbilityHelper = AbilityHelper;
   Attribute = Attribute;
 
   public readonly totalPoints = 27;
-  public remainingPoints = 27;
-  public isRacialBonusAvailable = false;
-  public remainingRacialBonusPoints = 0;
-  public totalRacialBonusPoints = 0;
-  public character: PlayerCharacterData;
-  public race: CharacterRaceDetails;
-  public subRace: CharacterSubRaceDetails;
-  public attributes: CharacterAttributes;
+  public totalRacialBonusPoints: number;
   public attributesList: Array<Attribute> = EnumHelper.getAttributesList();
-  public form: FormGroup;
+  public totalAsiPoints: number;
+  public currentAttributes: PointBuyDTO = null;
+  public selectedBonusAttributes: RaceBonusSelectionDTO;
 
-  @Output() pointBuyComplete = new EventEmitter<boolean>();
+  @ViewChildren('baseInput') private _baseInputFields: QueryList<CustomNumberInputComponent>;
+  @ViewChildren('asiInput') private _asiInputFields: QueryList<CustomNumberInputComponent>;
+  @ViewChildren(CustomCheckboxComponent) private _racialBonusCheckBoxes: QueryList<CustomCheckboxComponent>;
 
-  private static _getPointCost(scoreValue: number): number {
-    switch (true) {
-      case scoreValue > 7 && scoreValue < 14:
-        return scoreValue - 8;
-      case scoreValue === 14:
-        return 7;
-      case scoreValue === 15:
-        return 9;
-      default:
-        return 0;
-    }
+  public get remainingBasePoints(): number {
+    return this._baseInputFields?.length
+           ? this.totalPoints - PointBuyHelper.getInputValueCostSum(this._baseInputFields)
+           : 0;
+  }
+
+  public get remainingAsiPoints(): number {
+    return this._asiInputFields?.length
+           ? this.totalAsiPoints - PointBuyHelper.getInputValueSum(this._asiInputFields)
+           : 0;
+  }
+
+  public get remainingRacialBonusPoints(): number {
+    return this._racialBonusCheckBoxes
+           ? this.totalRacialBonusPoints - this._racialBonusCheckBoxes.toArray().filter(box => box.checked).length
+           : 0;
   }
 
   constructor(
+    protected _characterService: CharacterService,
+    protected _changeDetectorRef: ChangeDetectorRef,
     private _dialogRef: DialogRef
-  ) { }
+  ) {
+    super(_characterService, _changeDetectorRef);
+  }
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      str: new FormControl(8),
-      dex: new FormControl(8),
-      con: new FormControl(8),
-      int: new FormControl(8),
-      wis: new FormControl(8),
-      cha: new FormControl(8),
-      bonus_str: new FormControl(),
-      bonus_dex: new FormControl(),
-      bonus_con: new FormControl(),
-      bonus_int: new FormControl(),
-      bonus_wis: new FormControl(),
-      bonus_cha: new FormControl()
+    super.ngOnInit();
+    this.currentAttributes = {
+      base: {...this._character.baseAttributes},
+      racial: {...this._character.appliedRacialBonuses},
+      asi: {...this._character.appliedAttributeIncreases} ?? {...NullAttributeSet}
+    };
+    this.selectedBonusAttributes = {
+      str: false,
+      dex: false,
+      con: false,
+      int: false,
+      wis: false,
+      cha: false
+    };
+    this.totalAsiPoints = AbilityScoreImprovements(this.characterLevel);
+    this.totalRacialBonusPoints =
+      (this.characterSubRaceDetails?.attributeBonus?.pickable || 0)
+      + (this.characterRaceDetails.attributeBonus?.pickable || 0);
+    setTimeout(() => {
+      this._changeDetectorRef.detectChanges();
     });
-
-    this.character = this._dialogRef.data.character;
-    this.race = ClassHelper.getRaceDetailsByName(this.character.race);
-    this.subRace = ClassHelper.getSubRaceDetailsByName(this.character.subRace);
-
-    // Set flags and limits for pickable attributes
-    if (this.race.attributeBonus.pickable) {
-      this.isRacialBonusAvailable = true;
-      this.totalRacialBonusPoints =  this.race.attributeBonus.pickable;
-      this.remainingRacialBonusPoints = this.totalRacialBonusPoints;
-    }
-
-    // Throw any subRace-bonus into the racial bonus
-    if (this.subRace) {
-      Object.keys(this.subRace.attributeBonus).forEach(key => {
-        if (this.race.attributeBonus[key]) {
-          this.race.attributeBonus[key] += this.subRace.attributeBonus[key];
-        } else {
-          this.race.attributeBonus[key] = this.subRace.attributeBonus[key];
-        }
-      });
-    }
   }
 
-  /**
-   * Calculate the remaining points available
-   * Adjust the last used input if remaining points < 0
-   */
-  public updatePointCount(attr): void {
-    this.remainingPoints = this.totalPoints;
-
-    Object.keys(this.form.controls).forEach(key => {
-      const value = this.form.get(key).value;
-      this.remainingPoints -= PointBuyComponent._getPointCost(value);
-    });
-
-    if (this.remainingPoints < 0) {
-      const field = this.form.get(attr);
-      field.setValue(field.value - 1);
-      this.updatePointCount(attr);
-    }
+  public handleBaseAttributeChange(value: number, attr: Attribute): void {
+    this.currentAttributes.base[this.getAttributeKey(attr)] = value;
   }
 
-  public handleBonusSelection(attr): void {
-    const pCount = Object.keys(this.form.controls)
-      .filter(key => key.substr(0, 5) === 'bonus' && this.form.get(key).value)
-      .length;
-    this.remainingRacialBonusPoints = this.totalRacialBonusPoints - pCount;
+  public handleAsiChange(value: number, attr: Attribute): void {
+    this.currentAttributes.asi[this.getAttributeKey(attr)] = value;
+  }
 
-    if (this.remainingRacialBonusPoints < 0) {
-      const field = this.form.get('bonus_' + attr);
-      field.setValue(false);
-    }
+  public getBaseAttributeMaxValue(attr: Attribute): number {
+    return PointBuyHelper.getBaseAttributeMaxValue(
+      this.currentAttributes.base[this.getAttributeKey(attr)],
+      this.remainingBasePoints
+    );
+  }
+
+  public getAsiMaxValue(currentValue: number): number {
+    return PointBuyHelper.getAsiMaxValue(currentValue, this.remainingAsiPoints, this.totalAsiPoints);
+  }
+
+  public getRacialBonus(attr: Attribute): number {
+    const racialBonus = this.characterRaceDetails?.attributeBonus[this.getAttributeKey(attr)] || 0;
+    const subRaceBonus = this.characterSubRaceDetails?.attributeBonus[this.getAttributeKey(attr)] || 0;
+    return racialBonus + subRaceBonus;
+  }
+
+  public handleBonusSelection(attr: Attribute, event: boolean): void {
+    this.selectedBonusAttributes[this.getAttributeKey(attr)] = event;
   }
 
   public getTotal(attr: Attribute): number {
-    if (this.race.attributeBonus[attr]) {
-      return this.form.get(attr).value + this.race.attributeBonus[attr];
-    } else if (this.form.get('bonus_' + attr)?.value) {
-      return this.form.get(attr).value + 1;
-    } else {
-      return this.form.get(attr).value;
-    }
+    const attributeKey = this.getAttributeKey(attr);
+
+    return this.currentAttributes.base[attributeKey]
+      + (this.currentAttributes.asi[attributeKey] ?? 0)
+      + (this.currentAttributes.racial[attributeKey] ?? 0)
+      + (this.selectedBonusAttributes[attributeKey] ?? 0);
   }
 
-  public calculateRacialBonus(): void {
-    if (!this.race.attributeBonus.pickable) {
-      this.remainingRacialBonusPoints = 0;
-    } else {
-      this.remainingRacialBonusPoints = this.race.attributeBonus.pickable;
-    }
+  public getModifier(attr: Attribute): string {
+    return AbilityHelper.getAbilityModifierAsString(
+      this.getTotal(attr)
+    );
+  }
+
+  public getAttributeKey(attr: Attribute): string {
+    return attr.toString().toLowerCase().substring(0, 3);
   }
 
   public save(): void {
-    if (this.remainingPoints !== 0 || (this.remainingRacialBonusPoints !== 0 && this.isRacialBonusAvailable)) {
+    if (
+      this.remainingBasePoints !== 0
+      || this.remainingRacialBonusPoints !== 0
+      || this.remainingAsiPoints !== 0
+    ) {
       return;
     }
 
-    this._dialogRef.close({
-      str: this.getTotal(Attribute.STR),
-      dex: this.getTotal(Attribute.DEX),
-      con: this.getTotal(Attribute.CON),
-      int: this.getTotal(Attribute.INT),
-      wis: this.getTotal(Attribute.WIS),
-      cha: this.getTotal(Attribute.CHA),
-      optionalPicks: {
-        str: this.form.get('bonus_str'),
-        dex: this.form.get('bonus_dex'),
-        con: this.form.get('bonus_con'),
-        int: this.form.get('bonus_int'),
-        wis: this.form.get('bonus_wis'),
-        cha: this.form.get('bonus_cha'),
-      }
-    });
+    // this._dialogRef.close(temp);
+    //
+    // this.pointBuyComplete.emit(true);
+  }
 
-    this.pointBuyComplete.emit(true);
+  debug(): void {
+    console.dir(this.currentAttributes);
+    console.log(this.characterRace, this.characterSubRace);
+    console.log(this.characterSubRaceDetails);
+    console.log(this.currentAttributes);
+    console.log(this._character);
   }
 
 }
