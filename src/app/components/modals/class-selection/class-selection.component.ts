@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CharacterService} from 'src/library/services/src/character/character.service';
+import {CharacterService} from '@app/services';
 import {PlayerCharacterData} from 'src/library/models/src/lib/src/character/character';
 
 @Component({

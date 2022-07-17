@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {DialogService} from '@ngneat/dialog';
 import {
   Alignment,
@@ -26,6 +26,7 @@ import {
   LevelUpStrategy,
   OptionalCharacterAttributes,
   PlayerCharacterData,
+  PointBuyDTO,
   SkillName
 } from '@app/models';
 import {SettingsService} from '../settings.service';
@@ -43,6 +44,7 @@ import {CharacterEquipmentService} from './character-equipment.service';
 
   private _character: PlayerCharacterData;
   private readonly _characterSubscription: Subscription;
+  public readonly character$: Observable<PlayerCharacterData>;
 
   constructor(
     private _dialogService: DialogService,
@@ -55,6 +57,7 @@ import {CharacterEquipmentService} from './character-equipment.service';
     this._characterSubscription = this._dataService.character$.subscribe(
       char => this._character = char
     );
+    this.character$ = this._dataService.character$;
   }
 
   ngOnDestroy(): void {
@@ -265,22 +268,34 @@ import {CharacterEquipmentService} from './character-equipment.service';
     this._setCharacterLevelByXp();
   }
 
+
+  public setAttributes(attributes: PointBuyDTO): void {
+    this._dataService.setPartial({
+      baseAttributes: attributes.base,
+      appliedRacialBonuses: attributes.racial,
+      appliedAttributeIncreases: attributes.asi
+    });
+    this._adjustDerivedProperties();
+  }
+
+  private _adjustDerivedProperties(): void {
+    this._adjustHitPoints();
+    this._adjustSavingThrows();
+    this._adjustArmorClass();
+  }
+
   public setBaseAttributes(attributes: CharacterAttributes): void {
     if (!attributes) { return; }
 
     this._dataService.setPartial({baseAttributes: attributes});
-    this._adjustHitPoints();
-    this._adjustSavingThrows();
-    this._adjustArmorClass();
+    this._adjustDerivedProperties();
   }
 
   public setAppliedRacialBonuses(attributes: OptionalCharacterAttributes): void {
     if (!attributes) { return; }
 
     this._dataService.setPartial({appliedRacialBonuses: attributes});
-    this._adjustHitPoints();
-    this._adjustSavingThrows();
-    this._adjustArmorClass();
+    this._adjustDerivedProperties();
   }
 
   private _adjustSavingThrows(): void {
@@ -413,8 +428,6 @@ import {CharacterEquipmentService} from './character-equipment.service';
     );
     this._dataService.setPartial({xp: xp});
   }
-
-
 
   public setCurrentSpellSlots(level: number, remainingSlots: number): void {
     return this._spellService.setCurrentSpellSlots(level, remainingSlots);

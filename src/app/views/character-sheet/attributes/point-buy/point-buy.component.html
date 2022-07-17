@@ -25,11 +25,11 @@
   </div>
 
   <div *ngIf="characterLevel > 3" class="asi-points-count">
-    <p>Points: {{ remainingAsiPoints }} / {{ totalAsiPoints }}</p>
+    <p>Ability Score Increases: {{ remainingAsiPoints }} / {{ totalAsiPoints }}</p>
   </div>
 
   <div *ngIf="totalRacialBonusPoints > 0" class="racial-points-count">
-    <p>Pickable Bonus Attributes {{ remainingRacialBonusPoints }} / {{ totalRacialBonusPoints }}</p>
+    <p>Pickable Bonus Attributes from your character's race {{ remainingRacialBonusPoints }} / {{ totalRacialBonusPoints }}</p>
   </div>
 
   <div class="buttons">
@@ -37,7 +37,7 @@
             [disabled]="remainingBasePoints !== 0 || remainingRacialBonusPoints !== 0 || remainingAsiPoints !== 0"
             [class.disabled]="remainingBasePoints !== 0 || remainingRacialBonusPoints !== 0 || remainingAsiPoints !== 0"
             (click)="save()"
-            [innerText]="'Save'"
+            [innerText]="'Apply'"
     ></button>
   </div>
 </div>
@@ -49,7 +49,6 @@
                              [minValue]="8"
                              [maxValue]="getBaseAttributeMaxValue(attr)"
                              [currentValue]="currentAttributes.base[getAttributeKey(attr)]"
-                             [hideDisabledButtons]="true"
                              (valueChange)="handleBaseAttributeChange($event, attr)"
     ></app-custom-number-input>
   </td>
@@ -65,7 +64,7 @@
                              #asiInput
                              [minValue]="0"
                              [maxValue]="getAsiMaxValue(currentAttributes.asi[getAttributeKey(attr)])"
-                             [hideDisabledButtons]="true"
+                             [currentValue]="0"
                              (valueChange)="handleAsiChange($event, attr)"
     ></app-custom-number-input>
   </td>
@@ -91,5 +90,3 @@
 <ng-template #noAsiPointsTemplate>
   <div>-</div>
 </ng-template>
-
-<button (click)="debug()">debug</button>

@@ -3,7 +3,9 @@ import {BehaviorSubject} from 'rxjs';
 import {JsonHelper} from '@app/helpers';
 import {DefaultCharacter, LocalStorageKey, PlayerCharacterData} from '@app/models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CharacterDataService {
 
   private _character = new BehaviorSubject<PlayerCharacterData>(null);

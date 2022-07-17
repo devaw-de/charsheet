@@ -57,29 +57,13 @@ export class PointBuyHelper {
    * exceeding the maximum points.
    * This is achieved by manipulating the max param according to the current value of an input and the remaining points.
    */
-  public static getBaseAttributeMaxValue(currentValue: number, remainingBasePoints: number): number {
+  public static getDistributedMaxValue(currentValue: number, remainingPoints: number, defaultMaxValue: number): number {
     switch (true) {
-      case !isNaN(currentValue) && remainingBasePoints < 1:
-      case !isNaN(currentValue) &&  remainingBasePoints < PointBuyHelper.getIncreaseCost(currentValue):
+      case !isNaN(currentValue) && remainingPoints < 1:
+      case !isNaN(currentValue) &&  remainingPoints < PointBuyHelper.getIncreaseCost(currentValue):
         return currentValue;
       default:
-        return 15;
-    }
-  }
-
-  public static getAsiMaxValue(currentValue: number, remainingAsiPoints: number, totalAsiPoints: number): number {
-    if (isNaN(currentValue) || isNaN(remainingAsiPoints) || isNaN(totalAsiPoints)) {
-      return 1;
-    }
-
-    switch (true) {
-      case remainingAsiPoints === 0:
-      case totalAsiPoints - currentValue < 0:
-        return currentValue;
-      case currentValue === 0:
-        return remainingAsiPoints;
-      default:
-        return currentValue + remainingAsiPoints;
+        return defaultMaxValue;
     }
   }
 

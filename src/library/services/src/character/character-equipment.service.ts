@@ -3,7 +3,9 @@ import {Currency, Equipment, PlayerCharacterData} from '@app/models';
 import {Subscription} from 'rxjs';
 import {CharacterDataService} from './character-data.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CharacterEquipmentService {
 
   private _character: PlayerCharacterData;

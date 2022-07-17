@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {CharacterService} from 'src/library/services/src/character/character.service';
+import {CharacterService} from '@app/services';
 import {Attribute} from '@app/models';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
 import {CharacterSheetBaseComponent} from '../_base/character-sheet-base.component';

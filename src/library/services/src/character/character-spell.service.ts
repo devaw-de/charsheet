@@ -13,7 +13,9 @@ import {
   WizardSpellSlotsMap
 } from '@app/models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CharacterSpellService {
 
   private _character: PlayerCharacterData;

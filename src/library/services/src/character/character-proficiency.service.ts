@@ -3,7 +3,9 @@ import {Language, PlayerCharacterData, SkillName, Tool} from '@app/models';
 import {Subscription} from 'rxjs';
 import {CharacterDataService} from './character-data.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CharacterProficiencyService {
 
   private _character: PlayerCharacterData;

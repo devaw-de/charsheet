@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, QueryList
 import {DialogRef} from '@ngneat/dialog';
 import {AbilityScoreImprovements, Attribute, NullAttributeSet, PointBuyDTO, RaceBonusSelectionDTO} from '@app/models';
 import {AbilityHelper, EnumHelper} from '@app/helpers';
+import {PointBuyHelper} from './point-buy.helper';
 import {CharacterSheetBaseComponent} from '../../_base/character-sheet-base.component';
 import {CharacterService} from '@app/services';
 import {CustomCheckboxComponent} from '../../../../components/custom-checkbox/custom-checkbox.component';
 import {CustomNumberInputComponent} from '../../../../components/custom-number-input/custom-number-input.component';
-import {PointBuyHelper} from './point-buy.helper';
 
 @Component({
   selector: 'app-point-buy',
@@ -88,14 +88,19 @@ export class PointBuyComponent extends CharacterSheetBaseComponent implements On
   }
 
   public getBaseAttributeMaxValue(attr: Attribute): number {
-    return PointBuyHelper.getBaseAttributeMaxValue(
+    return PointBuyHelper.getDistributedMaxValue(
       this.currentAttributes.base[this.getAttributeKey(attr)],
-      this.remainingBasePoints
+      this.remainingBasePoints,
+      15
     );
   }
 
   public getAsiMaxValue(currentValue: number): number {
-    return PointBuyHelper.getAsiMaxValue(currentValue, this.remainingAsiPoints, this.totalAsiPoints);
+    return PointBuyHelper.getDistributedMaxValue(
+      currentValue,
+      this.remainingAsiPoints,
+      this.totalAsiPoints
+    );
   }
 
   public getRacialBonus(attr: Attribute): number {
@@ -128,6 +133,8 @@ export class PointBuyComponent extends CharacterSheetBaseComponent implements On
   }
 
   public save(): void {
+    console.log(this.currentAttributes);
+    console.log(this.getTotal(Attribute.WIS));
     if (
       this.remainingBasePoints !== 0
       || this.remainingRacialBonusPoints !== 0
@@ -136,17 +143,7 @@ export class PointBuyComponent extends CharacterSheetBaseComponent implements On
       return;
     }
 
-    // this._dialogRef.close(temp);
-    //
-    // this.pointBuyComplete.emit(true);
-  }
-
-  debug(): void {
-    console.dir(this.currentAttributes);
-    console.log(this.characterRace, this.characterSubRace);
-    console.log(this.characterSubRaceDetails);
-    console.log(this.currentAttributes);
-    console.log(this._character);
+    this._characterService.setAttributes(this.currentAttributes);
   }
 
 }

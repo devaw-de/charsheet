@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {CharacterService} from 'src/library/services/src/character/character.service';
+import {CharacterService} from '@app/services';
 import {DialogRef} from '@ngneat/dialog';
 import {Alignment} from '@app/models';
 import {EnumHelper} from '@app/helpers';
